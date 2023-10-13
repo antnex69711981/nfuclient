@@ -2,17 +2,12 @@ Ext.define('antnex.view.viewport.Viewport', {
     extend: 'antnex.default.defaultView',
     requires: [
         'Ext.*',
-        'antnex.store.privateStore.*',
         'antnex.ux.*',
 
         'antnex.view.viewport.ViewportController',
 
         // 系統模組
         'antnex.view.system.mainmenu.Mainmenu', // 首頁
-
-        // IPOS功能
-        'antnex.ipos.subsystem.sale.transaction.Transaction', // 銷售單
-
     ],
     alias: 'widget.viewport-viewport',
     controller: 'viewport-viewport',

@@ -309,8 +309,7 @@ Ext.define('antnex.AppDefaults', {
                     u = `http://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
                     appurl = `http://${aHost}/${CONST_SYS_API_APP}`;
                     servleturl = `http://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                    // frsurl = `http://smart3ctest.antnex.com.tw/frsapi`;
-                    frsurl = `http://192.168.192.42:8984/frsapi`;
+                    // frsurl = `http://192.168.192.42:8984/frsapi`;
                     break;
                 case 1: // 正式機主機
                     me.setMasterkey("frbcslOb5XjhihmUO2hfbKK2");
@@ -320,29 +319,29 @@ Ext.define('antnex.AppDefaults', {
                         u = `https://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
                         appurl = `https://${aHost}/${CONST_SYS_API_APP}`;
                         servleturl = `https://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                        frsurl = `https://nexpos.antnex.com.tw/frsapi`;
+                        // frsurl = `https://nexpos.antnex.com.tw/frsapi`;
                     } else {
                         u = `http://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
                         appurl = `http://${aHost}/${CONST_SYS_API_APP}`;
                         servleturl = `http://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                        frsurl = `http://nexpos.antnex.com.tw/frsapi`;
+                        // frsurl = `http://nexpos.antnex.com.tw/frsapi`;
                     }
                     break;
                 case 9: // 測試機主機
                     me.setMasterkey("4bPaAPn7xuftP4WR3bR6ugeK");
                     aHost = "aiot0616.antnex.com.tw:21443";
 
-                    if (isSSLOn) {
-                        u = `https://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
-                        appurl = `https://${aHost}/${CONST_SYS_API_APP}`;
-                        servleturl = `https://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                        frsurl = `https://smart3ctest.antnex.com.tw/frsapi`;
-                    } else {
-                        u = `http://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
-                        appurl = `http://${aHost}/${CONST_SYS_API_APP}`;
-                        servleturl = `http://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                        frsurl = `http://smart3ctest.antnex.com.tw/frsapi`;
-                    }
+                    // if (isSSLOn) {
+                    u = `https://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
+                    appurl = `https://${aHost}/${CONST_SYS_API_APP}`;
+                    servleturl = `https://${aHost}/${CONST_SYS_API_APP}/s/v1`;
+                    //     // frsurl = `https://smart3ctest.antnex.com.tw/frsapi`;
+                    // } else {
+                    //     u = `http://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
+                    //     appurl = `http://${aHost}/${CONST_SYS_API_APP}`;
+                    //     servleturl = `http://${aHost}/${CONST_SYS_API_APP}/s/v1`;
+                    //     // frsurl = `http://smart3ctest.antnex.com.tw/frsapi`;
+                    // }
                     break;
                 default:
                     me.setMasterkey("4bPaAPn7xuftP4WR3bR6ugeK");
@@ -351,7 +350,7 @@ Ext.define('antnex.AppDefaults', {
                     u = `http://${aHost}/${CONST_SYS_API_APP}/api/v1/tx`;
                     appurl = `http://${aHost}/${CONST_SYS_API_APP}`;
                     servleturl = `http://${aHost}/${CONST_SYS_API_APP}/s/v1`;
-                    frsurl = `http://smart3ctest.antnex.com.tw/frsapi`;
+                    // frsurl = `http://smart3ctest.antnex.com.tw/frsapi`;
                     break;
 
             }
