@@ -1,0 +1,13 @@
+@include extjs-panel-ui(
+    $ui: 'antGridpanelUI',
+    $ui-header-color: #ffffff,
+    $ui-header-font-size: 14px,
+    $ui-header-font-weight: 800,
+    $ui-header-background-color: #3593e4,
+    $ui-header-border-width: 0px,
+    $ui-header-border-color: #ffffff,
+    $ui-border-width: 1px,
+    $ui-border-radius: 1px,
+    $ui-tool-glyph-color: #ffffff,
+    $ui-border-radius: 0px
+);

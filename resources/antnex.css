@@ -1,0 +1,35 @@
+/****************** 登入 ******************/
+.login-opcitybk .x-panel-body-default {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    border-radius: 10px;
+}
+
+/****************** 功能清單 ******************/
+.opmanage-tree .x-tree-node-text {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+/****************** 功能元件註冊 ******************/
+.functionconfig-exisit .x-grid-cell {
+    background-color: rgba(144, 238, 144, 0.4);
+    color: black
+}
+
+/****************** 簽核設定 ******************/
+.premitTree .x-tree-icon {
+    display: none !important;
+}
+
+.premitTree .checkpoint {
+    background-color: yellow !important;
+}
+
+.premitTree .checkbranch {
+    background-color: pink !important;
+}
+
+.isInvalid .x-grid-cell {
+    background-color: #ffe2e2;
+    color: #900;
+}
