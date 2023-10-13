@@ -1,0 +1,1106 @@
+/********************** 初始樣式 **********************/
+
+/* 文字輸入框 - fieldLabel */
+
+.x-form-item-label-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+}
+
+
+/* 文字輸入框 - field */
+
+.x-form-field {
+    font-size: 14px !important;
+}
+
+
+/* checkbox - 標題 */
+
+.x-form-cb-label {
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+
+
+/* checkbox - 圓角 */
+
+.x-form-text-wrap {
+    border-radius: 1.5px;
+}
+
+.x-form-trigger-wrap {
+    border-radius: 1.5px;
+}
+
+.x-form-trigger {
+    border-radius: 1.5px;
+}
+
+.x-fieldset {
+    border-radius: 1.5px;
+}
+
+
+/* gird - 欄位標題文字 */
+
+.x-column-header-text-inner {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #333333 !important;
+}
+
+
+/* grid - cell文字 */
+
+.x-grid-cell-inner {
+    color: black !important;
+    font-size: 1.1em !important;
+}
+
+
+/* grid預設垂直置中 */
+
+.x-grid-td {
+    vertical-align: middle !important;
+}
+
+
+/* grid - 群組*/
+
+.x-grid-group-title {
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+}
+
+.x-grid-group-hd {
+    /* border-top: 2px solid #619ECA !important; */
+    /* border-bottom: 2px solid #619ECA !important; */
+    border: 0px !important;
+    background-color: #6AADDE !important;
+    background-color: #64ADED !important;
+}
+
+.x-grid-group-hd .x-grid-cell-inner {
+    background-color: #e6bc7c;
+}
+
+.x-treelist-item-text,
+.x-treelist-item-icon {
+    font-weight: bold;
+}
+
+/* button - 按鈕文字 */
+
+.x-btn-inner-default-small,
+.x-btn-inner-default-toolbar-small,
+.x-btn-icon-el-default-small,
+.x-btn-icon-el-default-toolbar-small {
+    color: white !important;
+    font-size: 14px;
+    /* display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    text-shadow: #172a5a 1px 1px 1px; */
+}
+
+.x-datepicker-header .x-btn-inner-default-small {
+    color: #3892d4 !important;
+}
+
+
+/* .x-btn-inner-default-small:hover,
+.x-btn-inner-default-toolbar-small:hover {
+    transition: 0.3s !important;
+    transform: scale(1.1);
+} */
+
+
+/*樹狀結構置左*/
+
+.antTree .x-grid-cell-inner.x-grid-cell-inner-treecolumn {
+    text-align: left !important;
+}
+
+
+/********************** 固定樣式 **********************/
+
+
+/*** funcbar button ***/
+
+.funcbarBtn-black,
+.funcbarBtn-black .x-btn-inner-default-toolbar-small,
+.funcbarBtn-black .x-btn-icon-el-default-toolbar-small {
+    color: black !important;
+    background: transparent !important;
+}
+
+.funcbarBtn-green,
+.funcbarBtn-green .x-btn-inner-default-toolbar-small,
+.funcbarBtn-green .x-btn-icon-el-default-toolbar-small {
+    color: green !important;
+    background: transparent !important;
+}
+
+.funcbarBtn-red,
+.funcbarBtn-red .x-btn-inner-default-toolbar-small,
+.funcbarBtn-red .x-btn-icon-el-default-toolbar-small {
+    color: red !important;
+    background: transparent !important;
+}
+
+.funcbarBtn-yellow,
+.funcbarBtn-yellow .x-btn-inner-default-toolbar-small,
+.funcbarBtn-yellow .x-btn-icon-el-default-toolbar-small {
+    color: #EAC969 !important;
+    background: transparent !important;
+}
+
+.funcbarBtn-blue,
+.funcbarBtn-blue .x-btn-inner-default-toolbar-small,
+.funcbarBtn-blue .x-btn-icon-el-default-toolbar-small {
+    color: #085cac !important;
+    background: transparent !important;
+}
+
+/*** searchbar button ***/
+
+.searchbarBtn-blue {
+    background: #2477C2 !important;
+    border-color: #2477C2 !important;
+}
+
+.searchbarBtn-red {
+    background: red !important;
+    border-color: red !important;
+}
+
+.searchbarBtn .x-btn-inner {
+    vertical-align: center;
+    horizontal-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+
+/*** tools button (header右上角的button) ***/
+
+.toolBtn {
+    background: #8FC1E6 !important;
+    border-color: #8FC1E6 !important;
+    border-radius: 100% !important;
+    width: 16px;
+    height: 16px;
+}
+
+.toolBtn:hover {
+    background: #BDDAF0 !important;
+    border-color: #BDDAF0 !important;
+}
+
+.toolBtn .x-btn-inner,
+.toolBtn .x-btn-icon-el-default-small {
+    font-size: 12px !important;
+    color: #247fcc !important;
+}
+
+
+/*** 透明button ***/
+
+.antBtn-transparent {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.antBtn-transparent .x-btn-icon-el-default-small,
+.antBtn-transparent .x-btn-icon-el-default-toolbar-small,
+.antBtn-transparent .x-btn-icon-el-default-medium,
+.antBtn-transparent .x-btn-icon-el-default-toolbar-medium,
+.antBtn-transparent .x-btn-icon-el-default-large,
+.antBtn-transparent .x-btn-icon-el-default-toolbar-large,
+.antBtn-transparent .x-btn-inner-default-small,
+.antBtn-transparent .x-btn-inner-default-toolbar-small,
+.antBtn-transparent .x-btn-inner-default-medium,
+.antBtn-transparent .x-btn-inner-default-toolbar-medium,
+.antBtn-transparent .x-btn-inner-default-large,
+.antBtn-transparent .x-btn-inner-default-toolbar-large {
+    color: #757575;
+}
+
+
+/*** 一般button ***/
+
+
+.largeBtnFont28 .x-btn-inner-default-large {
+    font: bold 28px/28px helvetica, arial, verdana, sans-serif
+}
+
+.largeBtnFont18 .x-btn-inner-default-large {
+    font: bold 18px/18px helvetica, arial, verdana, sans-serif
+}
+
+/*
+
+按鈕定義
+藍色：與系統互動操作(如：開始修改、搜尋、前一筆、後一筆)
+紅色：移除(減項)操作
+橘色：新增(增項)操作
+綠色：與系統溝通操作(如：匯出、匯入、送出、完成)
+
+*/
+
+.antBtn-edit,
+
+/* 修改 */
+
+.antBtn-batchedit,
+
+/* 批次修改 */
+
+.antBtn-search,
+
+/* 搜尋 */
+
+.antBtn-previous,
+
+/* 前一筆 */
+
+.antBtn-next,
+
+/* 後一筆 */
+
+.antBtn-filter,
+
+/* 過濾 */
+
+.antBtn-blue {
+    background: #2477C2 !important;
+    border-color: #1d6eaf !important;
+}
+
+.antBtn-red,
+.antBtn-remove,
+
+/* 移除 */
+
+.antBtn-clear {
+    background: #FF4747 !important;
+    border-color: #CC0000 !important;
+}
+
+.antBtn-darkred {
+    background: #E72453 !important;
+    border-color: #FF4747 !important;
+}
+
+.antBtn-add,
+
+/* 新增 */
+
+.antBtn-orange {
+    background: #f47721 !important;
+    border-color: #EA640B !important;
+}
+
+.antBtn-yellow {
+    background: #EAC969 !important;
+    border-color: #F7E09A !important;
+}
+
+.antBtn-import,
+
+/* 匯入 */
+
+.antBtn-export,
+
+/* 匯出 */
+
+.antBtn-save,
+
+/* 儲存 */
+
+.antBtn-refresh,
+
+/* 刷新 */
+
+.antBtn-green {
+    background: #4f9564 !important;
+    border-color: #468659 !important;
+}
+
+.antBtn-cancel,
+
+/* 取消 */
+
+.antBtn-gray {
+    background: #AAAAAA !important;
+    border-color: #B3B3B3 !important;
+}
+
+.antBtn-lightgray {
+    background: #dedede !important;
+    border-color: #dadada !important;
+}
+
+.antBtn-unselect,
+
+/* 按鈕(不選) */
+
+.antBtn-sys-blue {
+    background: #2883c8 !important;
+    border-color: #2883c8 !important;
+}
+
+.antBtn-selected,
+
+/* 按鈕(選下) */
+
+.antBtn-sys-black {
+    background: #3f5061 !important;
+    border-color: #3f5061 !important;
+}
+
+.antBtn-bluegray {
+    background: #7aa7f6 !important;
+    border-color: #6f9ae4 !important;
+}
+
+.antBtn-redgray {
+    background: #f67a7a !important;
+    border-color: #f67a7a !important;
+}
+
+.antBtn-orangegray {
+    background: #f6a87a !important;
+    border-color: #f6a87a !important;
+}
+
+.antBtn-system {
+    background: linear-gradient(#4B9CD8, #2477C2) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-piano {
+    background: linear-gradient(#606060, #141414) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-forest {
+    background: linear-gradient(#4FBE64, #468659) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-pomegranate {
+    background: linear-gradient(#FF587F, #C90C38) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-amber {
+    background: linear-gradient(#FFA400, #EA640B) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-sunshine {
+    background: linear-gradient(#FFB376, #F58778) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-night {
+    background: linear-gradient(#FBC2EB, #9D77D1) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-romantic {
+    background: linear-gradient(#FFD4C1, #FF758C) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-nova {
+    background: linear-gradient(#537895, #09203F) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-lemon {
+    background: linear-gradient(#30DD8A, #25AAE1) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-club {
+    background: linear-gradient(#00DBDE, #FC00FF) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.antBtn-aurora {
+    background-image: linear-gradient(to left, #7873f5 0%, #20be9f 51%, #7873f5 100%) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+    background-size: 200% auto !important;
+}
+
+.antBtn-aurora:hover {
+    transition: 0.5s !important;
+    background-position: right center !important;
+}
+
+.antBtn-lineardarkred {
+    background: linear-gradient(#ff587f, #c90c38) !important;
+    border-color: #FF4747 !important;
+}
+
+.antBtn-lineardarkred:hover {
+    background: linear-gradient(#ec4169, #af0029) !important;
+    border-color: #FF4747 !important;
+}
+
+.antBtn-linearblue {
+    background: linear-gradient(#4B9CD8, #2477C2) !important;
+    border-color: #1d6eaf !important;
+}
+
+.antBtn-linearblue:hover {
+    background: linear-gradient(#2477C2, #326da0) !important;
+    border-color: #1d6eaf !important;
+}
+
+
+/* window固定樣式 */
+
+.antBtn-doSave:hover,
+.antBtn-doCancel:hover,
+.antBtn-doChoose:hover {
+    transition: 0.3s !important;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* window固定樣式 */
+
+.antBtn-doSave {
+    background: #314E91 !important;
+    border-color: #468659 !important;
+    opacity: 0.8;
+}
+
+
+/* window固定樣式 */
+
+.antBtn-doCancel {
+    background: #AAAAAA !important;
+    border-color: #B3B3B3 !important;
+    opacity: 0.8;
+}
+
+
+/* window固定樣式--上下筆選擇 */
+
+.antBtn-doChoose {
+    background: #2477C2 !important;
+    border-color: #2278c3 !important;
+    opacity: 0.8;
+}
+
+.x-action-col-icon.actionBtn-green {
+    color: green !important;
+}
+
+.x-action-col-icon.actionBtn-gray {
+    color: gray !important;
+}
+
+.x-action-col-icon.actionBtn-red {
+    color: red !important;
+}
+
+.x-action-col-icon.actionBtn-orange {
+    color: orange !important;
+}
+
+.x-action-col-icon.actionBtn-red {
+    color: red !important;
+}
+
+.x-action-col-icon.actionBtn-black {
+    color: black !important;
+}
+
+
+/********************** field **********************/
+
+/* 透明底 */
+
+.fieldGray .x-form-field,
+.fieldTrans .x-form-field,
+.fieldTrans .x-form-text-wrap {
+    background-color: transparent;
+}
+
+.fieldTrans .x-form-trigger-wrap {
+    border-color: transparent !important;
+}
+
+
+/* 不可填寫 */
+
+.fieldGray .x-form-field,
+.fieldNotInput .x-form-field,
+.fieldNotInput .x-form-text-wrap {
+    background-color: #DDE1E2;
+}
+
+
+/* 必填 */
+
+.fieldBlue .x-form-item-label-text,
+.fieldRequired .x-form-item-label-text {
+    color: #2477C2;
+}
+
+
+/* 必填 */
+
+.fieldBlue .x-form-field,
+.fieldRequired .x-form-field,
+.fieldRequired .x-form-text-wrap {
+    background-color: #E0FCFF;
+}
+
+
+/* 警示 */
+
+.fieldRed .x-form-field,
+.fieldWarning .x-form-field {
+    background-color: red;
+}
+
+
+/* 提示 */
+
+.fieldOrange .x-form-field,
+.fieldHint .x-form-field {
+    background-color: #FF9F51;
+}
+
+/* 滿意度 */
+.fieldStar .x-form-field,
+.fieldStar .x-form-text-wrap {
+    background-color: transparent;
+    color: #f6af3d;
+}
+
+/* 置左 */
+.fieldAlign-left .x-form-field,
+.fieldAlign-left .x-form-item-label-text {
+    text-align: left !important;
+}
+
+/* 置中 */
+.fieldAlign-center .x-form-field,
+.fieldAlign-center .x-form-item-label-text {
+    text-align: center !important;
+}
+
+/* 置右 */
+.fieldAlign-right .x-form-field,
+.fieldAlign-right .x-form-item-label-text {
+    text-align: right !important;
+}
+
+/* 文字粗體 */
+
+.fieldBold .x-form-field,
+.fieldBold .x-form-item-label-text {
+    font-weight: bold;
+}
+
+/* 文字大小 - 14px */
+
+.fieldSize-14px .x-form-field,
+.fieldSize-14px .x-form-item-label-text {
+    font-size: 14px !important;
+}
+
+
+/* 文字大小 - 16px */
+
+.fieldSize-16px .x-form-field,
+.fieldSize-16px .x-form-item-label-text {
+    font-size: 16px !important;
+}
+
+
+/* 文字大小 - 18px */
+
+.fieldSize-18px .x-form-field,
+.fieldSize-18px .x-form-item-label-text {
+    font-size: 18px !important;
+}
+
+
+/* 文字大小 - 20px */
+
+.fieldSize-20px .x-form-field,
+.fieldSize-20px .x-form-item-label-text {
+    font-size: 20px !important;
+}
+
+
+/* 文字大小 - 22px */
+
+.fieldSize-22px .x-form-field,
+.fieldSize-22px .x-form-item-label-text {
+    font-size: 22px !important;
+}
+
+
+/* 文字大小 - 24px */
+
+.fieldSize-24px .x-form-field,
+.fieldSize-24px .x-form-item-label-text {
+    font-size: 24px !important;
+}
+
+/* 文字大小 - 28px */
+
+.fieldSize-28px .x-form-field,
+.fieldSize-28px .x-form-item-label-text {
+    font-size: 28px !important;
+}
+
+/* 文字大小 - 32px */
+
+.fieldSize-32px .x-form-field,
+.fieldSize-32px .x-form-item-label-text {
+    font-size: 32px !important;
+}
+
+
+/* 文字輸入框 文字設定 - fieldLabel */
+
+.antVerticalText .x-form-item-label-inner {
+    padding: 0px 0px 0px 3px !important;
+}
+
+
+/* 文字輸入框 - fieldLabel */
+
+.antVerticalText .x-form-item-label {
+    vertical-align: middle;
+    padding: 0;
+}
+
+
+/* 文字輸入框 - fieldLabel */
+
+.antVerticalText .x-form-item-label-text {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+}
+
+
+/********************** grid **********************/
+
+
+/* grid - 欄位標題對齊方式 - 置中 */
+
+.antGrid-header-adjust-center .x-column-header-inner {
+    text-align: center;
+}
+
+
+/* grid - 欄位標題對齊方式 - 置左 */
+
+.antGrid-header-adjust-left .x-column-header-inner {
+    text-align: left;
+}
+
+
+/* grid - 欄位標題對齊方式 - 置右 */
+
+.antGrid-header-adjust-right .x-column-header-inner {
+    text-align: right;
+}
+
+
+/* grid - 綠色 */
+
+.antGrid-row-green .x-grid-cell {
+    background-color: #e2ffe2;
+}
+
+
+/* grid - 紅色 */
+
+.antGrid-row-red .x-grid-cell {
+    background-color: #ffe2e2;
+}
+
+
+/********************** toast **********************/
+
+
+/* toast - 上邊界margin */
+
+.toastTopPadding {
+    top: 350px !important;
+}
+
+/* Toast提示背景 */
+
+.antToast .x-autocontainer-innerCt {
+    background-color: #FFFFFF;
+}
+
+
+/********************** Tabpanel **********************/
+
+
+/* tab使用UI方法時會將size設為0，由此css可重新將size設回 */
+
+
+/* 原檔路徑=> ext/classic/theme-base/sass/src/tab/tab.scss */
+
+.antTabpanel .x-tab-close-btn {
+    font-size: 12px;
+    left: auto;
+    color: #FFFFFF;
+    z-index: 999;
+    background: none !important;
+}
+
+.x-tab.x-box-item {
+    border-width: 0px 1px 0px 0px !important;
+    border-color: #C9C9C9 !important;
+    /* background-color: #C9C9C9 !important; */
+    /* border-color: red !important; */
+    /* background-color: red !important; */
+}
+
+/********************** Action **********************/
+
+.x-action-col-icon-red {
+    color: #DD6550 !important;
+    font-size: 18px !important;
+}
+
+
+/********************** modern function button **********************/
+
+.modern-functionBtn-blue .x-btn-icon-el {
+    color: #FFFFFF !important;
+}
+
+.modern-functionBtn-trans {
+    color: #757575 !important;
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.modern-functionBtn-blue,
+.modern-functionBtn-edit {
+    color: #FFFFFF !important;
+    background: #2477C2 !important;
+    border-color: #1d6eaf !important;
+}
+
+.modern-functionBtn-blue .x-btn-icon-el-default-large {
+    color: black !important;
+}
+
+.modern-antBtn-sys-black {
+    color: #FFFFFF !important;
+    background: #3f5061 !important;
+    border-color: #3f5061 !important;
+}
+
+.modern-functionBtn-red,
+.modern-functionBtn-remove {
+    color: #FFFFFF !important;
+    background: #FF4747 !important;
+    border-color: #CC0000 !important;
+}
+
+.modern-functionBtn-darkred {
+    color: #FFFFFF !important;
+    background: #E72453 !important;
+    border-color: #FF4747 !important;
+}
+
+.modern-functionBtn-orange,
+.modern-functionBtn-add {
+    color: #FFFFFF !important;
+    background: #f47721 !important;
+    border-color: #EA640B !important;
+}
+
+.modern-functionBtn-yellow {
+    color: #FFFFFF !important;
+    background: #EAC969 !important;
+    border-color: #F7E09A !important;
+}
+
+.modern-functionBtn-green,
+.modern-functionBtn-batch,
+.modern-functionBtn-import,
+.modern-functionBtn-save {
+    color: #FFFFFF !important;
+    background: #4f9564 !important;
+    border-color: #468659 !important;
+}
+
+.modern-functionBtn-gray,
+.modern-functionBtn-cancel {
+    color: #FFFFFF !important;
+    background: #AAAAAA !important;
+    border-color: #B3B3B3 !important;
+}
+
+.modern-functionBtn-system {
+    color: #FFFFFF !important;
+    background: linear-gradient(#4B9CD8, #2477C2) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-piano {
+    color: #FFFFFF !important;
+    background: linear-gradient(#606060, #141414) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-forest {
+    color: #FFFFFF !important;
+    background: linear-gradient(#4FBE64, #468659) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-pomegranate {
+    color: #FFFFFF !important;
+    background: linear-gradient(#FF587F, #C90C38) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-amber {
+    color: #FFFFFF !important;
+    background: linear-gradient(#FFA400, #EA640B) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-sunshine {
+    color: #FFFFFF !important;
+    background: linear-gradient(#FFB376, #F58778) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-night {
+    color: #FFFFFF !important;
+    background: linear-gradient(#FBC2EB, #9D77D1) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-romantic {
+    color: #FFFFFF !important;
+    background: linear-gradient(#FFD4C1, #FF758C) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-nova {
+    color: #FFFFFF !important;
+    background: linear-gradient(#537895, #09203F) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-lemon {
+    color: #FFFFFF !important;
+    background: linear-gradient(#30DD8A, #25AAE1) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-club {
+    color: #FFFFFF !important;
+    background: linear-gradient(#00DBDE, #FC00FF) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+}
+
+.modern-functionBtn-aurora {
+    color: #FFFFFF !important;
+    background-image: linear-gradient(to left, #7873f5 0%, #20be9f 51%, #7873f5 100%) !important;
+    border-color: transparent !important;
+    border-width: 0px !important;
+    background-size: 200% auto !important;
+}
+
+.modern-functionBtn-aurora:hover {
+    transition: 0.5s !important;
+    background-position: right center !important;
+}
+
+.modern-functionBtn-doSave {
+    color: #FFFFFF !important;
+    /* background: #314E91 !important;
+    border-color: #314E91 !important; */
+    background: #4f9564 !important;
+    border-color: #468659 !important;
+    opacity: 0.8;
+}
+
+.modern-functionBtn-doSave:hover {
+    transition: 0.3s !important;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.modern-functionBtn-doCancel {
+    color: #FFFFFF !important;
+    background: #AAAAAA !important;
+    border-color: #B3B3B3 !important;
+    opacity: 0.8;
+}
+
+.modern-functionBtn-doCancel:hover {
+    transition: 0.3s !important;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Modern tabpanel */
+.modern-tabpanel .x-tab.x-has-text .x-inner-el {
+    padding: 8px !important;
+    background-color: #FFFFFF !important;
+    color: #3593e4 !important;
+}
+
+.modern-tabpanel .x-tab.x-active .x-active-indicator-el {
+    background-color: #3593e4 !important;
+}
+
+
+/* Modern textfield */
+.modern-nounderline .x-underline-el {
+    height: 0px !important;
+
+}
+
+.modern-nounderline .x-underline-el:before,
+.x-textfield .x-underline-el:after {
+    height: 0px !important;
+}
+
+/* 測試待刪除 start */
+
+.wrap {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(-30deg, #fdaecb, #e7597f, #fe8556);
+}
+
+.container {
+    width: 100;
+    margin: auto;
+    display: flex;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    font-family: 'Noto Sans TC', serif;
+}
+
+.toolitem {
+    width: 100%;
+    text-align: right;
+    background-color: #fff;
+    font-family: 'Noto Sans TC', serif;
+}
+
+.item .pic {
+    width: 80px;
+}
+
+.item .txt {
+    width: 100%;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.item .detailtext {
+    width: 100%;
+    margin: 10px;
+    font-size: 12px;
+    color: #757575;
+    /* font-weight: bold; */
+}
+
+.item .pic img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.modern-btn-blue {
+    height: 24px;
+    line-height: 1.5em;
+    border: 1px solid #1d6eaf;
+    height: 24;
+    font-weight: bold;
+    border-radius: 3px;
+    color: #FFFFFF;
+    background-color: #2477C2;
+}
+
+.modern-btn {
+    height: 24px;
+    line-height: 1.5em;
+    border: 1px solid #EA640B;
+    height: 24;
+    font-weight: bold;
+    border-radius: 3px;
+    color: #FFFFFF;
+    background-color: #f47721;
+}
+
+.modern-btn2 {
+    height: 24px;
+    line-height: 1.5em;
+    border: 1px solid red;
+    height: 24;
+    font-weight: bold;
+    border-radius: 3px;
+    color: #FFFFFF;
+    background-color: red;
+}
+
+.modern-spilter {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    border-radius: 1x;
+    margin-bottom: 10px;
+}
+
+/* 測試待刪除 end */
