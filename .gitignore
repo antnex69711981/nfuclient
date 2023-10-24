@@ -1,6 +1,8 @@
 /build
-bootstrap.*
-classic.json*
-modern.json*
-.sencha
 /ext
+/node_modules
+package-lock.json
+classic.json
+classic.jsonp
+modern.json
+modern.jsonp
