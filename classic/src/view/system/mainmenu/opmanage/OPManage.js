@@ -325,7 +325,7 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                         remove: 'onMainTabRemove'
                     },
                     items: [{
-                        xtype: 'sample-sample',
+                        xtype: 'antStanley-main',
                         closable: true,
                     }]
                 }
