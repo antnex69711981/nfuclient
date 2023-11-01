@@ -26,6 +26,18 @@ Ext.define('antnex.services.basic.FunctionService', {
                 iconcls: 'fas fa-bookmark'
             }, {
                 parentcode: 'antSample',
+                code: 'antSample-antStanley-user',
+                name: '使用者管理1',
+                xtype: 'antStanley-user',
+                iconcls: 'fas fa-user-edit'
+            }, {
+                parentcode: 'antSample',
+                code: 'antSample-antStanley-user2',
+                name: '使用者管理2',
+                xtype: 'antStanley-user2',
+                iconcls: 'fas fa-user-edit'
+            }, {
+                parentcode: 'antSample',
                 code: 'antSample-antKevin-main',
                 name: 'Kevin-首頁',
                 xtype: 'antKevin-main',
