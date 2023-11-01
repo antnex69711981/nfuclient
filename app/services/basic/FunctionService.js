@@ -74,32 +74,36 @@ Ext.define('antnex.services.basic.FunctionService', {
                 { code: '41241224', name: '謝曜鴻' },
             ];
             userList.forEach(user => {
+                const usercode = user.code;
+                const username = user.name;
+
                 const rootNode = {
                     parentcode: 'root',
-                    code: `${user.code}-home`,
-                    name: `${user.name}(${user.code})`,
+                    code: `${usercode}-home`,
+                    name: `${username}(${usercode})`,
                     xtype: '',
                     iconcls: ''
                 }
-                userPage.push(rootNode);
 
-                // 首頁
-                userPage.push({
+                const mainPage = {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-main`,
-                    name: `${user.name}的首頁`,
-                    xtype: `${user.code}-main`,
+                    name: `${username}的首頁`,
+                    xtype: `${usercode}-main`,
                     iconcls: 'fas fa-bookmark'
-                });
+                }
 
-                // 使用者管理
-                userPage.push({
+                const userPage = {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-user`,
                     name: `使用者管理`,
-                    xtype: `${user.code}-user`,
+                    xtype: `${usercode}-user`,
                     iconcls: 'fas fa-user-edit'
-                })
+                }
+
+                userPage.push(rootNode);
+                userPage.push(mainPage);
+                userPage.push(userPage);
             })
 
             functionList = functionList.concat(sample);
