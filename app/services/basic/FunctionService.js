@@ -12,7 +12,7 @@ Ext.define('antnex.services.basic.FunctionService', {
 
             let functionList = [];
 
-            const sample = [{
+            const sampleList = [{
                 parentcode: 'root',
                 code: 'antSample',
                 name: '範例頁面',
@@ -38,7 +38,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 iconcls: 'fas fa-bookmark'
             }]
 
-            let userPage = []
+            let pageList = []
 
             const userList = [
                 { code: '11261103', name: '劉宜欣' },
@@ -101,19 +101,18 @@ Ext.define('antnex.services.basic.FunctionService', {
                     iconcls: 'fas fa-user-edit'
                 }
 
-                userPage.push(rootNode);
-                userPage.push(mainPage);
-                userPage.push(userPage);
+                pageList.push(rootNode);
+                pageList.push(mainPage);
+                pageList.push(userPage);
             })
 
-            functionList = functionList.concat(sample);
-            functionList = functionList.concat(userPage);
+            functionList = functionList.concat(sampleList);
+            functionList = functionList.concat(pageList);
 
             store.loadData(functionList);
 
         } catch (e) {
             me.showError('FunctionService/ load error:', e);
-            reject('功能資料更新失敗:' + e);
         }
     },
 
