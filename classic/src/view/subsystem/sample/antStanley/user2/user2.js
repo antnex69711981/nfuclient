@@ -73,40 +73,39 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                             align: 'stretch'
                         },
                         defaults: {
-                            xtype: 'panel',
-                            layout: 'vbox',
-                            defaults: {
-                                labelWidth: 37,
-                            },
-                            margin: '0 0 0 5',
+                            labelWidth: 37,
+                            margin: '0 0 5 5',
                         },
-                        items: [
-                            {
-                                margin: 0,
-                                items: [{
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '學號',
-                                    reference: 'txt-antStanley-user2-searchbar-code',
-                                    emptyText: '請輸入學號',
-                                    enableKeyEvents: true,
-                                    listeners: {
-                                        keypress: 'enterSearch'
-                                    }
-                                },]
+                        items: [{
+                            xtype: 'antTextfield',
+                            fieldLabel: '學號',
+                            reference: 'txt-antStanley-user2-searchbar-code',
+                            emptyText: '請輸入學號',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
                             },
-                            {
-                                items: [{
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '姓名',
-                                    reference: 'txt-antStanley-user2-searchbar-name',
-                                    emptyText: '請輸入姓名',
-                                    enableKeyEvents: true,
-                                    listeners: {
-                                        keypress: 'enterSearch'
-                                    }
-                                },]
-                            },
-                        ]
+                            margin: '0 0 5 0',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '姓名',
+                            reference: 'txt-antStanley-user2-searchbar-name',
+                            emptyText: '請輸入姓名',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            }
+                        }, {
+                            xtype: 'antCombobox',
+                            fieldLabel: '狀態',
+                            reference: 'cmbx-antStanley-user2-searchbar-status',
+                            editable: true,
+                            store: { type: 'status' },
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            }
+                        },]
                     },
                     { // 查詢按鈕
                         xtype: 'searchButton-search',

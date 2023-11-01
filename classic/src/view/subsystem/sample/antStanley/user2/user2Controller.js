@@ -20,6 +20,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
             me.searchBar = me.lookupReference('panel-antStanley-user2-searchbar');
             me.searchCode = me.lookupReference('txt-antStanley-user2-searchbar-code');
             me.searchName = me.lookupReference('txt-antStanley-user2-searchbar-name');
+            me.searchStatus = me.lookupReference('cmbx-antStanley-user2-searchbar-status');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-antStanley-user2-userlist');
@@ -43,7 +44,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
                 code: 'stanley',
                 name: '李厚生',
                 email: '',
-                status: 1,
+                status: 9,
             }]
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {
@@ -54,7 +55,8 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
     initPageStatus: function () {
         let me = this
         try {
-
+            me.cleanSearch();
+            me.onSelectUser();
         } catch (e) {
             me.showError('user2Controller/ initPageStatus error:', e);
         }
@@ -69,10 +71,12 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         try {
             let code = me.searchCode.getValue();
             let name = me.searchName.getValue();
+            let status = me.searchStatus.getValue();
 
             let uploadJSON = {
                 code: code,
                 name: name,
+                status: status,
             }
 
             console.log('----------- 查詢條件 -----------');
@@ -89,6 +93,10 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
                     display = e.get('name').includes(uploadJSON.name) ? display : false;
                 }
 
+                if (uploadJSON.status) {
+                    display = e.get('status') == status ? display : false;
+                }
+
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
             })
@@ -103,6 +111,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         try {
             me.searchCode.setValue('');
             me.searchName.setValue('');
+            me.searchStatus.setValue('');
         } catch (e) {
             me.showError('user2Controller/ cleanSearch error:', e);
         }

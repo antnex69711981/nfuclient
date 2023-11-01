@@ -42,6 +42,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
             me.searchBar = me.lookupReference('panel-antStanley-user-searchbar');
             me.searchCode = me.lookupReference('txt-antStanley-user-searchbar-code');
             me.searchName = me.lookupReference('txt-antStanley-user-searchbar-name');
+            me.searchStatus = me.lookupReference('cmbx-antStanley-user-searchbar-status');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-antStanley-user-userlist');
@@ -65,7 +66,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
                 code: 'stanley',
                 name: '李厚生',
                 email: '',
-                status: 1,
+                status: 9,
             }]
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {
@@ -92,10 +93,12 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
         try {
             let code = me.searchCode.getValue();
             let name = me.searchName.getValue();
+            let status = me.searchStatus.getValue();
 
             let uploadJSON = {
                 code: code,
                 name: name,
+                status: status,
             }
 
             console.log('----------- 查詢條件 -----------');
@@ -112,6 +115,10 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
                     display = e.get('name').includes(uploadJSON.name) ? display : false;
                 }
 
+                if (uploadJSON.status) {
+                    display = e.get('status') == status ? display : false;
+                }
+
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
             })
@@ -126,6 +133,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
         try {
             me.searchCode.setValue('');
             me.searchName.setValue('');
+            me.searchStatus.setValue('');
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }

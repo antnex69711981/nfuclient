@@ -112,7 +112,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
                             margin: '0 0 8 5',
                         },
                         items: [{
-                            xtype: 'antTextfield',
+                            xtype: 'textfield',
                             fieldLabel: '學號',
                             reference: 'txt-antStanley-user-searchbar-code',
                             emptyText: '請輸入學號',
@@ -122,10 +122,27 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
                             },
                             margin: '0 0 8 0',
                         }, {
-                            xtype: 'antTextfield',
+                            xtype: 'textfield',
                             fieldLabel: '姓名',
                             reference: 'txt-antStanley-user-searchbar-name',
                             emptyText: '請輸入姓名',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                        }, {
+                            xtype: 'combobox',
+                            fieldLabel: '狀態',
+                            reference: 'cmbx-antStanley-user-searchbar-status',
+
+                            valueField: 'value',
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
+                            editable: true,
+                            store: { type: 'status' },
+
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
