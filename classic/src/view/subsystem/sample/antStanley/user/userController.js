@@ -40,10 +40,14 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
 
             // 查詢列
             me.searchBar = me.lookupReference('panel-antStanley-user-searchbar');
+            me.searchCode = me.lookupReference('txt-antStanley-user-searchbar-code');
+            me.searchName = me.lookupReference('txt-antStanley-user-searchbar-name');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-antStanley-user-userlist');
 
+            me.viewCode = me.lookupReference('txt-antStanley-user-code');
+            me.viewName = me.lookupReference('txt-antStanley-user-name');
         } catch (e) {
             me.showError('userController/ initObj error:', e);
         }
@@ -66,6 +70,86 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {
             me.showError('userController/ refreshObj error:', e);
+        }
+    },
+
+
+    /*************** searchbar ***************/
+    // event: ENTER查詢
+    enterSearch: function (field, e) {
+        let me = this
+        try {
+            if (e.getKey() == e.ENTER) {
+                me.doSearch();
+            }
+        } catch (e) {
+            me.showError('userController/ enterSearch error:', e);
+        }
+    },
+    // button: 查詢
+    doSearch: async function () {
+        let me = this
+        try {
+            let code = me.searchCode.getValue();
+            let name = me.searchName.getValue();
+
+            let uploadJSON = {
+                code: code,
+                name: name,
+            }
+
+            console.log('----------- 查詢條件 -----------');
+            console.log(uploadJSON);
+
+            me.viewUserlist.getStore().clearFilter();
+            me.viewUserlist.getStore().filter(e => {
+                let display = true;
+                if (uploadJSON.code) {
+                    display = e.get('code').includes(uploadJSON.code) ? display : false;
+                }
+
+                if (uploadJSON.name) {
+                    display = e.get('name').includes(uploadJSON.name) ? display : false;
+                }
+
+                console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
+                return display;
+            })
+
+        } catch (e) {
+            me.showError('userController/ doSearch error:', e);
+        }
+    },
+    // button: 清除
+    cleanSearch: function () {
+        let me = this
+        try {
+            me.searchCode.setValue('');
+            me.searchName.setValue('');
+        } catch (e) {
+            me.showError('userController/ cleanSearch error:', e);
+        }
+    },
+
+
+
+    /*************** view ***************/
+    // event: 選擇使用者
+    onSelectUser: function () {
+        let me = this
+        try {
+            let selection = me.viewUserlist.getSelection();
+            let record = selection[0];
+
+            me.viewCode.setValue('');
+            me.viewName.setValue('');
+
+            if (record) {
+                me.viewCode.setValue(record.get('code'));
+                me.viewName.setValue(record.get('name'));
+            }
+        } catch (e) {
+            me.showError('userController/ cleanSearch error:', e);
         }
     },
 });

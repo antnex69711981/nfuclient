@@ -139,6 +139,9 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                 reference: 'grid-antStanley-user2-userlist',
                 minWidth: 200,
                 flex: 1,
+                listeners: {
+                    selectionchange: 'onSelectUser',
+                },
                 columns: [{
                     xtype: 'antColumn-rownumberer'
                 }, {
@@ -162,11 +165,6 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                     dataIndex: 'status',
                     text: '狀態',
                     width: 96,
-                    // renderer: function (value) {
-                    //     let store = Ext.create('antnex.store.static.Status');
-                    //     let record = store.getRange().find(e => e.get('value') == value);
-                    //     return record ? record.get('text') : `無法辨識: ${value}`;
-                    // },
                     renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
                 }]
             },
