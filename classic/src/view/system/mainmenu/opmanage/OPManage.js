@@ -83,25 +83,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                                 readOnly: true,
                             },
                             items: [{
-                                xtype: 'panel',
-                                layout: {
-                                    type: 'hbox'
-                                },
-                                reference: 'panel_opmanage_host',
-                                items: [{
-                                    xtype: 'label',
-                                    text: ' ',
-                                    labelAlign: 'center',
-                                    labelWidth: 200,
-                                    margin: '5 1 1 1',
-                                    reference: 'label_opmanage_host'
-                                }, {
-                                    html: '<marquee class="GeneratedMarquee" direction="left" scrollamount="10" behavior="scroll"></marquee>',
-                                    margin: '5 0 0 0',
-                                    width: 400,
-                                    flex: 1
-                                }]
-                            }, {
                                 xtype: 'antTextfield',
                                 fieldLabel: '版本',
                                 value: Ext.manifest.version,
@@ -109,7 +90,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                                 xtype: 'antDatefield',
                                 fieldLabel: '日期',
                                 format: 'Y年m月d日',
-                                reference: 'date_opmanage_date',
                                 value: new Date()
                             }]
                         }
@@ -157,7 +137,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                         {   // 快捷功能
                             xtype: 'antPanel',
                             reference: 'panel_opmanage_shortlink',
-                            html: '<h3 style="font-size:20px;color:#1274bf;text-align:center; line-height: 1.5;">還沒做</h3>',
                         }
                     ]
                 },
@@ -227,53 +206,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                                 margin: '0 10 0 0',
                             },
                             items: [{
-                                xtype: 'antButton',
-                                reference: 'btn_opmanage_sync',
-                                text: '',
-                                cls: 'antBtn-transparent',
-                                height: 34,
-                                text: '`<H3 class="x-fa fa-sync" style="color:#757575;text-align:left;font-size:14px;"> 資料同步</H3>`',
-                                listeners: {
-                                    click: 'doDataSync'
-                                },
-                                hidden: true,
-                            }, {
-                                // |
-                                html: '<H3 style="font-size:16px;color:#464a4c;text-align:center; line-height: 0;">|</H3>',
-                                hidden: true,
-                            }, {
-                                xtype: 'antButton',
-                                reference: 'btn_opmanage_gateway',
-                                text: '',
-                                cls: 'antBtn-transparent',
-                                height: 34,
-                                text: '`<H3 class="x-fa fa-print" style="color:#757575;text-align:left;font-size:14px;"> 閘道資訊</H3>`',
-                                listeners: {
-                                    click: 'openDeviceWindow'
-                                },
-                                hidden: true,
-                            }, {
-                                // |
-                                html: '<H3 style="font-size:16px;color:#464a4c;text-align:center; line-height: 0;">|</H3>',
-                                hidden: true,
-                            }, {
-                                xtype: 'antButton',
-                                reference: 'btn_opmanage_branch',
-                                text: '',
-                                cls: 'antBtn-transparent',
-                                height: 34,
-                                handler: 'changeBranchcode',
-                                hidden: true,
-                            }, {
-                                // 通知
-                                xtype: 'antButton',
-                                style: 'background-image: url("resources/images/redbell.gif"); background-repeat: no-repeat; background-size: 50px 34px; background-position:center; background-color: transparent; borderColor: transparent;',
-                                hidden: true,
-                            }, {
-                                // |
-                                html: '<H3 style="font-size:16px;color:#464a4c;text-align:center; line-height: 0;">|</H3>',
-                                hidden: true,
-                            }, {
                                 // 員工姓名
                                 reference: 'html_opmanage_username',
                                 html: ''
@@ -324,10 +256,7 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManage', {
                         add: 'onMainTabAdd',
                         remove: 'onMainTabRemove'
                     },
-                    items: [{
-                        xtype: 'antStanley-main',
-                        closable: true,
-                    }]
+                    items: []
                 }
             ]
         }

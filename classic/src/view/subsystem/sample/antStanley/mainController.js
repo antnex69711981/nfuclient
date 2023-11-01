@@ -1,4 +1,4 @@
-Ext.define('antnex.subsystem.antStanley.mainController', {
+Ext.define('antnex.subsystem.sample.antStanley.mainController', {
     extend: 'antnex.default.defaultController',
     alias: 'controller.antStanley-main',
     requires: [],

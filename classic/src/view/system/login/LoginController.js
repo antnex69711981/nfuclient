@@ -106,8 +106,8 @@ Ext.define('antnex.view.system.login.LoginController', {
                     ANTNEX_USER_MODE = (ROOT_USER_CODE === account) ? true : false;
 
                     // 同步資料
-                    // me.getView().mask('同步資料中...');
-                    // await me.syncData();
+                    me.getView().mask('同步資料中...');
+                    await me.syncData();
 
                     me.getView().mask('頁面載入中...');
                     me.gotoMenu();

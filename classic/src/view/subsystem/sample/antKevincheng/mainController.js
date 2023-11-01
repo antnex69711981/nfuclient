@@ -1,4 +1,4 @@
-Ext.define('antnex.subsystem.antKevin.mainController', {
+Ext.define('antnex.subsystem.sample.antKevin.mainController', {
     extend: 'antnex.default.defaultController',
     alias: 'controller.antKevin-main',
     requires: [],

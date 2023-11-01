@@ -48,7 +48,7 @@ Ext.define('antnex.AppDefaults', {
         roleid: 0,
         rolename: '',
         token: '',
-        function: [],
+        function: Ext.create('Ext.data.Store'),
         userfile: null,
     },
     constructor: function (config) {
@@ -59,7 +59,7 @@ Ext.define('antnex.AppDefaults', {
         this.properties.clear();
     },
     version: function () {
-        Ext.Msg.alert("nexpos", "版本:" + Ext.manifest.version);
+        Ext.Msg.alert("CEP", "版本:" + Ext.manifest.version);
     },
 
     isLogin: function () {

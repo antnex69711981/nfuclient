@@ -1,7 +1,7 @@
-Ext.define('antnex.subsystem.antKevin.main', {
+Ext.define('antnex.subsystem.sample.antKevin.main', {
     extend: 'antnex.default.defaultView',
     requires: [
-        'antnex.subsystem.antKevin.mainController',
+        'antnex.subsystem.sample.antKevin.mainController',
     ],
     alias: 'widget.antKevin-main',
     controller: 'antKevin-main',

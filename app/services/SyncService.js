@@ -10,6 +10,7 @@ Ext.define('antnex.services.SyncService', {
             try {
                 // 存取service清單
                 let serviceList = [];
+                serviceList.push(Ext.create('antnex.services.basic.FunctionService'));
 
                 let finishCnt = 0;
                 let chkFinish = function () {

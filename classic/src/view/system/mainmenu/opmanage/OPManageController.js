@@ -24,12 +24,9 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
 
             me.viewHeader = me.lookupReference('view_mainmenu_header');
             me.viewHeadUser = me.lookupReference('html_opmanage_username');
-            me.viewHeadBranch = me.lookupReference('btn_opmanage_branch');
 
             // 左側功能列
             me.viewLeftmenu = me.lookupReference('panel_opmanage_leftmenu');
-            me.viewHostpanel = me.lookupReference('panel_opmanage_host');
-            me.viewHost = me.lookupReference('label_opmanage_host');
 
             me.viewSyslogo = me.lookupReference('btn_opmanage_sysLOGO');
             me.viewSysMiniLOGO = me.lookupReference('btn_opmanage_sysMiniLOGO');
@@ -51,7 +48,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
             PAGE_SWITCHER = async function (xtype) {
                 return await me.switchBodyTab(xtype);
             };
-            me.setHost();
         } catch (e) {
             me.showError('OPManageController/ initObj error:', e);
         }
@@ -69,11 +65,27 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
     initPageStatus: function () {
         let me = this
         try {
-            let user = antnex.AppDefaults.getConfig('username');
-            let branchname = antnex.AppDefaults.getConfig('branchname');
+            // header
+            let userStyle = '';
+            userStyle += `font-size: 16px;`
+            userStyle += `color: #464A4C;`
+            userStyle += `text-align: center;`
+            userStyle += `line-height: 0;`
+            let user = S(antnex.AppDefaults.getConfig('username')).wrapHTML('H3', {
+                style: userStyle
+            }).s
+            me.viewHeadUser.setHtml(user)
 
-            me.viewHeadUser.setHtml(`<H3 style="font-size:16px;color:#464a4c;text-align:center; line-height: 0;">${user}</H3>`)
-            me.viewHeadBranch.setText(`<H3 class="x-fa fas fa-store-alt" style="color:#757575;text-align:left;font-size:14px;"> ${branchname}</H3>`)
+            // 預設頁面
+            let initPages = ['antStanley-main', 'antKevin-main', 'antTony-main'];
+            me.viewBody.add(initPages.map(e => {
+                let item = {
+                    xtype: e,
+                    closable: true,
+                }
+                return item;
+            }))
+            me.viewBody.activeAllItems();
         } catch (e) {
             me.showError('OPManageController/ initPageStatus error:', e);
         }
@@ -87,11 +99,8 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
         let me = this
         try {
 
-            var treelist = this.lookupReference('tree_opmanage_functionlist');
-            let obj = treelist;
-
-            let data = antnex.AppDefaults.getConfig('function');
-            // let obj = me.viewFunctionlist;
+            let obj = me.viewFunctionlist;
+            let data = antnex.AppDefaults.getConfig('function').getRange();
 
             let store = obj.getStore();
             store.clearData();
@@ -108,28 +117,25 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
                     return node
                 }
                 let gotolist = []
-                data.forEach(e => {
-                    let func = Ext.getStore('Function').getRange().find(v => v.get('code') == e.functioncode);
-                    if (func) {
-                        let iconcls = func.get('iconcls');
-                        let node = newNode();
-                        node.id = func.get('code');
-                        node.code = func.get('code');
-                        node.text = func.get('name');
-                        node.xtype = func.get('xtype');
-                        node.iconCls = S(iconcls).isEmpty() ? 'x-fa fa-database' : iconcls;
+                data.forEach(func => {
+                    let iconcls = func.get('iconcls');
+                    let node = newNode();
+                    node.id = func.get('code');
+                    node.code = func.get('code');
+                    node.text = func.get('name');
+                    node.xtype = func.get('xtype');
+                    node.iconCls = S(iconcls).isEmpty() ? 'x-fa fa-book' : iconcls;
 
-                        let parentcode = func.get('parentcode');
-                        let parentNode = store.getNodeById(parentcode)
+                    let parentcode = func.get('parentcode');
+                    let parentNode = store.getNodeById(parentcode)
 
-                        if (parentNode) {
-                            parentNode.set('leaf', false);
-                            parentNode.appendChild(node);
-                        }
+                    if (parentNode) {
+                        parentNode.set('leaf', false);
+                        parentNode.appendChild(node);
+                    }
 
-                        if (node.xtype) {
-                            gotolist.push(node);
-                        }
+                    if (node.xtype) {
+                        gotolist.push(node);
                     }
                 });
 
@@ -245,10 +251,10 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
 
     /************* menu *************/
     // event: 切換 功能清單, 快捷功能
-    changeFunction: function (obj) {
+    changeFunction: function (btn) {
         let me = this
         try {
-            switch (obj.reference) {
+            switch (btn.reference) {
                 case 'btn_opmanage_functionlist':
                     me.viewMenuCard.setActiveItem(me.viewFunctionlistContainer);
                     break;
@@ -321,42 +327,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
             me.showError('OPManageController/ onSelectFunction error:', e);
         }
     },
-    // function: 切換bodyCard (layout: 'card')
-    switchBodyCard: function (xtype) {
-        let me = this;
-        try {
-            me.closeTip();
-
-            let func = Ext.getStore('Function').getRange().find(v => v.get('xtype') == xtype);
-            if (func) {
-                let rolefunction = antnex.AppDefaults.getConfig('function').find(e => e.xtype == func.get('xtype'));
-                if (rolefunction) {
-                    let newWidget = Ext.ClassManager.getByAlias(`widget.${xtype}`)
-                    if (newWidget) {
-                        let idx = me.viewBody.items.items.findIndex(e => e.xtype == xtype);
-                        if (idx == -1) {
-                            me.viewBody.add({ xtype: xtype })
-                            idx = me.viewBody.items.items.findIndex(e => e.xtype == xtype);
-                        }
-
-                        if (idx == -1) throw `未定義畫面: ${xtype}`;
-
-                        me.viewBody.setActiveItem(idx)
-                    } else {
-                        me.viewFunctionlist.setSelection(null);
-                        throw `畫面定義不存在: ${func.get('name')}`
-                    }
-                } else {
-                    throw `無功能權限: ${func.get('name')}`
-                }
-            } else {
-                me.viewFunctionlist.setSelection(null);
-                throw `功能別名不存在: ${xtype}`
-            }
-        } catch (e) {
-            me.showError('OPManageController/ switchBodyCard error: ', e);
-        }
-    },
     // function: 切換bodyTab (xtype: tabpanel)
     switchBodyTab: function (xtype) {
         let me = this;
@@ -365,57 +335,57 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
                 let maxTabSize = 10;
                 me.closeTip();
 
-                let func = Ext.getStore('Function').getRange().find(v => v.get('xtype') == xtype);
+                let store = antnex.AppDefaults.getConfig('function');
+                let func = store.getRange().find(v => v.get('xtype') == xtype);
                 if (func) {
-                    let rolefunction = antnex.AppDefaults.getConfig('function').find(e => e.xtype == func.get('xtype'));
-                    if (rolefunction) {
-                        let newWidget = Ext.ClassManager.getByAlias(`widget.${xtype}`)
-                        if (newWidget) {
-                            let itemsize = me.viewBody.items.items.length
-                            let idx = me.viewBody.items.items.findIndex(e => e.xtype == xtype);
-                            if (itemsize < maxTabSize || idx != -1) {
-                                if (idx == -1) {
-                                    me.viewBody.add({
-                                        title: func.get('name'),
-                                        xtype: xtype,
-                                        closable: true,
-                                    })
-                                    idx = me.viewBody.items.items.findIndex(e => e.xtype == xtype);
-                                }
+                    let newWidget = Ext.ClassManager.getByAlias(`widget.${xtype}`)
+                    if (newWidget) {
+                        let items = me.viewBody.items.getRange();
 
-                                if (idx == -1) throw `未定義畫面: ${xtype}`;
-
-                                let tb = me.viewBody.setActiveItem(idx);
-                                resolve(tb);
-                            } else {
-                                Ext.Msg.show({
-                                    title: '系統提示',
-                                    message: `分頁不得超過${maxTabSize}頁，是否要取代最新的分頁？`,
-                                    buttons: Ext.Msg.YESNO,
-                                    icon: Ext.Msg.QUESTION,
-                                    buttonText: {
-                                        yes: '否',
-                                        no: '是'
-                                    },
-                                    fn: async function (btn) {
-                                        // 因預設focus問題，所以yes/no選項會對調
-                                        switch (btn) {
-                                            case 'yes':
-                                                resolve(null);
-                                            case 'no':
-                                                me.viewBody.remove(me.viewBody.items.items[maxTabSize - 1]);
-                                                let tb = await me.switchBodyTab(xtype)
-                                                resolve(tb);
-                                        }
+                        // 頁面上限處理
+                        if (maxTabSize > 0 && items.length >= maxTabSize) {
+                            Ext.Msg.show({
+                                title: '系統提示',
+                                message: `分頁不得超過${maxTabSize}頁，是否要取代最新的分頁？`,
+                                buttons: Ext.Msg.YESNO,
+                                icon: Ext.Msg.QUESTION,
+                                buttonText: {
+                                    yes: '否',
+                                    no: '是'
+                                },
+                                fn: async function (btn) {
+                                    // 因預設focus問題，所以yes/no選項會對調
+                                    switch (btn) {
+                                        case 'yes':
+                                            resolve(null);
+                                        case 'no':
+                                            me.viewBody.remove(me.viewBody.items.items[maxTabSize - 1]);
+                                            let tb = await me.switchBodyTab(xtype)
+                                            resolve(tb);
                                     }
-                                });
-                            }
-                        } else {
-                            me.viewFunctionlist.setSelection(null);
-                            throw `畫面定義不存在: ${func.get('name')}`
+                                }
+                            });
+                            return;
                         }
+
+                        let idx = items.findIndex(e => e.xtype == xtype);
+                        // 若無頁面: 先加入頁面並更新idx
+                        if (idx == -1) {
+                            me.viewBody.add({
+                                title: func.get('name'),
+                                xtype: xtype,
+                                closable: true,
+                            })
+                            idx = me.viewBody.items.getRange().findIndex(e => e.xtype == xtype);
+                        }
+
+                        if (idx == -1) throw `未定義畫面: ${xtype}`;
+
+                        let tb = me.viewBody.setActiveItem(idx);
+                        resolve(tb);
                     } else {
-                        throw `無功能權限: ${func.get('name')}`
+                        me.viewFunctionlist.setSelection(null);
+                        throw `畫面定義不存在: ${func.get('name')}`
                     }
                 } else {
                     me.viewFunctionlist.setSelection(null);
@@ -441,97 +411,6 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
             });
         } catch (e) {
             me.showError('OPManageController/ closeTip error:', e);
-        }
-    },
-    // function:設定版本與日期
-    setHost: function () {
-        let me = this;
-        try {
-            let servername = antnex.AppDefaults.getServername();
-
-            me.viewHostpanel.setHidden(true);
-
-            if (antnex.AppDefaults.isLogin() && !S(servername).isEmpty()) {
-
-                me.viewHostpanel.setHidden(false);
-                me.viewHost.setText(servername);
-            } else {
-                me.viewHostpanel.setHidden(true);
-                me.viewHost.setText(servername);
-            }
-
-        } catch (e) {
-            me.showError('OPManageController/ setHost error:', e);
-        }
-    },
-    // button: 閘道資訊
-    openDeviceWindow: function () {
-        let me = this;
-        try {
-            let view = Ext.create('antnex.subsystem.mainmenu.window.GatewayInfo.GatewayInfo');
-            let config = {};
-            config.dockedItems = {};
-            me.doOpenWindow(view, config);
-        } catch (e) {
-            me.showError('OPManageController/ openDeviceWindow error:', e);
-        }
-    },
-    // button: 資料同步
-    doDataSync: async function () {
-        let me = this;
-        try {
-            var syncService = Ext.create('antnex.services.SyncService');
-
-            me.getView().mask("同步資料中...");
-            await syncService.load();
-            me.getView().unmask();
-
-            let tabView = me.viewBody;
-            let activedItemlist = tabView.items.items;
-            activedItemlist.forEach(tab => {
-                let ctrl = tab.getController();
-                if (ctrl) {
-                    if (typeof ctrl.refreshObj == 'function') {
-                        ctrl.refreshObj();
-                    }
-                }
-            });
-        } catch (e) {
-            me.showError('OPManageController/ doDataSync error:', e);
-        }
-    },
-    // button: 變更門市
-    changeBranchcode: function (btn) {
-        let me = this;
-        try {
-            let ishead = antnex.AppDefaults.getConfig('ishead') == 1;
-            if (ishead == false) return;
-
-            let view = Ext.create('antnex.view.system.mainmenu.opmanage.window.changeBranch.ChangeBranch');
-            view.getController().setConfig('controller', me);
-            view.getController().setConfig('returnFunction', 'returnChangeBranchcode');
-            view.getController().setConfig('saveBtnText', '');
-            view.getController().setConfig('cancelBtnText', '');
-            let win = me.doOpenWindow(view);
-
-            if (btn) win.setXY([btn.getX() - 160, btn.getY() + 35])
-
-        } catch (e) {
-            me.showError('OPManageController/ changeBranchcode error:', e);
-        }
-    },
-    // function: 變更門市回傳
-    returnChangeBranchcode: function (branchcode = '') {
-        let me = this;
-        try {
-            let record = Ext.getStore('Branch').getRange().find(e => e.get('code') == branchcode);
-            if (record) {
-                antnex.AppDefaults.setConfig('branchcode', record.get('code'));
-                antnex.AppDefaults.setConfig('branchname', record.get('name'));
-                me.initPageStatus();
-            }
-        } catch (e) {
-            me.showError('OPManageController/ changeBranchcode error:', e);
         }
     },
 });
