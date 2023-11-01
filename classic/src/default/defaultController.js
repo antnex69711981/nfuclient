@@ -381,11 +381,11 @@ Ext.define('antnex.default.defaultController', {
     enterSearch: function (field, e) {
         let me = this
         try {
-            if (me.getConfig('defaultControllerPrintlog')) {
-                console.log(`${me.getConfig('name')} - defaultController.enterSearch()`);
-            }
-
             if (e.getKey() == e.ENTER) {
+                if (me.getConfig('defaultControllerPrintlog')) {
+                    console.log(`${me.getConfig('name')} - defaultController.enterSearch()`);
+                }
+
                 me.doSearch();
             }
         } catch (e) {

@@ -183,6 +183,9 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
                 store: {},
                 minWidth: 200,
                 flex: 1,
+                listeners: {
+                    selectionchange: 'onSelectUser',
+                },
                 columns: [{
                     xtype: 'rownumberer',
                     align: 'center',
