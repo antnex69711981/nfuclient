@@ -13,6 +13,8 @@ Ext.define('antnex.ux.layout.AntPanel', {
 
     stateful: true,
 
+    scrollable: true,
+
     margin: 0,
     collapseToolText: '收合',
     expandToolText: '展開',
