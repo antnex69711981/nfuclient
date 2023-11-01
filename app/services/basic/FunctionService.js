@@ -21,19 +21,19 @@ Ext.define('antnex.services.basic.FunctionService', {
             }, {
                 parentcode: 'antSample',
                 code: 'antSample-antStanley-main',
-                name: 'Stanley的首頁',
+                name: 'Stanley-首頁',
                 xtype: 'antStanley-main',
                 iconcls: 'fas fa-bookmark'
             }, {
                 parentcode: 'antSample',
                 code: 'antSample-antKevin-main',
-                name: 'Kevin的首頁',
+                name: 'Kevin-首頁',
                 xtype: 'antKevin-main',
                 iconcls: 'fas fa-bookmark'
             }, {
                 parentcode: 'antSample',
                 code: 'antSample-antTony-main',
-                name: 'Tony的首頁',
+                name: 'Tony-首頁',
                 xtype: 'antTony-main',
                 iconcls: 'fas fa-bookmark'
             }]
@@ -88,7 +88,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 const mainPage = {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-main`,
-                    name: `${username}的首頁`,
+                    name: `${username}-首頁`,
                     xtype: `${usercode}-main`,
                     iconcls: 'fas fa-bookmark'
                 }
@@ -96,7 +96,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 const userPage = {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-user`,
-                    name: `使用者管理`,
+                    name: `${username}-使用者管理`,
                     xtype: `${usercode}-user`,
                     iconcls: 'fas fa-user-edit'
                 }
