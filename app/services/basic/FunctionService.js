@@ -22,7 +22,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 parentcode: 'antSample',
                 code: 'antSample-antStanley-main',
                 name: 'Stanley-首頁',
-                xtype: 'antStanley-main',
+                xtype: 'page-40541124-home',
                 iconcls: 'fas fa-bookmark'
             }, {
                 parentcode: 'antSample',
@@ -101,7 +101,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-main`,
                     name: `${username}-首頁`,
-                    xtype: `${usercode}-main`,
+                    xtype: `page-${usercode}-main`,
                     iconcls: 'fas fa-bookmark'
                 }
 
@@ -109,7 +109,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                     parentcode: rootNode.code,
                     code: `${rootNode.code}-user`,
                     name: `${username}-使用者管理`,
-                    xtype: `${usercode}-user`,
+                    xtype: `page-${usercode}-user`,
                     iconcls: 'fas fa-user-edit'
                 }
 
