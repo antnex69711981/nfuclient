@@ -67,6 +67,9 @@ Ext.define('antnex.default.defaultController', {
                 // 發動計時器
                 me.doTimer();
 
+                // 初始化視窗模式
+                me.getView().fireEvent('initWindowMode', me);
+
                 me.setConfig('afterEntry', true);
 
                 /*************************** 結束初始化 ***************************/
@@ -587,62 +590,6 @@ Ext.define('antnex.default.defaultController', {
     // function: 空白事件
     emptyFunction: function () {
         /* do nothing */
-    },
-    // button:顯示異動資訊
-    showModifyinfo: function (obj) {
-        let me = this
-        try {
-            if (me.getConfig('defaultControllerPrintlog')) {
-                console.log(`${me.getConfig('name')} - defaultController.showModifyinfo()`);
-            }
-
-            if (me.selection) {
-                if (JSON.stringify(me.selection) == '{}') {
-
-                } else {
-                    let view = Ext.create('antnex.subsystem.mainmenu.window.modifyinfo.ModifyInfo');
-                    view.getController().setConfig('data', me.selection);
-
-                    let config = {}
-                    config.dockedItems = [];
-                    let win = me.doOpenWindow(view, config);
-                    if (obj) win.setXY([obj.getX() - win.width + 28, obj.getY() - 10])
-                }
-            } else {
-                me.selection = {};
-            }
-        } catch (e) {
-            me.showError('TestitemController/ showModifyinfo error:', e);
-        }
-    },
-
-
-    /************* connection *************/
-    // function: 連接輸出窗口
-    setEventConnection: async function (cfgController, cfgFunction, data) {
-        let me = this
-        let result;
-        try {
-            if (me.getConfig('defaultControllerPrintlog')) {
-                console.log(`${me.getConfig('name')} - defaultController.setEventConnection()`);
-            }
-
-            let controller = me.getConfig(cfgController);
-            if (controller) {
-                let func = me.getConfig(cfgFunction);
-                if (typeof controller[func] == 'function') {
-                    let isAsync = controller[func].constructor.name == 'AsyncFunction';
-                    if (isAsync) {
-                        result = await controller[func](data);
-                    } else {
-                        result = controller[func](data);
-                    }
-                }
-            }
-        } catch (e) {
-            me.showError('defaultController/ setEventConnection error: ', e);
-        }
-        return result
     },
 
 
