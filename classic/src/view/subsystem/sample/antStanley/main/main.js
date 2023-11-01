@@ -1,7 +1,7 @@
-Ext.define('antnex.subsystem.sample.antStanley.main', {
+Ext.define('antnex.subsystem.sample.antStanley.main.main', {
     extend: 'antnex.default.defaultView',
     requires: [
-        'antnex.subsystem.sample.antStanley.mainController',
+        'antnex.subsystem.sample.antStanley.main.mainController',
     ],
     alias: 'widget.antStanley-main',
     controller: 'antStanley-main',
