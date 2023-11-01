@@ -6,7 +6,7 @@ Ext.define('antnex.subsystem.sample.antKevin.main', {
     alias: 'widget.antKevin-main',
     controller: 'antKevin-main',
 
-    title: 'Kevin的首頁~~~~',
+    title: 'Kevin的首頁',
 
     layout: {
         type: 'vbox',
