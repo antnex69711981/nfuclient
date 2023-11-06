@@ -88,7 +88,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 memo: '',
                 status: 1,
                 createusercode: '李厚生',
-                createtm: '2023/11/1',
+                createtm: '2023-11-01',
                 modifyusercode: '',
                 modifytm: '',
             }, {
@@ -100,7 +100,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 memo: '',
                 status: 9,
                 createusercode: '李厚生',
-                createtm: '2023/11/1',
+                createtm: '2023/11/01',
                 modifyusercode: '',
                 modifytm: '',
             }, {
@@ -112,9 +112,9 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 memo: 'pig',
                 status: 1,
                 createusercode: '陳嘉笙',
-                createtm: '2023/11/4',
+                createtm: '2023/11/04',
                 modifyusercode: '陳嘉笙',
-                modifytm: '2023/11/5',
+                modifytm: '2023/11/05',
             }]
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {
@@ -220,7 +220,6 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
             })
-            debugger
 
         } catch (e) {
             me.showError('userController/ doSearch error:', e);
@@ -283,8 +282,6 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 me.viewCreatetm.setValue(record.get('createtm'));
                 me.viewModifyusercode.setValue(record.get('modifyusercode'));
                 me.viewModifytm.setValue(record.get('modifytm'));
-
-                debugger
 
             }
         } catch (e) {

@@ -377,7 +377,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 2,
+                flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
@@ -453,9 +453,9 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                             // labelAlign: 'top',
                             labelWidth: 65,
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'datefield',
                             fieldLabel: '建立時間',
-                            reference: 'date-40941139-user-createtm', //讀不到createtm
+                            reference: 'date-40941139-user-createtm',
                             format: 'Y/m/d',
                             disabled: true,
                             // labelAlign: 'top',
