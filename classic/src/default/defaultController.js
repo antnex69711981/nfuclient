@@ -378,6 +378,20 @@ Ext.define('antnex.default.defaultController', {
             me.showError('defaultController/ funcbar_search error:', e);
         }
     },
+    // button: 查詢列收合/展開: 預設物件 me.addbar
+    funcbar_Add: function () {
+        let me = this;
+        try {
+            if (me.getConfig('defaultControllerPrintlog')) {
+                console.log(`${me.getConfig('name')} - defaultController.funcbar_Add()`);
+            }
+
+            let object = me.bindDefaultObject('addbar');
+            if (object) me.slideIO(object, 't');
+        } catch (e) {
+            me.showError('defaultController/ funcbar_Add error:', e);
+        }
+    },
 
     /*************** searchbar ***************/
     // event: ENTER查詢
