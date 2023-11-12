@@ -57,6 +57,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 { code: '40141152', name: '鄭凱文' },
                 { code: '11261103', name: '劉宜欣' },
                 { code: '11261119', name: '陳奕潔' },
+                { code: '11261133', name: '楊子庭' },               
                 { code: '40941137', name: '陳朝羿' },
                 { code: '40941139', name: '陳嘉笙' },
                 { code: '41041115', name: '成政軒' },
