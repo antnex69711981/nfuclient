@@ -35,6 +35,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 },
                 scrollable: true,
                 border: false,
+                // margin: '0 0 0 5',
                 padding: '0 0 0 5',
                 items: [
                     {
@@ -56,6 +57,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         margin: 3,
                         handler: 'funcbar_add',
                     },
+                    /*
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
@@ -66,7 +68,6 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         margin: 3,
                         handler: 'funcbar_edit',
                     },
-                    /*
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
@@ -315,7 +316,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 columns: [{
                     xtype: 'rownumberer',
                     align: 'center',
-                    width: 50,
+                    width: 30,
                 }, {
                     dataIndex: 'code',
                     text: '學號',
@@ -344,7 +345,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
-                    width: 96,
+                    width: 50,
                     renderer: function (value) {
                         let store = Ext.create('antnex.store.static.Status');
                         let record = store.getRange().find(e => e.get('value') == value);
@@ -382,7 +383,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                     margin: '0 5 5 5',
                 },
                 border: true,
-                //hidden: true,
+                hidden: true,
                 items: [
                     {   // 基本資料
                         xtype: 'fieldset',
@@ -399,43 +400,43 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: '學號',
-                            reference: 'txt-40941139-user-code',
+                            reference: 'txt-40941139-user-manage-code',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-40941139-user-name',
+                            reference: 'txt-40941139-user-manage-name',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '信箱',
-                            reference: 'txt-40941139-user-mail',
+                            reference: 'txt-40941139-user-manage-mail',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '手機',
-                            reference: 'txt-40941139-user-phone',
+                            reference: 'txt-40941139-user-manage-phone',
                             // labelWidth: 37,
                         }, {
                             xtype: 'datefield',
                             fieldLabel: '生日',
-                            reference: 'date-40941139-user-birth',
-                            format: 'Y/m/d',
+                            reference: 'date-40941139-user-manage-birth',
+                            format: 'Y-m-d',
                             //width: 150,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '備註',
-                            reference: 'txt-40941139-user-memo',
+                            reference: 'txt-40941139-user-manage-memo',
                             // labelWidth: 37,
                         }, {
                             // xtype: 'textfield',
                             // fieldLabel: '狀態',
-                            // reference: 'txt-40941139-user-status',
+                            // reference: 'txt-40941139-user-manage-status',
                             // labelWidth: 37,
 
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-40941139-user-status',
+                            reference: 'cmbx-40941139-user-manage-status',
                             // labelWidth: 37,
 
                             valueField: 'value',
@@ -448,30 +449,30 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '建立人員',
-                            reference: 'txt-40941139-user-createusercode',
+                            reference: 'txt-40941139-user-manage-createusercode',
                             disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
                         }, {
                             xtype: 'datefield',
                             fieldLabel: '建立時間',
-                            reference: 'date-40941139-user-createtm',
-                            format: 'Y/m/d',
+                            reference: 'date-40941139-user-manage-createtm',
+                            format: 'Y-m-d',
                             disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '異動人員',
-                            reference: 'txt-40941139-user-modifyusercode',
+                            reference: 'txt-40941139-user-manage-modifyusercode',
                             disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
                         }, {
                             xtype: 'datefield',
                             fieldLabel: '異動時間',
-                            reference: 'date-40941139-user-modifytm',
-                            format: 'Y/m/d',
+                            reference: 'date-40941139-user-manage-modifytm',
+                            format: 'Y-m-d',
                             disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
@@ -493,7 +494,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                                 //width: 60,
                                 flex: 1,
                                 border: false,
-                                handler: 'doSearch',
+                                handler: 'doManage',
                                 margin: '10 0 5 5',
                         }, {
                                 xtype: 'button',
@@ -504,7 +505,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                                 //width: 60,
                                 flex: 1,
                                 border: false,
-                                handler: 'cleanSearch',
+                                handler: 'cancelManage',
                                 margin: '10 0 5 5',
                         }]
                         
@@ -512,7 +513,6 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                     
                 ]
             },
-            /*
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料新增
                 xtype: 'panel',
@@ -543,43 +543,43 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: '學號',
-                            reference: 'txt-40941139-user-code',
+                            reference: 'txt-40941139-user-add-code',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-40941139-user-name',
+                            reference: 'txt-40941139-user-add-name',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '信箱',
-                            reference: 'txt-40941139-user-mail',
+                            reference: 'txt-40941139-user-add-mail',
                             // labelWidth: 37,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '手機',
-                            reference: 'txt-40941139-user-phone',
+                            reference: 'txt-40941139-user-add-phone',
                             // labelWidth: 37,
                         }, {
                             xtype: 'datefield',
                             fieldLabel: '生日',
-                            reference: 'date-40941139-user-birth',
-                            format: 'Y/m/d',
+                            reference: 'date-40941139-user-add-birth',
+                            format: 'Y-m-d',
                             //width: 150,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '備註',
-                            reference: 'txt-40941139-user-memo',
+                            reference: 'txt-40941139-user-add-memo',
                             // labelWidth: 37,
                         }, {
                             // xtype: 'textfield',
                             // fieldLabel: '狀態',
-                            // reference: 'txt-40941139-user-status',
+                            // reference: 'txt-40941139-user-add-status',
                             // labelWidth: 37,
 
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-40941139-user-status',
+                            reference: 'cmbx-40941139-user-add-status',
                             // labelWidth: 37,
 
                             valueField: 'value',
@@ -607,7 +607,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                                 //width: 60,
                                 flex: 1,
                                 border: false,
-                                handler: 'funcbar_add',
+                                handler: 'doAdd',
                                 margin: '10 0 5 5',
                         }, {
                                 xtype: 'button',
@@ -618,7 +618,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                                 //width: 60,
                                 flex: 1,
                                 border: false,
-                                handler: 'cleanSearch',
+                                handler: 'cancelAdd',
                                 margin: '10 0 5 5',
                         }]
                         
@@ -626,7 +626,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                     
                 ]
             }
-            */
+            
         ]
     }]
 });
