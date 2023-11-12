@@ -9,7 +9,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         let me = this;
         try {
             console.log(`userController/ onInitialize entry`);
-
             me.initObj();
             await me.refreshObj();
         } catch (e) {
@@ -28,49 +27,50 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     initObj: function () {
         let me = this
         try {
-            // 功能列
-            me.funcbarSearch = me.lookupReference('btn-page-41041118-user-funcbar-search');
-            me.funcbarAdd = me.lookupReference('btn-page-41041118-user-funcbar-add');
-            me.funcbarEdit = me.lookupReference('btn-page-41041118-user-funcbar-edit');
-            me.funcbarSave = me.lookupReference('btn-page-41041118-user-funcbar-save');
-            me.funcbarCancel = me.lookupReference('btn-page-41041118-user-funcbar-cancel');
-
             // 查詢列
-            me.searchBar = me.lookupReference('panel-page-41041118-user-searchbar');
-            me.searchCode = me.lookupReference('txt-page-41041118-user-searchbar-code');
-            me.searchName = me.lookupReference('txt-page-41041118-user-searchbar-name');
-            me.searchMail = me.lookupReference('txt-page-41041118-user-searchbar-mail');
-            me.searchMemo = me.lookupReference('txt-page-41041118-user-searchbar-memo');
-            me.searchStatus = me.lookupReference('cmbx-page-41041118-user-searchbar-status');
-            me.searchCreateusercode = me.lookupReference('txt-page-41041118-user-searchbar-createusercode');
-            me.searchCreatetm = me.lookupReference('txt-page-41041118-user-searchbar-createtm');
-            
-            //新增
-            me.Add = me.lookupReference('panel-page-41041118-user-add');          
-            me.Codeadd = me.lookupReference('txt-page-41041118-user-searchbar-codeadd');
-            me.Nameadd = me.lookupReference('txt-page-41041118-user-searchbar-nameadd');
-            me.Mailadd = me.lookupReference('txt-page-41041118-user-searchbar-mailadd');
-            me.Memoadd = me.lookupReference('txt-page-41041118-user-searchbar-memoadd');
-            me.Statusadd = me.lookupReference('cmbx-page-41041118-user-searchbar-statusadd');
+            me.searchBar = me.lookupReference('panel-41041118-searchbar');
+            me.searchCode = me.lookupReference('txt-41041118-searchbar-code');
+            me.searchName = me.lookupReference('txt-41041118-searchbar-name');
+            me.searchMail = me.lookupReference('txt-41041118-searchbar-mail');
+            me.searchMemo = me.lookupReference('txt-41041118-searchbar-memo');
+            me.searchStatus = me.lookupReference('cmbx-41041118-searchbar-status');
+            me.searchCreateusercode = me.lookupReference('txt-41041118-searchbar-createusercode');
+            me.searchCreatetm = me.lookupReference('txt-41041118-searchbar-createtm');
+
+            // 功能列
+            me.funcbarAdd = me.lookupReference('btn-41041118-funcbar-add');
+            me.funcbarEdit = me.lookupReference('btn-41041118-funcbar-edit');
+            me.funcbarDel = me.lookupReference('btn-41041118-funcbar-del');
+
             // 主畫面
-            me.viewUserlist = me.lookupReference('grid-page-41041118-user-userlist');
+            me.viewUserlist = me.lookupReference('grid-41041118-userlist');
 
-            me.viewCode = me.lookupReference('txt-page-41041118-user-code');
-            me.viewName = me.lookupReference('txt-page-41041118-user-name');
-            me.viewMail = me.lookupReference('txt-page-41041118-user-mail');
-            me.viewMemo = me.lookupReference('txt-page-41041118-user-memo');
-            me.viewStatus = me.lookupReference('txt-page-41041118-user-status');
-            me.viewCreateusercode = me.lookupReference('txt-page-41041118-user-createusercode');
-            me.viewCreatetm = me.lookupReference('txt-page-41041118-user-createtm');
-            me.viewModifyusercode = me.lookupReference('txt-page-41041118-user-modifyusercode');
-            me.viewModifytm = me.lookupReference('txt-page-41041118-user-modifytm');
+            // 新增列
+            me.Add = me.lookupReference('txt-41041118-add');
+            (me.Add).hide();
+            me.addCode = me.lookupReference('txt-41041118-add-code');
+            me.addName = me.lookupReference('txt-41041118-add-name');
+            me.addMail = me.lookupReference('txt-41041118-add-mail');
+            me.addMemo = me.lookupReference('txt-41041118-add-memo');
+            me.addStatus = me.lookupReference('cmbx-41041118-add-status');
             
-            //
-            (me.lookupReference('txt-page-41041118-user-add')).hide();
-            (me.lookupReference('txt-page-41041118-user-edit')).hide();
+            // 修改列
+            me.Edit = me.lookupReference('txt-41041118-edit');
+            (me.Edit).hide();
+            me.editCode = me.lookupReference('txt-41041118-edit-code');
+            me.editName = me.lookupReference('txt-41041118-edit-name');
+            me.editMail = me.lookupReference('txt-41041118-edit-mail');
+            me.editMemo = me.lookupReference('txt-41041118-edit-memo');
+            me.editStatus = me.lookupReference('txt-41041118-edit-status');
+            me.editCreateusercode = me.lookupReference('txt-41041118-edit-createusercode');
+            me.editCreatetm = me.lookupReference('txt-41041118-edit-createtm');
 
-            
-
+            // 刪除列
+            me.Del = me.lookupReference('txt-41041118-del'); 
+            (me.Del).hide();
+            me.delCode = me.lookupReference('txt-41041118-del-code');
+            me.delName = me.lookupReference('txt-41041118-del-name');     
+                  
         } catch (e) {
             me.showError('userController/ initObj error:', e);
         }
@@ -105,7 +105,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.showError('userController/ refreshObj error:', e);
         }
     },
-    /*************** searchbar ***************/
+
+    /*************** 查詢資料***************/
     // ENTER查詢
     enterSearch: function (field, e) {
         let me = this
@@ -117,6 +118,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.showError('userController/ enterSearch error:', e);
         }
     },
+
     // 查詢
     doSearch: async function () {
         let me = this
@@ -176,7 +178,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
             })
-
         } catch (e) {
             me.showError('userController/ doSearch error:', e);
         }
@@ -199,67 +200,87 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         }
     },
 
-
-
-    /*************** view ***************/
-    //選擇使用者
+    /*************** 選擇 ***************/
+    // 選擇使用者
     onSelectUser: function () {
         let me = this
         try {
             let selection = me.viewUserlist.getSelection();
             let record = selection[0];
 
-            me.viewCode.setValue('');
-            me.viewName.setValue('');
-            me.viewMail.setValue('');
-            me.viewMemo.setValue('');
-            me.viewStatus.setValue('');
+            me.editCode.setValue('');
+            me.editName.setValue('');
+            me.editMail.setValue('');
+            me.editMemo.setValue('');
+            me.editStatus.setValue('');
 
             if (record) {
-                me.viewCode.setValue(record.get('code'));
-                me.viewName.setValue(record.get('name'));
-                me.viewMail.setValue(record.get('mail'));
-                me.viewMemo.setValue(record.get('memo'));
-                me.viewStatus.setValue(record.get('status'));
+                me.editCode.setValue(record.get('code'));
+                me.editName.setValue(record.get('name'));
+                me.editMail.setValue(record.get('mail'));
+                me.editMemo.setValue(record.get('memo'));
+                me.editStatus.setValue(record.get('status'));
+            }
+
+            me.delCode.setValue('');
+            me.delName.setValue('');
+
+            if (record) {
+                me.delCode.setValue(record.get('code'));
+                me.delName.setValue(record.get('name'));
             }
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
     },
     
-    // 選擇新增、修改
+    // 選擇新增
     funcbar_add:function(){
-        let add=this.lookupReference('txt-page-41041118-user-add')
-        let edit=this.lookupReference('txt-page-41041118-user-edit')
-        if (add.isVisible()) {
-            add.hide();
+        let me = this
+        if (me.Add.isVisible()) {
+            me.Add.hide();
         } else {
-            add.show();
-            edit.hide();
+            me.Add.show();
+            me.Edit.hide();
+            me.Del.hide();
         }
     },
 
+    // 選擇修改
     funcbar_edit:function(){
-        let edit=this.lookupReference('txt-page-41041118-user-edit')
-        let add=this.lookupReference('txt-page-41041118-user-add')
-        if (edit.isVisible()) {
-            edit.hide();
+        let me = this
+        if (me.Edit.isVisible()) {
+            me.Edit.hide();
         } else {
-            edit.show();
-            add.hide();
+            me.Edit.show();
+            me.Add.hide();
+            me.Del.hide();
         }
     },
 
+    // 選擇刪除
+    funcbar_del:function(){
+        let me = this
+        if (me.Del.isVisible()) {
+            me.Del.hide();
+        } else {
+            me.Del.show();
+            me.Add.hide();
+            me.Edit.hide();
+        }
+    },
+
+    /*************** 變更資料 ***************/
     // 新增資料
     addsave:function(){
         let me = this
         try {
             let data = [{
-                code: me.Codeadd.getValue(),
-                name: me.Nameadd.getValue(),
-                mail: me.Mailadd.getValue(),
-                memo: me.Memoadd.getValue(),
-                status: me.Statusadd.getValue(),
+                code: me.addCode.getValue(),
+                name: me.addName.getValue(),
+                mail: me.addMail.getValue(),
+                memo: me.addMemo.getValue(),
+                status: me.addStatus.getValue(),
                 createusercode:'root',
                 createtm:Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'),
                 modifyusercode:'',
@@ -272,19 +293,17 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
 
     },
 
-    // 取消新增
     cleanaddsave:function(){
         let me = this
-        let add=this.lookupReference('txt-page-41041118-user-add')
         try {
-            me.Codeadd.setValue('');
-            me.Nameadd.setValue('');
-            me.Mailadd.setValue('');
-            me.Memoadd.setValue('');
-            me.Statusadd.setValue('');
-            me.Createusercodeadd.setValue('');
-            me.Createtmadd.setValue('');
-            add.hide();
+            me.addCode.setValue('');
+            me.addName.setValue('');
+            me.addMail.setValue('');
+            me.addMemo.setValue('');
+            me.addStatus.setValue('');
+            me.addCreateusercode.setValue('');
+            me.addCreatetm.setValue('');
+            me.Add.hide();
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -293,16 +312,15 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     // 修改資料
     editsave:function(){
         let me = this
-
         try {
             let selection = me.viewUserlist.getSelection();
             let record = selection[0];
             if (record) {                
-                record.set('code',me.viewCode.getValue());
-                record.set('name',me.viewName.getValue());
-                record.set('mail',me.viewMail.getValue());
-                record.set('memo',me.viewMemo.getValue());
-                record.set('status',me.viewStatus.getValue());
+                record.set('code',me.editCode.getValue());
+                record.set('name',me.editName.getValue());
+                record.set('mail',me.editMail.getValue());
+                record.set('memo',me.editMemo.getValue());
+                record.set('status',me.editStatus.getValue());
                 record.set('modifyusercode','root');
                 record.set('modifytm',Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'));
                 record.getStore().sync();
@@ -313,17 +331,36 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
 
     },
 
-    // 取消修改
-
     cleaneditsave:function(){
         let me = this
-        let edit=this.lookupReference('txt-page-41041118-user-edit')
         try {
             me.onSelectUser();
-            edit.hide();
+            me.Edit.hide();
+        } catch (e) {
+            me.showError('userController/ cleanSearch error:', e);
+        }
+    },
+
+    // 刪除資料
+    delsave:function(){
+        let me = this
+        try {
+            let selection = me.viewUserlist.getSelection();
+            let record = selection[0];
+            me.viewUserlist.getStore().remove(record)
+            me.viewUserlist.getStore().sync();           
+        } catch (e) {
+            me.showError('userController/ cleanSearch error:', e);
+        }
+    },
+
+    cleandelsave(){
+        let me = this       
+        try {
+            me.onSelectUser();
+            me.Del.hide();
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
     }
-
 });
