@@ -202,10 +202,11 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                                 cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-plus',
                                 margin: 3,
+                                padding: '6',
                                 handler: 'funcbar_add',
                                 
                             },
-                            { xtype: 'tbseparator', margin: '8 1' },
+                            { xtype: 'tbseparator', margin: '8 2' },
                             {
                                 xtype: 'button',
                                 text: '修改',
@@ -213,6 +214,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                                 cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-edit',
                                 margin: 3,
+                                padding: '6',
                                 handler: 'funcbar_edit',
                             },                            
                         ]
@@ -226,7 +228,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             align: 'stretch',
                         },
                         defaults: {
-                            width: 157,
+                            width: 224,
                             labelWidth: 35,
                             margin: '0 0 8 0',
                         },
@@ -236,9 +238,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             reference: 'txt-page-41041118-user-searchbar-codeadd',
                             emptyText: '請輸入學號',
                             enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
                             margin: '0 0 8 0',
                         }, {
                             xtype: 'textfield',
@@ -246,9 +245,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             reference: 'txt-page-41041118-user-searchbar-nameadd',
                             emptyText: '請輸入姓名',
                             enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
                         },
                         {
                             xtype: 'textfield',
@@ -256,9 +252,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             reference: 'txt-page-41041118-user-searchbar-mailadd',
                             emptyText: '請輸入信箱',
                             enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
                         },
                         {
                             xtype: 'textfield',
@@ -266,9 +259,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             reference: 'txt-page-41041118-user-searchbar-memoadd',
                             emptyText: '請輸入備註',
                             enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
+
                         }, {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
@@ -280,35 +271,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             anyMatch: true,
                             editable: true,
                             store: { type: 'status' },
-
                             enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '建立人員',
-                            reference: 'txt-page-41041118-user-searchbar-createusercodeadd',
-                            labelWidth: 65,
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
-                            xtype: 'datefield',
-                            anchor: '100%',
-                            fieldLabel: '建立時間',
-                            name: 'date',
-                            format: 'Y-m-d',
-                            altFormats: 'm,d,Y|m.d.Y',
-                            value: '',
-                            enableKeyEvents: true,
-                            reference: 'txt-page-41041118-user-searchbar-createtmadd',
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            labelWidth: 65,
-                            width: 180
                         },{
                             xtype: 'button',
                             text: '儲存',
@@ -342,7 +305,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             align: 'stretch',
                         },
                         defaults: {
-                            width: 160,
+                            width: 224,
                             labelWidth: 35,
                             margin: '0 0 8 0',
                         },
@@ -364,21 +327,17 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             fieldLabel: '備註',
                             reference: 'txt-page-41041118-user-memo',
                         },{
-                            xtype: 'textfield',
+                            xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'txt-page-41041118-user-status',
-                            
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '異動人員',
-                            reference: 'txt-page-41041118-user-modifyusercode',
-                            labelWidth: 65,
-                            
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '異動時間',
-                            reference: 'txt-page-41041118-user-modifytm',
-                            labelWidth: 65,
+                            reference: 'txt-page-41041118-user-status',                            
+                            valueField: 'value',
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
+                            editable: true,
+                            store: { type: 'status' },
+                            enableKeyEvents: true,
                         },
                         {
                             xtype: 'button',
@@ -425,6 +384,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                 },
                 columns: [{
                     xtype: 'rownumberer',
+                    text:'項次',
                     align: 'center',
                     width: 50,
                 },{

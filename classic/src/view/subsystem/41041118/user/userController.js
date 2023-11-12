@@ -52,9 +52,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.Mailadd = me.lookupReference('txt-page-41041118-user-searchbar-mailadd');
             me.Memoadd = me.lookupReference('txt-page-41041118-user-searchbar-memoadd');
             me.Statusadd = me.lookupReference('cmbx-page-41041118-user-searchbar-statusadd');
-            me.Createusercodeadd = me.lookupReference('txt-page-41041118-user-searchbar-createusercodeadd');
-            me.Createtmadd = me.lookupReference('txt-page-41041118-user-searchbar-createtmadd');
-
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-page-41041118-user-userlist');
 
@@ -217,8 +214,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.viewMail.setValue('');
             me.viewMemo.setValue('');
             me.viewStatus.setValue('');
-            me.viewModifyusercode.setValue('');
-            me.viewModifytm.setValue('');
 
             if (record) {
                 me.viewCode.setValue(record.get('code'));
@@ -226,8 +221,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 me.viewMail.setValue(record.get('mail'));
                 me.viewMemo.setValue(record.get('memo'));
                 me.viewStatus.setValue(record.get('status'));
-                me.viewModifyusercode.setValue(record.get('modifyusercode'));
-                me.viewModifytm.setValue(record.get('modifytm'));
             }
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
@@ -267,8 +260,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 mail: me.Mailadd.getValue(),
                 memo: me.Memoadd.getValue(),
                 status: me.Statusadd.getValue(),
-                createusercode:me.Createusercodeadd.getValue(),
-                createtm:Ext.Date.format(me.Createtmadd.getValue(),'Y-m-d'),
+                createusercode:'root',
+                createtm:Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'),
                 modifyusercode:'',
                 modifytm:'',
             }]
@@ -300,6 +293,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     // 修改資料
     editsave:function(){
         let me = this
+
         try {
             let selection = me.viewUserlist.getSelection();
             let record = selection[0];
@@ -309,8 +303,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 record.set('mail',me.viewMail.getValue());
                 record.set('memo',me.viewMemo.getValue());
                 record.set('status',me.viewStatus.getValue());
-                record.set('modifyusercode',me.viewModifyusercode.getValue());
-                record.set('modifytm',me.viewModifytm.getValue());
+                record.set('modifyusercode','root');
+                record.set('modifytm',Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'));
                 record.getStore().sync();
             }
             } catch (e) {
