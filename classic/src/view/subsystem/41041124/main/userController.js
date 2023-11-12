@@ -45,8 +45,8 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
             me.searchMail = me.lookupReference('txt-41041124-user-searchbar-mail');
             me.searchMemo = me.lookupReference('txt-41041124-user-searchbar-memo');
             me.searchStatus = me.lookupReference('cmbx-41041124-user-searchbar-status');
-            
             me.searchCreateusercode = me.lookupReference('txt-41041124-user-searchbar-createusercode');
+            me.searchCreatetm = me.lookupReference('txt-41041124-user-searchbar-createtm');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-41041124-user-userlist');
@@ -74,13 +74,15 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
                 name: '系統管理員',
                 mail: 'xxx@gmail.com',
                 memo:'測試',
+                createusercode:'admin',
+                createtm:'2023,11,10',
                 status: 1,
             }, {
                 code: '41041124',
                 name: '林裕翔',
                 mail: 'a55472016@gmail.com',
                 memo:'brian',
-                createusercode:'admin',
+                createusercode:'root',
                 createtm:'2023,11,11',
                 status: 9,
             }]
@@ -113,16 +115,16 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
             let memo = me.searchMemo.getValue();
             let status = me.searchStatus.getValue();
             let createusercode = me.searchCreateusercode.getValue();
-
+            let createtm = me.searchCreatetm.getValue();
 
             let uploadJSON = {
                 code: code,
                 name: name,
-                mail: mail,
-                memo: memo,
+                mail:mail,
+                memo:memo,
                 status: status,
-                createusercode: createusercode,
-
+                createusercode:createusercode,
+                createtm:createtm
             }
 
             console.log('----------- 查詢條件 -----------');
@@ -154,6 +156,10 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
                 if (uploadJSON.createusercode) {
                     display = e.get('createusercode').includes(uploadJSON.createusercode) ? display : false;
                 }
+
+                if (uploadJSON.createtm) {
+                    display = e.get('createtm').includes(Ext.Date.format(uploadJSON.createtm,'Y,m,d'))  ? display : false;
+                }
                 
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
@@ -173,6 +179,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
             me.searchMemo.setValue('');
             me.searchStatus.setValue('');
             me.searchCreateusercode.setValue('');
+            me.searchCreatetm.setValue('');
 
 
         } catch (e) {

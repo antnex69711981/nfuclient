@@ -95,7 +95,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-41041124-user-searchbar-status',
-
+                            width: 120,
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
@@ -127,14 +127,16 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                             name: 'date',
                             format: 'Y,m,d',
                             altFormats: 'm,d,Y|m.d.Y',
-                            value: '',
+                            value: '選擇日期',
                             enableKeyEvents: true,
+                            width: 200,
                             reference: 'txt-41041124-user-searchbar-createtm',
                             listeners: {
                                 keypress: 'enterSearch'
                             },
                             labelWidth: 65,
                             margin: '0 0 8 0',
+                            
                         }]
                     },
                     
