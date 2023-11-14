@@ -69,8 +69,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.Del = me.lookupReference('txt-41041118-del'); 
             (me.Del).hide();
             me.delCode = me.lookupReference('txt-41041118-del-code');
-            me.delName = me.lookupReference('txt-41041118-del-name');     
-                  
+            me.delName = me.lookupReference('txt-41041118-del-name');
+
         } catch (e) {
             me.showError('userController/ initObj error:', e);
         }
@@ -82,7 +82,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             let data = [{
                 code: 'root',
                 name: '系統管理員',
-                mail: '',
+                mail: 'root@gmail.com',
                 memo:'管理員',
                 status: 1,
                 createusercode:'',
@@ -270,23 +270,48 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         }
     },
 
-    /*************** 變更資料 ***************/
+    /*************** 變更資料 ***************/   
     // 新增資料
     addsave:function(){
         let me = this
         try {
-            let data = [{
-                code: me.addCode.getValue(),
-                name: me.addName.getValue(),
-                mail: me.addMail.getValue(),
-                memo: me.addMemo.getValue(),
-                status: me.addStatus.getValue(),
-                createusercode:'root',
-                createtm:Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'),
-                modifyusercode:'',
-                modifytm:'',
-            }]
-            me.viewUserlist.getStore().loadData(data,true);
+            let records = me.viewUserlist.getStore().getData().items;
+            let codeList = records.map(record => record.get('code'));
+            let checkcode =codeList.includes(me.addCode.getValue());
+            let mailList = records.map(record => record.get('mail'));
+            let checkmail =mailList.includes(me.addMail.getValue());
+            if(me.addCode.validate(me.addCode.getValue())==0 && me.addMail.validate(me.addMail.getValue())==0){
+                me.addCode.setValue("格式不符")
+                me.addMail.setValue("格式不符")
+            }else if(me.addCode.validate(me.addCode.getValue())==0){
+                me.addCode.setValue("格式不符")
+            }else if(me.addMail.validate(me.addMail.getValue())==0){
+                me.addMail.setValue("格式不符")
+            }else if(checkcode==1 && checkmail==1){
+                me.addCode.setValue("已存在該學號")
+                me.addMail.setValue("已存在該信箱")
+            }else if(checkcode==1 ){
+                me.addCode.setValue("已存在該學號")
+            }else if(checkmail==1 ){
+                me.addMail.setValue("已存在該信箱")
+            } else{
+                
+                console.log(me.addMail.validate(me.addMail.getValue()));
+                let data = [{
+                    code: me.addCode.getValue(),
+                    name: me.addName.getValue(),
+                    mail: me.addMail.getValue(),
+                    memo: me.addMemo.getValue(),
+                    status: me.addStatus.getValue(),
+                    createusercode:'root',
+                    createtm:Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'),
+                    modifyusercode:'',
+                    modifytm:'',
+                }]
+                me.viewUserlist.getStore().loadData(data,true);
+                me.cleanaddsave();
+            }
+
         } catch (e) {
             me.showError('userController/ refreshObj error:', e);
         }
@@ -296,14 +321,12 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     cleanaddsave:function(){
         let me = this
         try {
-            me.addCode.setValue('');
-            me.addName.setValue('');
-            me.addMail.setValue('');
-            me.addMemo.setValue('');
-            me.addStatus.setValue('');
-            me.addCreateusercode.setValue('');
-            me.addCreatetm.setValue('');
             me.Add.hide();
+            me.addCode.reset();
+            me.addName.reset();
+            me.addMail.reset();
+            me.addMemo.reset();
+            me.addStatus.reset();           
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -314,16 +337,40 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         let me = this
         try {
             let selection = me.viewUserlist.getSelection();
-            let record = selection[0];
-            if (record) {                
-                record.set('code',me.editCode.getValue());
-                record.set('name',me.editName.getValue());
-                record.set('mail',me.editMail.getValue());
-                record.set('memo',me.editMemo.getValue());
-                record.set('status',me.editStatus.getValue());
-                record.set('modifyusercode','root');
-                record.set('modifytm',Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'));
-                record.getStore().sync();
+            let records = me.viewUserlist.getStore().getData().items;
+            let codeList = records.map(record => record.get('code'));
+            let codeArray = codeList.filter(value => value !== selection[0].get('code'));
+            let checkcode =codeArray.includes(me.editCode.getValue());    
+            let mailList = records.map(record => record.get('mail'));
+            let mailArray = mailList.filter(value => value !== selection[0].get('mail'));
+            let checkmail =mailArray.includes(me.editMail.getValue());
+            if(me.editCode.validate(me.editCode.getValue())==0 && me.editMail.validate(me.editMail.getValue())==0){
+                me.editCode.setValue("格式不符")
+                me.editMail.setValue("格式不符")
+            }else if(me.editCode.validate(me.editCode.getValue())==0){
+                me.editCode.setValue("格式不符")
+            }else if(me.editMail.validate(me.editMail.getValue())==0){
+                me.editMail.setValue("格式不符")
+            }else if(checkcode==1 && checkmail==1){
+                console.log(selection[0].mail);
+                console.log(mailList);
+                console.log(mailArray);
+                me.editCode.setValue("已存在該學號")
+                me.editMail.setValue("已存在該信箱")
+            }else if(checkcode==1 ){
+                me.editCode.setValue("已存在該學號")
+            }else if(checkmail==1 ){
+                me.editMail.setValue("已存在該信箱")            
+            }else if (selection[0]) {                
+                selection[0].set('code',me.editCode.getValue());
+                selection[0].set('name',me.editName.getValue());
+                selection[0].set('mail',me.editMail.getValue());
+                selection[0].set('memo',me.editMemo.getValue());
+                selection[0].set('status',me.editStatus.getValue());
+                selection[0].set('modifyusercode','root');
+                selection[0].set('modifytm',Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'));
+                selection[0].getStore().sync();
+                me.cleaneditsave();
             }
             } catch (e) {
             me.showError('userController/ refreshObj error:', e);
@@ -334,8 +381,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     cleaneditsave:function(){
         let me = this
         try {
-            me.onSelectUser();
             me.Edit.hide();
+            me.onSelectUser();           
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -354,13 +401,13 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         }
     },
 
-    cleandelsave(){
+    cleandelsave:function(){
         let me = this       
         try {
-            me.onSelectUser();
             me.Del.hide();
+            me.onSelectUser();           
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
-    }
+    },
 });
