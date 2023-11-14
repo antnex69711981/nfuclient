@@ -170,7 +170,7 @@ Ext.define('antnex.subsystem.11261103.user.userController', {
                 createusercode:me.addcreateusercode.getValue(),
                 createtm:me.addcreatetm.getSubmitValue(),
                 modifyusercode:me.addmodifyusercode.getValue(),
-                modiftm:me.addmodiftm.getSubmitValue(),
+                modiftm:me.addmodiftm.getSubmitValue(),//轉換y-m-d格式 getvalue()英文日期+時間格式
 
             }]
             me.viewUserlist.getStore().add(data);

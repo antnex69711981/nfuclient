@@ -153,7 +153,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             margin: '0 10 8 5',
                         }]
                     },
-                    {
+                    {//查詢button
                         xtype: 'button',
                         text: '查詢',
                         scale: 'small',
@@ -164,7 +164,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                         handler: 'doSearch',
                         margin: '10 0 5 5',
                     },
-                    {
+                    {//清除button
                         xtype: 'button',
                         text: '清除',
                         scale: 'small',
@@ -190,7 +190,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                 
                 scrollable: true,
                 items: [
-                    {   // 新增欄位
+                    {// 新增欄位
                         xtype: 'fieldset',
                         title: '新增資料',
                         layout: {
@@ -448,7 +448,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 2,
+                flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
