@@ -9,8 +9,11 @@ Ext.define('antnex.subsystem.41241224.main.main',
         title:'41241224的首頁',
 
         items:[{
-            html:'41241224的首頁'
-        }]
+            xtype:'panel',
+            items:[{
+                html:'41241224的首頁'
+            }]
+        } ]
 
     }
 );
