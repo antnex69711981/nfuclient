@@ -60,17 +60,31 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             me.viewManage = me.lookupReference('panel-40941139-user-manage');
             me.viewAdd = me.lookupReference('panel-40941139-user-add');
 
-            me.viewCode = me.lookupReference('txt-40941139-user-code');
-            me.viewName = me.lookupReference('txt-40941139-user-name');
-            me.viewMail = me.lookupReference('txt-40941139-user-mail');
-            me.viewPhone = me.lookupReference('txt-40941139-user-phone');
-            me.viewBirth = me.lookupReference('date-40941139-user-birth');
-            me.viewMemo = me.lookupReference('txt-40941139-user-memo');
-            me.viewStatus = me.lookupReference('cmbx-40941139-user-status');
-            me.viewCreateusercode = me.lookupReference('txt-40941139-user-createusercode');
-            me.viewCreatetm = me.lookupReference('date-40941139-user-createtm');
-            me.viewModifyusercode = me.lookupReference('txt-40941139-user-modifyusercode');
-            me.viewModifytm = me.lookupReference('date-40941139-user-modifytm');
+            // 資料維護
+            me.manageCode = me.lookupReference('txt-40941139-user-manage-code');
+            me.manageName = me.lookupReference('txt-40941139-user-manage-name');
+            me.manageMail = me.lookupReference('txt-40941139-user-manage-mail');
+            me.managePhone = me.lookupReference('txt-40941139-user-manage-phone');
+            me.manageBirth = me.lookupReference('date-40941139-user-manage-birth');
+            me.manageMemo = me.lookupReference('txt-40941139-user-manage-memo');
+            me.manageStatus = me.lookupReference('cmbx-40941139-user-manage-status');
+            me.manageCreateusercode = me.lookupReference('txt-40941139-user-manage-createusercode');
+            me.manageCreatetm = me.lookupReference('date-40941139-user-manage-createtm');
+            me.manageModifyusercode = me.lookupReference('txt-40941139-user-manage-modifyusercode');
+            me.manageModifytm = me.lookupReference('date-40941139-user-manage-modifytm');
+
+            // 資料新增
+            me.addCode = me.lookupReference('txt-40941139-user-add-code');
+            me.addName = me.lookupReference('txt-40941139-user-add-name');
+            me.addMail = me.lookupReference('txt-40941139-user-add-mail');
+            me.addPhone = me.lookupReference('txt-40941139-user-add-phone');
+            me.addBirth = me.lookupReference('date-40941139-user-add-birth');
+            me.addMemo = me.lookupReference('txt-40941139-user-add-memo');
+            me.addStatus = me.lookupReference('cmbx-40941139-user-add-status');
+            me.addCreateusercode = me.lookupReference('txt-40941139-user-add-createusercode');
+            me.addCreatetm = me.lookupReference('date-40941139-user-add-createtm');
+            me.addModifyusercode = me.lookupReference('txt-40941139-user-add-modifyusercode');
+            me.addModifytm = me.lookupReference('date-40941139-user-add-modifytm');
         } catch (e) {
             me.showError('userController/ initObj error:', e);
         }
@@ -88,7 +102,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 memo: '',
                 status: 1,
                 createusercode: '李厚生',
-                createtm: '2023/11/1',
+                createtm: '2023-11-01',
                 modifyusercode: '',
                 modifytm: '',
             }, {
@@ -100,21 +114,21 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 memo: '',
                 status: 9,
                 createusercode: '李厚生',
-                createtm: '2023/11/1',
+                createtm: '2023-11-01',
                 modifyusercode: '',
                 modifytm: '',
             }, {
                 code: '40941139',
                 name: '陳嘉笙',
                 mail: '40941139@gm.nfu.edu.tw',
-                phone: '0908389983',
-                birth: '2001/10/20',
+                phone: '0912345678',
+                birth: '1999-01-02',
                 memo: 'pig',
                 status: 1,
                 createusercode: '陳嘉笙',
-                createtm: '2023/11/4',
+                createtm: '2023-11-04',
                 modifyusercode: '陳嘉笙',
-                modifytm: '2023/11/5',
+                modifytm: '2023-11-05',
             }]
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {
@@ -220,7 +234,6 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 console.log(`正在處理: ${JSON.stringify(e.getData())} => ${display ? '顯示' : '不顯示'}`);
                 return display;
             })
-            debugger
 
         } catch (e) {
             me.showError('userController/ doSearch error:', e);
@@ -257,34 +270,32 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             let record = selection[0];
 
             me.viewManage.show();
-            // me.viewAdd.hide();
-            me.viewCode.setValue('');
-            me.viewName.setValue('');
-            me.viewMail.setValue('');
-            me.viewPhone.setValue('');
-            me.viewBirth.setValue('');
-            me.viewMemo.setValue('');
-            me.viewStatus.setValue('');
-            me.viewCreateusercode.setValue('');
-            me.viewCreatetm.setValue('');
-            me.viewModifyusercode.setValue('');
-            me.viewModifytm.setValue('');
+            me.viewAdd.hide();
+            me.manageCode.setValue('');
+            me.manageName.setValue('');
+            me.manageMail.setValue('');
+            me.managePhone.setValue('');
+            me.manageBirth.setValue('');
+            me.manageMemo.setValue('');
+            me.manageStatus.setValue('');
+            me.manageCreateusercode.setValue('');
+            me.manageCreatetm.setValue('');
+            me.manageModifyusercode.setValue('');
+            me.manageModifytm.setValue('');
             
 
             if (record) {
-                me.viewCode.setValue(record.get('code'));
-                me.viewName.setValue(record.get('name'));
-                me.viewMail.setValue(record.get('mail'));
-                me.viewPhone.setValue(record.get('phone'));
-                me.viewBirth.setValue(record.get('birth'));
-                me.viewMemo.setValue(record.get('memo'));
-                me.viewStatus.setValue(record.get('status'));
-                me.viewCreateusercode.setValue(record.get('createusercode'));
-                me.viewCreatetm.setValue(record.get('createtm'));
-                me.viewModifyusercode.setValue(record.get('modifyusercode'));
-                me.viewModifytm.setValue(record.get('modifytm'));
-
-                debugger
+                me.manageCode.setValue(record.get('code'));
+                me.manageName.setValue(record.get('name'));
+                me.manageMail.setValue(record.get('mail'));
+                me.managePhone.setValue(record.get('phone'));
+                me.manageBirth.setValue(record.get('birth'));
+                me.manageMemo.setValue(record.get('memo'));
+                me.manageStatus.setValue(record.get('status'));
+                me.manageCreateusercode.setValue(record.get('createusercode'));
+                me.manageCreatetm.setValue(record.get('createtm'));
+                me.manageModifyusercode.setValue(record.get('modifyusercode'));
+                me.manageModifytm.setValue(record.get('modifytm'));
 
             }
         } catch (e) {
@@ -292,25 +303,134 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
         }
     },
 
-    /*************** add ***************/
-    // button: 新增
-    funcbar_add: function () {
+    /*************** manage ***************/
+
+    // button: 儲存
+    /*
+    doManage: function () {
         let me = this
         
         try {
+            let time = Ext.Date.format(new Date(), 'Y-m-d');
             let data = [{
-                code: me.viewCode.getValue(),
-                name: me.viewName.getValue(),
-                mail: me.viewMail.getValue(),
-                phone: me.viewPhone.getValue(),
-                birth: me.viewBirth.getRawValue(),
-                memo: me.viewMemo.getValue(),
-                status: me.viewStatus.getValue(),
+                code: me.addCode.getValue(),
+                name: me.addName.getValue(),
+                mail: me.addMail.getValue(),
+                phone: me.addPhone.getValue(),
+                birth: me.addBirth.getRawValue(),
+                memo: me.addMemo.getValue(),
+                status: me.addStatus.getValue(),
+                // createusercode: me.addCreateusercode.getValue('root'),
+                // createtm: time,
+                // modifyusercode: me.addModifyusercode.getValue('root'),
+                // modifytm: time,
             }]
             me.viewUserlist.getStore().add(data);
 
         } catch (e) {
             me.showError('userController/ doAdd error:', e);
+        }
+    },
+    */
+
+    // button: 取消
+    cancelManage: function () {
+        let me = this
+        try {
+            me.manageCode.setValue('');
+            me.manageName.setValue('');
+            me.manageMail.setValue('');
+            me.managePhone.setValue('');
+            me.manageBirth.setValue('');
+            me.manageMemo.setValue('');
+            me.manageStatus.setValue('');
+            me.manageCreateusercode.setValue('');
+            me.manageCreatetm.setValue('');
+            me.manageModifyusercode.setValue('');
+            me.manageModifytm.setValue('');
+            me.viewManage.hide();
+            
+
+            // me.addCreateusercode.setValue('');
+            // me.addCreatetm.setValue('');
+            // me.addModifyusercode.setValue('');
+            // me.addModifytm.setValue('');
+
+        } catch (e) {
+            me.showError('userController/ cleanAdd error:', e);
+        }
+    },
+
+    /*************** add ***************/
+    // button: 功能列新增
+    funcbar_add: function () {
+        let me = this
+
+        try{
+            me.viewAdd.show();
+            me.viewManage.hide();
+
+        } catch (e) {
+            me.showError('userController/ funcbar_add error:', e);
+        }
+    },
+
+    // button: 新增
+    doAdd: function () {
+        let me = this
+        
+        try {
+            let time = Ext.Date.format(new Date(), 'Y-m-d');
+            let data = [{
+                code: me.addCode.getValue(),
+                name: me.addName.getValue(),
+                mail: me.addMail.getValue(),
+                phone: me.addPhone.getValue(),
+                birth: me.addBirth.getRawValue(),
+                memo: me.addMemo.getValue(),
+                status: me.addStatus.getValue(),
+                createusercode: '陳嘉笙',
+                createtm: time,
+                modifyusercode: '陳嘉笙',
+                modifytm: time,
+            }]
+            me.viewUserlist.getStore().add(data);
+
+            // 初始化
+            me.addCode.setValue('');
+            me.addName.setValue('');
+            me.addMail.setValue('');
+            me.addPhone.setValue('');
+            me.addBirth.setValue('');
+            me.addMemo.setValue('');
+            me.addStatus.setValue('');
+            me.viewAdd.hide();
+
+        } catch (e) {
+            me.showError('userController/ doAdd error:', e);
+        }
+    },
+
+    // button: 取消
+    cancelAdd: function () {
+        let me = this
+        try {
+            me.addCode.setValue('');
+            me.addName.setValue('');
+            me.addMail.setValue('');
+            me.addPhone.setValue('');
+            me.addBirth.setValue('');
+            me.addMemo.setValue('');
+            me.addStatus.setValue('');
+            me.viewAdd.hide();
+
+            // me.addCreateusercode.setValue('');
+            // me.addCreatetm.setValue('');
+            // me.addModifyusercode.setValue('');
+            // me.addModifytm.setValue('');
+
+        } catch (e) {
+            me.showError('userController/ cleanAdd error:', e);
         }
     },
 
