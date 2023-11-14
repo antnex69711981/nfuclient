@@ -302,32 +302,33 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             },
 
                         ]
-                        },{
-                            items:[{//異動人員 異動時間
-                                xtype: 'textfield',
-                                fieldLabel: '異動人員',
-                                reference: 'txt-11261103-user-addbarmodifyusercode',
-                                //emptyText: '請輸入姓名',
-                                enableKeyEvents: true,
-                                width:490,
-                                // listeners: {
-                                //     keypress: 'enterSearch'
-                                // },
-                            }, {
-                                xtype: 'datefield',
-                                fieldLabel: '異動時間',
-                                reference: 'date-11261103-user-addbarmodiftm',
-                                //emptyText: '請輸入姓名',
-                                enableKeyEvents: true,
-                                flex:1,
-                                value: new Date()
-                                // listeners: {
-                                //     keypress: 'enterSearch'
-                                // },
-                            },
+                        },
+                        // {
+                        //     items:[{//異動人員 異動時間
+                        //         xtype: 'textfield',
+                        //         fieldLabel: '異動人員',
+                        //         reference: 'txt-11261103-user-addbarmodifyusercode',
+                        //         //emptyText: '請輸入姓名',
+                        //         enableKeyEvents: true,
+                        //         width:490,
+                        //         // listeners: {
+                        //         //     keypress: 'enterSearch'
+                        //         // },
+                        //     }, {
+                        //         xtype: 'datefield',
+                        //         fieldLabel: '異動時間',
+                        //         reference: 'date-11261103-user-addbarmodiftm',
+                        //         //emptyText: '請輸入姓名',
+                        //         enableKeyEvents: true,
+                        //         flex:1,
+                        //         value: new Date()
+                        //         // listeners: {
+                        //         //     keypress: 'enterSearch'
+                        //         // },
+                        //     },
 
-                        ]
-                        }
+                        // ]
+                        // }
                             
                         ],
                         
