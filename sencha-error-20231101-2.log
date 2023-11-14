@@ -5,7 +5,7 @@ An error occurred while executing the following command: app watch
 Diagnostic information:
 =======================
                          app.archivePath : archive/${build.id}                               
-                      app.bootstrap.base : C:\opt\projects\github_clone                      
+                      app.bootstrap.base : C:\opt\projects\123\nfuclient                     
                        app.bootstrap.css : bootstrap.css                                     
                   app.bootstrap.manifest : ${build.id}.json                                  
                app.bootstrap.microloader : bootstrap.js                                      
@@ -20,31 +20,31 @@ Diagnostic information:
                            app.bypass_lp : true                                              
                         app.cache.deltas : ${build.id}/deltas                                
                         app.cache.enable : false                                             
-                   app.classic.js.0.path : C:\opt\projects\github_clone\ext/build/ext-all-rtl-debug.js
+                   app.classic.js.0.path : C:\opt\projects\123\nfuclient\ext/build/ext-all-rtl-debug.js
                    app.classic.js.length : 1                                                 
                            app.classpath : app,${toolkit.name}/src                           
                          app.classpath.0 : app                                               
                          app.classpath.1 : ${toolkit.name}/src                               
                     app.classpath.length : 2                                                 
                           app.compressor : null                                              
-                          app.config.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app
+                          app.config.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app
                 app.cordova.cache.enable : false                                             
                    app.cordova.config.id : com.domain.antnex                                 
                  app.cordova.config.name : antnex                                            
-                 app.cordova.config.path : C:\opt\projects\github_clone/cordova              
+                 app.cordova.config.path : C:\opt\projects\123\nfuclient/cordova             
                app.cordova.config.target :                                                   
               app.cordova.config.verbose : false                                             
                    app.cordova.js.0.path : cordova.js                                        
                app.cordova.js.0.priority : 1000                                              
                  app.cordova.js.0.remote : true                                              
                    app.cordova.js.length : 1                                                 
-                 app.cordova.microloader : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app/Microloader.js
+                 app.cordova.microloader : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app/Microloader.js
       app.cordova.output.appCache.enable : false                                             
-                 app.cordova.output.base : C:\opt\projects\github_clone/cordova/www          
+                 app.cordova.output.base : C:\opt\projects\123\nfuclient/cordova/www         
              app.cordova.output.manifest : ${build.id}.json                                  
                  app.cordova.output.page : index.html                                        
              app.development.watch.delay : 250                                               
-                                 app.dir : C:\opt\projects\github_clone                      
+                                 app.dir : C:\opt\projects\123\nfuclient                     
               app.fashion.inliner.enable : false                                             
            app.fashion.missingParameters : error                                             
                            app.framework : ext                                               
@@ -53,12 +53,12 @@ Diagnostic information:
                         app.loader.cache : false                                             
                    app.loader.cacheParam : _dc                                               
                               app.locale : zh_TW                                             
-                    app.modern.js.0.path : C:\opt\projects\github_clone\ext/build/ext-modern-all-debug.js
+                    app.modern.js.0.path : C:\opt\projects\123\nfuclient\ext/build/ext-modern-all-debug.js
                     app.modern.js.length : 1                                                 
                                 app.name : antnex                                            
                            app.namespace : antnex                                            
               app.output.appCache.enable : false                                             
-                         app.output.base : C:\opt\projects\github_clone/build/${build.environment}/antnex
+                         app.output.base : C:\opt\projects\123\nfuclient/build/${build.environment}/antnex
                            app.output.js : ${build.id}/app.js                                
                      app.output.manifest : ${build.id}.json                                  
            app.output.microloader.enable : true                                              
@@ -72,16 +72,16 @@ Diagnostic information:
                app.phonegap.cache.enable : false                                             
                   app.phonegap.config.id : com.domain.antnex                                 
                 app.phonegap.config.name : antnex                                            
-                app.phonegap.config.path : C:\opt\projects\github_clone/phonegap             
+                app.phonegap.config.path : C:\opt\projects\123\nfuclient/phonegap            
               app.phonegap.config.remote : false                                             
              app.phonegap.config.verbose : false                                             
                   app.phonegap.js.0.path : cordova.js                                        
               app.phonegap.js.0.priority : 1000                                              
                 app.phonegap.js.0.remote : true                                              
                   app.phonegap.js.length : 1                                                 
-                app.phonegap.microloader : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app/Microloader.js
+                app.phonegap.microloader : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app/Microloader.js
      app.phonegap.output.appCache.enable : false                                             
-                app.phonegap.output.base : C:\opt\projects\github_clone/phonegap/www         
+                app.phonegap.output.base : C:\opt\projects\123\nfuclient/phonegap/www        
             app.phonegap.output.manifest : ${build.id}.json                                  
                 app.phonegap.output.page : index.html                                        
              app.production.cache.enable : true                                              
@@ -109,14 +109,14 @@ Diagnostic information:
                      app.sass.var.length : 4                                                 
                  app.slicer.cache.enable : false                                             
         app.slicer.js.0.isWidgetManifest : true                                              
-                    app.slicer.js.0.path : C:\opt\projects\github_clone/sass/example/custom.js
+                    app.slicer.js.0.path : C:\opt\projects\123\nfuclient/sass/example/custom.js
                     app.slicer.js.length : 1                                                 
        app.slicer.output.appCache.enable : false                                             
                              app.version : 2023101202                                        
-                    buildenvironment.dir : C:\opt\projects\github_clone                      
-               buildenvironment.load.dir : C:\opt\projects\github_clone                      
-                          cmd.config.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36           
-                                 cmd.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36           
+                    buildenvironment.dir : C:\opt\projects\123\nfuclient                     
+               buildenvironment.load.dir : C:\opt\projects\123\nfuclient                     
+                          cmd.config.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36      
+                                 cmd.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36      
                     cmd.framework.minver : 5.5.0                                             
                    cmd.framework.version : 99.99                                             
               cmd.merge.tool.args.araxis : -wait -merge -3 -a1 {base} {user} {generated} {out}
@@ -127,7 +127,7 @@ Diagnostic information:
             cmd.merge.tool.args.tortoise : -base:{base} -theirs:{generated} -mine:{user} -merged:{out}
                               cmd.minver : 3.0.0.0                                           
                             cmd.platform : windows                                           
-                     cmd.unicode.escapes : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36/unicode-escapes.json
+                     cmd.unicode.escapes : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36/unicode-escapes.json
                              cmd.version : 7.7.0.36                                          
                             cmd.web.port : 1841                                              
                      config.skipDownload : true                                              
@@ -138,10 +138,10 @@ Diagnostic information:
                     framework.cmd.minver : 7.0.0.40                                          
                    framework.cmd.version : 7.0.0.40                                          
                  framework.compatVersion : 7.0.0                                             
-                    framework.config.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\plugins\ext\current
+                    framework.config.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\plugins\ext\current
                        framework.creator : Sencha                                            
            framework.detailedDescription : Sencha Ext JS JavaScript Framework                
-                           framework.dir : C:\opt\projects\github_clone\ext                  
+                           framework.dir : C:\opt\projects\123\nfuclient\ext                 
                   framework.example.apps : admin-dashboard,executive-dashboard,feed-viewer,kitchensink,calendar,classic/desktop,classic/ticket-app,classic/portal,classic/simple-tasks,classic/responsive-app,classic/aria,modern/addressbook,modern/blackberry,modern/energy,modern/stockapp,modern/states,modern/geocongress,modern/oreilly
                 framework.example.apps.0 : admin-dashboard                                   
                 framework.example.apps.1 : executive-dashboard                               
@@ -176,7 +176,7 @@ Diagnostic information:
                      framework.namespace : Ext                                               
                         framework.output : ${package.dir}/build                              
                      framework.overrides : ${package.dir}/overrides                          
-                  framework.packages.dir : C:\opt\projects\github_clone\ext/packages/,C:\opt\projects\github_clone\ext/${toolkit.name}
+                  framework.packages.dir : C:\opt\projects\123\nfuclient\ext/packages/,C:\opt\projects\123\nfuclient\ext/${toolkit.name}
                 framework.resource.paths : resources                                         
               framework.resource.paths.0 : resources                                         
          framework.resource.paths.length : 1                                                 
@@ -214,24 +214,24 @@ Diagnostic information:
                              locale.name : zh_TW                                             
                             minimal.mode : true                                              
                     package.sass.dynamic : true                                              
-                          repo.local.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\repo               
+                          repo.local.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\repo          
                        shared.sencha.dir : true                                              
         system.java.net.useSystemProxies : true                                              
-                     workspace.build.dir : C:\opt\projects\github_clone/build                
-                    workspace.config.dir : C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\workspace
-                           workspace.dir : C:\opt\projects\github_clone                      
-           workspace.frameworks.ext.path : C:\opt\projects\github_clone\ext                  
+                     workspace.build.dir : C:\opt\projects\123\nfuclient/build               
+                    workspace.config.dir : C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\workspace
+                           workspace.dir : C:\opt\projects\123\nfuclient                     
+           workspace.frameworks.ext.path : C:\opt\projects\123\nfuclient\ext                 
         workspace.frameworks.ext.version : 7.0.0.168                                         
-                  workspace.packages.dir : C:\opt\projects\github_clone/packages/local,C:\opt\projects\github_clone/packages
-              workspace.packages.extract : C:\opt\projects\github_clone/packages/remote      
+                  workspace.packages.dir : C:\opt\projects\123\nfuclient/packages/local,C:\opt\projects\123\nfuclient/packages
+              workspace.packages.extract : C:\opt\projects\123\nfuclient/packages/remote     
 
 Exception information:
 =======================
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\plugin.xml:378: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:253: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\plugin.xml:378: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:253: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at com.sencha.ant.AntScript.execute(AntScript.java:121)
      at com.sencha.command.plugin.PluginManager.execute(PluginManager.java:104)
      at com.sencha.command.plugin.PluginManager.executeReverseFirst(PluginManager.java:145)
@@ -259,10 +259,10 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
    Caused by: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:253: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:253: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:551)
      at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:444)
      at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
@@ -319,9 +319,9 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
    Caused by: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\watch-impl.xml:87: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:551)
      at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:444)
      at org.apache.tools.ant.taskdefs.CallTarget.execute(CallTarget.java:105)
@@ -392,8 +392,8 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
    Caused by: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\build-impl.xml:387: The following error occurred while executing this line:
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:551)
      at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:444)
      at org.apache.tools.ant.taskdefs.CallTarget.execute(CallTarget.java:105)
@@ -492,7 +492,7 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
    Caused by: The following error occurred while executing this line:
-C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+C:\Users\DMB52580902\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:551)
      at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:444)
      at org.apache.tools.ant.taskdefs.CallTarget.execute(CallTarget.java:105)
@@ -604,7 +604,7 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
-   Caused by: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+   Caused by: com.sencha.exceptions.ExBuild: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:116)
      at org.apache.tools.ant.Task.perform(Task.java:348)
      at org.apache.tools.ant.Target.execute(Target.java:392)
@@ -722,7 +722,7 @@ C:\Users\IDEA3C\bin\Sencha\Cmd\7.7.0.36\ant\build\app\init-impl.xml:436: com.sen
      at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
      at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
      at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
-   Caused by: Failed to find any files for C:\opt\projects\github_clone\classic\src\view\subsystem\41241224\home\home.js::ClassRequire::antnex.subsystem.41241224.home.homeController
+   Caused by: Failed to find any files for C:\opt\projects\123\nfuclient\classic\src\view\subsystem\sample\41041145\home\home.js::ClassRequire::antnex.subsystem.41041145.home.homeController
      at com.sencha.tools.compiler.sources.SymbolCache.resolveDependencies(SymbolCache.java:718)
      at com.sencha.tools.compiler.sources.SymbolCache.resolveDependencies(SymbolCache.java:653)
      at com.sencha.tools.compiler.sources.SymbolCache.resolveDependencies(SymbolCache.java:648)
