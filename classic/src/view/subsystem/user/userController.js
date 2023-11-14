@@ -1,9 +1,9 @@
-Ext.define("antnex.subsystem.sample.antStanley.user.userController", {
+Ext.define("antnex.subsystem.41141153.user.userController", {
   extend: "Ext.app.ViewController",
-  alias: "controller.antStanley-user",
+  alias: "controller.page-41141153-user",
   requires: [],
   config: {
-    name: "使用者管理1",
+    name: "user management",
   },
   // event: 初始化
   onInitialize: async function () {
@@ -54,6 +54,8 @@ Ext.define("antnex.subsystem.sample.antStanley.user.userController", {
 
       me.viewCode = me.lookupReference("txt-antStanley-user-code");
       me.viewName = me.lookupReference("txt-antStanley-user-name");
+      me.viewMail = me.lookupReference("txt-antStanley-user-mail");
+      me.viewStatus = me.lookupReference("txt-antStanley-user-status");
     } catch (e) {
       me.showError("userController/ initObj error:", e);
     }
@@ -66,13 +68,13 @@ Ext.define("antnex.subsystem.sample.antStanley.user.userController", {
         {
           code: "root",
           name: "系統管理員",
-          email: "",
+          email: "guanwei623@gmail.com",
           status: 1,
         },
         {
-          code: "stanley",
-          name: "李厚生",
-          email: "",
+          code: "41141153",
+          name: "Leo",
+          email: "s63248@yahoo.com.tw",
           status: 9,
         },
       ];
@@ -159,10 +161,14 @@ Ext.define("antnex.subsystem.sample.antStanley.user.userController", {
 
       me.viewCode.setValue("");
       me.viewName.setValue("");
+      me.viewMail.setValue("");
+      me.viewStatus.setValue("");
 
       if (record) {
         me.viewCode.setValue(record.get("code"));
         me.viewName.setValue(record.get("name"));
+        me.viewMail.setValue(record.get("email"));
+        me.viewStatus.setValue(record.get("status"));
       }
     } catch (e) {
       me.showError("userController/ cleanSearch error:", e);
