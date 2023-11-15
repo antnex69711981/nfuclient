@@ -358,10 +358,12 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
                                     switch (btn) {
                                         case 'yes':
                                             resolve(null);
+                                            break;
                                         case 'no':
                                             me.viewBody.remove(me.viewBody.items.items[maxTabSize - 1]);
                                             let tb = await me.switchBodyTab(xtype)
                                             resolve(tb);
+                                            break;
                                     }
                                 }
                             });
