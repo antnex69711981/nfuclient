@@ -1,3 +1,4 @@
+// 202311151329
 Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
     extend: 'antnex.default.defaultView',
     requires: [
@@ -129,7 +130,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
             align: 'stretch'
         },
         margin: '5 5 5 0',
-        minHeight: 2000,
+        minHeight: 200,
         flex: 1,
         items: [
             {   // 使用者清單
@@ -192,6 +193,50 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                             xtype: 'antTextfield',
                             fieldLabel: '姓名',
                             reference: 'txt-antStanley-user2-name',
+                            labelWidth: 37,
+                        }],
+
+                        items: [{
+                            xtype: 'antNumberfield',
+                            fieldLabel: 'ids',
+                            reference: 'num-antStanley-user2-ids',
+                            labelWidth: 37,
+                            cls: 'fieldNotInput',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '學號',
+                            reference: 'txt-antStanley-user2-code',
+                            labelWidth: 37,
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '姓名',
+                            reference: 'txt-antStanley-user2-name',
+                            labelWidth: 37,
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '信箱',
+                            reference: 'txt-antStanley-user2-mail',
+                            labelWidth: 37,
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '密碼',
+                            reference: 'txt-antStanley-user2-password',
+                            labelWidth: 37,
+                            inputType: 'password',
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antCombobox',
+                            fieldLabel: '狀態',
+                            reference: 'cmbx-antStanley-user2-status',
+                            labelWidth: 37,
+                            store: { type: 'status' },
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextarea',
+                            fieldLabel: '備註',
+                            reference: 'txt-antStanley-user2-memo',
                             labelWidth: 37,
                         }]
                     }
