@@ -10,7 +10,7 @@ Ext.define('antnex.subsystem.40141152.main.main', {
         align: 'stretch'
     },
     items: [{
-        html: 'Kevin的首頁',
+        html: 'Kevin的首頁123456',
         flex: 1,
     }]
 });
