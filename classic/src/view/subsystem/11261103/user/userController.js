@@ -170,7 +170,7 @@ Ext.define('antnex.subsystem.11261103.user.userController', {
                 createusercode:me.addcreateusercode.getValue(),
                 createtm:me.addcreatetm.getSubmitValue(),
                 modifyusercode:me.addmodifyusercode.getValue(),
-                modiftm:me.addmodiftm.getSubmitValue(),
+                modiftm:me.addmodiftm.getSubmitValue(),//轉換y-m-d格式 getvalue()英文日期+時間格式
 
             }]
             me.viewUserlist.getStore().add(data);
@@ -208,6 +208,30 @@ Ext.define('antnex.subsystem.11261103.user.userController', {
             me.showError('userController/ cleanSearch error:', e);
         }
     },
+    //button: 儲存
+    /*funcbar_save:function(){
+        let me = this
+        try {
+            let data=[{
+                code:me.viewCode.getValue(),
+                name:me.viewName.getValue(),
+                //status:me.viewStatustatus.getValue(),
+                // mail:me.viewMail.getValue(),
+                // memo:me.viewMemo.getValue(),
+                //createusercode:me.addcreateusercode.getValue(),
+                //createtm:me.addcreatetm.getSubmitValue(),
+                // modifyusercode:me.viewModifyusercode.getValue(),
+                // modiftm:me.viewModiftm.getSubmitValue(),//轉換y-m-d格式 getvalue()英文日期+時間格式
+
+            }]
+            me.viewUserlist.getStore().setConfig(data);
+            
+
+        } catch (e) {
+            me.showError('userController/ doAdd error:', e);
+        }
+
+    },*/
 
 
 
