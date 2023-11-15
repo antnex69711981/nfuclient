@@ -153,7 +153,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             margin: '0 10 8 5',
                         }]
                     },
-                    {//查詢button
+                    {
                         xtype: 'button',
                         text: '查詢',
                         scale: 'small',
@@ -164,7 +164,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                         handler: 'doSearch',
                         margin: '10 0 5 5',
                     },
-                    {//清除button
+                    {
                         xtype: 'button',
                         text: '清除',
                         scale: 'small',
@@ -190,7 +190,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                 
                 scrollable: true,
                 items: [
-                    {// 新增欄位
+                    {   // 新增欄位
                         xtype: 'fieldset',
                         title: '新增資料',
                         layout: {
@@ -302,33 +302,32 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             },
 
                         ]
-                        },
-                        // {
-                        //     items:[{//異動人員 異動時間
-                        //         xtype: 'textfield',
-                        //         fieldLabel: '異動人員',
-                        //         reference: 'txt-11261103-user-addbarmodifyusercode',
-                        //         //emptyText: '請輸入姓名',
-                        //         enableKeyEvents: true,
-                        //         width:490,
-                        //         // listeners: {
-                        //         //     keypress: 'enterSearch'
-                        //         // },
-                        //     }, {
-                        //         xtype: 'datefield',
-                        //         fieldLabel: '異動時間',
-                        //         reference: 'date-11261103-user-addbarmodiftm',
-                        //         //emptyText: '請輸入姓名',
-                        //         enableKeyEvents: true,
-                        //         flex:1,
-                        //         value: new Date()
-                        //         // listeners: {
-                        //         //     keypress: 'enterSearch'
-                        //         // },
-                        //     },
+                        },{
+                            items:[{//異動人員 異動時間
+                                xtype: 'textfield',
+                                fieldLabel: '異動人員',
+                                reference: 'txt-11261103-user-addbarmodifyusercode',
+                                //emptyText: '請輸入姓名',
+                                enableKeyEvents: true,
+                                width:490,
+                                // listeners: {
+                                //     keypress: 'enterSearch'
+                                // },
+                            }, {
+                                xtype: 'datefield',
+                                fieldLabel: '異動時間',
+                                reference: 'date-11261103-user-addbarmodiftm',
+                                //emptyText: '請輸入姓名',
+                                enableKeyEvents: true,
+                                flex:1,
+                                value: new Date()
+                                // listeners: {
+                                //     keypress: 'enterSearch'
+                                // },
+                            },
 
-                        // ]
-                        // }
+                        ]
+                        }
                             
                         ],
                         
@@ -449,7 +448,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 1,
+                flex: 2,
                 defaults: {
                     margin: '0 5 5 5',
                 },
