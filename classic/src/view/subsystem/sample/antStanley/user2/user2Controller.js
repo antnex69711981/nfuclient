@@ -3,7 +3,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
     alias: 'controller.antStanley-user2',
     requires: [],
     config: {
-        name: '使用者管理1',
+        name: '使用者管理2',
 
         action: null,
         requireKeylist: [],
