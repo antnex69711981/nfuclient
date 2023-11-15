@@ -18,7 +18,6 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
         activate: 'onActivate',
     },
 
-    // 靠上, 靠左, 靠右, 靠下
     dockedItems: [{
         xtype: 'panel',
         layout: {
