@@ -22,7 +22,7 @@ Ext.define('antnex.services.basic.FunctionService', {
                 parentcode: 'antSample',
                 code: 'antSample-antStanley-main',
                 name: 'Stanley-首頁',
-                xtype: 'page-40541124-home',
+                xtype: 'antStanley-main',
                 iconcls: 'fas fa-bookmark'
             }, {
                 parentcode: 'antSample',
@@ -54,6 +54,7 @@ Ext.define('antnex.services.basic.FunctionService', {
 
             const userList = [
                 { code: '40141152', name: '鄭凱文' },
+                { code: '40541124', name: '李厚生' },
                 { code: '11261103', name: '劉宜欣' },
                 { code: '11261119', name: '陳奕潔' },
                 { code: '40941137', name: '陳朝羿' },
