@@ -1,7 +1,7 @@
 {
     "name": "antnex",
     "namespace": "antnex",
-    "version": "2023111502",
+    "version": "2023101202",
     "framework": "ext",
     "bypass_lp": true,
 
