@@ -343,7 +343,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         },{
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'txt-41041118-edit-status',                            
+                            reference: 'cmbx-41041118-edit-status',                            
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',

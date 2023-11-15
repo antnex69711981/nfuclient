@@ -61,7 +61,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.editName = me.lookupReference('txt-41041118-edit-name');
             me.editMail = me.lookupReference('txt-41041118-edit-mail');
             me.editMemo = me.lookupReference('txt-41041118-edit-memo');
-            me.editStatus = me.lookupReference('txt-41041118-edit-status');
+            me.editStatus = me.lookupReference('cmbx-41041118-edit-status');
             me.editCreateusercode = me.lookupReference('txt-41041118-edit-createusercode');
             me.editCreatetm = me.lookupReference('txt-41041118-edit-createtm');
 
@@ -280,20 +280,14 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             let checkcode =codeList.includes(me.addCode.getValue());
             let mailList = records.map(record => record.get('mail'));
             let checkmail =mailList.includes(me.addMail.getValue());
-            if(me.addCode.validate(me.addCode.getValue())==0 && me.addMail.validate(me.addMail.getValue())==0){
-                me.addCode.setValue("格式不符")
-                me.addMail.setValue("格式不符")
-            }else if(me.addCode.validate(me.addCode.getValue())==0){
-                me.addCode.setValue("格式不符")
-            }else if(me.addMail.validate(me.addMail.getValue())==0){
-                me.addMail.setValue("格式不符")
+            if((me.addCode.validate(me.addCode.getValue())==0 || me.addName.validate(me.addName.getValue())==0 || me.addMail.validate(me.addMail.getValue())==0 || me.addStatus.validate(me.addStatus.getValue())==0)){
+                alert("輸入為空值或格式不符");
             }else if(checkcode==1 && checkmail==1){
-                me.addCode.setValue("已存在該學號")
-                me.addMail.setValue("已存在該信箱")
+                alert("已存在該學號、信箱");               
             }else if(checkcode==1 ){
-                me.addCode.setValue("已存在該學號")
+                alert("已存在該學號"); 
             }else if(checkmail==1 ){
-                me.addMail.setValue("已存在該信箱")
+                alert("已存在該信箱"); 
             } else{
                 
                 console.log(me.addMail.validate(me.addMail.getValue()));
@@ -310,6 +304,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 }]
                 me.viewUserlist.getStore().loadData(data,true);
                 me.cleanaddsave();
+                me.funcbar_add();
             }
 
         } catch (e) {
@@ -344,23 +339,16 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             let mailList = records.map(record => record.get('mail'));
             let mailArray = mailList.filter(value => value !== selection[0].get('mail'));
             let checkmail =mailArray.includes(me.editMail.getValue());
-            if(me.editCode.validate(me.editCode.getValue())==0 && me.editMail.validate(me.editMail.getValue())==0){
-                me.editCode.setValue("格式不符")
-                me.editMail.setValue("格式不符")
-            }else if(me.editCode.validate(me.editCode.getValue())==0){
-                me.editCode.setValue("格式不符")
-            }else if(me.editMail.validate(me.editMail.getValue())==0){
-                me.editMail.setValue("格式不符")
+            if(me.editCode.validate(me.editCode.getValue())==0 || me.editName.validate(me.editName.getValue())==0 || me.editMail.validate(me.editMail.getValue())==0 || me.editStatus.validate(me.editStatus.getValue())==0){
+                alert("輸入為空值或格式不符");
+            }else if(selection[0].get('code')==me.editCode.getValue() && selection[0].get('name')==me.editName.getValue() && selection[0].get('mail')==me.editMail.getValue() && selection[0].get('status')==me.editStatus.getValue()){
+                
             }else if(checkcode==1 && checkmail==1){
-                console.log(selection[0].mail);
-                console.log(mailList);
-                console.log(mailArray);
-                me.editCode.setValue("已存在該學號")
-                me.editMail.setValue("已存在該信箱")
+                alert("已存在該學號、信箱");
             }else if(checkcode==1 ){
-                me.editCode.setValue("已存在該學號")
+                alert("已存在該學號");
             }else if(checkmail==1 ){
-                me.editMail.setValue("已存在該信箱")            
+                alert("已存在該信箱");        
             }else if (selection[0]) {                
                 selection[0].set('code',me.editCode.getValue());
                 selection[0].set('name',me.editName.getValue());
@@ -371,6 +359,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                 selection[0].set('modifytm',Ext.Date.format(new Date(new Date().toUTCString()), 'Y-m-d'));
                 selection[0].getStore().sync();
                 me.cleaneditsave();
+                me.funcbar_edit();
             }
             } catch (e) {
             me.showError('userController/ refreshObj error:', e);
