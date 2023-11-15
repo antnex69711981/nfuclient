@@ -205,17 +205,6 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
                     listeners: {
                         selectionchange: 'onSelectUser',
                     },
-                    /**
-                     * array = [
-                     * 
-                     * { 
-                     * code:'root',
-                     * name:'管理員',
-                     *  }
-                     * ]
-                     * 
-                     * 
-                     */
                     columns: [{
                         xtype: 'rownumberer',
                         align: 'center',
