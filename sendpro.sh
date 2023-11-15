@@ -19,3 +19,6 @@ read -p "Press enter to continue..."
 
 # echo $serverpwd|pbcopy
 scp -r -P $serverport $sourcePath $serveruser@$serverhost:$targetPath
+
+echo ""
+echo "Do /opt/cmd/syncclient.sh on APServer-01 to finish."
