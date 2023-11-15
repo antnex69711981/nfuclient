@@ -194,6 +194,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.searchStatus.setValue('');
             me.searchCreateusercode.setValue('');
             me.searchCreatetm.setValue('');
+            me.doSearch();
 
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
