@@ -169,8 +169,8 @@ Ext.define('antnex.subsystem.11261103.user.userController', {
                 memo:me.addmemo.getValue(),
                 createusercode:me.addcreateusercode.getValue(),
                 createtm:me.addcreatetm.getSubmitValue(),
-                modifyusercode:me.addmodifyusercode.getValue(),
-                modiftm:me.addmodiftm.getSubmitValue(),//轉換y-m-d格式 getvalue()英文日期+時間格式
+                // modifyusercode:me.addmodifyusercode.getValue(),
+                // modiftm:me.addmodiftm.getSubmitValue(),//轉換y-m-d格式 getvalue()英文日期+時間格式
 
             }]
             me.viewUserlist.getStore().add(data);

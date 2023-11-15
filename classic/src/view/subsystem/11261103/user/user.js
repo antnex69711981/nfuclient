@@ -380,8 +380,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                     enableTextSelection: true,
                 },
                 border: true,
-                store: {},
-                minWidth: 1250,
+                store: {},                
                 flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
@@ -449,7 +448,8 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 1,
+                minWidth:300,
+                //flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
