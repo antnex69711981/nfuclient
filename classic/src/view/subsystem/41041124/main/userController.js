@@ -56,7 +56,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
             me.viewName = me.lookupReference('txt-41041124-user-name');
             me.viewMail = me.lookupReference('txt-41041124-user-mail');
             me.viewMemo = me.lookupReference('txt-41041124-user-memo');
-            me.viewStatus = me.lookupReference('cmbx-41041124-user-status');
+            me.viewStatus = me.lookupReference('cmbx-41041124-user-status');    
 
             me.viewCreateusercode = me.lookupReference('txt-41041124-user-createusercode');
             
@@ -187,6 +187,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
         }
     },
 
+    
 
 
     /*************** view ***************/
@@ -203,7 +204,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
             me.viewMail.setValue('');
             me.viewMemo.setValue('');
             me.viewStatus.setValue('');
-
+            
             
             if (record) {
                 me.viewCode.setValue(record.get('code'));
