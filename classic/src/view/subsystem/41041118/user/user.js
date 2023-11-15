@@ -16,6 +16,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
         afterrender: 'onInitialize',
         activate: 'onActivate',
     },
+       
 
     dockedItems: [{
         xtype: 'panel',
@@ -92,15 +93,15 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         }, {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-41041118-searchbar-status',
+                            reference: 'cmbx-41041118-searchbar-status',                                                                                                                             
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
+                            allowBlank: false,
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
-
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -243,6 +244,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             fieldLabel: '學號',
                             reference: 'txt-41041118-add-code',
                             emptyText: '請輸入學號',
+                            allowBlank: false,
+                            vtype:'alphanum',
                             enableKeyEvents: true,
                             margin: '0 0 8 0',
                         }, {
@@ -250,12 +253,15 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             fieldLabel: '姓名',
                             reference: 'txt-41041118-add-name',
                             emptyText: '請輸入姓名',
+                            allowBlank: false,
                             enableKeyEvents: true,
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '信箱',
                             reference: 'txt-41041118-add-mail',
                             emptyText: '請輸入信箱',
+                            allowBlank: false,
+                            vtype:'email',
                             enableKeyEvents: true,
                         }, {
                             xtype: 'textfield',
@@ -271,9 +277,10 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
+                            allowBlank: false,
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
                             enableKeyEvents: true,
                         }, {
@@ -314,14 +321,19 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: '學號',
+                            allowBlank: false,
+                            vtype:'alphanum',
                             reference: 'txt-41041118-edit-code',                            
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓名',
+                            allowBlank: false,
                             reference: 'txt-41041118-edit-name',
                         },{
                             xtype: 'textfield',
                             fieldLabel: '信箱',
+                            allowBlank: false,
+                            vtype: 'email',
                             reference: 'txt-41041118-edit-mail',
                         },
                         {
@@ -331,13 +343,14 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         },{
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'txt-41041118-edit-status',                            
+                            reference: 'cmbx-41041118-edit-status',                            
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
+                            allowBlank: false,
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
                             enableKeyEvents: true,
                         },
@@ -472,7 +485,8 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                     text: '異動時間',
                     minWidth: 100,
                 }]
-            }  
+            }
         ]
     }]
+    
 });
