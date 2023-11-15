@@ -53,7 +53,6 @@ Ext.define('antnex.services.basic.FunctionService', {
             let pageList = []
 
             const userList = [
-                { code: '40141123', name: '李明峰' },
                 { code: '40141152', name: '鄭凱文' },
                 { code: '40541124', name: '李厚生' },
                 { code: '11261103', name: '劉宜欣' },
