@@ -190,7 +190,14 @@ Ext.define('antnex.subsystem.sample.41041124.user.userController', {
     funcbar_add: function () {
         let me = this
         try {
-                                    
+            
+
+            // 選擇後顯示動作
+            me.viewCode.setValue('');
+            me.viewName.setValue('');
+            me.viewMail.setValue('');
+            me.viewMemo.setValue('');
+            me.viewStatus.setValue('');                 
 
 
         } catch (e) {
