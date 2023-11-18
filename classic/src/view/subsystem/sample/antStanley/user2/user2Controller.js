@@ -9,7 +9,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         requireKeylist: [],
     },
     // function: 初始化物件 - 首次進入觸發(Override)
-    initObj: function () {
+    initObj: function() {
         let me = this;
         try {
             // 功能列
@@ -42,7 +42,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // function: 載入物件資料 - 每次進入觸發(Override)
-    refreshObj: async function () {
+    refreshObj: async function() {
         const me = this;
         try {
             let status = []
@@ -60,7 +60,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // function: 初始化頁面狀態 - 首次進入觸發(Override)
-    initPageStatus: function () {
+    initPageStatus: function() {
         const me = this;
         try {
             me.cleanSearch();
@@ -75,7 +75,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
     /************* 頁面事件 *************/
     // function: 停用所有需要停用的物件
-    disabledAll: function () {
+    disabledAll: function() {
         const me = this;
         try {
             // 功能列
@@ -105,7 +105,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // function: 更改狀態
-    changeStatus: function (action) {
+    changeStatus: function(action) {
         const me = this;
         try {
             me.setConfig('action', action);
@@ -198,7 +198,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
     /************* funcbar *************/
     // button: 新增
-    funcbar_add: function () {
+    funcbar_add: function() {
         const me = this;
         try {
             // 取消選取
@@ -219,7 +219,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // button: 修改
-    funcbar_edit: function () {
+    funcbar_edit: function() {
         const me = this;
         try {
             const record = me.viewUserlist.getSelection()[0];
@@ -233,10 +233,10 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // button: 儲存
-    funcbar_save: async function () {
+    funcbar_save: async function() {
         const me = this;
         try {
-            let checkSaveFormat = async function () {
+            let checkSaveFormat = async function() {
                 if (S(me.viewCode.getValue()).isEmpty()) {
                     throw `請輸入${me.viewCode.getFieldLabel()}`;
                 }
@@ -255,7 +255,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
             }
             await checkSaveFormat();
 
-            Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+            Ext.Msg.confirm('提醒', '是否儲存？', async function(btn) {
                 if (btn == 'yes') {
                     const uploadJSON = {
                         txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
@@ -294,10 +294,10 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // button: 取消
-    funcbar_cancel: function () {
+    funcbar_cancel: function() {
         const me = this;
         try {
-            Ext.Msg.confirm('提醒', '是否取消？', function (btn) {
+            Ext.Msg.confirm('提醒', '是否取消？', function(btn) {
                 if (btn == 'yes') {
                     me.changeStatus('view');
                     me.onSelectUser();
@@ -312,7 +312,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
     /*************** searchbar ***************/
     // event: ENTER查詢
-    enterSearch: function (field, e) {
+    enterSearch: function(field, e) {
         const me = this;
         try {
             if (e.getKey() == e.ENTER) {
@@ -323,7 +323,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // button: 查詢
-    doSearch: async function () {
+    doSearch: async function() {
         const me = this;
         try {
             const code = me.searchCode.getValue();
@@ -363,7 +363,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // button: 清除
-    cleanSearch: function () {
+    cleanSearch: function() {
         const me = this;
         try {
             me.searchCode.setValue('');
@@ -378,7 +378,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
     /*************** view ***************/
     // event: 選擇使用者
-    onSelectUser: function () {
+    onSelectUser: function() {
         const me = this;
         try {
             const record = me.viewUserlist.getSelection()[0];
@@ -389,11 +389,11 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
         }
     },
     // function: 載入選擇的資料
-    loadData: async function (code = '') {
+    loadData: async function(code = '') {
         const me = this;
         try {
             // 依據傳入json載入資料
-            let loadFn = function (json = {}) {
+            let loadFn = function(json = {}) {
                 // 取得對應資料
                 const ids = json.ids ? json.ids : '';
                 const code = json.code ? json.code : '';
@@ -448,11 +448,11 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
     /************* 提示訊息 *************/
     // function:提示訊息
-    showMessage: function (message) {
+    showMessage: function(message) {
         Ext.Msg.alert(`${this.getConfig('name')} `, message);
     },
     // function:錯誤訊息
-    showError: function (path, e) {
+    showError: function(path, e) {
         this.showMessage(e);
         return false;
     },
