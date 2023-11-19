@@ -94,6 +94,7 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                     type: 'hbox',
                     align: 'stretch',
                 },
+                hidden:true,
                 defaults: {
                     margin: '0 0 5 5',
                 },
@@ -157,11 +158,12 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                                 keypress: 'enterSearch'
                             },
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'datefield',
                             fieldLabel: '建立時間',
                             anchor: '100%',
-                            reference: 'txt-41041145-user-searchbar-createtm',
+                            reference: 'dat-41041145-user-searchbar-createtm',
                             emptyText: 'YYYY/MM/DD',
+                            format: 'Y/m/d',
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -197,25 +199,19 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                 xtype: 'panel',
                 reference: 'panel-41041145-user-addbar',
                 layout: {
-                    type: 'hbox',
+                    type: 'vbox',  // 使用 vbox 佈局
                     align: 'stretch',
                 },
+                hidden: true,
                 defaults: {
                     margin: '0 0 5 5',
                 },
                 scrollable: true,
                 items: [
-                    {   // 新增條件
-                        xtype: 'fieldset',
-                        title: '新增條件',
-                        layout: {
-                            type: 'hbox',
-                            align: 'stretch'
-                        },
-                        defaults: {
-                            labelWidth: 37,
-                            margin: '0 0 8 5',
-                        },
+                    {
+                        // 新增條件 - 第一排
+                        xtype: 'container',
+                        layout: 'hbox',  // 在 hbox 內使用 hbox 佈局
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: '學號',
@@ -223,7 +219,7 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                             emptyText: '請輸入學號',
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterSearch'
+                                keypress: 'enterSearch',
                             },
                             margin: '0 0 20 0',
                         }, {
@@ -233,44 +229,50 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                             emptyText: '請輸入姓名',
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterAdd'
+                                keypress: 'enterAdd',
                             },
                             margin: '0 0 20 0',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '備註',
                             reference: 'txt-41041145-user-addbar-memo',
-                            emptyText: '請輸入建立人員',
+                            emptyText: '請輸入備註',
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterAdd'
+                                keypress: 'enterAdd',
                             },
-                            margin: '0 0 20 0',
-                        }, {
+                        }]
+                    },
+                    {
+                        // 新增條件 - 第二排
+                        xtype: 'container',
+                        layout: 'hbox',  // 在 hbox 內使用 hbox 佈局
+                        items: [{
                             xtype: 'textfield',
                             fieldLabel: '建立人員',
                             reference: 'txt-41041145-user-addbar-createusercode',
                             emptyText: '請輸入建立人員',
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterAdd'
+                                keypress: 'enterAdd',
                             },
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'datefield',
                             fieldLabel: '建立時間',
                             anchor: '100%',
-                            reference: 'text-41041145-user-addbar-createtm',
+                            reference: 'dat-41041145-user-addbar-createtm',
                             emptyText: 'YYYY/MM/DD',
+                            format: 'Y/m/d',
+                            submitFormat: 'Y/m/d',
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterAdd'
+                                keypress: 'enterAdd',
                             },
+                            margin: '0 0 20 0',
                         }, {
-
                             xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-41041145-user-addbar-status',
-
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
@@ -278,39 +280,43 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                             anyMatch: true,
                             editable: true,
                             store: { type: 'status' },
-
                             enableKeyEvents: true,
                             listeners: {
-                                keypress: 'enterAdd'
+                                keypress: 'enterAdd',
                             },
-                            margin: '0 0 20 0',
                         }]
                     },
                     {
-                        xtype: 'button',
-                        text: '新增',
-                        scale: 'small',
-                        cls: 'antBtn-blue',
-                        iconCls: 'fa fa-add',
-                        width: 60,
-                        border: false,
-                        handler: 'doAdd',
-                        margin: '10 0 5 5',
-                    },
-                    {
-                        xtype: 'button',
-                        text: '清除',
-                        scale: 'small',
-                        cls: 'antBtn-red',
-                        iconCls: 'fa fa-times',
-                        width: 60,
-                        border: false,
-                        handler: 'cleanAdd',
-                        margin: '10 0 5 5',
-                    },
+                         // 新增條件的按鈕 - 放在右上角
+                        xtype: 'container',
+                        layout: 'vbox',  // 使用 vbox 佈局
+                        items: [
+                            {
+                                xtype: 'button',
+                                text: '新增',
+                                scale: 'small',
+                                cls: 'antBtn-blue',
+                                iconCls: 'fa fa-add',
+                                width: 60,
+                                border: false,
+                                handler: 'doAdd',
+                                margin: '10 0 5 5',
+                            },
+                            {
+                                xtype: 'button',
+                                text: '清除',
+                                scale: 'small',
+                                cls: 'antBtn-red',
+                                iconCls: 'fa fa-times',
+                                width: 60,
+                                border: false,
+                                handler: 'cleanAdd',
+                                margin: '5 0 5 5',
+                            },
+                        ]
+                    }
                 ]
-            },
-
+            }
         ]
     }],
     scrollable: true,
@@ -348,15 +354,19 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                 }, {
                     dataIndex: 'code',
                     text: '學號',
-                    width: 110,
+                    width:96,
+                    minWidth: 96,
+                    maxWidth: 96,
                 }, {
                     dataIndex: 'name',
                     text: '姓名',
-                    width: 110,
+                    width:96,
+                    minWidth:96,
+                    maxWidth:96,
                 }, {
                     dataIndex: 'email',
                     text: '信箱',
-                    minWidth: 96,
+                    minWidth: 100,
                     flex: 1,
                     renderer: function (value) {
                         return value ? value : '沒有填入信箱';
@@ -364,28 +374,38 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                 }, {
                     dataIndex: 'memo',
                     text: '備註',
-                    width: 110,
+                    minWidth: 100,
                     flex: 1,
                 }, {
                     dataIndex: 'createusercode',
                     text: '建立人員',
-                    width: 96,
+                    width:96,
+                    minWidth: 96,
+                    maxWidth:96,
                 }, {
                     dataIndex: 'createtm',
                     text: '建立時間',
                     width: 96,
+                    minWidth:96,
+                    maxWidth:96,
                 }, {
                     dataIndex: 'modifyusercode',
                     text: '異動人員',
                     width: 96,
+                    minWidth:96,
+                    maxWidth:96,
                 }, {
                     dataIndex: 'modifytm',
                     text: '異動時間',
                     width: 96,
+                    minWidth:96,
+                    maxWidth:96,
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
                     width: 96,
+                    minWidth:96,
+                    maxWidth:96,
                     renderer: function (value) {
                         let store = Ext.create('antnex.store.static.Status');
                         let record = store.getRange().find(e => e.get('value') == value);
@@ -402,7 +422,8 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 2,
+                maxWidth:350,
+                flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
@@ -459,10 +480,20 @@ Ext.define('antnex.subsystem.41041145.user.user', {
                             reference: 'txt-41041145-user-modifytm',
                             labelWidth: 37,
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'txt-41041145-user-status',
+                            reference: 'cmbx-41041145-user-status',
                             labelWidth: 37,
+
+                            valueField: 'value',
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
+                            editable: true,
+                            store: { type: 'status' },
+
+                            enableKeyEvents: true,
                             renderer: function (value) {
                                 let store = Ext.create('antnex.store.static.Status');
                                 let record = store.getRange().find(e => e.get('value') == value);

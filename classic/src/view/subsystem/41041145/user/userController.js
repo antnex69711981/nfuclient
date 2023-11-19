@@ -44,7 +44,7 @@ Ext.define('antnex.subsystem.41041145.user.userController', {
             me.searchName = me.lookupReference('txt-41041145-user-searchbar-name');
             me.searchCreateusercode = me.lookupReference('txt-41041145-user-searchbar-createusercode');
             me.searchStatus = me.lookupReference('cmbx-41041145-user-searchbar-status');
-            me.searchCreatetm = me.lookupReference('txt-41041145-user-searchbar-createtm');
+            me.searchCreatetm = me.lookupReference('dat-41041145-user-searchbar-createtm');
 
             // 新增列
             me.addBar = me.lookupReference('panel-41041145-user-addbar');
@@ -52,7 +52,7 @@ Ext.define('antnex.subsystem.41041145.user.userController', {
             me.addName = me.lookupReference('txt-41041145-user-addbar-name');
             me.addMemo = me.lookupReference('txt-41041145-user-addbar-memo');
             me.addCreateusercode = me.lookupReference('txt-41041145-user-addbar-createusercode');
-            me.addCreatetm = me.lookupReference('txt-41041145-user-addbar-createtm');
+            me.addCreatetm = me.lookupReference('dat-41041145-user-addbar-createtm');
             me.addStatus = me.lookupReference('cmbx-41041145-user-addbar-status');
 
             // 主畫面
@@ -66,9 +66,24 @@ Ext.define('antnex.subsystem.41041145.user.userController', {
             me.viewCreatetm = me.lookupReference('txt-41041145-user-createtm');
             me.viewModifyusercode = me.lookupReference('txt-41041145-user-modifyusercode');
             me.viewModifytm = me.lookupReference('txt-41041145-user-modifytm');
-            me.viewStatus = me.lookupReference('txt-41041145-user-status');
+            me.viewStatus = me.lookupReference('cmbx-41041145-user-status');
         } catch (e) {
             me.showError('userController/ initObj error:', e);
+        }
+    },
+    funcbar_search: function () {
+        var view = this.getView();
+        var searchPanel = view.lookup('panel-41041145-user-searchbar');
+        searchPanel.setHidden(!searchPanel.isHidden()); // 切換可見性
+        // 如果顯示，您可能還需要執行一些初始化或其他邏輯
+        if (!searchPanel.isHidden()) {
+        }
+    },
+    funcbar_add: function () {
+        var view = this.getView();
+        var addPanel = view.lookup('panel-41041145-user-addbar');
+        addPanel.setHidden(!addPanel.isHidden());
+        if (!addPanel.isHidden()) {
         }
     },
     // function: 載入物件資料 - 每次進入觸發(Override)
@@ -89,7 +104,7 @@ Ext.define('antnex.subsystem.41041145.user.userController', {
                 code: '41041145',
                 name: '劉家齊',
                 email: '41041145@gm.nfu.edu.tw',
-                memo:'鳳武薪傳西螺鳳山館團員',
+                memo:'鳳武薪傳-西螺鳳山館團員',
                 createusercode:'劉家齊',
                 createtm:'2023/11/12',
                 modifyusercode:'劉家齊',
@@ -237,7 +252,6 @@ Ext.define('antnex.subsystem.41041145.user.userController', {
             me.showError('userController/ cleanAdd error:', e);
         }
     },
-
 
 
     /*************** view ***************/
