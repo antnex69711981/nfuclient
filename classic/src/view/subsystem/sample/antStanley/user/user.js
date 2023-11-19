@@ -9,8 +9,8 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
     title: '使用者管理1',
 
     layout: {
-        type: 'vbox',
-        align: 'stretch'
+        type: 'vbox', // vbox(垂直排列) , hbox(水平排列)
+        align: 'stretch' // stretch(延展), center(置中)
     },
 
     listeners: {
@@ -140,8 +140,8 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
                             queryMode: 'local',
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
+                            editable: false,
+                            store: {},
 
                             enableKeyEvents: true,
                             listeners: {
@@ -175,101 +175,142 @@ Ext.define('antnex.subsystem.sample.antStanley.user.user', {
             },
         ]
     }],
+
     scrollable: true,
-    items: [{
-        xtype: 'panel',
-        layout: {
-            type: 'hbox',
-            align: 'stretch'
-        },
-        margin: 5,
-        minHeight: 2000,
-        flex: 1,
-        scrollable: true,
-        items: [
-            {   // 使用者清單
-                xtype: 'gridpanel',
-                title: '使用者清單',
-                reference: 'grid-antStanley-user-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
-                viewConfig: {
-                    enableTextSelection: true,
-                },
-                border: true,
-                store: {},
-                minWidth: 200,
-                flex: 1,
-                listeners: {
-                    selectionchange: 'onSelectUser',
-                },
-                columns: [{
-                    xtype: 'rownumberer',
-                    align: 'center',
-                    width: 50,
-                }, {
-                    dataIndex: 'code',
-                    text: '學號',
-                    width: 110,
-                }, {
-                    dataIndex: 'name',
-                    text: '姓名',
-                    width: 110,
-                }, {
-                    dataIndex: 'mail',
-                    text: '信箱',
-                    minWidth: 96,
-                    flex: 1,
-                }, {
-                    dataIndex: 'status',
-                    text: '狀態',
-                    width: 96,
-                    renderer: function (value) {
-                        let store = Ext.create('antnex.store.static.Status');
-                        let record = store.getRange().find(e => e.get('value') == value);
-                        return record ? record.get('text') : `無法辨識: ${value}`;
-                    },
-                }]
+    items: [
+        {
+            xtype: 'panel',
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
             },
-            { xtype: 'splitter', margin: -1.5 },
-            {   // 資料維護
-                xtype: 'panel',
-                title: '資料維護',
-                reference: 'panel-antStanley-user-manage',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch',
-                },
-                flex: 2,
-                defaults: {
-                    margin: '0 5 5 5',
-                },
-                border: true,
-                items: [
-                    {   // 基本資料
-                        xtype: 'fieldset',
-                        title: '基本資料',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch',
+            margin: 5,
+            minHeight: 200,
+            flex: 1,
+            scrollable: true,
+            items: [
+                {   // 使用者清單
+                    xtype: 'gridpanel',
+                    title: '使用者清單',
+                    reference: 'grid-antStanley-user-userlist',
+
+                    viewConfig: {
+                        enableTextSelection: true,
+                    },
+                    border: true,
+                    store: {}, // 資料集
+                    minWidth: 200,
+                    flex: 1,
+                    listeners: {
+                        selectionchange: 'onSelectUser',
+                    },
+                    columns: [{
+                        xtype: 'rownumberer',
+                        align: 'center',
+                        width: 50,
+                    }, {
+                        dataIndex: 'code',
+                        text: '學號',
+                        width: 110,
+                    }, {
+                        dataIndex: 'name',
+                        text: '姓名',
+                        width: 110,
+                    }, {
+                        dataIndex: 'mail',
+                        text: '信箱',
+                        minWidth: 96,
+                        flex: 1,
+                    }, {
+                        dataIndex: 'status',
+                        text: '狀態',
+                        width: 96,
+                        renderer: function (value) {
+                            let store = Ext.create('antnex.store.static.Status');
+                            let record = store.getRange().find(e => e.get('value') == value);
+                            return record ? record.get('text') : `無法辨識: ${value}`;
                         },
-                        defaults: {
-                            margin: '0 0 8 0',
+                    }]
+                },
+                { xtype: 'splitter', margin: -1.5 },
+                {   // 資料維護
+                    xtype: 'panel',
+                    title: '資料維護',
+                    reference: 'panel-antStanley-user-manage',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch',
+                    },
+                    flex: 2,
+                    defaults: {
+                        margin: '0 5 5 5', // '上 右 下 左'
+                    },
+                    border: true,
+                    items: [
+                        {   // 基本資料
+                            xtype: 'fieldset',
+                            title: '基本資料',
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch',
+                            },
+                            defaults: {
+                                margin: '0 0 8 0',
+                            },
+                            items: [{
+                                xtype: 'numberfield',
+                                fieldLabel: 'ids',
+                                reference: 'num-antStanley-user-ids',
+                                labelWidth: 37,
+                                cls: 'fieldNotInput',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '學號',
+                                reference: 'txt-antStanley-user-code',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '姓名',
+                                reference: 'txt-antStanley-user-name',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '信箱',
+                                reference: 'txt-antStanley-user-mail',
+                                labelWidth: 37,
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '密碼',
+                                reference: 'txt-antStanley-user-password',
+                                labelWidth: 37,
+                                inputType: 'password',
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'combobox',
+                                fieldLabel: '狀態',
+                                reference: 'cmbx-antStanley-user-status',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+
+                                valueField: 'value',
+                                displayField: 'text',
+                                queryMode: 'local',
+                                forceSelection: true,
+                                anyMatch: true,
+                                editable: false,
+                                store: { type: 'status' },
+                            }, {
+                                xtype: 'textarea',
+                                fieldLabel: '備註',
+                                reference: 'txt-antStanley-user-memo',
+                                labelWidth: 37,
+                            }]
                         },
-                        items: [{
-                            xtype: 'textfield',
-                            fieldLabel: '學號',
-                            reference: 'txt-antStanley-user-code',
-                            labelWidth: 37,
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '姓名',
-                            reference: 'txt-antStanley-user-name',
-                            labelWidth: 37,
-                        }]
-                    }
-                ]
-            }
-        ]
-    }]
+                    ]
+                }
+            ]
+        },
+    ]
 });
