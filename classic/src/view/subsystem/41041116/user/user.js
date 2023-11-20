@@ -46,6 +46,14 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'funcbarButton',
+                        text: '刪除(F6)',
+                        reference: 'btn-antStanley-user2-funcbar-delete',
+                        iconCls: 'fas fa-trash-alt fa-spin',
+                        handler: 'funcbar_delete',
+                    },
+                    { xtype: 'tbseparator', margin: '8 1' },
+                    {
+                        xtype: 'funcbarButton',
                         text: '儲存(F8)',
                         reference: 'btn-antStanley-user2-funcbar-save',
                         iconCls: 'fa fa-save',
@@ -145,7 +153,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                 xtype: 'antGridpanel',
                 title: '使用者清單',
                 reference: 'grid-antStanley-user2-userlist',
-                minWidth: 500,
+                minWidth: 800,
                 flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
@@ -174,7 +182,13 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     text: '狀態',
                     width: 96,
                     renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
-                }]
+                },{
+                    xtype: 'antColumn',
+                    dataIndex: 'memo',
+                    text: '備註',
+                    minWidth: 96,
+                    flex: 1,
+                },]
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護

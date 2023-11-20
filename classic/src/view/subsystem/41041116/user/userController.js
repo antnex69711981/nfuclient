@@ -18,6 +18,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
             me.funcbarEdit = me.lookupReference('btn-antStanley-user2-funcbar-edit');
             me.funcbarSave = me.lookupReference('btn-antStanley-user2-funcbar-save');
             me.funcbarCancel = me.lookupReference('btn-antStanley-user2-funcbar-cancel');
+            me.funcbarDelete = me.lookupReference('btn-antStanley-user2-funcbar-delete');
 
             // 查詢列
             me.searchBar = me.lookupReference('panel-antStanley-user2-searchbar');
@@ -87,6 +88,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
             me.funcbarEdit.setEnable(false);
             me.funcbarSave.setEnable(false);
             me.funcbarCancel.setEnable(false);
+            me.funcbarDelete.setEnable(false)
 
             // 查詢列
             me.searchBar.setHidden(true);
@@ -121,6 +123,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
                     // 功能列
                     me.funcbarSearch.setEnable(true);
                     me.funcbarAdd.setEnable(true);
+                    me.funcbarDelete.setEnable(false);
                     // me.funcbarEdit.setEnable(true);
                     // me.funcbarSave.setEnable(true);
                     // me.funcbarCancel.setEnable(true);
@@ -171,6 +174,29 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
                     me.funcbarSave.setEnable(true);
                     me.funcbarCancel.setEnable(true);
 
+                    // 查詢列
+                    // me.searchBar.setHidden(false);
+
+                    // 主畫面
+                    // me.viewUserlist.setHidden(false);
+
+                    // 資料維護
+                    // me.viewIds.enableField(true);
+                    // me.viewCode.enableField(true);
+                    me.viewName.enableField(true);
+                    me.viewMail.enableField(true);
+                    me.viewPassword.enableField(true);
+                    me.viewStatus.enableField(true);
+                    me.viewMemo.enableField(true);
+                    break;
+                case 'delete':
+                    // 功能列
+                    // me.funcbarSearch.setEnable(true);
+                    // me.funcbarAdd.setEnable(true);
+                    // me.funcbarEdit.setEnable(true);
+                    me.funcbarSave.setEnable(true);
+                    me.funcbarCancel.setEnable(true);
+                    me.funcbarDelete.setEnable(true);
                     // 查詢列
                     // me.searchBar.setHidden(false);
 
