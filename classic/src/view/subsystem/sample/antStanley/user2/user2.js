@@ -1,4 +1,3 @@
-// 202311151329
 Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
     extend: 'antnex.default.defaultView',
     requires: [

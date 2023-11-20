@@ -1,361 +1,251 @@
 Ext.define('antnex.subsystem.41041116.user.user', {
-    extend: 'Ext.panel.Panel',
+    extend: 'antnex.default.defaultView',
     requires: [
         'antnex.subsystem.41041116.user.userController',
     ],
     alias: 'widget.page-41041116-user',
     controller: 'page-41041116-user',
 
-    title: '使用者管理aaaaaaaaaaaaaa',
+    title: '使用者管理2',
 
     layout: {
         type: 'vbox',
         align: 'stretch'
     },
 
-    listeners: {
-        afterrender: 'onInitialize',
-        activate: 'onActivate',
-    },
-
     dockedItems: [{
-        xtype: 'panel',
-        layout: {
-            type: 'vbox',
-            align: 'stretch'
-        },
+        xtype: 'funcbarContainer',
         dock: 'top',
-        margin: 0,
         items: [
             {   // 功能列
-                xtype: 'toolbar',
-                layout: {
-                    type: 'hbox',
-                    align: 'stretch',
-                },
-                scrollable: true,
-                border: false,
-                padding: '0 0 0 5',
+                xtype: 'funcbarLayout',
                 items: [
                     {
-                        xtype: 'button',
-                        text: '查詢列',
-                        reference: 'btn-antStanley-user-funcbar-search',
-                        cls: 'funcbarBtn-black',
+                        xtype: 'funcbarButton',
+                        text: '查詢列(F10)',
+                        reference: 'btn-antStanley-user2-funcbar-search',
                         iconCls: 'fa fa-search',
-                        margin: 3,
                         handler: 'funcbar_search',
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
-                        text: '新增',
-                        reference: 'btn-antStanley-user-funcbar-add',
-                        cls: 'funcbarBtn-black',
+                        xtype: 'funcbarButton',
+                        text: '新增(F2)',
+                        reference: 'btn-antStanley-user2-funcbar-add',
                         iconCls: 'fa fa-plus',
-                        margin: 3,
                         handler: 'funcbar_add',
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
-                        text: '修改',
-                        reference: 'btn-antStanley-user-funcbar-edit',
-                        cls: 'funcbarBtn-black',
+                        xtype: 'funcbarButton',
+                        text: '修改(F4)',
+                        reference: 'btn-antStanley-user2-funcbar-edit',
                         iconCls: 'fa fa-edit',
-                        margin: 3,
                         handler: 'funcbar_edit',
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
-                        text: '儲存',
-                        reference: 'btn-antStanley-user-funcbar-save',
-                        cls: 'funcbarBtn-black',
+                        xtype: 'funcbarButton',
+                        text: '儲存(F8)',
+                        reference: 'btn-antStanley-user2-funcbar-save',
                         iconCls: 'fa fa-save',
-                        margin: 3,
-                        handler: 'funcbar_save',
+                        handler: 'funcbar_save'
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
-                        text: '取消',
-                        reference: 'btn-antStanley-user-funcbar-cancel',
-                        cls: 'funcbarBtn-black',
+                        xtype: 'funcbarButton',
+                        text: '取消(F9)',
+                        reference: 'btn-antStanley-user2-funcbar-cancel',
                         iconCls: 'fa fa-times',
-                        margin: 3,
-                        handler: 'funcbar_cancel',
+                        handler: 'funcbar_cancel'
                     },
                 ]
             },
             {   // 查詢列
-                xtype: 'panel',
-                reference: 'panel-antStanley-user-searchbar',
-                layout: {
-                    type: 'hbox',
-                    align: 'stretch',
-                },
-                defaults: {
-                    margin: '0 5 5 10',
-                },
-                scrollable: true,
+                xtype: 'searchbarLayout',
+                reference: 'panel-antStanley-user2-searchbar',
                 items: [
                     {   // 查詢條件
-                        xtype: 'fieldset',
+                        xtype: 'antFieldset',
                         title: '查詢條件',
                         layout: {
                             type: 'hbox',
-                            align: 'center'
+                            align: 'stretch'
                         },
                         defaults: {
                             labelWidth: 37,
-                        
-                            margin: '0 0 8 5',
+                            margin: '0 0 5 5',
                         },
                         items: [{
-                            xtype: 'textfield',
+                            xtype: 'antTextfield',
                             fieldLabel: '學號',
-                            reference: 'txt-antStanley-user-searchbar-code',
-                            width:140,
+                            reference: 'txt-antStanley-user2-searchbar-code',
                             emptyText: '請輸入學號',
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                            
+                            margin: '0 0 5 0',
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'antTextfield',
                             fieldLabel: '姓名',
-                            width:140,
-                            reference: 'txt-antStanley-user-searchbar-name',
+                            reference: 'txt-antStanley-user2-searchbar-name',
                             emptyText: '請輸入姓名',
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
-                            },
+                            }
                         },{
-                            xtype: 'textfield',
+                            xtype: 'antTextfield',
                             fieldLabel: '信箱',
-                            width:140,
-                            reference: 'txt-antStanley-user-searchbar-mail',
+                            reference: 'txt-antStanley-user2-searchbar-mail',
                             emptyText: '請輸入信箱',
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
-                            },
-                            
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '備註',
-                            width:140,
-                            reference: 'txt-antStanley-user-searchbar-memo',
-                            emptyText: '請輸入備註',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            
-                        },{
-                            xtype: 'combobox',
+                            }
+                        }, {
+                            xtype: 'antCombobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-antStanley-user-searchbar-status',
-                            width:140,
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
+                            reference: 'cmbx-antStanley-user2-searchbar-status',
                             editable: true,
                             store: { type: 'status' },
-
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
-                            },
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '建立人員',
-                            width:140,
-                            reference: 'txt-antStanley-user-searchbar-createusercode',
-                            emptyText: '請輸入姓名',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            
-                        },{
-                            xtype: 'datefield',
-                            fieldLabel: '建立時間',
-                            width:160,
-                            reference: 'txt-antStanley-user-searchbar-createtm',
-                            emptyText: '請輸入姓名',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                           
-                        }]
+                            }
+                        },]
                     },
-                    {
-                        xtype: 'button',
-                        text: '查詢',
-                        scale: 'small',
-                        cls: 'antBtn-blue',
-                        iconCls: 'fa fa-search',
-                        width: 60,
-                        border: false,
+                    { // 查詢按鈕
+                        xtype: 'searchButton-search',
+                        margin: '10 0 5 5',
                         handler: 'doSearch',
-                        margin: '10 0 5 5',
                     },
-                    {
-                        xtype: 'button',
-                        text: '清除',
-                        scale: 'small',
-                        cls: 'antBtn-red',
-                        iconCls: 'fa fa-times',
-                        width: 60,
-                        border: false,
+                    { // 清除按鈕
+                        xtype: 'searchButton-clean',
+                        margin: '10 0 5 5',
                         handler: 'cleanSearch',
-                        margin: '10 0 5 5',
-                    },
+                    }
                 ]
             },
         ]
     }],
-    scrollable: true,
+
     items: [{
-        xtype: 'panel',
+        xtype: 'antTransPanel',
         layout: {
             type: 'hbox',
             align: 'stretch'
         },
-        margin: 5,
-        minHeight: 2000,
+        margin: '5 5 5 0',
+        minHeight: 200,
         flex: 1,
-        scrollable: true,
         items: [
             {   // 使用者清單
-                xtype: 'gridpanel',
+                xtype: 'antGridpanel',
                 title: '使用者清單',
-                reference: 'grid-antStanley-user-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
-                viewConfig: {
-                    enableTextSelection: true,
-                },
-                border: true,
-                store: {},
-                minWidth: 800,
+                reference: 'grid-antStanley-user2-userlist',
+                minWidth: 500,
                 flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
                 },
                 columns: [{
-                    xtype: 'rownumberer',
-                    align: 'center',
-                    width: 50,
+                    xtype: 'antColumn-rownumberer'
                 }, {
+                    xtype: 'antColumn',
                     dataIndex: 'code',
                     text: '學號',
                     width: 110,
                 }, {
+                    xtype: 'antColumn',
                     dataIndex: 'name',
                     text: '姓名',
                     width: 110,
                 }, {
+                    xtype: 'antColumn',
                     dataIndex: 'mail',
                     text: '信箱',
                     minWidth: 96,
                     flex: 1,
-                },{
-                    dataIndex: 'memo',
-                    text: '備註',
-                    minWidth: 96,
-                    flex: 1,
-                },{
-                    dataIndex: 'createusercode',
-                    text: '建立人員',
-                    minWidth: 96,
-                    flex: 1,
-                },{
-                    dataIndex: 'createtm',
-                    text: '建立時間',
-                    minWidth: 96,
-                    flex: 1,
-                },{
+                }, {
+                    xtype: 'antColumn',
                     dataIndex: 'status',
                     text: '狀態',
                     width: 96,
-                    renderer: function (value) {
-                        let store = Ext.create('antnex.store.static.Status');
-                        let record = store.getRange().find(e => e.get('value') == value);
-                        return record ? record.get('text') : `無法辨識: ${value}`;
-                    },
+                    renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
                 }]
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
-                xtype: 'panel',
+                xtype: 'antPanel',
                 title: '資料維護',
-                reference: 'panel-antStanley-user-manage',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch',
-                },
+                reference: 'panel-antStanley-user2-manage',
                 flex: 2,
                 defaults: {
                     margin: '0 5 5 5',
                 },
-                border: true,
                 items: [
                     {   // 基本資料
-                        xtype: 'fieldset',
+                        xtype: 'antFieldset',
                         title: '基本資料',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch',
-                        },
                         defaults: {
-                            margin: '0 0 8 0',
+                            margin: '0 0 5 0',
                         },
                         items: [{
-                            xtype: 'textfield',
+                            xtype: 'antTextfield',
                             fieldLabel: '學號',
-                            width:140,
-                            reference: 'txt-antStanley-user-code',
-                            
+                            reference: 'txt-antStanley-user2-code',
+                            labelWidth: 37,
                         }, {
-                            xtype: 'textfield',
+                            xtype: 'antTextfield',
                             fieldLabel: '姓名',
-                            width:140,
-                            reference: 'txt-antStanley-user-name',
-                            
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '信箱',
-                            width:140,
-                            reference: 'txt-antStanley-user-mail',
-                            
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '備註',
-                            width:140,
-                            reference: 'txt-antStanley-user-memo',
-                            
-                        },{
-                            xtype: 'combobox',
-                            fieldLabel: '狀態',
-                            reference: 'cmbx-antStanley-user-status',
-                            width:140,
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
+                            reference: 'txt-antStanley-user2-name',
+                            labelWidth: 37,
+                        }],
 
-                            
+                        items: [{
+                            xtype: 'antNumberfield',
+                            fieldLabel: 'ids',
+                            reference: 'num-antStanley-user2-ids',
+                            labelWidth: 37,
+                            cls: 'fieldNotInput',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '學號',
+                            reference: 'txt-antStanley-user2-code',
+                            labelWidth: 37,
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '姓名',
+                            reference: 'txt-antStanley-user2-name',
+                            labelWidth: 37,
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '信箱',
+                            reference: 'txt-antStanley-user2-mail',
+                            labelWidth: 37,
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '密碼',
+                            reference: 'txt-antStanley-user2-password',
+                            labelWidth: 37,
+                            inputType: 'password',
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antCombobox',
+                            fieldLabel: '狀態',
+                            reference: 'cmbx-antStanley-user2-status',
+                            labelWidth: 37,
+                            store: { type: 'status' },
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextarea',
+                            fieldLabel: '備註',
+                            reference: 'txt-antStanley-user2-memo',
+                            labelWidth: 37,
                         }]
                     }
                 ]

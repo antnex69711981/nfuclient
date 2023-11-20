@@ -55,11 +55,6 @@ Ext.define('antnex.services.basic.FunctionService', {
             const userList = [
                 { code: '40141152', name: '鄭凱文' },
                 { code: '40541124', name: '李厚生' },
-                { code: '11261103', name: '劉宜欣' },
-                { code: '11261119', name: '陳奕潔' },
-                { code: '40941137', name: '陳朝羿' },
-                { code: '40941139', name: '陳嘉笙' },
-                { code: '41041115', name: '成政軒' },
                 { code: '41041116', name: '李嘉祥' },
                 { code: '41041118', name: '李頡蔚' },
                 { code: '41041120', name: '周易增' },
