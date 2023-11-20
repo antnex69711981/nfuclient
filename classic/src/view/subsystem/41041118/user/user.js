@@ -17,7 +17,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
         activate: 'onActivate',
     },
        
-
     dockedItems: [{
         xtype: 'panel',
         layout: {
@@ -47,7 +46,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             align: 'stretch'
                         },
                         defaults: {
-                            width: 153,
+                            width: 184,
                             labelWidth: 35,
                             margin: '0 0 8 5',
                         },
@@ -80,8 +79,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        },
-                        {
+                        }, {
                             xtype: 'textfield',
                             fieldLabel: '備註',
                             reference: 'txt-41041118-searchbar-memo',
@@ -115,21 +113,6 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        }, {
-                            xtype: 'datefield',
-                            anchor: '100%',
-                            fieldLabel: '建立時間',
-                            name: 'date',
-                            format: 'Y-m-d',
-                            altFormats: 'm,d,Y|m.d.Y',
-                            value: '',
-                            enableKeyEvents: true,
-                            reference: 'txt-41041118-searchbar-createtm',
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            labelWidth: 65,
-                            width: 180
                         }]
                     },
                     {
@@ -163,7 +146,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
         xtype: 'panel',
         layout: {
             type: 'vbox',
-            align: 'stretch'
+            align: 'stretch',
         },
         margin: 5,
         minHeight: 600,
@@ -176,11 +159,9 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                 reference: 'panel-41041118-manage',
                 layout: {
                     type: 'vbox',
-                    
                 },
-                
                 defaults: {
-                    margin: '0 5 5 5',
+                    margin: '0 5 10 5',
                 },
                 border: true,
                 items: [
@@ -189,10 +170,10 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         layout: {
                             type: 'hbox',
                             align: 'stretch',
-                        },
+                        }, 
                         scrollable: true,
                         border: false,
-                        padding: '5 0 0 5',
+                        padding: '5 0 0 5',                                           
                         items: [
                             {
                                 xtype: 'button',
@@ -200,237 +181,104 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                                 reference: 'btn-41041118-funcbar-add',
                                 cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-plus',
-                                margin: 3,
                                 padding: '6',
+                                margin: '3 3 0 3',                            
                                 handler: 'funcbar_add',
-                                
-                            }, { xtype: 'tbseparator', margin: '8 2' },
+                            },{ xtype: 'tbseparator', margin: '8 2' },
                             {
                                 xtype: 'button',
                                 text: '修改',
                                 reference: 'btn-41041118-funcbar-edit',
                                 cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-edit',
-                                margin: 3,
                                 padding: '6',
+                                margin: '3 3 0 3',                            
                                 handler: 'funcbar_edit',
-                            }, { xtype: 'tbseparator', margin: '8 2' },
-                            {
-                                xtype: 'button',
-                                text: '刪除',
-                                reference: 'btn-41041118-funcbar-del',
-                                cls: 'funcbarBtn-black',
-                                iconCls: 'fa fa-times',
-                                margin: 3,
-                                padding: '6',
-                                handler: 'funcbar_del',
                             }]
                     },
-                    {   // 新增列
+                    {   
                         xtype: 'fieldset',
-                        title: '新增資料',
-                        reference:'txt-41041118-add',
+                        title: '基本資料',
+                        reference:'txt-41041118-float',
                         layout: {
                             type: 'hbox',
                             align: 'stretch',
                         },
                         defaults: {
-                            width: 224,
-                            labelWidth: 35,
-                            margin: '0 0 8 0',
+                            margin: '0 0 10 3',
+                            height: 20,
+                            width: 183,
+                            labelWidth: 35,                    
                         },
                         items: [{
+                            xtype: 'numberfield',
+                            fieldLabel: 'ids',
+                            reference: 'num-41041118-ids',
+                            cls: 'fieldNotInput',
+                        },{
                             xtype: 'textfield',
                             fieldLabel: '學號',
-                            reference: 'txt-41041118-add-code',
-                            emptyText: '請輸入學號',
-                            allowBlank: false,
-                            vtype:'alphanum',
-                            enableKeyEvents: true,
-                            margin: '0 0 8 0',
+                            reference: 'txt-41041118-view-code',
+                            cls: 'fieldRequired',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-41041118-add-name',
-                            emptyText: '請輸入姓名',
-                            allowBlank: false,
-                            enableKeyEvents: true,
+                            reference: 'txt-41041118-view-name',                           
+                            cls: 'fieldRequired',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '信箱',
-                            reference: 'txt-41041118-add-mail',
-                            emptyText: '請輸入信箱',
-                            allowBlank: false,
-                            vtype:'email',
-                            enableKeyEvents: true,
+                            reference: 'txt-41041118-view-mail',
                         }, {
                             xtype: 'textfield',
-                            fieldLabel: '備註',
-                            reference: 'txt-41041118-add-memo',
-                            emptyText: '請輸入備註',
-                            enableKeyEvents: true,
-
+                            fieldLabel: '密碼',
+                            reference: 'txt-41041118-view-password',
+                            inputType: 'password',
+                            cls: 'fieldRequired',
                         }, {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-41041118-add-status',                            
+                            reference: 'cmbx-41041118-view-status',
+                            cls: 'fieldRequired',
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
-                            allowBlank: false,
                             forceSelection: true,
                             anyMatch: true,
                             editable: false,
                             store: { type: 'status' },
-                            enableKeyEvents: true,
                         }, {
-                            xtype: 'button',
-                            text: '儲存',
-                            scale: 'small',
-                            cls: 'antBtn-green',
-                            iconCls: 'fa fa-save',
-                            width: 60,
-                            border: false,
-                            handler: 'addsave',
-                            margin: '0 0 5 5',
-                        }, {
-                            xtype: 'button',
-                            text: '取消',
-                            scale: 'small',
-                            cls: 'antBtn-red',
-                            iconCls: 'fa fa-times',
-                            width: 60,
-                            border: false,
-                            handler: 'cleanaddsave',
-                            margin: '0 0 5 5',
-                        }]
-                    },
-                    {   // 修改列
-                        xtype: 'fieldset',
-                        title: '修改資料',
-                        reference: 'txt-41041118-edit',
-                        layout: {
-                            type: 'hbox',
-                            align: 'stretch',
-                        },
-                        defaults: {
-                            width: 224,
-                            labelWidth: 35,
-                            margin: '0 0 8 0',
-                        },
-                        items: [{
-                            xtype: 'textfield',
-                            fieldLabel: '學號',
-                            allowBlank: false,
-                            vtype:'alphanum',
-                            reference: 'txt-41041118-edit-code',                            
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '姓名',
-                            allowBlank: false,
-                            reference: 'txt-41041118-edit-name',
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '信箱',
-                            allowBlank: false,
-                            vtype: 'email',
-                            reference: 'txt-41041118-edit-mail',
-                        },
-                        {
                             xtype: 'textfield',
                             fieldLabel: '備註',
-                            reference: 'txt-41041118-edit-memo',
+                            reference: 'txt-41041118-view-memo',
                         },{
-                            xtype: 'combobox',
-                            fieldLabel: '狀態',
-                            reference: 'cmbx-41041118-edit-status',                            
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            allowBlank: false,
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: false,
-                            store: { type: 'status' },
-                            enableKeyEvents: true,
-                        },
-                        {
                             xtype: 'button',
                             text: '儲存',
                             scale: 'small',
+                            reference: 'btn-41041118-funcbar-save',
                             cls: 'antBtn-green',
                             iconCls: 'fa fa-save',
                             width: 60,
-                            border: false,
-                            handler: 'editsave',
+                            handler: 'funcbar_save',
                             margin: '0 0 5 5',
-                        },
-                        {
-                            xtype: 'button',
-                            text: '取消',
-                            scale: 'small',
-                            cls: 'antBtn-red',
-                            iconCls: 'fa fa-times',
-                            width: 60,
-                            border: false,
-                            handler: 'cleaneditsave',
-                            margin: '0 0 5 5',
-                        }]
-                    },                   
-                    {   // 刪除列
-                        xtype: 'fieldset',
-                        title: '刪除整筆資料',
-                        reference:'txt-41041118-del',
-                        layout: {
-                            type: 'hbox',
-                            align: 'stretch',
-                        },
-                        defaults: {
-                            width: 224,
-                            labelWidth: 35,
-                            margin: '0 0 8 0',
-                        },
-                        items: [{
-                            xtype: 'textfield',
-                            fieldLabel: '學號',
-                            reference: 'txt-41041118-del-code',                            
                         }, {
-                            xtype: 'textfield',
-                            fieldLabel: '姓名',
-                            reference: 'txt-41041118-del-name',
-                        },
-                        {
-                            xtype: 'button',
-                            text: '刪除',
-                            scale: 'small',
-                            cls: 'antBtn-red',
-                            iconCls: 'fa fa-save',
-                            width: 60,
-                            border: false,
-                            handler: 'delsave',
-                            margin: '0 0 5 5',
-                        },
-                        {
                             xtype: 'button',
                             text: '取消',
                             scale: 'small',
-                            cls: 'antBtn-green',
+                            reference: 'btn-41041118-funcbar-cancel',
+                            cls: 'antBtn-red',
                             iconCls: 'fa fa-times',
                             width: 60,
-                            border: false,
-                            handler: 'cleandelsave',
+                            handler: 'funcbar_cancel',
                             margin: '0 0 5 5',
                         }]
                     }
                 ]
-            },
-            { xtype: 'splitter', margin: -1.5 },
+            },{ xtype: 'splitter', margin: -1.5 },           
             {   // 使用者清單
                 xtype: 'gridpanel',
                 title: '使用者清單',
                 reference: 'grid-41041118-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
@@ -449,44 +297,46 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                 },{
                     dataIndex: 'code',
                     text: '學號',
-                    width: 110,
+                    width: 100,
                 },{
                     dataIndex: 'name',
                     text: '姓名',
-                    width: 110,
+                    width: 100,
                 },{
                     dataIndex: 'mail',
                     text: '信箱',
-                    minWidth: 100,
+                    minWidth: 96,
                     flex: 1,
                 },{
                     dataIndex: 'memo',
                     text: '備註',
-                    minWidth: 100,
+                    minWidth: 150,
+                    flex: 1,
                 },{
                     dataIndex: 'status',
                     text: '狀態',
-                    width: 100,
+                    width: 80,
                     renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status'),
                 },{
                     dataIndex: 'createusercode',
                     text: '建立人員',
-                    minWidth: 100,
+                    minWidth: 90,
                 },{
                     dataIndex: 'createtm',
                     text: '建立時間',
-                    minWidth: 100,
+                    minWidth: 140,
+                    
                 },{
                     dataIndex: 'modifyusercode',
                     text: '異動人員',
-                    minWidth: 100,
+                    minWidth: 90,
                 },{
                     dataIndex: 'modifytm',
                     text: '異動時間',
-                    minWidth: 100,
+                    minWidth: 140,
+                   
                 }]
-            }
-        ]
+            }          
+        ]  
     }]
-    
 });
