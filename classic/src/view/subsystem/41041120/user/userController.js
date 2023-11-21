@@ -496,6 +496,15 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
             me.showError('userController/getinput',e)
         }
     },
+
+    funcbar_search: function () {
+        const me = this;
+        try {
+            me.searchbar.setHidden(!me.searchbar.hidden);
+        } catch (e) {
+            me.showError('userController/ funcbar_search error:', e);
+    }
+},
     //提示訊息
     showMessage:function(message){
         Ext.Msg.alert(`${this.getConfig('name')}`,message);

@@ -67,27 +67,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                             margin: 3,
                             handler: 'funbar_edit',
                         },
-                        {xtype: 'tbseparator', margin: '5 1'},
-                        {
-                            xtype: 'button',
-                            text: '儲存',
-                            reference:'btn-41041120-save',
-                            cls:'funcbarBtn-black',
-                            iconCls:'fa fa-save',
-                            margin:3,
-                            handler:'funcbar_save',
-                        },
-                        {xtype: 'tbseparator',margin: '5 1'},
-                        {
-                            xtype:'button',
-                            text:'取消',
-                            reference:'btn-41041120-cancel',
-                            cls:'funcbarBtn-black',
-                            iconCls: 'fa fa-times',
-                            margin: 3,
-                            handler: 'loadData',
-                        }
-
+                    
                     ]
                 },
                 
