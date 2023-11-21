@@ -85,7 +85,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                             cls:'funcbarBtn-black',
                             iconCls: 'fa fa-times',
                             margin: 3,
-                            handler: 'funcbar_cancel',
+                            handler: 'loadData',
                         }
 
                     ]
@@ -147,8 +147,9 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                                queryMode: 'local',//如何查詢
                                forceSelection: true,//只能選擇列表裡的值
                                anyMatch: true,//可以過濾下拉列表的值
-                               editable: true,//可以手動輸入值
-                               store: { type: 'status' },//下拉框裡值的來源
+                               editable: false,//可以手動輸入值
+                               store: {},
+                               //下拉框裡值的來源,2版修正為空值 因controller 裡refreshObj 針對修改
                                
 
                                enableKeyEvents: true,
@@ -208,9 +209,9 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                     store:{},
                     minWidth: 200,
                     flex: 2,
-                    listeners:{
-                        Selectionchange: 'onSelectUser',
-                    },
+                    // listeners:{
+                    //     Selectionchange: 'onSelectUser',
+                    // },
                     columns:[{
                         xtype: 'rownumberer',//表格內第一排
                         align: 'center',
@@ -239,7 +240,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                     },{
                         dataIndex:'createtm',
                         text:'建立時間',
-                        width:100
+                        width:150
                     },{
                         dataIndex:'modifyusercode',
                         text:'異動人員',
@@ -247,140 +248,136 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                     },{
                         dataIndex:'modifytm',
                         text:'異動時間',
-                        width:100
+                        width:150
                     },{
                         dataIndex: 'status',
                         text:'狀態',
                         width: 96,
-                        renderer: function (value) {
-                            let store = Ext.create('antnex.store.static.Status');
-                            let record = store.getRange().find(e => e.get('value') == value);
-                            return record ? record.get('text') : `無法辨識: ${value}`;
-                        },
+                        renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
                     }
                 ]
                 },
-                {xtype: 'splitter',margin: -1.5 },//分割兩格面板的組件所以單出現 無法執行
-                {   //資料維護
-                    xtype:'panel',
-                    title: '資料維護',
-                    reference:'panel-41041120-manage',
-                    layout:{
-                        type: 'vbox',
-                        align: 'stretch',
-                    },
-                    flex: 1,
-                    defaults:{
-                        margin: '0 5 5 5',
-                    },
-                    border:true,
-                    items:[
-                        {
-                            xtype:'fieldset',
-                            title:'基本資料',
-                            layout:{
-                                type:'vbox',
-                                align: 'stretch',
-                            },
-                            defaults:{
-                                margin:'0 0 8 0',
-                            },
-                            items:[{
-                                xtype: 'textfield',
-                                fieldLabel: '學號',
-                                reference: 'txt-41041120-code',
-                                labelWidth: 37,
-                            },{
-                                xtype: 'textfield',
-                                fieldLabel:'姓名',
-                                reference:'txt-41041120-name',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'信箱',
-                                reference:'txt-41041120-mail',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'備註',
-                                reference:'txt-41041120-memo',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'建立人員',
-                                reference:'txt-41041120-createusercode',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'建立時間',
-                                reference:'txt-41041120-createtm',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'異動人員',
-                                reference:'txt-41041120-modifyusercode',
-                                labelWidth:37,
-                            },{
-                                xtype:'textfield',
-                                fieldLabel:'異動時間',
-                                reference:'txt-41041120-modifytm',
-                                labelWidth:37,
-                            },{
-                                xtype:'combobox',
-                                fieldLabel:'狀態',
-                                reference:'cmbx-41041120-addstatus',
-                                labelWidth:37,
+                //{xtype: 'splitter',margin: -1.5 },//分割兩格面板的組件所以單出現 無法執行
+                // {   //資料維護
+                //     xtype:'panel',
+                //     title: '資料維護',
+                //     reference:'panel-41041120-manage',
+                //     layout:{
+                //         type: 'vbox',
+                //         align: 'stretch',
+                //     },
+                //     flex: 1,
+                //     defaults:{
+                //         margin: '0 5 5 5',
+                //     },
+                //     border:true,
+                //     items:[
+                //         {
+                //             xtype:'fieldset',
+                //             title:'基本資料',
+                //             layout:{
+                //                 type:'vbox',
+                //                 align: 'stretch',
+                //             },
+                //             defaults:{
+                //                 margin:'0 0 8 0',
+                //             },
+                //             items:[{
+                //                 xtype: 'textfield',
+                //                 fieldLabel: '學號',
+                //                 reference: 'txt-41041120-code',
+                //                 labelWidth: 37,
+                //             },{
+                //                 xtype: 'textfield',
+                //                 fieldLabel:'姓名',
+                //                 reference:'txt-41041120-name',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'信箱',
+                //                 reference:'txt-41041120-mail',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'備註',
+                //                 reference:'txt-41041120-memo',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'建立人員',
+                //                 reference:'txt-41041120-createusercode',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'建立時間',
+                //                 reference:'txt-41041120-createtm',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'異動人員',
+                //                 reference:'txt-41041120-modifyusercode',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'textfield',
+                //                 fieldLabel:'異動時間',
+                //                 reference:'txt-41041120-modifytm',
+                //                 labelWidth:37,
+                //             },{
+                //                 xtype:'combobox',
+                //                 fieldLabel:'狀態',
+                //                 reference:'cmbx-41041120-addstatus',
+                //                 labelWidth:37,
 
-                                valueField:'value',
-                                displayField:'text',
-                                queryMode:'local',
-                                forceSelection: true,
-                                anyMatch: true,
-                                editable: true,
-                                store: {type:'status'},
+                //                 valueField:'value',
+                //                 displayField:'text',
+                //                 queryMode:'local',
+                //                 forceSelection: true,
+                //                 anyMatch: true,
+                //                 editable: true,
+                //                 store: {type:'status'},
 
-                            }]
-                        },
-                        {
-                            xtype: 'button',
-                            text: '新增至使用者清單',
-                            scale: 'small',
-                            cls: 'antBtn-blue',
-                            iconCls: 'fa fa-plus',
-                            margin: '0 0 5 5',
-                            handler: 'gridpanel_add',
-                            width: 30,
-                            style: {
-                                textAlign: 'center'
-                            },
-                            reference:'btn-41041120-gridadd',
-                        },{
-                            xtype: 'button',
-                            text: '從使用者清單刪除',
-                            scale: 'small',
-                            cls: 'antBtn-red',
-                            iconCls: 'fa fa-times',
-                            handler: 'gridpanel_delete',
-                            margin: '0 0 5 5',
-                            style: {
-                                textAlign: 'center'
-                            },
-                            reference:'btn-41041120-griddel'
-                        },{
-                            xtype: 'button',
-                            text: '儲存至使用者清單',
-                            scale: 'small',
-                            cls: 'antBtn-green',
-                            iconCls: 'fa fa-save',
-                            handler: 'gridpanel_save',
-                            margin: '0 0 5 5',
-                            style: {
-                                textAlign: 'center'
-                            },
-                            reference:'btn-41041120-gridsave'
-                        }
-                    ]
-                }
+                //             }]
+                //         },
+                //         {
+                //             xtype: 'button',
+                //             text: '新增至使用者清單',
+                //             scale: 'small',
+                //             cls: 'antBtn-blue',
+                //             iconCls: 'fa fa-plus',
+                //             margin: '0 0 5 5',
+                //             handler: 'gridpanel_add',
+                //             width: 30,
+                //             style: {
+                //                 textAlign: 'center'
+                //             },
+                //             reference:'btn-41041120-gridadd',
+                //         },{
+                //             xtype: 'button',
+                //             text: '從使用者清單刪除',
+                //             scale: 'small',
+                //             cls: 'antBtn-red',
+                //             iconCls: 'fa fa-times',
+                //             handler: 'gridpanel_delete',
+                //             margin: '0 0 5 5',
+                //             style: {
+                //                 textAlign: 'center'
+                //             },
+                //             reference:'btn-41041120-griddel'
+                //         },{
+                //             xtype: 'button',
+                //             text: '儲存至使用者清單',
+                //             scale: 'small',
+                //             cls: 'antBtn-green',
+                //             iconCls: 'fa fa-save',
+                //             handler: 'gridpanel_save',
+                //             margin: '0 0 5 5',
+                //             style: {
+                //                 textAlign: 'center'
+                //             },
+                //             reference:'btn-41041120-gridsave'
+                //         }
+                //     ]
+                // }
             ]
         }
 
