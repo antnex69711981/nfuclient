@@ -454,7 +454,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user.userController', {
             // 依據code是否有資料決定是否查詢資料庫
             if (code) {
                 const uploadJSON = {
-                    txcode: 'BASIC_USER_FIND_BY_CODE',
+                    txcode: '',
                     code: code,
                 };
 

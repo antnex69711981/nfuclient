@@ -87,10 +87,8 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2Controller', {
 
             // 查詢列
             me.searchBar.setHidden(true);
-
             // 主畫面
             me.viewUserlist.setHidden(true);
-
             // 資料維護
             me.viewIds.enableField(false);
             me.viewIds.setHidden(true);

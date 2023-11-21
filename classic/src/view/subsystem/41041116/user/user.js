@@ -1,10 +1,10 @@
-Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
+Ext.define('antnex.subsystem.41041116.user.user', {
     extend: 'antnex.default.defaultView',
     requires: [
-        'antnex.subsystem.sample.antStanley.user2.user2Controller',
+        'antnex.subsystem.41041116.user.userController',
     ],
-    alias: 'widget.antStanley-user2',
-    controller: 'antStanley-user2',
+    alias: 'widget.page-41041116-user',
+    controller: 'page-41041116-user',
 
     title: '使用者管理2',
 
@@ -42,6 +42,14 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                         reference: 'btn-antStanley-user2-funcbar-edit',
                         iconCls: 'fa fa-edit',
                         handler: 'funcbar_edit',
+                    },
+                    { xtype: 'tbseparator', margin: '8 1' },
+                    {
+                        xtype: 'funcbarButton',
+                        text: '刪除(F6)',
+                        reference: 'btn-antStanley-user2-funcbar-delete',
+                        iconCls: 'fas fa-trash-alt fa-spin',
+                        handler: 'funcbar_delete',
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
@@ -95,6 +103,15 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                             listeners: {
                                 keypress: 'enterSearch'
                             }
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '信箱',
+                            reference: 'txt-antStanley-user2-searchbar-mail',
+                            emptyText: '請輸入信箱',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            }
                         }, {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
@@ -136,7 +153,7 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                 xtype: 'antGridpanel',
                 title: '使用者清單',
                 reference: 'grid-antStanley-user2-userlist',
-                minWidth: 200,
+                minWidth: 800,
                 flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
@@ -165,7 +182,13 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                     text: '狀態',
                     width: 96,
                     renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
-                }]
+                },{
+                    xtype: 'antColumn',
+                    dataIndex: 'memo',
+                    text: '備註',
+                    minWidth: 96,
+                    flex: 1,
+                },]
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
