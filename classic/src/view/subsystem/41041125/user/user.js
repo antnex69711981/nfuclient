@@ -1,15 +1,16 @@
-Ext.define('antnex.subsystem.41041125.user.user',{
+Ext.define('antnex.subsystem.41041125.user.user', {
     extend: 'Ext.panel.Panel',
     requires: [
         'antnex.subsystem.41041125.user.userController',
     ],
     alias: 'widget.page-41041125-user',
     controller: 'page-41041125-user',
-    title: '使用者管理',
+
+    title: '使用者管理1',
 
     layout: {
-        type: 'vbox',
-        align: 'stretch'
+        type: 'vbox', // vbox(垂直排列) , hbox(水平排列)
+        align: 'stretch' // stretch(延展), center(置中)
     },
 
     listeners: {
@@ -137,8 +138,8 @@ Ext.define('antnex.subsystem.41041125.user.user',{
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
-                            },
-                        }, {    
+                            },    
+                        }, {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-page-41041125-user-searchbar-status',
@@ -148,8 +149,8 @@ Ext.define('antnex.subsystem.41041125.user.user',{
                             queryMode: 'local',
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
+                            editable: false,
+                            store: {},
 
                             enableKeyEvents: true,
                             listeners: {
@@ -183,130 +184,161 @@ Ext.define('antnex.subsystem.41041125.user.user',{
             },
         ]
     }],
+
     scrollable: true,
-    
-    items: [{
-        xtype: 'panel',
-        layout: {
-            type: 'hbox',
-            align: 'stretch'
-        },
-        margin: 5,
-        minHeight: 2000,
-        flex: 2,
-        scrollable: true,
-        items: [
-            {   // 使用者清單
-                xtype: 'gridpanel',
-                title: '使用者清單',
-                reference: 'grid-page-41041125-user-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
-                viewConfig: {
-                    enableTextSelection: true,
-                },
-                border: true,
-                store: {},
-                minWidth: 200,
-                flex: 3,
-                listeners: {
-                    selectionchange: 'onSelectUser',
-                },
-                columns: [{
-                    xtype: 'rownumberer',
-                    text:'項次',
-                    align: 'center',
-                    width: 50,
-                }, {
-                    dataIndex: 'code',
-                    text: '學號',
-                    width: 100,
-                }, {
-                    dataIndex: 'name',
-                    text: '姓名',
-                    width: 110,
-                }, {
-                    dataIndex: 'phone',
-                    text: '手機號碼',
-                    width: 100,
-                }, {
-                    dataIndex: 'mail',
-                    text: '信箱',
-                    minWidth: 200,
-                }, {
-                    dataIndex: 'memo',
-                    text: '備註',
-                    width: 90, 
-                    flex: 1,   
-                }, {
-                    dataIndex: 'status',
-                    text: '狀態',
-                    width: 90,
-                    renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
-                    
-                }, {
-                    dataIndex: 'createusercode',
-                    text: '建立人員',
-                    width: 110,
-                }, {
-                    dataIndex: 'createtm',
-                    text: '建立時間',
-                    width: 100,        
-                }, {
-                    dataIndex: 'modifyusercode',
-                    text: '異動人員',
-                    width: 110,
-                }, {
-                    dataIndex: 'modifytm',
-                    text: '異動時間',
-                    width: 100,    
-                }]
+    items: [
+        {
+            xtype: 'panel',
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
             },
-            { xtype: 'splitter', margin: -1.5 },
-            {   // 資料維護
-                xtype: 'panel',
-                title: '資料維護',
-                reference: 'panel-page-41041125-user-manage',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch',
+            margin: 5,
+            minHeight: 200,
+            flex: 1,
+            scrollable: true,
+            items: [
+                {   // 使用者清單
+                    xtype: 'gridpanel',
+                    title: '使用者清單',
+                    reference: 'grid-page-41041125-user-userlist',
+
+                    viewConfig: {
+                        enableTextSelection: true,
+                    },
+                    border: true,
+                    store: {}, // 資料集
+                    minWidth: 200,
+                    flex: 3,
+                    listeners: {
+                        selectionchange: 'onSelectUser',
+                    },
+                    columns: [{
+                        xtype: 'rownumberer',
+                        text:'項次',
+                        align: 'center',
+                        width: 50,
+                    }, {
+                        dataIndex: 'code',
+                        text: '學號',
+                        width: 100,
+                    }, {
+                        dataIndex: 'name',
+                        text: '姓名',
+                        width: 110,
+                    }, {
+                        dataIndex: 'mail',
+                        text: '信箱',
+                        minWidth: 96,
+                        flex: 1,
+                    }, {
+                        dataIndex: 'memo',
+                        text: '備註',
+                        width: 100, 
+                        flex: 1,   
+                    }, {
+                        dataIndex: 'status',
+                        text: '狀態',
+                        width: 90,
+                        renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
+                        
+                    }, {
+                        dataIndex: 'createusercode',
+                        text: '建立人員',
+                        width: 110,
+                    }, {
+                        dataIndex: 'createtm',
+                        text: '建立時間',
+                        width: 110,        
+                    }, {
+                        dataIndex: 'modifyusercode',
+                        text: '異動人員',
+                        width: 110,
+                    }, {
+                        dataIndex: 'modifytm',
+                        text: '異動時間',
+                        width: 110,    
+                    }]
                 },
-                flex: 2,
-                defaults: {
-                    margin: '0 5 5 5',
-                },
-                border: true,
-                items: [
-                    {   // 基本資料
-                        xtype: 'fieldset',
-                        title: '基本資料',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch',
+                { xtype: 'splitter', margin: -1.5 },
+                {   // 資料維護
+                    xtype: 'panel',
+                    title: '資料維護',
+                    reference: 'panel-page-41041125-user-manage',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch',
+                    },
+                    flex: 2,
+                    defaults: {
+                        margin: '0 5 5 5', // '上 右 下 左'
+                    },
+                    border: true,
+                    items: [
+                        {   // 基本資料
+                            xtype: 'fieldset',
+                            title: '基本資料',
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch',
+                            },
+                            defaults: {
+                                margin: '0 0 8 0',
+                            },
+                            items: [{
+                                xtype: 'numberfield',
+                                fieldLabel: 'ids',
+                                reference: 'num-page-41041125-user-ids',
+                                labelWidth: 37,
+                                cls: 'fieldNotInput',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '學號',
+                                reference: 'txt-page-41041125-user-code',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '姓名',
+                                reference: 'txt-page-41041125-user-name',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '信箱',
+                                reference: 'txt-page-41041125-user-mail',
+                                labelWidth: 37,
+                            }, {
+                                xtype: 'textfield',
+                                fieldLabel: '密碼',
+                                reference: 'txt-page-41041125-user-password',
+                                labelWidth: 37,
+                                inputType: 'password',
+                                cls: 'fieldRequired',
+                            }, {
+                                xtype: 'combobox',
+                                fieldLabel: '狀態',
+                                reference: 'cmbx-page-41041125-user-status',
+                                labelWidth: 37,
+                                cls: 'fieldRequired',
+
+                                valueField: 'value',
+                                displayField: 'text',
+                                queryMode: 'local',
+                                forceSelection: true,
+                                anyMatch: true,
+                                editable: false,
+                                store: { type: 'status' },
+                            }, {
+                                xtype: 'textarea',
+                                fieldLabel: '備註',
+                                reference: 'txt-page-41041125-user-memo',
+                                labelWidth: 37,
+                            }]
                         },
-                        defaults: {
-                            margin: '0 0 8 0',
-                        },
-                        items: [{
-                            xtype: 'textfield',
-                            fieldLabel: '學號',
-                            reference: 'txt-page-41041125-user-code',
-                            labelWidth: 37,
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '姓名',
-                            reference: 'txt-page-41041125-user-name',
-                            labelWidth: 37,
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '信箱',
-                            reference: 'txt-page-41041125-user-mail',
-                            labelWidth: 37,    
-                        }]
-                    }
-                ]
-            }
-        ]
-    }]
-    
+                    ]
+                }
+            ]
+        },
+    ]
 });
