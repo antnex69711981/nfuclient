@@ -50,10 +50,16 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
             me.viewname = me.lookupReference('txt-41041120-name');
             me.viewmail = me.lookupReference('txt-41041120-mail');
             me.viewstatus = me.lookupReference('cmbx-41041120-addstatus');
-
+            me.viewmemo = me.lookupReference('txt-41041120-memo');
+            me.viewcreateusercode = me.lookupReference('txt-41041120-createusercode');
+            me.viewcreatetm = me.lookupReference('txt-41041120-createtm');
+            me.viewmodifyusercode = me.lookupReference('txt-41041120-modifyusercode');
+            me.viewmodifytm = me.lookupReference('txt-41041120-modifytm');
+            
             //擴充功能
             me.gridadd = me.lookupReference('btn-41041120-gridadd');
             me.griddel = me.lookupReference('btn-41041120-griddel');
+            me.gridsave = me.lookupReference('btn-41041120-gridsave');
         } catch(e){
             me.showError('userController/ initObj error:',e);
         }
@@ -66,6 +72,7 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
                 code: 'root',
                 name:'系統管理員',
                 mail: '123@gmail.com',
+                memo:'123',
                 status: 1,
             }]
             me.viewUserlist.getStore().loadData(data);
@@ -141,12 +148,22 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
             me.viewcode.setValue('');
             me.viewname.setValue('');
             me.viewmail.setValue('');
+            me.viewcreateusercode.setValue('');
+            me.viewcreatetm.setValue('');
+            me.viewmodifyusercode.setValue('');
+            me.viewmodifytm.setValue('');
+            me.viewmemo.setValue('');
             me.viewstatus.setValue('');
 
             if (record){
                 me.viewcode.setValue(record.get('code'));
                 me.viewname.setValue(record.get('name'));
                 me.viewmail.setValue(record.get('mail'));
+                me.viewcreateusercode.setValue(record.get('createusercode'));
+                me.viewcreatetm.setValue(record.get('createtm'));
+                me.viewmodifyusercode.setValue(record.get('modifyusercode'));
+                me.viewmodifytm.setValue(record.get('modifytm'));
+                me.viewmemo.setValue(record.get('memo'));
                 me.viewstatus.setValue(record.get('status'));
             }
         } catch (e) {
@@ -167,23 +184,10 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
 
     //增加使用者清單
     gridpanel_add:function(){
-        let me = this
-        try{//取維護裡的值
-            let code = me.viewcode.getValue();
-            let name = me.viewname.getValue();
-            let mail = me.viewmail.getValue();
-            let status = me.viewstatus.getValue();
-
-            let data =[{
-                code: code,
-                name: name,
-                mail: mail,
-                status: status,
-                
-            },
-        ]
-        console.log(data)
-
+        let me = this;
+        try{    
+        me.windows();
+        let data = me.gridget();
         let userstore = me.viewUserlist.getStore();//取出原本的資料
         userstore.add(data);//增加新的一筆內容
         me.viewUserlist.loadData(userstore);//重新載入新的資料集
@@ -203,5 +207,96 @@ Ext.define('antnex.subsystem.41041120.user.userController',{
         } catch(e){
             me.showError('userController/ gridpanel_delete:',e);
         }
+    },
+    gridpanel_save:function(){
+        let me = this
+        try{
+            let selection = me.viewUserlist.getSelection();
+            let record = selection[0]; 
+            let data = me.gridget();
+
+            record.set('code',data[0].code);
+            record.set('name',data[0].name);
+            record.set('mail',data[0].mail);
+            record.set('memo',data[0].memo);
+            record.set('createusercode',data[0].createusercode);
+            record.set('createtm',data[0].createtm);
+            record.set('modifyusercode',data[0].modifyusercode);
+            record.set('modifytm',data[0].modifytm);
+            record.sync();
+
+        } catch(e){
+            me.showError('userController/ gridpanel_save:',e);
+        }
+    },
+    gridget:function(){
+        let me = this
+        try{//取維護裡的值
+            let code = me.viewcode.getValue();
+            let name = me.viewname.getValue();
+            let mail = me.viewmail.getValue();
+            let status = me.viewstatus.getValue();
+            let memo = me.viewmemo.getValue();
+            let createusercode = me.viewcreateusercode.getValue();
+            let createtm = me.viewcreatetm.getValue();
+            let modifyusercode = me.viewmodifyusercode.getValue();
+            let modifytm = me.viewmodifytm.getValue();
+            
+            let data =[{
+                code: code,
+                name: name,
+                mail: mail,
+                status: status,
+                memo : memo,
+                createusercode: createusercode,
+                createtm:createtm,
+                modifyusercode : modifyusercode,
+                modifytm:modifytm,    
+            },
+        ]
+        console.log(data)
+        return data
+        } catch(e) {
+            me.showError('userController/ gridget:',e);
+        }
+        
+    },
+    windows:function(){
+        try{
+            let me = this;
+            let data = me.gridget();
+            let status = me.customRenderer(data[0].status);
+            Ext.create('Ext.window.Window',{
+            title: '確認視窗',
+            height: 300,
+            width: 400,
+            layout: 'fit',
+            items: {  
+                xtype: 'panel',
+                layout:{
+                    type:'vbox',
+                    align:'center'
+                },
+                style:{
+                    whiteSpace: 'normal',
+                    
+                },
+                html:`<div style="font-size: 15px;">請確認資料<br>學號：${data[0].code}<br>姓名：${data[0].name}<br>信箱：${data[0].mail}
+                <br>備註：${data[0].memo}<br>建立人員：${data[0].createusercode}<br>建立時間：${data[0].createtm}<br>異動人員：${data[0].modifyusercode}
+                <br>異動時間：${data[0].modifytm}<br>狀態：${status}
+                </div>`,
+                }
+                
+            }
+            ).show();console.log(data[0].code);
+        } catch(e){
+            me.showError('userController / windows',e);
+        }
+    },
+    customRenderer:function(value) {
+        let store = Ext.create('antnex.store.static.Status');
+        let record = store.getRange().find(e => e.get('value') == value);
+        return record ? record.get('text') : `無法辨識: ${value}`;
     }
+
 });

@@ -207,7 +207,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                     border:true,
                     store:{},
                     minWidth: 200,
-                    flex: 1,
+                    flex: 2,
                     listeners:{
                         Selectionchange: 'onSelectUser',
                     },
@@ -218,7 +218,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                     },{
                         dataIndex:'code',
                         text:'學號',
-                        width:110,
+                        width:100,
                     },{
                         dataIndex:'name',
                         text:'姓名',
@@ -228,6 +228,26 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                         text: '信箱',
                         minWidth: 96,
                         flex: 1,
+                    },{
+                        dataIndex:'memo',
+                        text:'備註',
+                        width:100
+                    },{
+                        dataIndex:"createusercode",
+                        text:'建立人員',
+                        width:100
+                    },{
+                        dataIndex:'createtm',
+                        text:'建立時間',
+                        width:100
+                    },{
+                        dataIndex:'modifyusercode',
+                        text:'異動人員',
+                        width:100
+                    },{
+                        dataIndex:'modifytm',
+                        text:'異動時間',
+                        width:100
                     },{
                         dataIndex: 'status',
                         text:'狀態',
@@ -249,7 +269,7 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                         type: 'vbox',
                         align: 'stretch',
                     },
-                    flex: 2,
+                    flex: 1,
                     defaults:{
                         margin: '0 5 5 5',
                     },
@@ -279,6 +299,31 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                                 xtype:'textfield',
                                 fieldLabel:'信箱',
                                 reference:'txt-41041120-mail',
+                                labelWidth:37,
+                            },{
+                                xtype:'textfield',
+                                fieldLabel:'備註',
+                                reference:'txt-41041120-memo',
+                                labelWidth:37,
+                            },{
+                                xtype:'textfield',
+                                fieldLabel:'建立人員',
+                                reference:'txt-41041120-createusercode',
+                                labelWidth:37,
+                            },{
+                                xtype:'textfield',
+                                fieldLabel:'建立時間',
+                                reference:'txt-41041120-createtm',
+                                labelWidth:37,
+                            },{
+                                xtype:'textfield',
+                                fieldLabel:'異動人員',
+                                reference:'txt-41041120-modifyusercode',
+                                labelWidth:37,
+                            },{
+                                xtype:'textfield',
+                                fieldLabel:'異動時間',
+                                reference:'txt-41041120-modifytm',
                                 labelWidth:37,
                             },{
                                 xtype:'combobox',
@@ -321,7 +366,19 @@ Ext.define('antnex.subsystem.41041120.user.user',{
                                 textAlign: 'center'
                             },
                             reference:'btn-41041120-griddel'
-                        },
+                        },{
+                            xtype: 'button',
+                            text: '儲存至使用者清單',
+                            scale: 'small',
+                            cls: 'antBtn-green',
+                            iconCls: 'fa fa-save',
+                            handler: 'gridpanel_save',
+                            margin: '0 0 5 5',
+                            style: {
+                                textAlign: 'center'
+                            },
+                            reference:'btn-41041120-gridsave'
+                        }
                     ]
                 }
             ]
