@@ -6,7 +6,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
     alias: 'widget.page-11261103-user',
     controller: 'page-11261103-user',
 
-    title: '使用者管理1',
+    title: '11261103使用者管理',
 
     layout: {
         type: 'vbox',
@@ -133,7 +133,8 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        }, {
+                        }, 
+                        {
                             xtype: 'combobox',
                             fieldLabel: '狀　　態',
                             reference: 'cmbx-11261103-user-searchbar-status',
@@ -143,14 +144,15 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             queryMode: 'local',
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
+                            editable: false,
+                            store: { },
 
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
                             margin: '0 10 8 5',
+                            
                         }]
                     },
                     {//查詢button
@@ -176,7 +178,8 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                         margin: '10 0 5 5',
                     },
                 ]
-            }, { // 新增
+            },
+            /* { // 新增
                 xtype: 'panel',
                 reference: 'panel-11261103-user-addbar',
                 layout: {
@@ -243,13 +246,13 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             queryMode: 'local',
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
 
                             enableKeyEvents: true,
-                            /*listeners: {
-                                keypress: 'enterSearch'
-                            },*/
+                            // listeners: {
+                            //     keypress: 'enterSearch'
+                            // },
                         },]
                             
 
@@ -355,7 +358,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                         margin: '10 0 5 5',
                     },
                 ]
-            },
+            },*/
         ]
     }],
     scrollable: true,
@@ -374,14 +377,13 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                 xtype: 'gridpanel',
                 title: '使用者清單',
                 reference: 'grid-11261103-user-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
+                //bufferedRenderer: false,
+                //runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
                 border: true,
-                store: {},
-                minWidth: 1250,
+                store: {},                
                 flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
@@ -449,7 +451,8 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 1,
+                minWidth:500,
+                //flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
@@ -466,21 +469,36 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             margin: '0 0 8 0',
                         },
                         items: [{
+                            xtype: 'numberfield',
+                            fieldLabel: 'ids',
+                            reference: 'num-11261103-user-ids',
+                            labelWidth: 65,
+                            cls: 'fieldNotInput',
+                        }, {
                             xtype: 'textfield',
                             fieldLabel: '學　　號',
                             reference: 'txt-11261103-user-code',
                             labelWidth: 65,
+                            cls: 'fieldRequired',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓　　名',
                             reference: 'txt-11261103-user-name',
                             labelWidth: 65,
+                            cls: 'fieldRequired',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '信　　箱',
                             reference: 'txt-11261103-user-mail',
                             labelWidth: 65,
-                        }, {
+                        },{
+                            xtype: 'textfield',
+                            fieldLabel: '密碼',
+                            reference: 'txt-11261103-user-password',
+                            labelWidth: 65,
+                            inputType: 'password',
+                            cls: 'fieldRequired',
+                        },{
                             xtype: 'textfield',
                             fieldLabel: '備　　註',
                             reference: 'txt-11261103-user-memo',
@@ -489,13 +507,14 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             xtype: 'combobox',
                             fieldLabel: '狀　　態',
                             reference: 'cmbx-11261103-user-status',
+                            cls: 'fieldRequired',
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
                             labelWidth: 65,
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
 
                             enableKeyEvents: true,
@@ -512,7 +531,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             fieldLabel: '建立時間',
                             labelWidth: 65,
                             reference: 'date-11261103-user-createtm',
-                            value: new Date()                           
+                            //value: new Date()                           
                         },{
                             xtype: 'textfield',
                             fieldLabel: '異動人員',
@@ -523,7 +542,7 @@ Ext.define('antnex.subsystem.11261103.user.user', {
                             fieldLabel: '異動時間',
                             labelWidth: 65,
                             reference: 'date-11261103-user-modiftm',
-                            value: new Date()                           
+                            //value: new Date()                           
                         }]
                     }
                 ]
