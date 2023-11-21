@@ -63,10 +63,10 @@ Ext.define('antnex.subsystem.41041411.user.userController',{
                 email: '',
                 status: 1,
             }, {
-                code: 'stanley',
-                name: '李厚生',
-                email: '',
-                status: 9,
+                code: 'Tyler',
+                name: '林建華',
+                email: '0001@example.com',
+                status: 1,
             }]
             me.viewUserlist.getStore().loadData(data);
         } catch (e) {

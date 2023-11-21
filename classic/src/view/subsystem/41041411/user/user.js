@@ -9,23 +9,23 @@ Ext.define('antnex.subsystem.41041411.user.user',{
     title:'41041411的首頁',
 
     layout: {
-        type: 'vbox',
-        align: 'stretch'
+        type: 'vbox',   //vbox(vertical), hbox(horizontal)
+        align: 'stretch' //stetch(延展), center(置中)
     },
-
+//事件觸發
     listeners: {
         afterrender: 'onInitialize',
         activate: 'onActivate',
     },
-
+// top(靠上)，buttom(靠下)，left(靠左)，right(靠右)
     dockedItems: [{
-        xtype: 'panel',
-        layout: {
-            type: 'vbox',
+        xtype: 'panel', 
+        layout: {  
+            type: 'vbox',    
             align: 'stretch'
         },
-        dock: 'top',
-        margin: 0,
+        dock: 'top',  // 靠上
+        margin: 0, 
         items: [
             {   // 功能列
                 xtype: 'toolbar',
@@ -175,56 +175,82 @@ Ext.define('antnex.subsystem.41041411.user.user',{
             },
         ]
     }],
-    scrollable: true,
-    items: [{
-        xtype: 'panel',
+    scrollable: true, // 捲動
+// content(內容)
+    items: [{  
+        xtype: 'panel',  // 此頁面 loyout 放的是 panel
         layout: {
             type: 'hbox',
-            align: 'stretch'
+            align: 'stretch'  // layout 是「橫向延展」
         },
-        margin: 5,
-        minHeight: 2000,
-        flex: 1,
+        margin: 5, //白色的邊邊
+        minHeight: 2000, //頁面可以往下滑動 2000 pixels
+
+// Ext js 的 flex 類似 RWD，使得網站透過不同大小的螢幕視窗來改變網頁排版的方式，使得各種裝置的使用者，如電腦、平板、手機、電視都能夠得到最佳的視覺效果
+// ，由於是由同一個網頁內容轉變，管理者也就不必大費周章的重複更新網頁資訊。
+        flex: 1, 
+
         scrollable: true,
         items: [
             {   // 使用者清單
-                xtype: 'gridpanel',
+                xtype: 'gridpanel',  // 根據物件 gridpanel 去做 layout
                 title: '使用者清單',
-                reference: 'grid-antStanley-user-userlist',
+                reference: 'grid-antStanley-user-userlist', // 物件的別名，用於 userController.js 註冊識別
+                // bug fix
                 bufferedRenderer: false,
                 runInViewport: false,
+
+                // highlight the text
                 viewConfig: {
                     enableTextSelection: true,
                 },
-                border: true,
+                //邊框
+                border: true,  
+                /**
+                 * 資料集， store 與 dataIndex 相互對應
+                 * 
+                 * array = [
+                 * 
+                 * {
+                 * code：'root',
+                 * name：'Faker',
+                 * }
+                 * 
+                 * ]
+                 */
                 store: {},
-                minWidth: 200,
-                flex: 1,
+
+                minWidth: 200,  // 使用者清單的 最小寬度= 200
+                flex: 2,
+                //事件
                 listeners: {
                     selectionchange: 'onSelectUser',
                 },
+                //欄位
                 columns: [{
-                    xtype: 'rownumberer',
+                    xtype: 'rownumberer', // 在學號之前的順序 1,2,3,...... 
                     align: 'center',
                     width: 50,
                 }, {
-                    dataIndex: 'code',
-                    text: '學號',
+                    dataIndex: 'code', // 對應到 store 資料集陣列 array 裡面的 key
+                    text: '學號',  // text 欄位名稱
                     width: 110,
                 }, {
                     dataIndex: 'name',
-                    text: '姓名',
+                    text: '姓名',  
                     width: 110,
                 }, {
                     dataIndex: 'mail',
                     text: '信箱',
                     minWidth: 96,
-                    flex: 1,
+                    flex: 1,  // 使畫面左右拖拉流暢，沒有斷裂
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
                     width: 96,
-                    renderer: function (value) {
+
+                    // 將數字替換成文字，可使用 function 處理
+                    renderer: function (value) { 
                         let store = Ext.create('antnex.store.static.Status');
                         let record = store.getRange().find(e => e.get('value') == value);
                         return record ? record.get('text') : `無法辨識: ${value}`;
@@ -233,34 +259,35 @@ Ext.define('antnex.subsystem.41041411.user.user',{
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
-                xtype: 'panel',
+                xtype: 'panel',  // 根據物件 panel 去做 layout
                 title: '資料維護',
                 reference: 'panel-antStanley-user-manage',
                 layout: {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 2,
+                flex: 1,
+                //下方 items 資料如果沒有指定，使用此預設
                 defaults: {
-                    margin: '0 5 5 5',
+                    margin: '0 5 5 5', // '上 右 下 左'
                 },
                 border: true,
                 items: [
                     {   // 基本資料
-                        xtype: 'fieldset',
+                        xtype: 'fieldset',  //物件 fieldset
                         title: '基本資料',
                         layout: {
                             type: 'vbox',
                             align: 'stretch',
                         },
                         defaults: {
-                            margin: '0 0 8 0',
+                            margin: '0 0 8 0', // 下方(buttom)給 8px 高度
                         },
                         items: [{
-                            xtype: 'textfield',
+                            xtype: 'textfield', //文字輸入
                             fieldLabel: '學號',
                             reference: 'txt-antStanley-user-code',
-                            labelWidth: 37,
+                            labelWidth: 37, // fieldlabel 寬度
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '姓名',
