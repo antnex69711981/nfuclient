@@ -177,6 +177,7 @@ Diagnostic information:
                         framework.output : ${package.dir}/build                              
                      framework.overrides : ${package.dir}/overrides                          
                   framework.packages.dir : C:\opt\github clone\nfuclient\ext/packages/,C:\opt\github clone\nfuclient\ext/${toolkit.name}
+                framework.resource.paths : resources                                         
               framework.resource.paths.0 : resources                                         
          framework.resource.paths.length : 1                                                 
                       framework.sass.etc : ${package.dir}/sass/etc/all.scss                  
