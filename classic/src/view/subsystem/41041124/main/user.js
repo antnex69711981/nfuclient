@@ -101,9 +101,8 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                             queryMode: 'local',
                             forceSelection: true,
                             anyMatch: true,
-                            editable: true,
+                            editable: false,
                             store: { type: 'status' },
-
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -233,9 +232,9 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
             type: 'hbox',
             align: 'stretch'
         },
+        flex: 2,
         margin: 5,
         minHeight: 2000,
-        flex: 1,
         scrollable: true,
         items: [
             {   // 使用者清單
@@ -270,12 +269,10 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                     dataIndex: 'mail',
                     text: '信箱',
                     Width: 96,
-                    flex: 1,
                 }, {
                     dataIndex: 'memo',
                     text: '備註',
                     Width: 96,
-                    flex: 1,
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
@@ -285,25 +282,21 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                     dataIndex: 'createusercode',
                     text: '建立人員',
                     Width: 80,
-                    flex: 1,
                 }, {
                     dataIndex: 'createtm',
                     text: '建立時間',
                     Width: 96,
-                    flex: 1,
                 }, {
                     dataIndex: 'modifyusercode',
                     text: '異動人員',
                     Width: 80,
-                    flex: 1,
                 }, {
                     dataIndex: 'modifytm',
                     text: '異動時間',
                     Width: 96,
-                    flex: 1,
                 }]
             },
-            { xtype: 'splitter', style :"left: 660px" },
+            { xtype: 'splitter', style :"left: 600px" },
             {   // 資料維護
                 xtype: 'panel',
                 title: '資料維護',
@@ -312,7 +305,7 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                flex: 2,
+
                 defaults: {
                     margin: '0 5 5 5',
                 },
@@ -351,14 +344,19 @@ Ext.define('antnex.subsystem.sample.41041124.user.user', {
                         }, {
                             xtype: 'combo',
                             fieldLabel: '狀態',
-                            store: ['啟用', '停用'],
-                            queryMode: 'local',
-                            displayField: 'name',
+                            allowBlank:false,
                             valueField: 'value',
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
                             editable: false,
-                            emptyText: '請選擇...',
+                            store: { type: 'status' },
                             reference: 'cmbx-41041124-user-status',
                             labelWidth: 37,
+                            emptyText: '請選擇...',
+                            allowBlank:false,
+                            
                         }]
                     }
                 ]
