@@ -465,6 +465,7 @@ Ext.define('antnex.subsystem.41041124.user.userController', {
 
             me.funcbarEdit.setDisabled(false);
 
+            //維護資料更新
             if (record) {
                 me.viewCode.setValue(record.get('code'));
                 me.viewName.setValue(record.get('name'));
