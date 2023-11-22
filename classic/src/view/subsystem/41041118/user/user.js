@@ -115,7 +115,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                             },
                         }]
                     },
-                    {
+                    {   //查詢
                         xtype: 'button',
                         text: '查詢',
                         scale: 'small',
@@ -126,7 +126,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         handler: 'doSearch',
                         margin: '10 0 5 5',
                     },
-                    {
+                    {   //清除查詢
                         xtype: 'button',
                         text: '清除',
                         scale: 'small',
@@ -174,7 +174,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                         scrollable: true,
                         border: false,
                         padding: '5 0 0 5',                                           
-                        items: [
+                        items: [ 
                             {
                                 xtype: 'button',
                                 text: '新增',
@@ -196,7 +196,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.user',{
                                 handler: 'funcbar_edit',
                             }]
                     },
-                    {   
+                    {   // 基本資料
                         xtype: 'fieldset',
                         title: '基本資料',
                         reference:'txt-41041118-float',
