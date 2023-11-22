@@ -62,7 +62,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-40941139-user-userlist');
-            me.viewManage = me.lookupReference('panel-40941139-user-manage');
+            me.viewUserManage = me.lookupReference('panel-40941139-user-manage');
             // me.viewAdd = me.lookupReference('panel-40941139-user-add');
 
             // 資料維護
@@ -291,7 +291,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             // 清除暫存資料 不懂
             me.setConfig('requireKeylist', []);
 
-            // 不懂
+            
             me.viewUserlist.mask(CONST_LOADING_HINT);
             const json = await antnex.ProxyService.send(uploadJSON);
             me.viewUserlist.unmask();
@@ -370,10 +370,10 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 const password = json.password ? json.password : '';
                 const status = json.status ? json.status : '';
                 const memo = json.memo ? json.memo : '';
-                // const createusername = json.createusername ? json.createusername : '';
-                // const createtm = json.createtm ? json.createtm : '';
-                // const modifyusername = json.modifyusername ? json.modifyusername : '';
-                // const modifytm = json.modifytm ? json.modifytm : '';
+                const createusername = json.createusername ? json.createusername : '';
+                const createtm = json.createtm ? json.createtm : '';
+                const modifyusername = json.modifyusername ? json.modifyusername : '';
+                const modifytm = json.modifytm ? json.modifytm : '';
 
                 const editable = ids > 0;
 
@@ -387,10 +387,10 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                 me.viewPassword.setValue(password);
                 me.viewStatus.setValue(status);
                 me.viewMemo.setValue(memo);
-                // me.viewCreateusername.setValue(createusername);
-                // me.viewCreatetm.setValue(createtm);
-                // me.viewModifyusername.setValue(modifyusername);
-                // me.viewModifytm.setValue(modifytm);
+                me.viewCreateusername.setValue(createusername);
+                me.viewCreatetm.setValue(createtm);
+                me.viewModifyusername.setValue(modifyusername);
+                me.viewModifytm.setValue(modifytm);
             }
 
             // 先清除所有資料
