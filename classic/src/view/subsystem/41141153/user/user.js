@@ -1,6 +1,6 @@
-Ext.define("antnex.subsystem.sample.41141153.user.user", {
+Ext.define("antnex.subsystem.41141153.user.user", {
   extend: "Ext.panel.Panel",
-  requires: ["antnex.subsystem.sample.41141153.user.userController"],
+  requires: ["antnex.subsystem.41141153.user.userController"],
   alias: "widget.page-41141153-user",
   controller: "page-41141153-user",
 

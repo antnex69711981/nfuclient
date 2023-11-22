@@ -1,4 +1,4 @@
-Ext.define("antnex.subsystem.sample.41141153.user.userController", {
+Ext.define("antnex.subsystem.41141153.user.userController", {
   extend: "Ext.app.ViewController",
   alias: "controller.page-41141153-user",
   requires: [],
