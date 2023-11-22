@@ -15,23 +15,31 @@ Ext.define('antnex.subsystem.41241224.user.user', {
             items: [{
                 xtype: 'button',
                 text: '查詢列',
-                cls: 'funcbarBtn-black'
+                reference:'btn-user-user-funcbar-search',
+                cls: 'funcbarBtn-black',
+                handler:'funcbar_search',
             }, {
                 xtype: 'button',
                 text: '新增',
-                cls: 'funcbarBtn-black'
+                reference:'btn-user-user-funcbar-add',
+                cls: 'funcbarBtn-black',
+                handler:'funcbar_add',
             }, {
                 xtype: 'button',
                 text: '修改',
-                cls: 'funcbarBtn-black'
+                reference:'btn-user-user-funcbar-edit',
+                cls: 'funcbarBtn-black',
             }, {
                 xtype: 'button',
                 text: '儲存',
-                cls: 'funcbarBtn-black'
+                reference:'btn-user-user-funcbar-save',
+                cls: 'funcbarBtn-black',
             }, {
                 xtype: 'button',
                 text: '取消',
-                cls: 'funcbarBtn-black'
+                reference:'btn-user-user-funcbar-cancel',
+                cls: 'funcbarBtn-black',
+                handler:'funcbar_cancel'
             }]
         }]
     }, {
@@ -64,7 +72,7 @@ Ext.define('antnex.subsystem.41241224.user.user', {
                 emptyText: '輸入學號'
             }, {
                 xtype: 'combo',
-                reference:'cm-user-user-searchbar-status',
+                reference:'cmbx-user-user-searchbar-status',
                 fieldLabel: '狀態',
                 labelWidth: 37,
                 margin:'0 0 0 0',
@@ -91,7 +99,7 @@ Ext.define('antnex.subsystem.41241224.user.user', {
         },
         {
             xtype: 'button',
-            handler:'cleansearch',
+            handler:'cleanSearch',
             border:false,
             text: '清除',
             margin: '10 0 5 5',
@@ -124,12 +132,12 @@ Ext.define('antnex.subsystem.41241224.user.user', {
                     studentnum: '123',
                     name: '張三',
                     email: '123@gmail.com',
-                    status: '啟用'
+                    status: 1
                 }, {
                     studentnum: '456',
                     name: '李四',
                     email: '456@gmail.com',
-                    status: '停用'
+                    status: 9
                 }]
             },
             columns: [{
@@ -148,7 +156,12 @@ Ext.define('antnex.subsystem.41241224.user.user', {
             }, {
                 dataIndex: 'status',
                 text: '狀態',
-                width: 50
+                width: 50,
+                renderer: function (value) {
+                    let store = Ext.create('antnex.store.static.Status');
+                    let record = store.getRange().find(e => e.get('value') == value);
+                    return record ? record.get('text') : `無法辨識: ${value}`;
+                },
             }]
         }, {
             xtype: 'splitter',
@@ -165,15 +178,54 @@ Ext.define('antnex.subsystem.41241224.user.user', {
                 title: '基本資料',
                 collapsible: true,
                 items: [{
-                    xtype: 'textfield',
-                    fieldLabel: '姓名',
-                    name: 'name',
-                    flex: 1
+                    xtype: 'numberfield',
+                    fieldLabel: 'ids',
+                    reference: 'num-user-user-ids',
+                    labelWidth: 37,
+                    cls: 'fieldNotInput',
                 }, {
                     xtype: 'textfield',
                     fieldLabel: '學號',
-                    name: 'studentnum',
-                    flex: 1
+                    reference: 'txt-user-user-code',
+                    labelWidth: 37,
+                    cls: 'fieldRequired',
+                }, {
+                    xtype: 'textfield',
+                    fieldLabel: '姓名',
+                    reference: 'txt-user-user-name',
+                    labelWidth: 37,
+                    cls: 'fieldRequired',
+                }, {
+                    xtype: 'textfield',
+                    fieldLabel: '信箱',
+                    reference: 'txt-user-user-mail',
+                    labelWidth: 37,
+                }, {
+                    xtype: 'textfield',
+                    fieldLabel: '密碼',
+                    reference: 'txt-user-user-password',
+                    labelWidth: 37,
+                    inputType: 'password',
+                    cls: 'fieldRequired',
+                }, {
+                    xtype: 'combobox',
+                    fieldLabel: '狀態',
+                    reference: 'cmbx-user-user-status',
+                    labelWidth: 37,
+                    cls: 'fieldRequired',
+
+                    valueField: 'value',
+                    displayField: 'text',
+                    queryMode: 'local',
+                    forceSelection: true,
+                    anyMatch: true,
+                    editable: false,
+                    store: { type: 'status' },
+                }, {
+                    xtype: 'textarea',
+                    fieldLabel: '備註',
+                    reference: 'txt-user-user-memo',
+                    labelWidth: 37,
                 }]
             }]
         }]
