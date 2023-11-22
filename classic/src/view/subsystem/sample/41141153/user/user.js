@@ -1,21 +1,19 @@
-Ext.define("antnex.subsystem.sample.antStanley.user.user", {
+Ext.define("antnex.subsystem.sample.41141153.user.user", {
   extend: "Ext.panel.Panel",
-  requires: ["antnex.subsystem.sample.antStanley.user.userController"],
-  alias: "widget.antStanley-user",
-  controller: "antStanley-user",
+  requires: ["antnex.subsystem.sample.41141153.user.userController"],
+  alias: "widget.page-41141153-user",
+  controller: "page-41141153-user",
 
   title: "使用者管理1",
 
+  //main view vertical and stretch
   layout: {
-    type: "vbox", // vbox(垂直排列) , hbox(水平排列)
-    align: "stretch", // stretch(延展), center(置中)
+    type: "vbox",
+    align: "stretch",
   },
-
   listeners: {
-    afterrender: "onInitialize",
-    activate: "onActivate",
+    afterrender: "onInitComponent",
   },
-
   dockedItems: [
     {
       xtype: "panel",
@@ -27,7 +25,7 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
       margin: 0,
       items: [
         {
-          // 功能列
+          // function bar
           xtype: "toolbar",
           layout: {
             type: "hbox",
@@ -40,58 +38,50 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
             {
               xtype: "button",
               text: "查詢列",
-              reference: "btn-antStanley-user-funcbar-search",
+              reference: "func-btn-wei",
               cls: "funcbarBtn-black",
               iconCls: "fa fa-search",
               margin: 3,
-              handler: "funcbar_search",
+              handler: "onClick",
             },
             { xtype: "tbseparator", margin: "8 1" },
             {
               xtype: "button",
               text: "新增",
-              reference: "btn-antStanley-user-funcbar-add",
               cls: "funcbarBtn-black",
               iconCls: "fa fa-plus",
               margin: 3,
-              handler: "funcbar_add",
             },
             { xtype: "tbseparator", margin: "8 1" },
             {
               xtype: "button",
               text: "修改",
-              reference: "btn-antStanley-user-funcbar-edit",
               cls: "funcbarBtn-black",
               iconCls: "fa fa-edit",
               margin: 3,
-              handler: "funcbar_edit",
             },
             { xtype: "tbseparator", margin: "8 1" },
             {
               xtype: "button",
               text: "儲存",
-              reference: "btn-antStanley-user-funcbar-save",
               cls: "funcbarBtn-black",
               iconCls: "fa fa-save",
               margin: 3,
-              handler: "funcbar_save",
             },
             { xtype: "tbseparator", margin: "8 1" },
             {
               xtype: "button",
               text: "取消",
-              reference: "btn-antStanley-user-funcbar-cancel",
-              cls: "funcbarBtn-black",
+              cls: "Btn-black",
               iconCls: "fa fa-times",
               margin: 3,
-              handler: "funcbar_cancel",
             },
           ],
         },
         {
-          // 查詢列
+          // search bar
           xtype: "panel",
-          reference: "panel-antStanley-user-searchbar",
+          reference: "panel-search-wei",
           layout: {
             type: "hbox",
             align: "stretch",
@@ -102,7 +92,7 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
           scrollable: true,
           items: [
             {
-              // 查詢條件
+              // serach condition
               xtype: "fieldset",
               title: "查詢條件",
               layout: {
@@ -117,28 +107,22 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
                 {
                   xtype: "textfield",
                   fieldLabel: "學號",
-                  reference: "txt-antStanley-user-searchbar-code",
                   emptyText: "請輸入學號",
                   enableKeyEvents: true,
-                  listeners: {
-                    keypress: "enterSearch",
-                  },
                   margin: "0 0 8 0",
+                  reference: "txt-search-code-wei",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "姓名",
-                  reference: "txt-antStanley-user-searchbar-name",
                   emptyText: "請輸入姓名",
                   enableKeyEvents: true,
-                  listeners: {
-                    keypress: "enterSearch",
-                  },
+                  reference: "txt-search-name-wei",
                 },
                 {
                   xtype: "combobox",
                   fieldLabel: "狀態",
-                  reference: "cmbx-antStanley-user-searchbar-status",
+                  reference: "cmb-search-status-wei",
 
                   valueField: "value",
                   displayField: "text",
@@ -149,9 +133,6 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
                   store: {},
 
                   enableKeyEvents: true,
-                  listeners: {
-                    keypress: "enterSearch",
-                  },
                 },
               ],
             },
@@ -163,8 +144,8 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
               iconCls: "fa fa-search",
               width: 60,
               border: false,
-              handler: "doSearch",
               margin: "10 0 5 5",
+              handler: "forSearchBtn",
             },
             {
               xtype: "button",
@@ -174,8 +155,8 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
               iconCls: "fa fa-times",
               width: 60,
               border: false,
-              handler: "cleanSearch",
               margin: "10 0 5 5",
+              handler: "cleanSearchBtn",
             },
           ],
         },
@@ -197,21 +178,17 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
       scrollable: true,
       items: [
         {
-          // 使用者清單
+          // userlist
           xtype: "gridpanel",
           title: "使用者清單",
-          reference: "grid-antStanley-user-userlist",
 
           viewConfig: {
             enableTextSelection: true,
           },
           border: true,
-          store: {}, // 資料集
+          store: {}, // data
           minWidth: 200,
           flex: 1,
-          listeners: {
-            selectionchange: "onSelectUser",
-          },
           columns: [
             {
               xtype: "rownumberer",
@@ -239,8 +216,8 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
               text: "狀態",
               width: 96,
               renderer: function (value) {
-                let store = Ext.create("antnex.store.static.Status");
-                let record = store
+                let storeStatus = Ext.create("antnex.store.static.Status");
+                let record = storeStatus
                   .getRange()
                   .find((e) => e.get("value") == value);
                 return record ? record.get("text") : `無法辨識: ${value}`;
@@ -250,10 +227,9 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
         },
         { xtype: "splitter", margin: -1.5 },
         {
-          // 資料維護
+          // data maintenance
           xtype: "panel",
           title: "資料維護",
-          reference: "panel-antStanley-user-manage",
           layout: {
             type: "vbox",
             align: "stretch",
@@ -265,7 +241,7 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
           border: true,
           items: [
             {
-              // 基本資料
+              // basic data
               xtype: "fieldset",
               title: "基本資料",
               layout: {
@@ -279,34 +255,29 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
                 {
                   xtype: "numberfield",
                   fieldLabel: "ids",
-                  reference: "num-antStanley-user-ids",
                   labelWidth: 37,
                   cls: "fieldNotInput",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "學號",
-                  reference: "txt-antStanley-user-code",
                   labelWidth: 37,
                   cls: "fieldRequired",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "姓名",
-                  reference: "txt-antStanley-user-name",
                   labelWidth: 37,
                   cls: "fieldRequired",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "信箱",
-                  reference: "txt-antStanley-user-mail",
                   labelWidth: 37,
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "密碼",
-                  reference: "txt-antStanley-user-password",
                   labelWidth: 37,
                   inputType: "password",
                   cls: "fieldRequired",
@@ -314,7 +285,6 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
                 {
                   xtype: "combobox",
                   fieldLabel: "狀態",
-                  reference: "cmbx-antStanley-user-status",
                   labelWidth: 37,
                   cls: "fieldRequired",
 
@@ -329,7 +299,6 @@ Ext.define("antnex.subsystem.sample.antStanley.user.user", {
                 {
                   xtype: "textarea",
                   fieldLabel: "備註",
-                  reference: "txt-antStanley-user-memo",
                   labelWidth: 37,
                 },
               ],
