@@ -181,7 +181,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           // userlist
           xtype: "gridpanel",
           title: "使用者清單",
-
+          reference:'grid-userlist-wei',
           viewConfig: {
             enableTextSelection: true,
           },

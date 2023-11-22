@@ -12,6 +12,8 @@ Ext.define("antnex.subsystem.41141153.user.userController", {
       this.initComponent();
 
       await this.statusData();
+      this.cleanSearchBtn();
+
     } catch (e) {
       console.log("onInitComponent error");
     }
@@ -25,6 +27,7 @@ Ext.define("antnex.subsystem.41141153.user.userController", {
     this.txt_search_code = this.lookupReference("txt-search-code-wei");
     this.txt_search_name = this.lookupReference("txt-search-name-wei");
     this.cmb_search_status = this.lookupReference("cmb-search-status-wei");
+    this.grid_userlist_wei = this.lookupReference('grid-userlist-wei');
   },
 
   statusData: async function () {
@@ -44,7 +47,7 @@ Ext.define("antnex.subsystem.41141153.user.userController", {
     }
   },
   /**********main page**********/
-  disabledBtn: function () {},
+  disabledBtn: function () { },
 
   /***********function field*************/
   onClick: function () {
@@ -58,6 +61,7 @@ Ext.define("antnex.subsystem.41141153.user.userController", {
 
   /*********search field*********/
   forSearchBtn: async function () {
+    let me = this;
     try {
       const inputCode = this.txt_search_code.getValue();
       const inputName = this.txt_search_name.getValue();
@@ -69,6 +73,20 @@ Ext.define("antnex.subsystem.41141153.user.userController", {
         name: inputName,
         status: inputStatus,
       };
+      console.log(uploadJSON);
+
+      const json = await antnex.ProxyService.send(uploadJSON);
+      console.log(json)
+
+      switch (json.status) {
+        case CONST_STATUS_OK:
+          const data = json.message.data;
+          me.grid_userlist_wei.getStore().loadData(data);
+          break;
+        default:
+          throw json.statusText;
+      }
+
     } catch (e) {
       console.log("forSearchBtn error");
     }
