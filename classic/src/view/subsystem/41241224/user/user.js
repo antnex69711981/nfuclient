@@ -5,7 +5,9 @@ Ext.define('antnex.subsystem.41241224.user.user', {
     ],
     alias: 'widget.page-41241224-user',
     controller: 'page-41241224-user',
-
+    listeners:{
+        afterrender: 'onInitialize'
+    },
     items: [{
         xtype: 'panel',
         items: [{
@@ -34,6 +36,7 @@ Ext.define('antnex.subsystem.41241224.user.user', {
         }]
     }, {
         xtype: 'panel',
+        reference:'panel-user-user-searchbar',
         layout: {
             type: 'hbox',
         },
@@ -47,43 +50,51 @@ Ext.define('antnex.subsystem.41241224.user.user', {
             },
             items: [{
                 xtype: 'textfield',
+                reference:'txt-user-user-searchbar-name',
                 fieldLabel: '姓名',
+                labelWidth: 37,
+                margin:'0 0 0 0',
                 emptyText: '輸入姓名'
             }, {
                 xtype: 'textfield',
+                reference:'txt-user-user-searchbar-code',
                 fieldLabel: '學號',
+                labelWidth: 37,
+                margin:'0 0 0 0',
                 emptyText: '輸入學號'
             }, {
                 xtype: 'combo',
+                reference:'cm-user-user-searchbar-status',
                 fieldLabel: '狀態',
+                labelWidth: 37,
+                margin:'0 0 0 0',
                 name: 'status',
                 store: {
                     data: [
+                        {value:'-1',text:'全部'},
                         { value: '1', text: '啟用' },
-                        { value: '2', text: '停用' }
+                        { value: '9', text: '停用' }
                     ]
                 },
                 queryMode: 'local',
                 displayField: 'text',
                 valueField: 'value'
-            },{
-                dataIndex: 'status',
-                text: '狀態',
-                width: 80,
-                renderer: function(value) {
-                    var text = (value === '1') ? '啟用' : '停用';
-                    return text;
-                }
             }]
         },{
             xtype: 'button',
             text: '查詢',
+            handler:'doSearch',
             width: 80,
             height: 40,
+            margin: '10 0 5 5',
+            border:false,
         },
         {
             xtype: 'button',
+            handler:'cleansearch',
+            border:false,
             text: '清除',
+            margin: '10 0 5 5',
             width: 80,
             height: 40
         }]
@@ -98,7 +109,11 @@ Ext.define('antnex.subsystem.41241224.user.user', {
         items: [{
             xtype: 'gridpanel',
             title: '使用者清單',
-            scrollable: true,
+            border:true,
+            reference:'grid-user-user-userlist',
+            listeners: {
+                selectionchange: 'onSelectUser',
+            },
             style: {
                 overflow: 'auto' 
             },
@@ -121,12 +136,12 @@ Ext.define('antnex.subsystem.41241224.user.user', {
                 xtype: 'rownumberer',
                 align: 'center'
             }, {
-                dataIndex: 'studentnum',
-                text: '學號'
-            }, {
                 dataIndex: 'name',
                 text: '姓名'
-            }, {
+            },{
+                dataIndex: 'studentnum',
+                text: '學號'
+            },  {
                 dataIndex: 'email',
                 text: '信箱',
                 minWidth: 100
@@ -141,6 +156,8 @@ Ext.define('antnex.subsystem.41241224.user.user', {
         }, {
             xtype: 'panel',
             title: '資料維護',
+            border:true,
+            reference:'panel-user-user-manage',
             height:1000,
             flex: 1,
             items: [{
