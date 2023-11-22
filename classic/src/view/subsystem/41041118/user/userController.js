@@ -35,6 +35,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         let me = this
         try {
             // 查詢列
+            me.searchBar = me.lookupReference('panel-41041118-searchbar');
             me.searchCode = me.lookupReference('txt-41041118-searchbar-code');
             me.searchName = me.lookupReference('txt-41041118-searchbar-name');
             me.searchMail = me.lookupReference('txt-41041118-searchbar-mail');
@@ -108,6 +109,9 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
             me.funcbarSave.setDisabled(true);
             me.funcbarCancel.setDisabled(true);
 
+            // 查詢列
+            me.searchBar.setHidden(true);
+
             // 資料維護          
             me.viewIds.setReadOnly(true);
             me.viewIds.setHidden(true);
@@ -140,6 +144,9 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                     // me.funcbarSave.setDisabled(false);
                     // me.funcbarCancel.setDisabled(false);
 
+                    // 查詢列
+                    me.searchBar.setHidden(false);
+
                     me.float.hide();
                     
                     // 資料維護
@@ -157,6 +164,9 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                     // me.funcbarEdit.setDisabled(false);
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
+
+                    // 查詢列
+                    me.searchBar.setHidden(false);
 
                     // 主畫面
                     me.float.show();
@@ -176,6 +186,9 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
                     // me.funcbarEdit.setDisabled(false);
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
+
+                    // 查詢列
+                    //me.searchBar.setHidden(false);
 
                     // 主畫面
                     me.float.show();
@@ -311,7 +324,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     },
 
     /*************** 查詢資料***************/
-    // ENTER查詢
+    // function: ENTER查詢
     enterSearch: function (field, e) {
         let me = this
         try {
@@ -323,7 +336,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         }
     },
 
-    // 查詢
+    // function: 查詢
     doSearch: async function () {
         const me = this;
         try {
@@ -370,7 +383,7 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
         }
     },
 
-    // button: 清除查詢
+    // function: 清除查詢
     cleanSearch: function () {
         let me = this
         try {
@@ -386,11 +399,11 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     },
 
     /*************** 選擇 ***************/
-    // 選擇使用者
+    // function: 選擇使用者
     onSelectUser: function () {
         const me = this;
         try {
-            if(me.getConfig('action')!='add'){
+            if(me.getConfig('action')!='add' && me.getConfig('action')!='edit'){
                 const record = me.viewUserlist.getSelection()[0];
                 const code = record ? record.get('code') : '';
                 me.loadData(code);
@@ -459,11 +472,11 @@ Ext.define('antnex.subsystem.sample.41041118.user.userController',{
     },
 
     /************* 提示訊息 *************/
-    // function:提示訊息
+    // function: 提示訊息
     showMessage: function (message) {
         Ext.Msg.alert(`${this.getConfig('name')} `,message);
     },
-    // function:錯誤訊息
+    // function: 錯誤訊息
     showError: function (path, e) {
         this.showMessage(e);
         return false;
