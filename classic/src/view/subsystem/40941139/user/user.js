@@ -378,8 +378,8 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 xtype: 'gridpanel',
                 title: '使用者清單',
                 reference: 'grid-40941139-user-userlist',
-                bufferedRenderer: false,
-                runInViewport: false,
+                // bufferedRenderer: false,
+                // runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
