@@ -13,32 +13,32 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
         let me = this;
         try {
             // 功能列
-            me.funcbarSearch = me.lookupReference('btn-antStanley-user2-funcbar-search');
-            me.funcbarAdd = me.lookupReference('btn-antStanley-user2-funcbar-add');
-            me.funcbarEdit = me.lookupReference('btn-antStanley-user2-funcbar-edit');
-            me.funcbarSave = me.lookupReference('btn-antStanley-user2-funcbar-save');
-            me.funcbarCancel = me.lookupReference('btn-antStanley-user2-funcbar-cancel');
-            me.funcbarDelete = me.lookupReference('btn-antStanley-user2-funcbar-delete');
+            me.funcbarSearch = me.lookupReference('btn-41041116-funcbar-search');
+            me.funcbarAdd = me.lookupReference('btn-41041116-funcbar-add');
+            me.funcbarEdit = me.lookupReference('btn-41041116-funcbar-edit');
+            me.funcbarSave = me.lookupReference('btn-41041116-funcbar-save');
+            me.funcbarCancel = me.lookupReference('btn-41041116-funcbar-cancel');
+            me.funcbarDelete = me.lookupReference('btn-41041116-funcbar-delete');
 
             // 查詢列
-            me.searchBar = me.lookupReference('panel-antStanley-user2-searchbar');
-            me.searchCode = me.lookupReference('txt-antStanley-user2-searchbar-code');
-            me.searchName = me.lookupReference('txt-antStanley-user2-searchbar-name');
-            me.searchMail = me.lookupReference('txt-antStanley-user2-searchbar-mail');
-            me.searchStatus = me.lookupReference('cmbx-antStanley-user2-searchbar-status');
+            me.searchBar = me.lookupReference('panel-41041116-searchbar');
+            me.searchCode = me.lookupReference('txt-41041116-searchbar-code');
+            me.searchName = me.lookupReference('txt-41041116-searchbar-name');
+            me.searchMail = me.lookupReference('txt-41041116-searchbar-mail');
+            me.searchStatus = me.lookupReference('cmbx-41041116-searchbar-status');
 
             // 主畫面
-            me.viewUserlist = me.lookupReference('grid-antStanley-user2-userlist');
-            me.viewUserManage = me.lookupReference('panel-antStanley-user2-manage');
+            me.viewUserlist = me.lookupReference('grid-41041116-userlist');
+            me.viewUserManage = me.lookupReference('panel-41041116-manage');
 
             // 資料維護
-            me.viewIds = me.lookupReference('num-antStanley-user2-ids');
-            me.viewCode = me.lookupReference('txt-antStanley-user2-code');
-            me.viewName = me.lookupReference('txt-antStanley-user2-name');
-            me.viewMail = me.lookupReference('txt-antStanley-user2-mail');
-            me.viewPassword = me.lookupReference('txt-antStanley-user2-password');
-            me.viewStatus = me.lookupReference('cmbx-antStanley-user2-status');
-            me.viewMemo = me.lookupReference('txt-antStanley-user2-memo');
+            me.viewIds = me.lookupReference('num-41041116-ids');
+            me.viewCode = me.lookupReference('txt-41041116-code');
+            me.viewName = me.lookupReference('txt-41041116-name');
+            me.viewMail = me.lookupReference('txt-41041116-mail');
+            me.viewPassword = me.lookupReference('txt-41041116-password');
+            me.viewStatus = me.lookupReference('cmbx-41041116-status');
+            me.viewMemo = me.lookupReference('txt-41041116-memo');
             
         } catch (e) {
             me.showError('user2Controller/ initObj error:', e);
@@ -116,14 +116,13 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
 
             // 停用所有物件
             me.disabledAll();
-
             // 依狀態啟用物件
             switch (me.getConfig('action')) {
                 case 'view':
                     // 功能列
                     me.funcbarSearch.setEnable(true);
                     me.funcbarAdd.setEnable(true);
-                    me.funcbarDelete.setEnable(false);
+                    // me.funcbarDelete.setEnable(true);
                     // me.funcbarEdit.setEnable(true);
                     // me.funcbarSave.setEnable(true);
                     // me.funcbarCancel.setEnable(true);
@@ -150,6 +149,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
                     // me.funcbarEdit.setEnable(true);
                     me.funcbarSave.setEnable(true);
                     me.funcbarCancel.setEnable(true);
+                    // me.funcbarDelete.setEnable(true);
 
                     // 查詢列
                     // me.searchBar.setHidden(false);
@@ -173,6 +173,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
                     // me.funcbarEdit.setEnable(true);
                     me.funcbarSave.setEnable(true);
                     me.funcbarCancel.setEnable(true);
+                    // me.funcbarDelete.setEnable(true);
 
                     // 查詢列
                     // me.searchBar.setHidden(false);
@@ -257,6 +258,20 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
             }
         } catch (e) {
             me.showError('user2Controller/ funcbar_Add error:', e);
+        }
+    },
+    // button: 刪除
+    funcbar_delete: function () {
+        const me = this;
+        try {
+            const record = me.viewUserlist.getSelection()[0];
+            if (record) {
+                me.changeStatus('delete');
+            } else {
+                throw `請先選擇要修改的資料`;
+            }
+        } catch (e) {
+            me.showError('user2Controller/ funcbar_delete error:', e);
         }
     },
     // button: 儲存
@@ -437,7 +452,7 @@ Ext.define('antnex.subsystem.41041116.user.userController', {
 
                 // 載入對應欄位
                 me.funcbarEdit.setDisabled(editable == false);
-
+                me.funcbarDelete.setDisabled(editable == false);
                 me.viewIds.setValue(ids);
                 me.viewCode.setValue(code);
                 me.viewName.setValue(name);
