@@ -254,9 +254,9 @@ Ext.define('antnex.subsystem.41041127.user.user', {
                         type: 'vbox',
                         align: 'stretch',
                     },
-                    flex: 2,
+                    
                     defaults: {
-                        margin: '0 5 5 5', // '上 右 下 左'
+                        margin: '0 1 1 1', // '上 右 下 左'
                     },
                     border: true,
                     items: [
@@ -275,29 +275,34 @@ Ext.define('antnex.subsystem.41041127.user.user', {
                                 fieldLabel: 'ids',
                                 reference: 'num-page-41041127-user-ids',
                                 labelWidth: 37,
+                                width:300,
                                 cls: 'fieldNotInput',
                             }, {
                                 xtype: 'textfield',
                                 fieldLabel: '學號',
                                 reference: 'txt-page-41041127-user-code',
                                 labelWidth: 37,
+                                width:300,
                                 cls: 'fieldRequired',
                             }, {
                                 xtype: 'textfield',
                                 fieldLabel: '姓名',
                                 reference: 'txt-page-41041127-user-name',
                                 labelWidth: 37,
+                                width:300,
                                 cls: 'fieldRequired',
                             }, {
                                 xtype: 'textfield',
                                 fieldLabel: '信箱',
                                 reference: 'txt-page-41041127-user-mail',
                                 labelWidth: 37,
+                                width:300,
                             }, {
                                 xtype: 'textfield',
                                 fieldLabel: '密碼',
                                 reference: 'txt-page-41041127-user-password',
                                 labelWidth: 37,
+                                width:300,
                                 inputType: 'password',
                                 cls: 'fieldRequired',
                             }, {
@@ -305,6 +310,7 @@ Ext.define('antnex.subsystem.41041127.user.user', {
                                 fieldLabel: '狀態',
                                 reference: 'cmbx-page-41041127-user-status',
                                 labelWidth: 37,
+                                width:300,
                                 cls: 'fieldRequired',
 
                                 valueField: 'value',
@@ -319,6 +325,7 @@ Ext.define('antnex.subsystem.41041127.user.user', {
                                 fieldLabel: '備註',
                                 reference: 'txt-page-41041127-user-memo',
                                 labelWidth: 37,
+                                width:300,
                             }]
                         },
                     ]
