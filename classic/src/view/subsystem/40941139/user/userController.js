@@ -314,7 +314,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
         }
     },
     // button: 清除
-    cleanSearch: function () {
+    cleanSearch:function () {
         const me = this
         try {
             me.searchCode.setValue('');
@@ -332,6 +332,8 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             // me.searchCreatetm.setValue('');
             // me.searchModifyusername.setValue('');
             // me.searchModifytm.setValue('');
+
+            me.doSearch();
 
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
