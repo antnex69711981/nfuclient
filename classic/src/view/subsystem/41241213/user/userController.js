@@ -1,5 +1,3 @@
-const { reduce } = require("underscore");
-
 Ext.define('antnex.subsystem.41241213.user.userController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.page-41241213-user',
@@ -160,11 +158,6 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
                 me.viewCode.setValue(record.get('code'));
                 me.viewName.setValue(record.get('name'));
                 me.viewstatus.setValue(record.get('status'));//2023-11-15新增
-                renderer: function (value) {
-                    let store = Ext.create('antnex.store.static.Status');
-                    let record = store.getRange().find(e => e.get('value') == value);
-                    return record ? record.get('text') : `無法辨識: ${value}`;
-                }
             }
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);

@@ -231,6 +231,8 @@ Ext.define('antnex.subsystem.sample.antStanley.user2.user2', {
                             reference: 'cmbx-antStanley-user2-status',
                             labelWidth: 37,
                             store: { type: 'status' },
+                            sensitiveKey: 'value',
+                            sensitiveData: [-1],
                             cls: 'fieldRequired',
                         }, {
                             xtype: 'antTextarea',
