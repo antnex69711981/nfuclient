@@ -42,11 +42,14 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
             me.searchBar = me.lookupReference('panel-page-41241213-user-searchbar');
             me.searchCode = me.lookupReference('txt-page-41241213-user-searchbar-code');
             me.searchName = me.lookupReference('txt-page-41241213-user-searchbar-name');
+            me.searchclass = me.lookupReference('txt-page-41241213-user-searchbar-class');
+            me.searchmail = me.lookupReference('txt-page-41241213-user-searchbar-mail');
+            me.searchpassword = me.lookupReference('txt-page-41241213-user-searchbar-password');
             me.searchStatus = me.lookupReference('cmbx-page-41241213-user-searchbar-status');
+            me.searchex = me.lookupReference('txt-page-41241213-user-searchbar-e');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-page-41241213-user-userlist');
-
             me.viewCode = me.lookupReference('txt-page-41241213-user-code');
             me.viewName = me.lookupReference('txt-page-41241213-user-name');
             me.viewclass = me.lookupReference('txt-page-41241213-user-class');
@@ -101,12 +104,19 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
         try {
             let code = me.searchCode.getValue();
             let name = me.searchName.getValue();
+            //let class = me.searchclass.getValue();
+            let mail = me.searchmail.getValue();
+            let password = me.searchpassword.getValue();
             let status = me.searchStatus.getValue();
+            let ex = me.searchex.getValue();
 
             let uploadJSON = {
                 code: code,
                 name: name,
+                mail: mail,
+                password: password,
                 status: status,
+                ex: ex,
             }
 
             console.log('----------- 查詢條件 -----------');
@@ -141,7 +151,12 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
         try {
             me.searchCode.setValue('');
             me.searchName.setValue('');
+            e.searchclass.getValue('');
+            me.searchmail.getValue('');
+            me.searchpassword.getValue('');            
             me.searchStatus.setValue('');
+            me.searchStatus.getValue('');
+            me.searchex.getValue('');
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }

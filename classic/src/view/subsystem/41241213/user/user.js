@@ -91,7 +91,7 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                 xtype: 'panel',
                 reference: 'panel-page-41241213-user-searchbar',
                 layout: {
-                    type: 'vbox', //vbox,垂直排列;hbox,水平排列(預設由xtype決定)
+                    type: 'hbox', //vbox,垂直排列;hbox,水平排列(預設由xtype決定)
                     align: 'stretch',
                 },
                 defaults: {
@@ -130,10 +130,36 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                                 keypress: 'enterSearch'
                             },
                         }, {
+                            xtype: 'textfield',
+                            fieldLabel: '班級',
+                            reference: 'txt-page-41241213-user-searchbar-class',
+                            emptyText: '請輸入班級',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                        }, {
+                            xtype: 'textfield',
+                            fieldLabel: '信箱',
+                            reference: 'txt-page-41241213-user-searchbar-mail',
+                            emptyText: '請輸入信箱',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                        }, {
+                            xtype: 'textfield',
+                            fieldLabel: '密碼',
+                            reference: 'txt-page-41241213-user-searchbar-password',
+                            emptyText: '請輸入密碼',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                        }, {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-page-41241213-user-searchbar-status',
-
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
@@ -141,7 +167,15 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                             anyMatch: true,
                             editable: true,
                             store: { type: 'status' },
-
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                        }, {
+                            xtype: 'textfield',
+                            fieldLabel: '備註',
+                            reference: 'txt-page-41241213-user-searchbar-ex',
+                            emptyText: '請輸入備註',
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -299,18 +333,6 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                             labelWidth: 37,
                             store: { type: 'status' },
                             valueField: 'value',
-                            /*
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: true,
-                            
-
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },*/
                         },{
                             xtype: 'textfield',
                             fieldLabel: '備註',
