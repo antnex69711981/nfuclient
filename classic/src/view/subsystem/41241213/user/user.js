@@ -91,7 +91,7 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                 xtype: 'panel',
                 reference: 'panel-page-41241213-user-searchbar',
                 layout: {
-                    type: 'hbox', //vbox,垂直排列;hbox,水平排列(預設由xtype決定)
+                    type: 'vbox', //vbox,垂直排列;hbox,水平排列(預設由xtype決定)
                     align: 'stretch',
                 },
                 defaults: {
@@ -206,24 +206,28 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                     xtype: 'rownumberer',
                     align: 'center',
                     width: 50,
-                }, {
+                },{
                     dataIndex: 'code',
                     text: '學號',
                     width: 110,
-                }, {
+                },{
                     dataIndex: 'name',
                     text: '姓名',
                     width: 110,
-                }, {
+                },{
                     dataIndex: 'class',
                     text: '班級',
                     width: 110,
-                }, {
+                },{
                     dataIndex: 'mail',
                     text: '信箱',
                     minWidth: 96,
                     flex: 1,
-                }, {
+                },{
+                    dataIndex: 'password',
+                    text: '密碼',
+                    minWidth: 110,
+                },{
                     dataIndex: 'status',
                     text: '狀態',
                     width: 96,
@@ -232,7 +236,11 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                         let record = store.getRange().find(e => e.get('value') == value);
                         return record ? record.get('text') : `無法辨識: ${value}`;
                     }
-                }]
+                },{
+                    dataIndex: 'ex',
+                    text: '備註',
+                    minWidth: 110,
+                },]
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
@@ -264,15 +272,49 @@ Ext.define('antnex.subsystem.41241213.user.user', {
                             fieldLabel: '學號',
                             reference: 'txt-page-41241213-user-code',
                             labelWidth: 37,
-                        }, {
+                        },{
                             xtype: 'textfield',
                             fieldLabel: '姓名',
                             reference: 'txt-page-41241213-user-name',
                             labelWidth: 37,
                         },{
                             xtype: 'textfield',
+                            fieldLabel: '班級',
+                            reference: 'txt-page-41241213-user-class',
+                            labelWidth: 37,
+                        },{
+                            xtype: 'textfield',
+                            fieldLabel: '信箱',
+                            reference: 'txt-page-41241213-user-mail',
+                            labelWidth: 37,
+                        },{
+                            xtype: 'textfield',
+                            fieldLabel: '密碼',
+                            reference: 'txt-page-41241213-user-password',
+                            labelWidth: 37,
+                        },{
+                            xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'txt-page-41241213-user-status',
+                            labelWidth: 37,
+                            store: { type: 'status' },
+                            valueField: 'value',
+                            /*
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
+                            editable: true,
+                            
+
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },*/
+                        },{
+                            xtype: 'textfield',
+                            fieldLabel: '備註',
+                            reference: 'txt-page-41241213-user-ex',
                             labelWidth: 37,
                         }]
                     }
