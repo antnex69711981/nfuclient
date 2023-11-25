@@ -13,7 +13,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
   },
   listeners: {
     afterrender: "onInitComponent",
+    activate: "pageChange",
   },
+
   dockedItems: [
     {
       xtype: "panel",
@@ -21,6 +23,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
         type: "vbox",
         align: "stretch",
       },
+
       dock: "top",
       margin: 0,
       items: [
@@ -30,51 +33,74 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           layout: {
             type: "hbox",
             align: "stretch",
+            pack: "center",
+          },
+          style: {
+            background: "#C3E6E5",
           },
           scrollable: true,
-          border: false,
           padding: "0 0 0 5",
           items: [
             {
-              xtype: "button",
               text: "查詢列",
               reference: "func-btn-wei",
               cls: "funcbarBtn-black",
               iconCls: "fa fa-search",
-              margin: 3,
+              margin: 5,
+              width: 80,
+              height: 50,
+              style: {
+                border: "none",
+              },
               handler: "onClick",
             },
-            { xtype: "tbseparator", margin: "8 1" },
+
             {
-              xtype: "button",
               text: "新增",
-              cls: "funcbarBtn-black",
+              reference: "func-add-btn-wei",
               iconCls: "fa fa-plus",
-              margin: 3,
+              cls: "funcbarBtn-black",
+              margin: 5,
+              width: 80,
+              height: 50,
+              style: "border: none",
+              handler: "funcbar_add",
             },
-            { xtype: "tbseparator", margin: "8 1" },
+
             {
-              xtype: "button",
               text: "修改",
-              cls: "funcbarBtn-black",
+              reference: "func-edit-btn-wei",
               iconCls: "fa fa-edit",
-              margin: 3,
-            },
-            { xtype: "tbseparator", margin: "8 1" },
-            {
-              xtype: "button",
-              text: "儲存",
               cls: "funcbarBtn-black",
-              iconCls: "fa fa-save",
-              margin: 3,
+              margin: 5,
+              width: 80,
+              height: 50,
+              style: "border: none",
+              handler: "funcbar_edit",
             },
-            { xtype: "tbseparator", margin: "8 1" },
+
             {
-              xtype: "button",
+              text: "儲存",
+              reference: "func-save-btn-wei",
+              iconCls: "fa fa-save",
+              cls: "funcbarBtn-black",
+              margin: 5,
+              width: 80,
+              height: 50,
+              style: "border: none",
+              handler: "funcbar_save",
+            },
+
+            {
               text: "取消",
-              cls: "Btn-black",
+              reference: "func-cancel-btn-wei",
               iconCls: "fa fa-times",
-              margin: 3,
+              cls: "funcbarBtn-black",
+              margin: 5,
+              width: 80,
+              height: 50,
+              style: "border: none ",
+              handler: "funcbar_cancel",
             },
           ],
         },
@@ -85,7 +111,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           layout: {
             type: "hbox",
             align: "stretch",
+            pack: "center",
           },
+
           defaults: {
             margin: "0 0 5 5",
           },
@@ -103,6 +131,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                 labelWidth: 37,
                 margin: "0 0 8 5",
               },
+
               items: [
                 {
                   xtype: "textfield",
@@ -111,6 +140,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                   enableKeyEvents: true,
                   margin: "0 0 8 0",
                   reference: "txt-search-code-wei",
+                  listeners: {
+                    keypress: "enterSearch",
+                  },
                 },
                 {
                   xtype: "textfield",
@@ -118,6 +150,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                   emptyText: "請輸入姓名",
                   enableKeyEvents: true,
                   reference: "txt-search-name-wei",
+                  listeners: {
+                    keypress: "enterSearch",
+                  },
                 },
                 {
                   xtype: "combobox",
@@ -133,6 +168,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                   store: {},
 
                   enableKeyEvents: true,
+                  listeners: {
+                    keypress: "enterSearch",
+                  },
                 },
               ],
             },
@@ -181,7 +219,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           // userlist
           xtype: "gridpanel",
           title: "使用者清單",
-          reference:'grid-userlist-wei',
+          reference: "grid-userlist-wei",
           viewConfig: {
             enableTextSelection: true,
           },
@@ -189,6 +227,9 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           store: {}, // data
           minWidth: 200,
           flex: 1,
+          listeners: {
+            selectionchange: "onSelectUser",
+          },
           columns: [
             {
               xtype: "rownumberer",
@@ -230,6 +271,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
           // data maintenance
           xtype: "panel",
           title: "資料維護",
+          reference: "panel-dataMaintain-wei",
           layout: {
             type: "vbox",
             align: "stretch",
@@ -255,29 +297,34 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                 {
                   xtype: "numberfield",
                   fieldLabel: "ids",
+                  reference: "num-wei-user-ids",
                   labelWidth: 37,
                   cls: "fieldNotInput",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "學號",
+                  reference: "txt-wei-user-code",
                   labelWidth: 37,
                   cls: "fieldRequired",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "姓名",
+                  reference: "txt-wei-user-name",
                   labelWidth: 37,
                   cls: "fieldRequired",
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "信箱",
+                  reference: "txt-wei-user-mail",
                   labelWidth: 37,
                 },
                 {
                   xtype: "textfield",
                   fieldLabel: "密碼",
+                  reference: "txt-wei-user-password",
                   labelWidth: 37,
                   inputType: "password",
                   cls: "fieldRequired",
@@ -285,6 +332,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                 {
                   xtype: "combobox",
                   fieldLabel: "狀態",
+                  reference: "cmb-wei-user-status",
                   labelWidth: 37,
                   cls: "fieldRequired",
 
@@ -299,6 +347,7 @@ Ext.define("antnex.subsystem.41141153.user.user", {
                 {
                   xtype: "textarea",
                   fieldLabel: "備註",
+                  reference: "txt-wei-user-memo",
                   labelWidth: 37,
                 },
               ],
