@@ -354,10 +354,9 @@ Ext.define('antnex.subsystem.40941137.user.user', {
                             disabled: true,
                             labelWidth: 74,
                         },{
-                            xtype: 'datefield',
+                            xtype: 'textfield',
                             fieldLabel: '建立時間',
                             reference: 'txt-40941137-user-createtm',
-                            format:'Y/m/d',
                             disabled: true,
                             labelWidth: 74,
                         },{
@@ -366,10 +365,9 @@ Ext.define('antnex.subsystem.40941137.user.user', {
                             reference: 'txt-40941137-user-modifyusercode',
                             labelWidth: 74,
                         },{
-                            xtype: 'datefield',
+                            xtype: 'textfield',
                             fieldLabel: '異動時間',
                             reference: 'txt-40941137-user-modifytm',
-                            format:'Y/m/d',
                             labelWidth: 74,
                         },{
                             layout: {

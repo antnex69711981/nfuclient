@@ -241,7 +241,6 @@ Ext.define('antnex.subsystem.40941137.user.userController', {
     funcbar_add: function () {
         const me = this;
         try {
-            console.log('hi');
             
             // 取消選取
             me.viewUserlist.setSelection(false);
@@ -374,12 +373,16 @@ Ext.define('antnex.subsystem.40941137.user.userController', {
         try {
             const code = me.searchCode.getValue();
             const name = me.searchName.getValue();
+            const mail = me.searchMail.getValue();
+            const memo = me.searchMemo.getValue();
             const status = me.searchStatus.getValue();
 
             const uploadJSON = {
                 txcode: 'BASIC_USER_LIST_FILTER',
                 code: code,
                 name: name,
+                mail: mail,
+                memo: memo,
                 status: status,
             };
 
@@ -414,6 +417,8 @@ Ext.define('antnex.subsystem.40941137.user.userController', {
         try {
             me.searchCode.setValue('');
             me.searchName.setValue('');
+            me.searchMail.setValue('');
+            me.searchMemo.setValue('');
             me.searchStatus.setValue(-1);
             me.doSearch();
         } catch (e) {
@@ -451,6 +456,10 @@ Ext.define('antnex.subsystem.40941137.user.userController', {
                 const password = json.password ? json.password : '';
                 const status = json.status ? json.status : '';
                 const memo = json.memo ? json.memo : '';
+                const createusercode = json.createusercode ? json.createusercode : '';
+                const createtm = json.createtm ? json.createtm : '';
+                const modifyusercode = json.modifyusercode ? json.modifyusercode : '';
+                const modifytm = json.modifytm ? json.modifytm : '';
 
                 const editable = ids > 0;
 
@@ -464,6 +473,10 @@ Ext.define('antnex.subsystem.40941137.user.userController', {
                 me.viewPassword.setValue(password);
                 me.viewStatus.setValue(status);
                 me.viewMemo.setValue(memo);
+                me.viewCreateusercode.setValue(createusercode);
+                me.viewCreatetm.setValue(createtm);
+                me.viewModifyusercode.setValue(modifyusercode);
+                me.viewModifytm.setValue(modifytm);
             }
 
             // 先清除所有資料
