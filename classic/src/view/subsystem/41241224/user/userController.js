@@ -153,6 +153,70 @@ Ext.define('antnex.subsystem.41241224.user.userController',{
             me.showError('userController/ funcbar_add error:', e);
         }
     },
+    funcbar_save: async function(){
+        const me =this;
+        try{
+            let checkSaveFormat = async function(){
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewCode.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewName.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewPassword.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewStatus.getFieldLabel()}`;
+                }
+            }
+            await checkSaveFormat();
+            Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+                if (btn == 'yes') {
+                    const uploadJSON = {
+                        txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
+                        ids: me.viewIds.getValue(),
+                        code: me.viewCode.getValue(),
+                        name: me.viewName.getValue(),
+                        mail: me.viewMail.getValue(),
+                        password: me.viewPassword.getValue(),
+                        status: me.viewStatus.getValue(),
+                        memo: me.viewMemo.getValue(),
+                    }
+
+                    me.viewUserManage.mask(CONST_LOADING_HINT);
+                    const json = await antnex.ProxyService.send(uploadJSON);
+                    me.viewUserManage.unmask();
+                    switch (json.status) {
+                        case CONST_STATUS_OK:
+                            const code = json.message.code;
+                            me.changeStatus('view');
+                            me.setConfig('requireKeylist', [code]);
+                            me.doSearch();
+                            break;
+                        default:
+                            me.showMessage(json.statusText);
+                    }
+                }
+            });
+        }
+        catch(e){
+            me.showError('userController/ funcbar_Add error:', e);
+        }
+    },
+    funcbar_cancel: function () {
+        const me = this;
+        try {
+            Ext.Msg.confirm('提醒', '是否取消？', function (btn) {
+                if (btn == 'yes') {
+                    me.changeStatus('view');
+                    me.onSelectUser();
+                }
+            });
+        } catch (e) {
+            me.showError('userController/ funcbar_Add error:', e);
+        }
+    },
     doSearch:async function(){
         const me = this;
         try{

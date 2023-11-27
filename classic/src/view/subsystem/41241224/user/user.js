@@ -15,30 +15,36 @@ Ext.define('antnex.subsystem.41241224.user.user', {
             items: [{
                 xtype: 'button',
                 text: '查詢列',
+                margin:3,
                 reference:'btn-user-user-funcbar-search',
                 cls: 'funcbarBtn-black',
                 handler:'funcbar_search',
             }, {
                 xtype: 'button',
                 text: '新增',
+                margin:3,
                 reference:'btn-user-user-funcbar-add',
                 cls: 'funcbarBtn-black',
                 handler:'funcbar_add',
             }, {
                 xtype: 'button',
                 text: '修改',
+                margin:3,
                 reference:'btn-user-user-funcbar-edit',
                 cls: 'funcbarBtn-black',
             }, {
                 xtype: 'button',
                 text: '儲存',
+                margin:3,
                 reference:'btn-user-user-funcbar-save',
                 cls: 'funcbarBtn-black',
+                handler: 'funcbar_save',
             }, {
                 xtype: 'button',
                 text: '取消',
                 reference:'btn-user-user-funcbar-cancel',
                 cls: 'funcbarBtn-black',
+                margin:3,
                 handler:'funcbar_cancel'
             }]
         }]
@@ -106,10 +112,12 @@ Ext.define('antnex.subsystem.41241224.user.user', {
             width: 80,
             height: 40
         }]
-    }, {
+    },{
+        scrollable: true,
+    } ,
+    {
         xtype: 'panel',
         layout: 'hbox',
-        scrollable: true,
         style: {
             overflow: 'auto' 
         },
@@ -166,7 +174,8 @@ Ext.define('antnex.subsystem.41241224.user.user', {
         }, {
             xtype: 'splitter',
             width: 10,
-        }, {
+        },
+        {
             xtype: 'panel',
             title: '資料維護',
             border:true,
