@@ -139,16 +139,18 @@ Ext.define('antnex.subsystem.41141132.user.user', {
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '備註',
-                            reference: 'txt-41141132-user-searchbar-memo',
-                            emptyText: '請輸入備註',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
+                        },
+                        //  {
+                        //     xtype: 'textfield',
+                        //     fieldLabel: '備註',
+                        //     reference: 'txt-41141132-user-searchbar-memo',
+                        //     emptyText: '請輸入備註',
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }, 
+                        {
                             xtype: 'combobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-41141132-user-searchbar-status',
@@ -165,43 +167,48 @@ Ext.define('antnex.subsystem.41141132.user.user', {
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '建立人員',
-                            reference: 'txt-41141132-user-searchbar-createusercode',
-                            emptyText: '請輸入建立人員',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '建立時間',
-                            reference: 'txt-41141132-user-searchbar-createtm',
-                            emptyText: '請輸入建立時間',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '異動人員',
-                            reference: 'txt-41141132-user-searchbar-modifyusercode',
-                            emptyText: '請輸入異動人員',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }, {
-                            xtype: 'textfield',
-                            fieldLabel: '異動時間',
-                            reference: 'txt-41141132-user-searchbar-modifytm',
-                            emptyText: '請輸入異動時間',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }]
+                        },
+                        //  {
+                        //     xtype: 'textfield',
+                        //     fieldLabel: '建立人員',
+                        //     reference: 'txt-41141132-user-searchbar-createusercode',
+                        //     emptyText: '請輸入建立人員',
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }, 
+                        // {
+                        //     xtype: 'textfield',
+                        //     fieldLabel: '建立時間',
+                        //     reference: 'txt-41141132-user-searchbar-createtm',
+                        //     emptyText: '請輸入建立時間',
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }, 
+                        // {
+                        //     xtype: 'textfield',
+                        //     fieldLabel: '異動人員',
+                        //     reference: 'txt-41141132-user-searchbar-modifyusercode',
+                        //     emptyText: '請輸入異動人員',
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }, 
+                        // {
+                        //     xtype: 'textfield',
+                        //     fieldLabel: '異動時間',
+                        //     reference: 'txt-41141132-user-searchbar-modifytm',
+                        //     emptyText: '請輸入異動時間',
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }
+                    ]
                     },
                     {
                         xtype: 'button',
