@@ -47,44 +47,48 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         margin: 3,
                         handler: 'funcbar_search',
                     },
-                    { xtype: 'tbseparator', margin: '8 1' },
+                    // { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
                         text: '新增',
                         reference: 'btn-40941139-user-funcbar-add',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-plus',
+                        hidden:true,
                         margin: 3,
                         handler: 'funcbar_add',
                     },
                     
-                    { xtype: 'tbseparator', margin: '8 1' },
+                    // { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
                         text: '修改',
                         reference: 'btn-40941139-user-funcbar-edit',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-edit',
+                        hidden:true,
                         margin: 3,
                         handler: 'funcbar_edit',
                     },
-                    { xtype: 'tbseparator', margin: '8 1' },
+                    // { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
                         text: '儲存',
                         reference: 'btn-40941139-user-funcbar-save',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-save',
+                        hidden:true,
                         margin: 3,
                         handler: 'funcbar_save',
                     },
-                    { xtype: 'tbseparator', margin: '8 1' },
+                    // { xtype: 'tbseparator', margin: '8 1' },
                     {
                         xtype: 'button',
                         text: '取消',
                         reference: 'btn-40941139-user-funcbar-cancel',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-times',
+                        hidden:true,
                         margin: 3,
                         handler: 'funcbar_cancel',
                     },
@@ -166,176 +170,6 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                             },
 
                         }]
-                        
-                        // items: [
-                        //     {
-                        //         defaults: {
-                        //             labelWidth: 37,
-                        //             margin: '0 0 8 5',
-                        //             width: 155,
-                        //         },
-                        //         layout: {
-                        //             type: 'hbox',
-                        //         },
-                        //         items: [{
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '學號',
-                        //             reference: 'txt-40941139-user-searchbar-code',
-                        //             emptyText: '請輸入學號',
-                        //             //width: 150,
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //             //margin: '0 0 8 0',
-                        //         }, {
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '姓名',
-                        //             reference: 'txt-40941139-user-searchbar-name',
-                        //             emptyText: '請輸入姓名',
-                        //             //width: 150,
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, {
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '信箱',
-                        //             reference: 'txt-40941139-user-searchbar-mail',
-                        //             emptyText: '請輸入信箱',
-                        //             width: 250,
-                        //             //vtype: 'email',  // 要求為有效的信箱
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, {
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '手機',
-                        //             reference: 'txt-40941139-user-searchbar-phone',
-                        //             emptyText: '請輸入手機',
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, {
-                        //             xtype: 'datefield',
-                        //             fieldLabel: '生日',
-                        //             reference: 'date-40941139-user-searchbar-birth',
-                        //             format: 'Y/m/d',
-                        //             //width: 150,
-
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, {
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '備註',
-                        //             reference: 'txt-40941139-user-searchbar-memo',
-                        //             emptyText: '請輸入備註',
-                        //             //width: 150,
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, {
-                        //             xtype: 'combobox',
-                        //             fieldLabel: '狀態',
-                        //             reference: 'cmbx-40941139-user-searchbar-status',
-                        //             width: 120,
-
-                        //             valueField: 'value', //store裡的value
-                        //             displayField: 'text', //顯示store裡的text
-                        //             queryMode: 'local', //不懂
-                        //             forceSelection: true, //強制選擇，只能選清單內的東西
-                        //             anyMatch: true, //不懂
-                        //             editable: false, //使用者是否能輸入
-                        //             store: { type: 'status' },
-
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //         }, ]
-                        //     }, {
-                        //         defaults: {
-                        //             labelWidth: 65,
-                        //             margin: '0 0 8 5',
-                        //             width: 200,
-                        //         },
-                        //         layout: {
-                        //             type: 'hbox',
-                        //         },
-                        //         items: [{
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '建立人員',
-                        //             reference: 'txt-40941139-user-searchbar-createusercode',
-                        //             emptyText: '請輸入建立人員',
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //             //disabled: true,
-                        //             //labelWidth: 65,
-                        //         }, {
-                        //             xtype: 'datefield',
-                        //             fieldLabel: '建立時間',
-                        //             reference: 'date-40941139-user-searchbar-createtm',
-                        //             format: 'Y/m/d',
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //             //disabled: true,
-                        //             //labelWidth: 65,
-                        //         }, {
-                        //             xtype: 'textfield',
-                        //             fieldLabel: '異動人員',
-                        //             reference: 'txt-40941139-user-searchbar-modifyusercode',
-                        //             emptyText: '請輸入異動人員',
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //             //disabled: true,
-                        //             //labelWidth: 65,
-                        //         }, {
-                        //             xtype: 'datefield',
-                        //             fieldLabel: '異動時間',
-                        //             reference: 'date-40941139-user-searchbar-modifytm',
-                        //             format: 'Y/m/d',
-                        //             enableKeyEvents: true,
-                        //             listeners: {
-                        //                 keypress: 'enterSearch'
-                        //             },
-                        //             //disabled: true,
-                        //             //labelWidth: 65,
-                        //         },
-                        //         {
-                        //             xtype: 'button',
-                        //             text: '查詢',
-                        //             scale: 'small',
-                        //             cls: 'antBtn-blue',
-                        //             iconCls: 'fa fa-search',
-                        //             width: 60,
-                        //             border: false,
-                        //             handler: 'doSearch',
-                        //             margin: '0 0 5 20', // 上 右 下 左
-                        //         },
-                        //         {
-                        //             xtype: 'button',
-                        //             text: '清除',
-                        //             scale: 'small',
-                        //             cls: 'antBtn-red',
-                        //             iconCls: 'fa fa-times',
-                        //             width: 60,
-                        //             border: false,
-                        //             handler: 'cleanSearch',
-                        //             margin: '0 0 5 5',
-                        //         }]
-                        //     }
-                        // ]
                     },{
                         xtype: 'button',
                         text: '查詢',
@@ -405,22 +239,13 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 }, {
                     dataIndex: 'mail',
                     text: '信箱',
-                    minWidth: 190,
-                    flex: 1,
-                }, 
-                // {
-                //     dataIndex: 'phone',
-                //     text: '手機',
-                //     Width: 110,
-                // }, {
-                //     dataIndex: 'birth',
-                //     text: '生日',
-                //     Width: 110,
-                // }, 
-                {
+                    minWidth: 205,
+                    // flex: 1,
+                }, {
                     dataIndex: 'memo',
                     text: '備註',
-                    Width: 110,
+                    minWidth: 150,
+                    
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
@@ -433,19 +258,19 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                 }, {
                     dataIndex: 'createusername',
                     text: '建立人員',
-                    Width: 110,
+                    width: 110,
                 }, {
                     dataIndex: 'createtm',
                     text: '建立時間',
-                    Width: 110,
+                    width: 140,
                 }, {
                     dataIndex: 'modifyusername',
                     text: '異動人員',
-                    Width: 110,
+                    width: 110,
                 }, {
                     dataIndex: 'modifytm',
                     text: '異動時間',
-                    Width: 110,
+                    width: 140,
                 }]
             },
             { xtype: 'splitter', margin: -1.5 },
@@ -457,6 +282,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                     type: 'vbox',
                     align: 'stretch',
                 },
+                minWidth:300,
                 flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
@@ -481,7 +307,7 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                             fieldLabel: 'ids',
                             reference: 'num-40941139-user-ids',
                             labelWidth: 37,
-                            cls: 'fieldNotInput',
+                            // cls: 'fieldNotInput',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '學號',
@@ -527,16 +353,16 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                             //disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
-                            cls: 'fieldRequired',
+                            // cls: 'fieldRequired',
                         }, {
-                            xtype: 'datefield',
+                            xtype: 'textfield',
                             fieldLabel: '建立時間',
-                            reference: 'date-40941139-user-createtm',
-                            format: 'Y-m-d',
+                            reference: 'text-40941139-user-createtm',
+                            // format: 'Y-m-d',
                             //disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
-                            cls: 'fieldRequired',
+                            // cls: 'fieldRequired',
                         }, {
                             xtype: 'textfield',
                             fieldLabel: '異動人員',
@@ -544,37 +370,22 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                             //disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
-                            cls: 'fieldRequired',
+                            // cls: 'fieldRequired',
                         }, {
-                            xtype: 'datefield',
+                            xtype: 'textfield',
                             fieldLabel: '異動時間',
-                            reference: 'date-40941139-user-modifytm',
-                            format: 'Y-m-d',
+                            reference: 'text-40941139-user-modifytm',
+                            // format: 'Y-m-d',
                             //disabled: true,
                             // labelAlign: 'top',
                             labelWidth: 65,
-                            cls: 'fieldRequired',
+                            // cls: 'fieldRequired',
                         }, {
                             xtype: 'textarea',
                             fieldLabel: '備註',
                             reference: 'txt-40941139-user-memo',
                             // labelWidth: 37,
                         }, 
-
-                        // old version
-                        // {
-                        //     xtype: 'textfield',
-                        //     fieldLabel: '手機',
-                        //     reference: 'txt-40941139-user-phone',
-                        //     // labelWidth: 37,
-                        // }, {
-                        //     xtype: 'datefield',
-                        //     fieldLabel: '生日',
-                        //     reference: 'date-40941139-user-birth',
-                        //     format: 'Y-m-d',
-                        //     //width: 150,
-                        // }, 
-
                         ]
                     }, {
                         layout: {
@@ -587,29 +398,58 @@ Ext.define('antnex.subsystem.40941139.user.user', {
                         items: [{
                                 xtype: 'button',
                                 text: '儲存',
+                                reference: 'btn-40941139-user-save',
                                 scale: 'small',
                                 cls: 'antBtn-blue',
                                 iconCls: 'fa fa-save',
+                                // hidden:true,
                                 //width: 60,
                                 flex: 1,
                                 border: false,
                                 handler: 'doSave',
                                 margin: '10 0 5 5',
-                        }, {
+                            }, {
+                                xtype: 'button',
+                                text: '修改',
+                                reference: 'btn-40941139-user-edit',
+                                scale: 'small',
+                                cls: 'antBtn-yellow',
+                                iconCls: 'fa fa-edit',
+                                // hidden:true,
+                                //width: 60,
+                                flex: 1,
+                                border: false,
+                                handler: 'doEdit',
+                                margin: '10 0 5 5',
+                            }, {
                                 xtype: 'button',
                                 text: '取消',
+                                reference: 'btn-40941139-user-cancel',
                                 scale: 'small',
                                 cls: 'antBtn-red',
-                                iconCls: 'fa fa-times',
+                                // iconCls: 'fa fa-times',
+                                // hidden:true,
                                 //width: 60,
                                 flex: 1,
                                 border: false,
                                 handler: 'doCancel',
                                 margin: '10 0 5 5',
-                        }]
-                        
+                            }, {
+                                xtype: 'button',
+                                text: '新增',
+                                reference: 'btn-40941139-user-add',
+                                scale: 'small',
+                                cls: 'antBtn-green',
+                                iconCls: 'fa fa-plus',
+                                // hidden:true,
+                                //width: 60,
+                                flex: 1,
+                                border: false,
+                                handler: 'doAdd',
+                                margin: '10 0 5 5',
+                            }
+                        ]
                     }
-                    
                 ]
             },            
         ]

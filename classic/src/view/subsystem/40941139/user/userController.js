@@ -76,9 +76,13 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             me.viewMemo = me.lookupReference('txt-40941139-user-memo');
             me.viewStatus = me.lookupReference('cmbx-40941139-user-status');
             me.viewCreateusername = me.lookupReference('txt-40941139-user-createusername');
-            me.viewCreatetm = me.lookupReference('date-40941139-user-createtm');
+            me.viewCreatetm = me.lookupReference('text-40941139-user-createtm');
             me.viewModifyusername = me.lookupReference('txt-40941139-user-modifyusername');
-            me.viewModifytm = me.lookupReference('date-40941139-user-modifytm');
+            me.viewModifytm = me.lookupReference('text-40941139-user-modifytm');
+            me.viewAdd = me.lookupReference('btn-40941139-user-add');
+            me.viewEdit = me.lookupReference('btn-40941139-user-edit');
+            me.viewSave = me.lookupReference('btn-40941139-user-save');
+            me.viewCancel  = me.lookupReference('btn-40941139-user-cancel');
 
             /* 資料新增
             me.addCode = me.lookupReference('txt-40941139-user-add-code');
@@ -157,9 +161,17 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             me.viewStatus.setReadOnly(true);
             me.viewMemo.setReadOnly(true);
             me.viewCreateusername.setReadOnly(true);
+            me.viewCreateusername.setHidden(true);
             me.viewCreatetm.setReadOnly(true);
+            me.viewCreatetm.setHidden(true);
             me.viewModifyusername.setReadOnly(true);
+            me.viewModifyusername.setHidden(true);
             me.viewModifytm.setReadOnly(true);
+            me.viewModifytm.setHidden(true);
+            me.viewAdd.setHidden(true);
+            me.viewEdit.setHidden(true);
+            me.viewSave.setHidden(true);
+            me.viewCancel.setHidden(true);
         } catch (e) {
             me.showError('userController/ disabledAll error:', e);
         }
@@ -198,6 +210,19 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                     // me.viewPassword.setReadOnly(false);
                     // me.viewStatus.setReadOnly(false);
                     // me.viewMemo.setReadOnly(false);
+                    // me.viewCreateusername.setReadOnly(false);
+                    me.viewCreateusername.setHidden(false);
+                    // me.viewCreatetm.setReadOnly(false);
+                    me.viewCreatetm.setHidden(false);
+                    // me.viewModifyusername.setReadOnly(false);
+                    me.viewModifyusername.setHidden(false);
+                    // me.viewModifytm.setReadOnly(false);
+                    me.viewModifytm.setHidden(false);
+
+                    me.viewAdd.setHidden(false);
+                    // me.viewEdit.setHidden(false);
+                    // me.viewSave.setHidden(false);
+                    // me.viewCancel.setHidden(false);
                     break;
                 case 'add':
                     // 功能列
@@ -221,6 +246,19 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                     me.viewPassword.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
+                    // me.viewCreateusername.setReadOnly(false);
+                    // me.viewCreateusername.setHidden(false);
+                    // me.viewCreatetm.setReadOnly(false);
+                    // me.viewCreatetm.setHidden(false);
+                    // me.viewModifyusername.setReadOnly(false);
+                    // me.viewModifyusername.setHidden(false);
+                    // me.viewModifytm.setReadOnly(false);
+                    // me.viewModifytm.setHidden(false);
+
+                    // me.viewAdd.setHidden(false);
+                    // me.viewEdit.setHidden(false);
+                    me.viewSave.setHidden(false);
+                    me.viewCancel.setHidden(false);
                     break;
                 case 'edit':
                     // 功能列
@@ -244,6 +282,15 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
                     me.viewPassword.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
+                    // me.viewCreateusername.setReadOnly(false);
+                    // me.viewCreatetm.setReadOnly(false);
+                    // me.viewModifyusername.setReadOnly(false);
+                    // me.viewModifytm.setReadOnly(false);
+
+                    // me.viewAdd.setHidden(false);
+                    // me.viewEdit.setHidden(false);
+                    me.viewSave.setHidden(false);
+                    me.viewCancel.setHidden(false);
                     break;
                 default:
                     console.log(`無效的狀態: ${me.getConfig('action')}`);
@@ -253,6 +300,129 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             me.showError('userController/ changeStatus error:', e);
         }
     },
+
+
+
+        /************* funcbar *************/
+    // button: 查詢列
+    funcbar_search: function () {
+        const me = this;
+        try {
+            me.searchBar.setHidden(!me.searchBar.hidden);
+        } catch (e) {
+            me.showError('userController/ funcbar_search error:', e);
+        }
+    },
+    // // button: 新增
+    // funcbar_add: function () {
+    //     const me = this;
+    //     try {
+    //         // 取消選取
+    //         me.viewUserlist.setSelection(false);
+
+    //         // 切換模式
+    //         me.changeStatus('add');
+
+    //         // 清除資料
+    //         me.loadData();
+
+    //         // 載入預設值
+    //         me.viewIds.setValue(0);
+    //         me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
+
+    //     } catch (e) {
+    //         me.showError('userController/ funcbar_add error:', e);
+    //     }
+    // },
+    // // button: 修改
+    // funcbar_edit: function () {
+    //     const me = this;
+    //     try {
+    //         const record = me.viewUserlist.getSelection()[0];
+    //         if (record) {
+    //             me.changeStatus('edit');
+    //         } else {
+    //             throw `請先選擇要修改的資料`;
+    //         }
+    //     } catch (e) {
+    //         me.showError('userController/ funcbar_Add error:', e);
+    //     }
+    // },
+    // // button: 儲存
+    // funcbar_save: async function () {
+    //     const me = this;
+    //     try {
+    //         let checkSaveFormat = async function () {
+    //             if (S(me.viewCode.getValue()).isEmpty()) {
+    //                 throw `請輸入${me.viewCode.getFieldLabel()}`;
+    //             }
+
+    //             if (S(me.viewName.getValue()).isEmpty()) {
+    //                 throw `請輸入${me.viewName.getFieldLabel()}`;
+    //             }
+
+    //             if (S(me.viewPassword.getValue()).isEmpty()) {
+    //                 throw `請輸入${me.viewPassword.getFieldLabel()}`;
+    //             }
+
+    //             if (S(me.viewStatus.getValue()).isEmpty()) {
+    //                 throw `請選擇${me.viewStatus.getFieldLabel()}`;
+    //             }
+    //         }
+    //         await checkSaveFormat();
+
+    //         Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+    //             if (btn == 'yes') {
+    //                 const uploadJSON = {
+    //                     txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
+    //                     ids: me.viewIds.getValue(),
+    //                     code: me.viewCode.getValue(),
+    //                     name: me.viewName.getValue(),
+    //                     mail: me.viewMail.getValue(),
+    //                     password: me.viewPassword.getValue(),
+    //                     status: me.viewStatus.getValue(),
+    //                     memo: me.viewMemo.getValue(),
+    //                 }
+
+    //                 me.viewUserManage.mask(CONST_LOADING_HINT);
+    //                 const json = await antnex.ProxyService.send(uploadJSON);
+    //                 me.viewUserManage.unmask();
+    //                 switch (json.status) {
+    //                     case CONST_STATUS_OK:
+    //                         const code = json.message.code;
+
+    //                         // 切換頁面狀態
+    //                         me.changeStatus('view');
+
+    //                         // 紀錄此次修改的資料
+    //                         me.setConfig('requireKeylist', [code]);
+
+    //                         // 重新查詢
+    //                         me.doSearch();
+    //                         break;
+    //                     default:
+    //                         me.showMessage(json.statusText);
+    //                 }
+    //             }
+    //         });
+    //     } catch (e) {
+    //         me.showError('userController/ funcbar_Add error:', e);
+    //     }
+    // },
+    // // button: 取消
+    // funcbar_cancel: function () {
+    //     const me = this;
+    //     try {
+    //         Ext.Msg.confirm('提醒', '是否取消？', function (btn) {
+    //             if (btn == 'yes') {
+    //                 me.changeStatus('view');
+    //                 me.onSelectUser();
+    //             }
+    //         });
+    //     } catch (e) {
+    //         me.showError('userController/ funcbar_Add error:', e);
+    //     }
+    // },
 
 
     /*************** searchbar ***************/
@@ -314,7 +484,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
         }
     },
     // button: 清除
-    cleanSearch:function () {
+    cleanSearch: function () {
         const me = this
         try {
             me.searchCode.setValue('');
@@ -334,7 +504,7 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             // me.searchModifytm.setValue('');
 
             me.doSearch();
-
+            
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -350,7 +520,14 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
             // const record = selection[0];
             const record = me.viewUserlist.getSelection()[0];
             const code = record ? record.get('code') : '';
-            me.loadData(code);           
+            
+            if (me.viewEdit.hidden) {
+                me.viewAdd.setHidden(true);
+                me.viewEdit.setHidden(false);
+                me.viewSave.setHidden(true);
+                me.viewCancel.setHidden(false);
+            }
+            me.loadData(code);
 
         } catch (e) {
             me.showError('userController/ onSelectUser error:', e);
@@ -420,63 +597,136 @@ Ext.define('antnex.subsystem.40941139.user.userController', {
         }
     },
 
-    // button: 取消
-    doCancel: function () {
-        const me = this
-        try {
-            
-        } catch (e) {
-            me.showError('userController/ doCancel error:', e);
-        }
-    },
 
-    /*************** add ***************/
-    // button: 功能列新增
-    funcbar_add: function () {
-        const me = this
 
-        try{
-            me.viewAdd.show();
-            me.viewManage.hide();
-
-        } catch (e) {
-            me.showError('userController/ funcbar_add error:', e);
-        }
-    },
-
+    /*************** viewbtn ***************/
     // button: 新增
     doAdd: function () {
-        const me = this
-        
+        const me = this;
         try {
-            const time = Ext.Date.format(new Date(), 'Y-m-d');
-            const data = [{
-                code: me.addCode.getValue(),
-                name: me.addName.getValue(),
-                mail: me.addMail.getValue(),
-                phone: me.addPhone.getValue(),
-                birth: me.addBirth.getRawValue(),
-                memo: me.addMemo.getValue(),
-                status: me.addStatus.getValue(),
-                createusercode: '陳嘉笙',
-                createtm: time,
-                modifyusercode: '陳嘉笙',
-                modifytm: time,
-            }]
-            me.viewUserlist.getStore().add(data);
+            // 取消選取
+            me.viewUserlist.setSelection(false);
 
-            // 初始化
-            me.addCode.setValue('');
-            me.addName.setValue('');
-            me.addMail.setValue('');
-            me.addPhone.setValue('');
-            me.addBirth.setValue('');
-            me.addMemo.setValue('');
-            me.addStatus.setValue('');
-            me.viewAdd.hide();
+            // 切換模式
+            me.changeStatus('add');
+
+            // 清除資料
+            me.loadData();
+
+            // 載入預設值
+            me.viewIds.setValue(0);
+            me.viewStatus.setValue(1);
 
         } catch (e) {
             me.showError('userController/ doAdd error:', e);
+        }
+    },
+
+    // button: 修改
+    doEdit: function () {
+        const me = this;
+        try {
+            const record = me.viewUserlist.getSelection()[0];
+            if (record) {
+                me.changeStatus('edit');
+            } else {
+                throw `請先選擇要修改的資料`;
+            }
+
+        } catch (e) {
+            me.showError('userController/ doEdit error:', e);
+        }
+    },
+
+    // button: 儲存
+    doSave: async function () {
+        const me = this;
+        try {
+            let checkSaveFormat = async function () {
+                if (S(me.viewCode.getValue()).isEmpty()) {
+                    throw `請輸入${me.viewCode.getFieldLabel()}`;
+                }
+
+                if (S(me.viewName.getValue()).isEmpty()) {
+                    throw `請輸入${me.viewName.getFieldLabel()}`;
+                }
+
+                if (S(me.viewPassword.getValue()).isEmpty()) {
+                    throw `請輸入${me.viewPassword.getFieldLabel()}`;
+                }
+
+                if (S(me.viewStatus.getValue()).isEmpty()) {
+                    throw `請選擇${me.viewStatus.getFieldLabel()}`;
+                }
+            }
+            await checkSaveFormat();
+
+            Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+                if (btn == 'yes') {
+                    const uploadJSON = {
+                        txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
+                        ids: me.viewIds.getValue(),
+                        code: me.viewCode.getValue(),
+                        name: me.viewName.getValue(),
+                        mail: me.viewMail.getValue(),
+                        password: me.viewPassword.getValue(),
+                        status: me.viewStatus.getValue(),
+                        memo: me.viewMemo.getValue(),
+                    }
+
+                    me.viewUserManage.mask(CONST_LOADING_HINT);
+                    const json = await antnex.ProxyService.send(uploadJSON);
+                    me.viewUserManage.unmask();
+                    switch (json.status) {
+                        case CONST_STATUS_OK:
+                            const code = json.message.code;
+
+                            // 切換頁面狀態
+                            me.changeStatus('view');
+
+                            // 紀錄此次修改的資料
+                            me.setConfig('requireKeylist', [code]);
+
+                            // 重新查詢
+                            me.doSearch();
+                            break;
+                        default:
+                            me.showMessage(json.statusText);
+                    }
+                }
+            });
+
+        } catch (e) {
+            me.showError('userController/ doSave error:', e);
+        }
+    },
+
+    // button: 取消
+    doCancel: function () {
+        const me = this;
+        try {
+            if (me.viewEdit.hidden && me.viewAdd.hidden) {
+                Ext.Msg.confirm('提醒', '是否取消？', function (btn) {
+                    if (btn == 'yes') {
+                        // 取消選取
+                        me.viewUserlist.setSelection(false);
+                        // 清除資料
+                        me.loadData();
+                        me.onSelectUser();
+                        me.changeStatus('view');
+                    }
+                });
+            } else {
+                // 取消選取
+                me.viewUserlist.setSelection(false);
+                // 清除資料
+                me.loadData();
+                me.onSelectUser();
+                me.changeStatus('view');
+            }
+            
+        } catch (e) {
+            me.showError('userController/ doCancel error:', e);
         }
     },
 
