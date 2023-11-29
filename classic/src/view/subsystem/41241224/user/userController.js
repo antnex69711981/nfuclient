@@ -1,7 +1,325 @@
 Ext.define('antnex.subsystem.41241224.user.userController',{
     extend:'Ext.app.ViewController',
     alias:'controller.page-41241224-user',
-    
+    config: {
+        name: '',
+
+        action: null,
+        requireKeylist: [],
+    },
+    onInitialize:async function(){
+        const me = this;
+        me.initObj();
+        me.initPageStatus();
+    },
+    initPageStatus: function () {
+        const me = this;
+        try {
+            me.cleanSearch();
+            me.changeStatus('view');
+            me.loadData();
+        } catch (e) {
+            me.showError('userController/ initPageStatus error:', e);
+        }
+    }, 
+    refreshObj: async function () {
+        const me = this;
+        try {
+            let status = []
+            status.push({ value: -1, text: '全部' });
+            const statusStore = Ext.create('antnex.store.static.Status');
+            statusStore.getRange().forEach(record => {
+                let json = record.getData();
+                delete json.id;
+                status.push(json);
+            });
+
+            me.searchStatus.getStore().loadData(status);
+        } catch (e) {
+            me.showError('userController/ refreshObj error:', e);
+        }
+    },
+    disabledAll: function () {
+        const me = this;
+        try {
+            me.funcbarSearch.setDisabled(true);
+            me.funcbarAdd.setDisabled(true);
+            me.funcbarEdit.setDisabled(true);
+            me.funcbarSave.setDisabled(true);
+            me.funcbarCancel.setDisabled(true);
+            me.searchBar.setHidden(true);
+            me.viewUserlist.setHidden(true);
+            me.viewIds.setReadOnly(true);
+            me.viewIds.setHidden(true);
+            me.viewCode.setReadOnly(true);
+            me.viewName.setReadOnly(true);
+            me.viewMail.setReadOnly(true);
+            me.viewPassword.setReadOnly(true);
+            me.viewStatus.setReadOnly(true);
+            me.viewMemo.setReadOnly(true);
+        } catch (e) {
+            me.showError('userController/ disabledAll error:', e);
+        }
+    },
+    changeStatus: function (action) {
+        const me = this;
+        try {
+            me.setConfig('action', action);
+            console.log(`頁面狀態: ${me.getConfig('action')}`);
+            me.disabledAll();
+            switch (me.getConfig('action')) {
+                case 'view':
+                    me.funcbarSearch.setDisabled(false);
+                    me.funcbarAdd.setDisabled(false);
+                    me.searchBar.setHidden(false);
+                    me.viewUserlist.setHidden(false);
+
+                    break;
+                case 'add':
+                    me.funcbarSave.setDisabled(false);
+                    me.funcbarCancel.setDisabled(false);
+                    me.viewCode.setReadOnly(false);
+                    me.viewName.setReadOnly(false);
+                    me.viewMail.setReadOnly(false);
+                    me.viewPassword.setReadOnly(false);
+                    me.viewStatus.setReadOnly(false);
+                    me.viewMemo.setReadOnly(false);
+                    break;
+                case 'edit':
+                    me.funcbarSave.setDisabled(false);
+                    me.funcbarCancel.setDisabled(false);
+                    me.viewMail.setReadOnly(false);
+                    me.viewPassword.setReadOnly(false);
+                    me.viewStatus.setReadOnly(false);
+                    me.viewMemo.setReadOnly(false);
+                    break;
+                default:
+                    console.log(`無效的狀態: ${me.getConfig('action')}`);
+                    break;
+            }
+        } catch (e) {
+            me.showError('userController/ changeStatus error:', e);
+        }
+    },
+    initObj: function () {//物件定義
+        let me = this;
+        try {
+            me.funcbarSearch = me.lookupReference('btn-user-user-funcbar-search');
+            me.funcbarAdd = me.lookupReference('btn-user-user-funcbar-add');
+            me.funcbarEdit = me.lookupReference('btn-user-user-funcbar-edit');
+            me.funcbarSave = me.lookupReference('btn-user-user-funcbar-save');
+            me.funcbarCancel = me.lookupReference('btn-user-user-funcbar-cancel');
+            me.searchBar = me.lookupReference('panel-user-user-searchbar');
+            me.searchCode = me.lookupReference('txt-user-user-searchbar-code');
+            me.searchName = me.lookupReference('txt-user-user-searchbar-name');
+            me.searchStatus = me.lookupReference('cmbx-user-user-searchbar-status');
+            me.viewUserlist = me.lookupReference('grid-user-user-userlist');
+            me.viewUserManage = me.lookupReference('panel-user-user-manage');
+            me.viewIds = me.lookupReference('num-user-user-ids');
+            me.viewCode = me.lookupReference('txt-user-user-code');
+            me.viewName = me.lookupReference('txt-user-user-name');
+            me.viewMail = me.lookupReference('txt-user-user-mail');
+            me.viewPassword = me.lookupReference('txt-user-user-password');
+            me.viewStatus = me.lookupReference('cmbx-user-user-status');
+            me.viewMemo = me.lookupReference('txt-user-user-memo');
+        } catch (e) {
+            me.showError('userController/ initObj error:', e);
+        }
+    },
+    presSearch:function(field,e){
+        const me =this;
+        if(e.getKey()==e.ENTER){
+            me.doSearch();
+        }
+    },
+    funcbar_search: function () {
+        const me = this;
+        try {
+            me.searchBar.setHidden(!me.searchBar.hidden);
+        } catch (e) {
+            me.showError('userController/ funcbar_search error:', e);
+        }
+    },
+    funcbar_add: function () {
+        const me = this;
+        try {
+            me.viewUserlist.setSelection(false);
+            me.changeStatus('add');
+            me.loadData();
+            me.viewIds.setValue(0);
+            me.viewStatus.setValue(1);
+
+        } catch (e) {
+            me.showError('userController/ funcbar_add error:', e);
+        }
+    },
+    funcbar_save: async function(){
+        const me =this;
+        try{
+            let checkSaveFormat = async function(){
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewCode.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewName.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewPassword.getFieldLabel()}`;
+                }
+                if(S(me.viewCode.getValue()).isEmpty()){
+                    throw`請輸入${me.viewStatus.getFieldLabel()}`;
+                }
+            }
+            await checkSaveFormat();
+            Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+                if (btn == 'yes') {
+                    const uploadJSON = {
+                        txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
+                        ids: me.viewIds.getValue(),
+                        code: me.viewCode.getValue(),
+                        name: me.viewName.getValue(),
+                        mail: me.viewMail.getValue(),
+                        password: me.viewPassword.getValue(),
+                        status: me.viewStatus.getValue(),
+                        memo: me.viewMemo.getValue(),
+                    }
+
+                    me.viewUserManage.mask(CONST_LOADING_HINT);
+                    const json = await antnex.ProxyService.send(uploadJSON);
+                    me.viewUserManage.unmask();
+                    switch (json.status) {
+                        case CONST_STATUS_OK:
+                            const code = json.message.code;
+                            me.changeStatus('view');
+                            me.setConfig('requireKeylist', [code]);
+                            me.doSearch();
+                            break;
+                        default:
+                            me.showMessage(json.statusText);
+                    }
+                }
+            });
+        }
+        catch(e){
+            me.showError('userController/ funcbar_Add error:', e);
+        }
+    },
+    funcbar_cancel: function () {
+        const me = this;
+        try {
+            Ext.Msg.confirm('提醒', '是否取消？', function (btn) {
+                if (btn == 'yes') {
+                    me.changeStatus('view');
+                    me.onSelectUser();
+                }
+            });
+        } catch (e) {
+            me.showError('userController/ funcbar_Add error:', e);
+        }
+    },
+    doSearch:async function(){
+        const me = this;
+        try{
+            const code=me.searchCode.getValue();
+            const name = me.searchName.getValue();
+            const status = me.searchStatus.getValue();
+            const uploadJSON={
+                txcode:'BASIC_USER_LIST_FILTER',
+                code: code,
+                name: name,
+                status: status,
+            };
+            const requireKeylist = me.getConfig('requireKeylist');
+            me.setConfig('requireKeylist',[]);
+            me.viewUserlist.mask(CONST_LOADING_HINT);
+            const json = await antnex.ProxyService.send(uploadJSON);
+            me.viewUserlist.unmask();
+            switch (json.status){
+                case CONST_STATUS_OK:
+                    const data = json.message.data;
+                    me.viewUserlist.getStore().loadData(data);
+                    const records = me.viewUserlist.getStore().getRange().filter(e => requireKeylist.includes(e.get('code')));
+                    me.viewUserlist.setSelection(records);
+                    break;
+                default:
+                    throw json.statusText
+            }  
+        }
+        catch(e){
+            me.showError('userController/ doSearch error:', e);
+        }
+    },
+    cleanSearch:function(){//清除查詢列
+        const me =this;
+        me.searchCode.setValue('');
+        me.searchName.setValue('');
+        me.searchStatus.setValue(-1);
+    },
+    onSelectUser: function () {
+        const me = this;
+        try {
+            const record = me.viewUserlist.getSelection()[0];
+            const code = record ? record.get('code') : '';
+            me.loadData(code);
+        } catch (e) {
+            me.showError('userController/ onSelectUser error:', e);
+        }
+    },
+    loadData:async function(code=''){
+        const me=this;
+        try{
+            let loadFn=function(json={}){
+                const ids = json.ids ? json.ids : '';
+                const code = json.code ? json.code : '';
+                const name = json.name ? json.name : '';
+                const mail = json.mail ? json.mail : '';
+                const password = json.password ? json.password : '';
+                const status = json.status ? json.status : '';
+                const memo = json.memo ? json.memo : '';
+
+                const editable = ids > 0;
+
+                me.funcbarEdit.setDisabled(editable == false);
+
+                me.viewIds.setValue(ids);
+                me.viewCode.setValue(code);
+                me.viewName.setValue(name);
+                me.viewMail.setValue(mail);
+                me.viewPassword.setValue(password);
+                me.viewStatus.setValue(status);
+                me.viewMemo.setValue(memo);
+            }
+            loadFn();
+            if(code){
+                const uploadJSON={
+                    txcode:'BASIC_USER_FIND_BY_CODE',
+                    code:code,
+                };
+                me.viewUserManage.mask(CONST_LOADING_HINT);
+                const json = await antnex.ProxyService.send(uploadJSON);
+                me.viewUserManage.unmask();
+                switch(json.status){
+                    case CONST_STATUS_OK:
+                        const data = json.message.data;
+                        loadFn(data);
+                        break;
+                    default:
+                        throw json.statusText
+                }
+            }
+            
+        }
+        catch(e){
+            me.showError('userController/ loadData error:', e);
+        }
+    },
+    showMessage: function (message) {
+        Ext.Msg.alert(`${this.getConfig('name')} `, message);
+    },
+    showError: function (path, e) {
+        this.showMessage(e);
+        return false;
+    },
 
 
 
