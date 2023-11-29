@@ -23,7 +23,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '查詢列(F10)',
-                        reference: 'btn-antStanley-user2-funcbar-search',
+                        reference: 'btn-41041116-funcbar-search',
                         iconCls: 'fa fa-search',
                         handler: 'funcbar_search',
                     },
@@ -31,7 +31,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '新增(F2)',
-                        reference: 'btn-antStanley-user2-funcbar-add',
+                        reference: 'btn-41041116-funcbar-add',
                         iconCls: 'fa fa-plus',
                         handler: 'funcbar_add',
                     },
@@ -39,7 +39,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '修改(F4)',
-                        reference: 'btn-antStanley-user2-funcbar-edit',
+                        reference: 'btn-41041116-funcbar-edit',
                         iconCls: 'fa fa-edit',
                         handler: 'funcbar_edit',
                     },
@@ -47,7 +47,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '刪除(F6)',
-                        reference: 'btn-antStanley-user2-funcbar-delete',
+                        reference: 'btn-41041116-funcbar-delete',
                         iconCls: 'fas fa-trash-alt fa-spin',
                         handler: 'funcbar_delete',
                     },
@@ -55,7 +55,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '儲存(F8)',
-                        reference: 'btn-antStanley-user2-funcbar-save',
+                        reference: 'btn-41041116-funcbar-save',
                         iconCls: 'fa fa-save',
                         handler: 'funcbar_save'
                     },
@@ -63,7 +63,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                     {
                         xtype: 'funcbarButton',
                         text: '取消(F9)',
-                        reference: 'btn-antStanley-user2-funcbar-cancel',
+                        reference: 'btn-41041116-funcbar-cancel',
                         iconCls: 'fa fa-times',
                         handler: 'funcbar_cancel'
                     },
@@ -71,7 +71,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
             },
             {   // 查詢列
                 xtype: 'searchbarLayout',
-                reference: 'panel-antStanley-user2-searchbar',
+                reference: 'panel-41041116-searchbar',
                 items: [
                     {   // 查詢條件
                         xtype: 'antFieldset',
@@ -87,7 +87,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '學號',
-                            reference: 'txt-antStanley-user2-searchbar-code',
+                            reference: 'txt-41041116-searchbar-code',
                             emptyText: '請輸入學號',
                             enableKeyEvents: true,
                             listeners: {
@@ -97,7 +97,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-antStanley-user2-searchbar-name',
+                            reference: 'txt-41041116-searchbar-name',
                             emptyText: '請輸入姓名',
                             enableKeyEvents: true,
                             listeners: {
@@ -106,7 +106,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '信箱',
-                            reference: 'txt-antStanley-user2-searchbar-mail',
+                            reference: 'txt-41041116-searchbar-mail',
                             emptyText: '請輸入信箱',
                             enableKeyEvents: true,
                             listeners: {
@@ -115,7 +115,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                         }, {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-antStanley-user2-searchbar-status',
+                            reference: 'cmbx-41041116-searchbar-status',
                             editable: true,
                             store: { type: 'status' },
                             enableKeyEvents: true,
@@ -152,7 +152,7 @@ Ext.define('antnex.subsystem.41041116.user.user', {
             {   // 使用者清單
                 xtype: 'antGridpanel',
                 title: '使用者清單',
-                reference: 'grid-antStanley-user2-userlist',
+                reference: 'grid-41041116-userlist',
                 minWidth: 800,
                 flex: 1,
                 listeners: {
@@ -194,8 +194,9 @@ Ext.define('antnex.subsystem.41041116.user.user', {
             {   // 資料維護
                 xtype: 'antPanel',
                 title: '資料維護',
-                reference: 'panel-antStanley-user2-manage',
+                reference: 'panel-41041116-manage',
                 flex: 2,
+                width:100,
                 defaults: {
                     margin: '0 5 5 5',
                 },
@@ -209,56 +210,56 @@ Ext.define('antnex.subsystem.41041116.user.user', {
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '學號',
-                            reference: 'txt-antStanley-user2-code',
+                            reference: 'txt-41041116-code',
                             labelWidth: 37,
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-antStanley-user2-name',
+                            reference: 'txt-41041116-name',
                             labelWidth: 37,
                         }],
 
                         items: [{
                             xtype: 'antNumberfield',
                             fieldLabel: 'ids',
-                            reference: 'num-antStanley-user2-ids',
+                            reference: 'num-41041116-ids',
                             labelWidth: 37,
                             cls: 'fieldNotInput',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '學號',
-                            reference: 'txt-antStanley-user2-code',
+                            reference: 'txt-41041116-code',
                             labelWidth: 37,
                             cls: 'fieldRequired',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '姓名',
-                            reference: 'txt-antStanley-user2-name',
+                            reference: 'txt-41041116-name',
                             labelWidth: 37,
                             cls: 'fieldRequired',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '信箱',
-                            reference: 'txt-antStanley-user2-mail',
+                            reference: 'txt-41041116-mail',
                             labelWidth: 37,
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '密碼',
-                            reference: 'txt-antStanley-user2-password',
+                            reference: 'txt-41041116-password',
                             labelWidth: 37,
                             inputType: 'password',
                             cls: 'fieldRequired',
                         }, {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-antStanley-user2-status',
+                            reference: 'cmbx-41041116-status',
                             labelWidth: 37,
                             store: { type: 'status' },
                             cls: 'fieldRequired',
                         }, {
                             xtype: 'antTextarea',
                             fieldLabel: '備註',
-                            reference: 'txt-antStanley-user2-memo',
+                            reference: 'txt-41041116-memo',
                             labelWidth: 37,
                         }]
                     }
