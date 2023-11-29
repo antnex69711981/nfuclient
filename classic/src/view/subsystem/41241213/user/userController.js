@@ -42,14 +42,21 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
             me.searchBar = me.lookupReference('panel-page-41241213-user-searchbar');
             me.searchCode = me.lookupReference('txt-page-41241213-user-searchbar-code');
             me.searchName = me.lookupReference('txt-page-41241213-user-searchbar-name');
+            me.searchclass = me.lookupReference('txt-page-41241213-user-searchbar-class');
+            me.searchmail = me.lookupReference('txt-page-41241213-user-searchbar-mail');
+            me.searchpassword = me.lookupReference('txt-page-41241213-user-searchbar-password');
             me.searchStatus = me.lookupReference('cmbx-page-41241213-user-searchbar-status');
+            me.searchex = me.lookupReference('txt-page-41241213-user-searchbar-e');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-page-41241213-user-userlist');
-
             me.viewCode = me.lookupReference('txt-page-41241213-user-code');
             me.viewName = me.lookupReference('txt-page-41241213-user-name');
-            me.viewstatus = me.lookupReference('txt-page-41241213-user-status');//2023-11-15新增
+            me.viewclass = me.lookupReference('txt-page-41241213-user-class');
+            me.viewmail = me.lookupReference('txt-page-41241213-user-mail');
+            me.viewpassword = me.lookupReference('txt-page-41241213-user-password');
+            me.viewstatus = me.lookupReference('txt-page-41241213-user-status');
+            me.viewex = me.lookupReference('txt-page-41241213-user-ex');
         } catch (e) {
             me.showError('userController/ initObj error:', e);
         }
@@ -61,12 +68,15 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
             let data = [{
                 code: 'root',
                 name: '系統管理員',
-                email: 'ba@gmail.com',
+                class: '101',
+                mail: 'ba@gmail.com',
+                password: 'password',
                 status: 1,
+                ex: 'None',
             }, {
                 code: 'stanley',
                 name: '李厚生',
-                email: '456789',
+                mail: '456789',
                 status: 9,
             }]
             me.viewUserlist.getStore().loadData(data);
@@ -94,12 +104,19 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
         try {
             let code = me.searchCode.getValue();
             let name = me.searchName.getValue();
+            //let class = me.searchclass.getValue();
+            let mail = me.searchmail.getValue();
+            let password = me.searchpassword.getValue();
             let status = me.searchStatus.getValue();
+            let ex = me.searchex.getValue();
 
             let uploadJSON = {
                 code: code,
                 name: name,
+                mail: mail,
+                password: password,
                 status: status,
+                ex: ex,
             }
 
             console.log('----------- 查詢條件 -----------');
@@ -134,7 +151,12 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
         try {
             me.searchCode.setValue('');
             me.searchName.setValue('');
+            e.searchclass.getValue('');
+            me.searchmail.getValue('');
+            me.searchpassword.getValue('');            
             me.searchStatus.setValue('');
+            me.searchStatus.getValue('');
+            me.searchex.getValue('');
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -152,12 +174,26 @@ Ext.define('antnex.subsystem.41241213.user.userController', {
 
             me.viewCode.setValue('');
             me.viewName.setValue('');
-            me.viewstatus.setValue('');//2023-11-15新增
+            me.viewclass.setValue('');
+            me.viewmail.setValue('');
+            me.viewpassword.setValue('');
+            me.viewstatus.setValue('');
+            me.viewex.setValue('');
 
             if (record) {
                 me.viewCode.setValue(record.get('code'));
                 me.viewName.setValue(record.get('name'));
-                me.viewstatus.setValue(record.get('status'));//2023-11-15新增
+                me.viewclass.setValue(record.get('class'));
+                me.viewmail.setValue(record.get('mail'));
+                me.viewpassword.setValue(record.get('password'));
+                me.viewstatus.setValue(record.get('status'));
+                me.viewex.setValue(record.get('ex'));
+
+                // renderer: function (value) {
+                //     let store = Ext.create('antnex.store.static.Status');
+                //     let record = store.getRange().find(e => e.get('value') == value);
+                //     return record ? record.get('text') : `無法辨識: ${value}`;
+                // }
             }
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
