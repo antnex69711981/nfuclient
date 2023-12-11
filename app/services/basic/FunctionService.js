@@ -56,10 +56,28 @@ Ext.define('antnex.services.basic.FunctionService', {
                 { code: '40141123', name: '李明峰' },
                 { code: '40141152', name: '鄭凱文' },
                 { code: '40541124', name: '李厚生' },
-                { code: '11261103', name: '劉宜欣' },
+                {
+                    code: '11261103', name: '劉宜欣',
+                    projects: [{
+                        xtype: 'projectdetail',
+                        name: '專案銷售明細表'
+                    }]
+                },
                 { code: '11261119', name: '陳奕潔' },
-                { code: '40941137', name: '陳朝羿' },
-                { code: '40941139', name: '陳嘉笙' },
+                {
+                    code: '40941137', name: '陳朝羿',
+                    projects: [{
+                        xtype: 'dailyreport',
+                        name: '工作日報表'
+                    }]
+                },
+                {
+                    code: '40941139', name: '陳嘉笙',
+                    projects: [{
+                        xtype: 'profitstats',
+                        name: '毛利統計表'
+                    }]
+                },
                 { code: '41041115', name: '成政軒' },
                 { code: '41041116', name: '李嘉祥' },
                 { code: '41041118', name: '李頡蔚' },
@@ -119,6 +137,19 @@ Ext.define('antnex.services.basic.FunctionService', {
                 pageList.push(rootNode);
                 pageList.push(mainPage);
                 pageList.push(userPage);
+
+                if (user.projects) {
+                    user.projects.forEach(e => {
+                        const item = {
+                            parentcode: rootNode.code,
+                            code: e.xtype,
+                            name: e.name,
+                            xtype: e.xtype,
+                            iconcls: ''
+                        }
+                        pageList.push(item);
+                    });
+                }
             })
 
             functionList = functionList.concat(sampleList);
