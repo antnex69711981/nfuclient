@@ -35,7 +35,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                     align: 'stretch',
                 },
                 defaults: {
-                    margin: '0 0 5 5',
+                    margin: '0 0 5 5', // 上 右 下 左
                 },
                 scrollable: true,
                 items: [
@@ -43,35 +43,35 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         xtype: 'antFieldset',
                         title: '銷售日期',
                         layout: {
-                            type: 'vbox',
+                            type: 'hbox',
                             align: 'stretch'
                         },
                         defaults: {
                             // labelWidth: 37,
-                            margin: '0 0 8 5',
+                            margin: '0 0 8 5', // 上 右 下 左
                         },
                         items: [{
                             xtype: 'antDatefield',
                             fieldLabel: '開始日期',
-                            reference: 'txt-40941139-profitstats-searchbar-startdate',
+                            reference: 'date-40941139-profitstats-searchbar-startdate',
                             // emptyText: '請輸入學號',
                             //width: 150,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                            //margin: '0 0 8 0',
+                            //margin: '0 0 8 0', // 上 右 下 左
                         }, {
                             xtype: 'antDatefield',
                             fieldLabel: '結束日期',
-                            reference: 'txt-40941139-profitstats-searchbar-enddate',
+                            reference: 'date-40941139-profitstats-searchbar-enddate',
                             // emptyText: '請輸入學號',
                             //width: 150,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                            //margin: '0 0 8 0',
+                            //margin: '0 0 8 0', // 上 右 下 左
                         },]
                     }, {   // 門市查詢
                         xtype: 'antFieldset',
@@ -82,26 +82,22 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         },
                         defaults: {
                             // labelWidth: 37,
-                            margin: '0 0 8 5',
+                            margin: '0 0 8 5', // 上 右 下 左
                         },
                         items: [{
-                            xtype: 'antCheckbox',
-                            boxLabel: 'OO門市',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
-                        }, {
-                            xtype: 'antCheckbox',
-                            boxLabel: 'XX門市',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
-                        }, {
-                            xtype: 'antCheckbox',
-                            boxLabel: '$$門市',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
+                            xtype: 'antTagfield',
+                            fieldLabel: '門市查詢',
+                            reference: 'tag-40941139-profitstats-searchbar-branch',
+                            store: {
+                                fields: ['id','name'],
+                                data: [
+                                    { id: 1, name: '店家1' },
+                                    { id: 2, name: '店家2' },
+                                    { id: 3, name: '店家3' },
+                                ]
+                            },
+                            displayField: 'name', // 顯示名稱
+                            valueField: 'id', // 實際值
                         }]
                     }, {   // 員工查詢
                         xtype: 'antFieldset',
@@ -112,26 +108,22 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         },
                         defaults: {
                             // labelWidth: 37,
-                            margin: '0 0 8 5',
+                            margin: '0 0 0 5', // 上 右 下 左
                         },
                         items: [{
-                            xtype: 'antCheckbox',
-                            boxLabel: 'OO員工',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
-                        }, {
-                            xtype: 'antCheckbox',
-                            boxLabel: 'XX員工',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
-                        }, {
-                            xtype: 'antCheckbox',
-                            boxLabel: '陳嘉笙',
-                            // name : 'tomato',
-                            // value: 'tomato',
-                            // checked: true
+                            xtype: 'antTagfield',
+                            fieldLabel: '員工查詢',
+                            reference: 'tag-40941139-profitstats-searchbar-user',
+                            store: {
+                                fields: ['id','name'],
+                                data: [
+                                    { id: 1, name: '員工1' },
+                                    { id: 2, name: '員工2' },
+                                    { id: 3, name: '陳嘉笙' },
+                                ]
+                            },
+                            displayField: 'name', // 顯示名稱
+                            valueField: 'id', // 實際值
                         }]
                     }, 
 
@@ -155,7 +147,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         width: 60,
                         border: false,
                         handler: 'cleanSearch',
-                        margin: '10 0 5 5',
+                        margin: '10 0 5 5', // 上 右 下 左
                     }, 
                     {
                         xtype: 'antButton',
@@ -166,7 +158,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         width: 60,
                         border: false,
                         handler: '',
-                        margin: '10 0 5 5',
+                        margin: '10 0 5 5', // 上 右 下 左
                     }
                 ]
             },
@@ -210,6 +202,11 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                     xtype: 'antColumn',
                     dataIndex: 'branchcode',
                     text: '銷售門市編號',
+                    width: 110,
+                }, {
+                    xtype: 'antColumn',
+                    dataIndex: 'branchname',
+                    text: '銷售門市',
                     width: 110,
                 }, {
                     xtype: 'antColumn',
@@ -303,7 +300,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                     dataIndex: 'netincome',
                     text: '銷售淨利(D=A-B-C)',
                     width: 160,
-                    // renderer: function (value) {
+                    // renderer: function (value,meta,record) {
                     //     let store = Ext.getCmp('antGridpanel').getStore();
                     //     let record = store.getRange().find(e => e.get('value') == value);
                     //     return record ? record.get('text') : `無法辨識: ${value}`;
