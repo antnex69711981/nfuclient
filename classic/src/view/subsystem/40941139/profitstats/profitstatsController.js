@@ -39,41 +39,18 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstatsController', {
     initObj: function () {
         let me = this
         try {
-            // 功能列
-            // me.funcbarSearch = me.lookupReference('btn-40941139-profitstats-funcbar-search');
-            // me.funcbarAdd = me.lookupReference('btn-40941139-profitstats-funcbar-add');
-            // me.funcbarEdit = me.lookupReference('btn-40941139-profitstats-funcbar-edit');
-            // me.funcbarSave = me.lookupReference('btn-40941139-profitstats-funcbar-save');
-            // me.funcbarCancel = me.lookupReference('btn-40941139-profitstats-funcbar-cancel');
 
             // 查詢列
-            me.searchBar = me.lookupReference('panel-40941139-profitstats-searchbar');
-            me.searchCode = me.lookupReference('txt-40941139-profitstats-searchbar-code');
-            me.searchName = me.lookupReference('txt-40941139-profitstats-searchbar-name');
-            me.searchMail = me.lookupReference('txt-40941139-profitstats-searchbar-mail');
-            me.searchStatus = me.lookupReference('cmbx-40941139-profitstats-searchbar-status');
+            me.searchStartdate = me.lookupReference('date-40941139-profitstats-searchbar-startdate');
+            me.searchEnddate = me.lookupReference('date-40941139-profitstats-searchbar-enddate');
+            me.searchBranch = me.lookupReference('tag-40941139-profitstats-searchbar-branch');
+            me.searchUser = me.lookupReference('tag-40941139-profitstats-searchbar-user');
 
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-40941139-profitstats-list');
             me.viewUserManage = me.lookupReference('panel-40941139-profitstats-manage');
 
-            // 資料維護
-            // me.viewIds = me.lookupReference('num-40941139-profitstats-ids');
-            // me.viewCode = me.lookupReference('txt-40941139-profitstats-code');
-            // me.viewName = me.lookupReference('txt-40941139-profitstats-name');
-            // me.viewMail = me.lookupReference('txt-40941139-profitstats-mail');
-            // me.viewPassword = me.lookupReference('txt-40941139-profitstats-password');
-            // me.viewMemo = me.lookupReference('txt-40941139-profitstats-memo');
-            // me.viewStatus = me.lookupReference('cmbx-40941139-profitstats-status');
-            // me.viewCreateusername = me.lookupReference('txt-40941139-profitstats-createusername');
-            // me.viewCreatetm = me.lookupReference('text-40941139-profitstats-createtm');
-            // me.viewModifyusername = me.lookupReference('txt-40941139-profitstats-modifyusername');
-            // me.viewModifytm = me.lookupReference('text-40941139-profitstats-modifytm');
-            // me.viewAdd = me.lookupReference('btn-40941139-profitstats-add');
-            // me.viewEdit = me.lookupReference('btn-40941139-profitstats-edit');
-            // me.viewSave = me.lookupReference('btn-40941139-profitstats-save');
-            // me.viewCancel  = me.lookupReference('btn-40941139-profitstats-cancel');
         } catch (e) {
             me.showError('profitstatsController/ initObj error:', e);
         }
@@ -387,14 +364,16 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstatsController', {
             // const record = selection[0];
             const record = me.viewUserlist.getSelection()[0];
             const code = record ? record.get('code') : '';
+            me.doOpenWindow('viewUserlist',[11,11,11]);
             
-            if (me.viewEdit.hidden) {
-                me.viewAdd.setHidden(true);
-                me.viewEdit.setHidden(false);
-                me.viewSave.setHidden(true);
-                me.viewCancel.setHidden(false);
-            }
-            me.loadData(code);
+            // if (me.viewEdit.hidden) {
+                
+            //     me.viewAdd.setHidden(true);
+            //     me.viewEdit.setHidden(false);
+            //     me.viewSave.setHidden(true);
+            //     me.viewCancel.setHidden(false);
+            // }
+            // me.loadData(code);
 
         } catch (e) {
             me.showError('profitstatsController/ onSelectUser error:', e);
@@ -463,6 +442,55 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstatsController', {
     //         me.showError('profitstatsController/ loadData error:', e);
     //     }
     // },
+
+
+    /************* window *************/
+    // function: 開啟window
+    doOpenWindow: function (view, config = {}) {
+        let me = this
+        let win = null;
+        try {
+            if (me.getConfig('defaultControllerPrintlog')) {
+                console.log(`${me.getConfig('name')} - defaultController.doOpenWindow()`);
+            }
+
+            if (view) {
+                let modal = config.modal == null ? true : false;
+                let dockedItems = config.dockedItems;
+
+                // 建立window
+                if (dockedItems) {
+                    win = Ext.create('antnex.subsystem.mainmenu.window.WindowContainer', {
+                        controller: view.getController(),
+                        title: view.getController().getConfig('name'),
+                        height: view.getController().getConfig('height'),
+                        width: view.getController().getConfig('width'),
+                        modal: modal,
+                        closeToolText: '關閉',
+                        dockedItems: dockedItems
+                    });
+                } else {
+                    win = Ext.create('antnex.subsystem.mainmenu.window.WindowContainer', {
+                        controller: view.getController(),
+                        title: view.getController().getConfig('name'),
+                        height: view.getController().getConfig('height'),
+                        width: view.getController().getConfig('width'),
+                        modal: modal,
+                        closeToolText: '關閉',
+                    });
+                }
+
+                if (win) {
+                    win.add(view);
+                    win.doResize();
+                    win.show();
+                }
+            }
+        } catch (e) {
+            me.showError('defaultController/ doOpenWindow error:', e);
+        }
+        return win;
+    },
 
 
 
