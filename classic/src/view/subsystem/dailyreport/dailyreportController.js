@@ -45,11 +45,8 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreportController', {
 
             // 查詢列
             me.searchBar = me.lookupReference('panel-40941137-user-searchbar');
-            me.searchCode = me.lookupReference('txt-40941137-user-searchbar-code');
-            me.searchName = me.lookupReference('txt-40941137-user-searchbar-name');
-            me.searchMail = me.lookupReference('txt-40941137-user-searchbar-mail');
-            me.searchMemo = me.lookupReference('txt-40941137-user-searchbar-memo');
-            me.searchStatus = me.lookupReference('cmbx-40941137-user-searchbar-status');
+            me.searchDate = me.lookupReference('date-40941137-user-searchbar-date');
+            me.searchStore = me.lookupReference('cmbx-40941137-user-searchbar-store');
 
             // 主畫面
             me.viewUserlist = me.lookupReference('grid-40941137-user-userlist');
@@ -372,11 +369,8 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreportController', {
     doSearch: async function () {
         const me = this;
         try {
-            const code = me.searchCode.getValue();
-            const name = me.searchName.getValue();
-            const mail = me.searchMail.getValue();
-            const memo = me.searchMemo.getValue();
-            const status = me.searchStatus.getValue();
+            const code = me.searchDate.getValue();
+            const name = me.searchStore.getValue();
 
             const uploadJSON = {
                 txcode: 'BASIC_USER_LIST_FILTER',
@@ -416,11 +410,8 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreportController', {
     cleanSearch: function () {
         const me = this;
         try {
-            me.searchCode.setValue('');
-            me.searchName.setValue('');
-            me.searchMail.setValue('');
-            me.searchMemo.setValue('');
-            me.searchStatus.setValue(-1);
+            me.searchDate.setValue('');
+            me.searchStore.setValue('');
             me.doSearch();
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
