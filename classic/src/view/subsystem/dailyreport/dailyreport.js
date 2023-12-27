@@ -14,13 +14,13 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
     },
 
     listeners: {
-        // afterrender: 'onInitialize',
-        // activate: 'onActivate',
+        afterrender: 'onInitialize',
+        activate: 'onActivate',
     },
 
     dockedItems: [{
         xtype: 'antPanel',
-        // layout: {
+        // layout: {    
         //     type: 'vbox',
         //     align: 'stretch'
         // },
@@ -65,6 +65,15 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                             fieldLabel: '門市',
                             reference: 'cmbx-40941137-user-searchbar-store',
                             emptyText: '請輸入門市',
+
+                            valueField: 'value',
+                            displayField: 'text',
+                            queryMode: 'local',
+                            forceSelection: true,
+                            anyMatch: true,
+                            editable: true,
+                            store: { type: 'status' },
+
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -169,7 +178,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                 cls: 'fieldNotInput',
                             },]
                     },{ // 第二排
-                        xtype: 'antPanel',
+                        xtype: 'panel',
                         layout: {
                             type: 'hbox',
                             align: 'stretch',
@@ -279,6 +288,38 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                     labelWidth: 34,
                                 },
                                 ]
+                            },{   // 資費代收
+                                xtype: 'antFieldset',
+                                title: '資費代收',
+                                layout: {
+                                    type: 'vbox',
+                                    align: 'stretch',
+                                },
+                                defaults: {
+                                    margin: '0 0 8 0',
+                                },
+                                items: [{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-40941137-dailyreport-collectionrows',
+                                    labelWidth: 34,                                    
+                                }, {
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '現金',
+                                    reference: 'txt-40941137-dailyreport-amountcollection',
+                                    labelWidth: 34,
+                                }, {
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '刷卡',
+                                    reference: 'txt-40941137-dailyreport-collectioncredit',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '電付',
+                                    reference: 'txt-40941137-dailyreport-collectionpayonline',
+                                    labelWidth: 34,
+                                },
+                                ]
                             },
                         ]
                     },{ // 第三排
@@ -338,7 +379,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                     labelWidth: 34,
                                 },
                                 ]
-                            },{   // 出貨退回
+                            },{ // 出貨退回
                                 xtype: 'antFieldset',
                                 title: '出貨退回',
                                 layout: {
@@ -385,51 +426,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                     labelWidth: 34,
                                 },
                                 ]
-                            },{   // 資費代收
-                                xtype: 'antFieldset',
-                                title: '資費代收',
-                                layout: {
-                                    type: 'vbox',
-                                    align: 'stretch',
-                                },
-                                defaults: {
-                                    margin: '0 0 8 0',
-                                },
-                                items: [{
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-40941137-dailyreport-collectionrows',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '現金',
-                                    reference: 'txt-40941137-dailyreport-amountcollection',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '刷卡',
-                                    reference: 'txt-40941137-dailyreport-collectioncredit',
-                                    labelWidth: 34,
-                                },{
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '電付',
-                                    reference: 'txt-40941137-dailyreport-collectionpayonline',
-                                    labelWidth: 34,
-                                },
-                                ]
-                            },
-                        ] 
-                    },{ // 第四排
-                        xtype: 'antPanel',
-                        layout: {
-                            type: 'hbox',
-                            align: 'stretch',
-                        },
-                        defaults: {
-                            margin: '0 5 5 5',
-                        },
-                        items:[
-                            {   // 門市現金營業額
+                            },{ // 門市現金營業額
                                 xtype: 'antFieldset',
                                 title: '門市現金營業額',
                                 layout: {
@@ -450,20 +447,16 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                     },
                                     items: [{// 第一排
                                         xtype: 'antTextfield',
-                                        fieldLabel: '銷售單收現金額',
+                                        fieldLabel: '銷售單收現金額',                                        
                                         reference: 'txt-40941137-dailyreport-transaction',
+                                        labelWidth: 104,
+                                        width: 220,
                                     },{
                                         xtype: 'antTextfield',
                                         fieldLabel: '　　出貨現金',
                                         reference: 'txt-40941137-dailyreport-delivery',
-                                    },{
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '支付總額',
-                                        reference: 'txt-40941137-dailyreport-paycash',
-                                    },{
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '實收現金',
-                                        reference: 'txt-40941137-dailyreport-branchcash',
+                                        labelWidth: 90,
+                                        width: 208,
                                     },]
                                 },{
                                     xtype: 'antPanel',
@@ -478,18 +471,14 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                         xtype: 'antTextfield',
                                         fieldLabel: '銷售單退現金額',
                                         reference: 'txt-40941137-dailyreport-transactionrefund',
+                                        labelWidth: 104,
+                                        width: 220,
                                     },{
                                         xtype: 'antTextfield',
                                         fieldLabel: '出貨退回現金',
                                         reference: 'txt-40941137-dailyreport-btobrefund',
-                                    },{
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '資費代收',
-                                        reference: 'txt-40941137-dailyreport-feeprojectcollection',
-                                    },{
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '誤差現金',
-                                        reference: 'txt-40941137-dailyreport-cashdiffer',
+                                        labelWidth: 90,
+                                        width: 208,
                                     },]
                                 },{
                                     xtype: 'antPanel',
@@ -502,18 +491,66 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                     },
                                     items: [{// 第三排
                                         xtype: 'antTextfield',
+                                        fieldLabel: '　　　支付總額',
+                                        reference: 'txt-40941137-dailyreport-paycash',
+                                        labelWidth: 104,
+                                        width: 220,
+                                    },{
+                                        xtype: 'antTextfield',
+                                        fieldLabel: '　　實收現金',
+                                        reference: 'txt-40941137-dailyreport-branchcash',
+                                        labelWidth: 90,
+                                        width: 208,
+                                    },]
+                                },{
+                                    xtype: 'antPanel',
+                                    layout: {
+                                        type: 'hbox',
+                                        align: 'stretch',
+                                    },
+                                    defaults: {
+                                        margin: '0 10 8 0',
+                                    },
+                                    items: [{// 第四排
+                                        xtype: 'antTextfield',
+                                        fieldLabel: '　　　資費代收',
+                                        reference: 'txt-40941137-dailyreport-feeprojectcollection',
+                                        labelWidth: 104,
+                                        width: 220,
+                                    },{
+                                        xtype: 'antTextfield',
+                                        fieldLabel: '　　誤差現金',
+                                        reference: 'txt-40941137-dailyreport-cashdiffer',
+                                        labelWidth: 90,
+                                        width: 208,
+                                    },]
+                                },{
+                                    xtype: 'antPanel',
+                                    layout: {
+                                        type: 'hbox',
+                                        align: 'stretch',
+                                    },
+                                    defaults: {
+                                        margin: '0 10 8 0',
+                                    },
+                                    items: [{// 第五排
+                                        xtype: 'antTextfield',
                                         fieldLabel: '　前日現金餘額',
                                         reference: 'txt-40941137-dailyreport-remaining',
+                                        labelWidth: 104,
+                                        width: 220,
                                     },{
                                         xtype: 'antTextfield',
                                         fieldLabel: '　現金營業額',
                                         reference: 'txt-40941137-dailyreport-dailycash',
+                                        labelWidth: 90,
+                                        width: 208,
                                     },]
-                                }
+                                },
                                 ]
                             },
                         ] 
-                    },{ // 第五排
+                    },{ // 第四排
                         xtype: 'antPanel',
                         layout: {
                             type: 'hbox',
@@ -527,7 +564,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                             fieldLabel: '備註',
                             reference: 'txt-40941137-dailyreport-memo',
                             labelWidth: 34,
-                            width: 1072,
+                            width: 943,
                         },]
                     }
                 ],
