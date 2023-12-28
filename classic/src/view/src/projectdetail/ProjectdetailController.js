@@ -85,7 +85,6 @@ Ext.define('antnex.view.src.projectdetail.ProjectdetailController', {
     disabledAll: function () {
         const me = this;
         try {
-            debugger
             // 功能列
             me.funcbarSearch.setDisabled(true);
             me.funcbarAdd.setDisabled(true);
