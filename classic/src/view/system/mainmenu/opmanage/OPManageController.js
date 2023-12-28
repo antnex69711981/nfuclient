@@ -77,7 +77,7 @@ Ext.define('antnex.view.system.mainmenu.opmanage.OPManageController', {
             me.viewHeadUser.setHtml(user)
 
             // 預設頁面
-            let initPages = ['antStanley-user', 'antStanley-user2'];
+            let initPages = [];
             me.viewBody.add(initPages.map(e => {
                 let item = {
                     xtype: e,

@@ -73,7 +73,68 @@ Ext.define('antnex.ProxyService', {
 
             return me.doFetch(sendurl, sendMessageBody)
         } catch (e) {
-            console.log('fuck you:', e)
+            // logger.error('send err:' + e);
+            throw e;
+        }
+    },
+    // function: 開發用測試機電文
+    sendAnt: function (data) {
+        let me = this;
+        let msgBody = "";
+        let txcode = "";
+        let companyCode = "next"
+        let usercode = "antnex";
+        let machineCode = "10000025";
+        let token = "token";
+        let datetime = moment().format();
+        try {
+            if (!data.hasOwnProperty('txcode')) {
+                throw "缺少txcode";
+            }
+
+            txcode = data.txcode;
+
+            if (S(txcode).isEmpty()) {
+                throw new Error("查無上行資料 TXCODE");
+            }
+
+            // remove txcode
+            Reflect.deleteProperty(data, 'txcode');
+
+            msgBody = data;
+
+            // header調整時, sendCore需同步調整
+            let messageBody = {
+                header: {
+                    txcode: txcode,
+                    companyCode: "nex",
+                    branchcode: "S00001",
+                    usercode: "antnex",
+                    machineCode: "10000025",
+                    machineName: "Antnex_Drava(dev2)",
+                    token: "token",
+                    datetime: datetime,
+                    clientversion: "2023122601",
+                    sys: 'sale',
+                    usesystem: 'web',
+                },
+                message: msgBody
+            };
+
+            let sendMessageBody = JSON.stringify(messageBody);
+            let d = new Date();
+            let n = d.getTime();
+            let host = "http://nexclientdev.antnex.com.tw:1080/nexapi/api/v1/tx";
+            let sendurl = host + "?_dc=" + n;
+
+            if (DEBUG_MODE_MESSAGE) {
+                logger.info("上行電文:\n" + JSON.stringify(messageBody));
+            } else if (ANTNEX_USER_MODE) {
+                logger.info("上行電文:\n" + JSON.stringify(messageBody));
+            }
+
+            return me.doFetch(sendurl, sendMessageBody)
+        } catch (e) {
             // logger.error('send err:' + e);
             throw e;
         }
