@@ -30,6 +30,24 @@ Ext.define('antnex.services.basic.FunctionService', {
                 name: '工作日報表',
                 xtype: 'dailyreport',
                 iconcls: 'fas fa-bookmark'
+            }, {
+                parentcode: 'root',
+                code: 'inspection',
+                name: '檢測項目主檔',
+                xtype: 'inspection',
+                iconcls: 'fas fa-bookmark'
+            }, {
+                parentcode: 'root',
+                code: 'restoreprice',
+                name: '維修報價主檔',
+                xtype: 'restoreprice',
+                iconcls: 'fas fa-bookmark'
+            }, {
+                parentcode: 'root',
+                code: 'restoreitem',
+                name: '維修項目主檔',
+                xtype: 'restoreitem',
+                iconcls: 'fas fa-bookmark'
             }]
 
             functionList = functionList.concat(pageList);
