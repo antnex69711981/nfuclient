@@ -47,15 +47,16 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                             align: 'stretch'
                         },
                         defaults: {
-                            // labelWidth: 37,
+                            labelWidth: 61,
+                            width: 180,
                             margin: '0 0 8 5', // 上 右 下 左
                         },
                         items: [{
                             xtype: 'antDatefield',
                             fieldLabel: '開始日期',
                             reference: 'date-40941139-profitstats-searchbar-startdate',
+                            value: new Date(),
                             // emptyText: '請輸入學號',
-                            //width: 150,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -65,8 +66,8 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                             xtype: 'antDatefield',
                             fieldLabel: '結束日期',
                             reference: 'date-40941139-profitstats-searchbar-enddate',
+                            value: new Date(),
                             // emptyText: '請輸入學號',
-                            //width: 150,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -81,7 +82,8 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                             align: 'stretch'
                         },
                         defaults: {
-                            // labelWidth: 37,
+                            labelWidth: 61,
+                            width: 250,
                             margin: '0 0 8 5', // 上 右 下 左
                         },
                         items: [{
@@ -133,7 +135,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         scale: 'small',
                         cls: 'antBtn-blue',
                         iconCls: 'fa fa-search',
-                        width: 60,
+                        width: 65,
                         border: false,
                         handler: 'doSearch',
                         margin: '10 0 5 15', // 上 右 下 左
@@ -144,7 +146,7 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         scale: 'small',
                         cls: 'antBtn-red',
                         iconCls: 'fa fa-times',
-                        width: 60,
+                        width: 65,
                         border: false,
                         handler: 'cleanSearch',
                         margin: '10 0 5 5', // 上 右 下 左
@@ -154,8 +156,8 @@ Ext.define('antnex.subsystem.40941139.profitstats.profitstats', {
                         text: '匯出',
                         scale: 'small',
                         cls: 'antBtn-yellow',
-                        // iconCls: 'fa fa-times',
-                        width: 60,
+                        iconCls: 'fa fa-share-square',
+                        width: 65,
                         border: false,
                         handler: '',
                         margin: '10 0 5 5', // 上 右 下 左
