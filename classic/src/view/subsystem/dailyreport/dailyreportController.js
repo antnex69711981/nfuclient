@@ -36,21 +36,17 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreportController', {
     initObj: function () {
         let me = this
         try {
-            // 功能列
-            me.funcbarSearch = me.lookupReference('btn-40941137-user-funcbar-search');
-            me.funcbarAdd = me.lookupReference('btn-40941137-user-funcbar-add');
-            me.funcbarEdit = me.lookupReference('btn-40941137-user-funcbar-edit');
-            me.funcbarSave = me.lookupReference('btn-40941137-user-funcbar-save');
-            me.funcbarCancel = me.lookupReference('btn-40941137-user-funcbar-cancel');
-
             // 查詢列
             me.searchBar = me.lookupReference('panel-40941137-user-searchbar');
             me.searchDate = me.lookupReference('date-40941137-user-searchbar-date');
             me.searchStore = me.lookupReference('cmbx-40941137-user-searchbar-store');
+            me.funcbarSearch = me.lookupReference('btn-40941137-user-funcbar-search');
+            me.funcbarCancel = me.lookupReference('btn-40941137-user-funcbar-cancel');
+            me.funcbarPrint = me.lookupReference('btn-40941137-user-funcbar-print');
 
             // 主畫面
-            me.viewUserlist = me.lookupReference('grid-40941137-user-userlist');
-            me.viewUserManage = me.lookupReference('panel-40941137-user-manage');
+            me.viewUserlist = me.lookupReference('panel-40941137-dailyreport-userlist');
+            me.viewUserManage = me.lookupReference('panel-40941137-dailyreport-manage');
 
             // 資料維護
             me.viewIds = me.lookupReference('num-40941137-user-ids');

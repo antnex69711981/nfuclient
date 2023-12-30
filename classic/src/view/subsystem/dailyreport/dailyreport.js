@@ -65,15 +65,6 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                             fieldLabel: '門市',
                             reference: 'cmbx-40941137-user-searchbar-store',
                             emptyText: '請輸入門市',
-
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
-
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -131,7 +122,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
             {   // 工作日報表
                 xtype: 'panel',
                 title: '工作日報表',
-                reference: 'panel-40941137-dailyreport-manage',
+                reference: 'panel-40941137-dailyreport-userlist',
                 // hidden:true,
                 layout: {
                     type: 'vbox',
@@ -175,7 +166,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
                                 fieldLabel: '狀態',
                                 reference: 'txt-40941137-dailyreport-status',
                                 labelWidth: 34,
-                                cls: 'fieldNotInput',
+                                cls: 'fieldNotInput',                        
                             },]
                     },{ // 第二排
                         xtype: 'panel',
@@ -573,7 +564,7 @@ Ext.define('antnex.subsystem.40941137.dailyreport.dailyreport', {
             {   // 資料維護
                 xtype: 'panel',
                 title: '資料維護',
-                reference: 'panel-40941137-dailyreport-search',
+                reference: 'panel-40941137-dailyreport-manage',
                 bufferedRenderer: false,
                 runInViewport: false,
                 viewConfig: {
