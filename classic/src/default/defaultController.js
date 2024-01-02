@@ -591,9 +591,38 @@ Ext.define('antnex.default.defaultController', {
     emptyFunction: function () {
         /* do nothing */
     },
+    // button:顯示異動資訊
+    showModifyinfo: function (btn) {
+        const me = this
+        try {
+            me.showLog(`${me.getConfig('name')} - defaultController.showModifyinfo()`);
+            if (me.selection) {
+                if (JSON.stringify(me.selection) == '{}') {
+                    return;
+                }
+
+                const view = Ext.create('antnex.subsystem.mainmenu.window.modifyinfo.ModifyInfo');
+                view.getController().setConfig('data', me.selection);
+
+                const config = {}
+                config.dockedItems = [];
+                const win = me.doOpenWindow(view, config);
+                if (btn) win.setXY([btn.getX() - win.width + 28, btn.getY() - 10])
+            }
+        } catch (e) {
+            me.showError('defaultController/ showModifyinfo error:', e);
+        }
+    },
 
 
     /************* 提示訊息 *************/
+    // function:顯示訊息
+    showLog: function (msg, consoleMode = 'log') {
+        const me = this;
+        if (me.getConfig('defaultControllerPrintlog')) {
+            console[consoleMode](msg);
+        }
+    },
     // function:提示訊息
     showMessage: function (message) {
         Ext.Msg.alert(`${this.getConfig('name')} `, message);

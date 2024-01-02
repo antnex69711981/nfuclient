@@ -28,6 +28,79 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
         dock: 'top',
         margin: 0,
         items: [
+            {   // 功能列
+                xtype: 'toolbar',
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch',
+                },
+                scrollable: true,
+                border: false,
+                padding: '0 0 0 5',
+                items: [
+                    {
+                        xtype: 'antButton',
+                        text: '查詢列(F10)',
+                        reference: 'btn-dailyreport-user-funcbar-search',
+                        cls: 'funcbarBtn-black',
+                        iconCls: 'fa fa-search',
+                        margin: 3,
+                        handler: 'funcbar_search',
+                    },
+                    { xtype: 'tbseparator', margin: '8 1' },
+                    {
+                        xtype: 'antButton',
+                        text: '列印',
+                        reference: 'btn-dailyreport-user-funcbar-print',
+                        cls: 'funcbarBtn-black',
+                        iconCls: 'fa fa-print',
+                        margin: 3,
+                        handler: 'funcbar_print',
+                    },
+                    // { xtype: 'tbseparator', margin: '8 1' },
+                    // {
+                    //     xtype: 'antButton',
+                    //     text: '修改(F4)',
+                    //     reference: 'btn-40941137-user-funcbar-edit',
+                    //     cls: 'funcbarBtn-black',
+                    //     iconCls: 'fa fa-edit',
+                    //     margin: 3,
+                    //     handler: 'funcbar_edit',
+                    // },
+                    // { xtype: 'tbseparator', margin: '8 1' },
+                    // {
+                    //     xtype: 'antButton',
+                    //     text: '新增(F2)',
+                    //     reference: 'btn-40941137-user-funcbar-add',
+                    //     cls: 'funcbarBtn-black',
+                    //     iconCls: 'fa fa-plus',
+                    //     margin: 3,
+                    //     handler: 'funcbar_add',
+                    // },
+                    // { xtype: 'tbseparator', margin: '8 1' },
+                    // {
+                    //     xtype: 'antButton',
+                    //     text: '儲存(F8)',
+                    //     reference: 'btn-40941137-user-funcbar-save',
+                    //     hidden: true,
+                    //     cls: 'funcbarBtn-black',
+                    //     iconCls: 'fa fa-save',
+                    //     margin: 3,
+                    //     handler: 'funcbar_save',
+                    // },
+                    // { xtype: 'tbseparator', margin: '8 1' },
+                    // {
+                    //     xtype: 'antButton',
+                    //     text: '取消(F9)',
+                    //     reference: 'btn-40941137-user-funcbar-cancel',
+                    //     hidden: true,
+                    //     cls: 'funcbarBtn-black',
+                    //     iconCls: 'fa fa-times',
+                    //     margin: 3,
+                    //     handler: 'funcbar_cancel',
+                    // },
+                ]
+            },
             {   // 查詢列
                 xtype: 'antPanel',
                 reference: 'panel-dailyreport-user-searchbar',
@@ -66,15 +139,16 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                             fieldLabel: '門市',
                             reference: 'cmbx-dailyreport-user-searchbar-store',
                             emptyText: '請輸入門市',
-
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
-
+                            store: {
+                                fields: ['id', 'name'],
+                                data: [
+                                    { id: 1, name: '店家1' },
+                                    { id: 2, name: '店家2' },
+                                    { id: 3, name: '店家3' },
+                                ]
+                            },
+                            displayField: 'name', // 顯示名稱
+                            valueField: 'id', // 實際值
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -101,17 +175,7 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                         border: false,
                         handler: 'cleanSearch',
                         margin: '10 0 5 5',
-                    }, {
-                        xtype: 'antButton',
-                        text: '列印',
-                        scale: 'small',
-                        cls: 'antBtn-gray',
-                        iconCls: 'fa fa-print',
-                        width: 60,
-                        border: false,
-                        handler: 'cleanSearch',
-                        margin: '10 0 5 5',
-                    },
+                    }, 
 
                 ],
             },
@@ -200,30 +264,30 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                                 },
                                 items: [{
                                     xtype: 'antTextfield',
-                                    fieldLabel: '總額',
-                                    reference: 'txt-dailyreport-dailyreport-saletotal',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-dailyreport-dailyreport-salerows',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
                                     fieldLabel: '現金',
                                     reference: 'txt-dailyreport-dailyreport-salecash',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '刷卡',
                                     reference: 'txt-dailyreport-dailyreport-salecredit',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '電付',
                                     reference: 'txt-dailyreport-dailyreport-salepayonline',
                                     labelWidth: 34,
-                                },
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-dailyreport-dailyreport-salerows',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '總額',
+                                    reference: 'txt-dailyreport-dailyreport-saletotal',
+                                    labelWidth: 34,
+                                },   
                                 ]
                             }, {   // 銷退
                                 xtype: 'antFieldset',
@@ -237,30 +301,30 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                                 },
                                 items: [{
                                     xtype: 'antTextfield',
-                                    fieldLabel: '總額',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundtotal',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundrows',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
                                     fieldLabel: '現金',
                                     reference: 'txt-dailyreport-dailyreport-btobrefundcash',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '刷卡',
                                     reference: 'txt-dailyreport-dailyreport-btobrefundcredit',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '電付',
                                     reference: 'txt-dailyreport-dailyreport-btobrefundpayonline',
                                     labelWidth: 34,
-                                },
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundrows',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '總額',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundtotal',
+                                    labelWidth: 34,
+                                },    
                                 ]
                             }, {   // 店務收支
                                 xtype: 'antFieldset',
@@ -301,23 +365,23 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                                 },
                                 items: [{
                                     xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-dailyreport-dailyreport-collectionrows',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
                                     fieldLabel: '現金',
                                     reference: 'txt-dailyreport-dailyreport-amountcollection',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '刷卡',
                                     reference: 'txt-dailyreport-dailyreport-collectioncredit',
                                     labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '電付',
                                     reference: 'txt-dailyreport-dailyreport-collectionpayonline',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-dailyreport-dailyreport-collectionrows',
                                     labelWidth: 34,
                                 },
                                 ]
@@ -345,40 +409,40 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                                 },
                                 items: [{
                                     xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-dailyreport-dailyreport-btobtxcnt',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '總額',
-                                    reference: 'txt-dailyreport-dailyreport-btobtxamount',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
                                     fieldLabel: '現金',
                                     reference: 'txt-dailyreport-dailyreport-btobtxcash',
                                     labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '電匯',
-                                    reference: 'txt-dailyreport-dailyreport-btobtxtt',
-                                    labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '刷卡',
                                     reference: 'txt-dailyreport-dailyreport-btobtxcredit',
                                     labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '支票',
-                                    reference: 'txt-dailyreport-dailyreport-btobtxcheque',
-                                    labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '電付',
                                     reference: 'txt-dailyreport-dailyreport-btobtxpayonline',
                                     labelWidth: 34,
-                                },
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '電匯',
+                                    reference: 'txt-dailyreport-dailyreport-btobtxtt',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '支票',
+                                    reference: 'txt-dailyreport-dailyreport-btobtxcheque',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-dailyreport-dailyreport-btobtxcnt',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '總額',
+                                    reference: 'txt-dailyreport-dailyreport-btobtxamount',
+                                    labelWidth: 34,
+                                },     
                                 ]
                             }, { // 出貨退回
                                 xtype: 'antFieldset',
@@ -392,40 +456,40 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                                 },
                                 items: [{
                                     xtype: 'antTextfield',
-                                    fieldLabel: '筆數',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundcnt',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '總額',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundamount',
-                                    labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
                                     fieldLabel: '現金',
                                     reference: 'txt-dailyreport-dailyreport-shipbtobrefundcash',
                                     labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '電匯',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundtt',
-                                    labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '刷卡',
                                     reference: 'txt-dailyreport-dailyreport-shipbtobrefundcredit',
                                     labelWidth: 34,
-                                }, {
-                                    xtype: 'antTextfield',
-                                    fieldLabel: '支票',
-                                    reference: 'txt-dailyreport-dailyreport-btobrefundcheque',
-                                    labelWidth: 34,
-                                }, {
+                                },{
                                     xtype: 'antTextfield',
                                     fieldLabel: '電付',
                                     reference: 'txt-dailyreport-dailyreport-shipbtobrefundpayonline',
                                     labelWidth: 34,
-                                },
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '電匯',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundtt',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '支票',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundcheque',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '筆數',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundcnt',
+                                    labelWidth: 34,
+                                },{
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '總額',
+                                    reference: 'txt-dailyreport-dailyreport-btobrefundamount',
+                                    labelWidth: 34,
+                                },     
                                 ]
                             }, { // 門市現金營業額
                                 xtype: 'antFieldset',
@@ -570,80 +634,80 @@ Ext.define('antnex.view.src.dailyreport.Dailyreport', {
                     }
                 ],
             },
-            { xtype: 'splitter', margin: -1.5 },
-            {   // 資料維護
-                xtype: 'panel',
-                title: '資料維護',
-                reference: 'panel-dailyreport-dailyreport-search',
-                bufferedRenderer: false,
-                runInViewport: false,
-                viewConfig: {
-                    enableTextSelection: true,
-                },
-                border: true,
-                store: {},
-                minWidth: 200,
-                flex: 1, //比例
-                listeners: {
-                    selectionchange: 'onSelectdailyreport',
-                },
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch',
-                },
-                defaults: {
-                    margin: '0 5 5 5',
-                },
-                border: true,
-                items: [
-                    {   // 所屬功能
-                        xtype: 'antPanel',
-                        reference: 'panel-dailyreport-user-searchbar',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch',
-                        },
-                        defaults: {
-                            labelAlign: 'top',
-                            labelStyle: '',
-                            labelSeparator: '',
-                            margin: '0 0 5 5',
-                        },
-                        scrollable: true,
-                        items: [
-                            {    // 所屬功能
-                                xtype: 'antCombobox',
-                                fieldLabel: '所屬功能',
-                                margin: '5 0 8 0',
-                            }, {  // 參數編碼
-                                xtype: 'antTextfield',
-                                fieldLabel: '參數編碼',
-                                margin: '0 0 8 0',
-                            }, {  // 參數名稱
-                                xtype: 'antTextarea',
-                                fieldLabel: '參數名稱',
-                                margin: '0 0 8 0',
-                            }, {  // 資料類型
-                                xtype: 'antCombobox',
-                                fieldLabel: '資料類型',
-                                margin: '0 0 8 0',
-                            }, {  // 資料數量
-                                xtype: 'antTextfield',
-                                fieldLabel: '資料數量',
-                                margin: '0 0 8 0',
-                            }, {  // 值
-                                xtype: 'antCombobox',
-                                fieldLabel: '值',
-                                margin: '0 0 8 0',
-                            }, {  // 拋磚預設值
-                                xtype: 'antCombobox',
-                                fieldLabel: '拋磚預設值',
-                                margin: '0 0 8 0',
-                            }
-                        ],
-                    },
-                ],
-            },
+            // { xtype: 'splitter', margin: -1.5 },
+            // {   // 資料維護
+            //     xtype: 'panel',
+            //     title: '資料維護',
+            //     reference: 'panel-dailyreport-dailyreport-search',
+            //     bufferedRenderer: false,
+            //     runInViewport: false,
+            //     viewConfig: {
+            //         enableTextSelection: true,
+            //     },
+            //     border: true,
+            //     store: {},
+            //     minWidth: 200,
+            //     flex: 1, //比例
+            //     listeners: {
+            //         selectionchange: 'onSelectdailyreport',
+            //     },
+            //     layout: {
+            //         type: 'vbox',
+            //         align: 'stretch',
+            //     },
+            //     defaults: {
+            //         margin: '0 5 5 5',
+            //     },
+            //     border: true,
+            //     items: [
+            //         {   // 所屬功能
+            //             xtype: 'antPanel',
+            //             reference: 'panel-dailyreport-user-searchbar',
+            //             layout: {
+            //                 type: 'vbox',
+            //                 align: 'stretch',
+            //             },
+            //             defaults: {
+            //                 labelAlign: 'top',
+            //                 labelStyle: '',
+            //                 labelSeparator: '',
+            //                 margin: '0 0 5 5',
+            //             },
+            //             scrollable: true,
+            //             items: [
+            //                 {    // 所屬功能
+            //                     xtype: 'antCombobox',
+            //                     fieldLabel: '所屬功能',
+            //                     margin: '5 0 8 0',
+            //                 }, {  // 參數編碼
+            //                     xtype: 'antTextfield',
+            //                     fieldLabel: '參數編碼',
+            //                     margin: '0 0 8 0',
+            //                 }, {  // 參數名稱
+            //                     xtype: 'antTextarea',
+            //                     fieldLabel: '參數名稱',
+            //                     margin: '0 0 8 0',
+            //                 }, {  // 資料類型
+            //                     xtype: 'antCombobox',
+            //                     fieldLabel: '資料類型',
+            //                     margin: '0 0 8 0',
+            //                 }, {  // 資料數量
+            //                     xtype: 'antTextfield',
+            //                     fieldLabel: '資料數量',
+            //                     margin: '0 0 8 0',
+            //                 }, {  // 值
+            //                     xtype: 'antCombobox',
+            //                     fieldLabel: '值',
+            //                     margin: '0 0 8 0',
+            //                 }, {  // 拋磚預設值
+            //                     xtype: 'antCombobox',
+            //                     fieldLabel: '拋磚預設值',
+            //                     margin: '0 0 8 0',
+            //                 }
+            //             ],
+            //         },
+            //     ],
+            // },
         ]
     }]
 });
