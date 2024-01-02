@@ -20,12 +20,13 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
         activate: 'onActivate',
     },
 
+
     dockedItems: [{
         xtype: 'panel',
-        // layout: {
-        //     type: 'vbox',
-        //     align: 'stretch'
-        // },
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
         dock: 'top',
         margin: 0,
         items: [
@@ -37,13 +38,12 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                 },
                 scrollable: true,
                 border: false,
-                // margin: '0 0 0 5',
                 padding: '0 0 0 5',
                 items: [
                     {
-                        xtype: 'button',
+                        xtype: 'funcbarButton',
                         text: '查詢列',
-                        reference: 'btn-user-funcbar-search',
+                        reference: 'btn-restoreitem-funcbar-search',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-search',
                         margin: 3,
@@ -51,20 +51,19 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'funcbarButton',
                         text: '新增',
-                        reference: 'btn-user-funcbar-add',
+                        reference: 'btn-restoreitem-funcbar-add',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-plus',
                         margin: 3,
-                        handler: 'funcbar_add',
+                        handler: 'funcbar_Add',
                     },
-                    
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'funcbarButton',
                         text: '修改',
-                        reference: 'btn-user-funcbar-edit',
+                        reference: 'btn-restoreitem-funcbar-edit',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-edit',
                         margin: 3,
@@ -72,9 +71,9 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'funcbarButton',
                         text: '儲存',
-                        reference: 'btn-user-funcbar-save',
+                        reference: 'btn-restoreitem-funcbar-save',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-save',
                         margin: 3,
@@ -82,20 +81,19 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'funcbarButton',
                         text: '取消',
-                        reference: 'btn-user-funcbar-cancel',
+                        reference: 'btn-restoreitem-funcbar-cancel',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-times',
                         margin: 3,
                         handler: 'funcbar_cancel',
                     },
-                    
                 ]
             },
             {   // 查詢列
                 xtype: 'panel',
-                reference: 'panel-user-searchbar',
+                reference: 'panel-restoreitem-searchbar',
                 layout: {
                     type: 'hbox',
                     align: 'stretch',
@@ -113,160 +111,132 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             align: 'stretch'
                         },
                         defaults: {
-                            // labelWidth: 37,
-                            margin: '3 0 8 5',
-                            // width:200,
+                            xtype:'panel',
+                            layout: {
+                                type: 'hbox',
+                                align: 'stretch'
+                            },
+                            
+                            
+                            margin: '0 0 8 0',
+                            defaults:{
+                                labelWidth: 65,
+                                margin: '0 10 0 0',
+                            }
+                            
+                            
                         },
                         items: [
-                            {
-                                xtype: 'panel',
-                                layout: {
-                                    type: 'hbox',
-                                    align: 'stretch'
-                                },
-                                defaults: {
-                                    // labelWidth: 37,
-                                    margin: '0 0 0 5',
-                                    // width:200,
-                                },
-                                items: [
-                                    {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '檢測項目編碼',
-                                        reference: 'txt-user-searchbar-code',
-                                        emptyText: '請輸入檢測項目編碼',
-                                        //width: 150,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                        //margin: '0 0 8 0',
-                                    }, {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '檢測項目名稱',
-                                        reference: 'txt-user-searchbar-name',
-                                        emptyText: '請輸入檢測項目名稱',
-                                        //width: 150,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                    }, {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '備註',
-                                        reference: 'txt-user-searchbar-memo',
-                                        emptyText: '請輸入備註',
-                                        // width: 250,
-                                        labelWidth: 37,
-                                        flex:1,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                    }, {
-                                        xtype: 'antCombobox',
-                                        fieldLabel: '狀態',
-                                        reference: 'cmbx-user-searchbar-status',
-                                        width: 120,
-                                        labelWidth: 37,
-            
-                                        valueField: 'value', //store裡的value
-                                        displayField: 'text', //顯示store裡的text
-                                        queryMode: 'local', //不懂
-                                        forceSelection: true, //強制選擇，只能選清單內的東西
-                                        anyMatch: true, //不懂
-                                        editable: false, //使用者是否能輸入
-                                        store: { type: 'status' },
-            
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-            
+                            {//項目編碼 項目名稱 保固月份 狀態
+                                items:[
+                                {
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '項目編碼',
+                                    reference: 'txt-restoreitem-searchbar-code',
+                                    emptyText: '請輸入維修項目編碼',
+                                    enableKeyEvents: true,
+                                    listeners: {
+                                        keypress: 'enterSearch'
                                     },
-                                ]
-                            },{
-                                xtype: 'panel',
-                                layout: {
-                                    type: 'hbox',
-                                    align: 'stretch'
-                                },
-                                defaults: {
-                                    // labelWidth: 37,
-                                    margin: '0 0 0 5',
-                                    // width:200,
-                                },
-                                items: [
-                                    {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '建立人員',
-                                        reference: 'txt-user-searchbar-createusercode',
-                                        emptyText: '請輸入建立人員',
-                                        // width: 250,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                    }, {
-                                        xtype: 'antDatefield',
-                                        fieldLabel: '建立時間',
-                                        reference: 'txt-user-searchbar-createtm',
-                                        // emptyText: '請輸入建立時間',
-                                        // width: 250,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                    }, {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '異動人員',
-                                        reference: 'txt-user-searchbar-modifyusercode',
-                                        emptyText: '請輸入異動人員',
-                                        // width: 250,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                    }, {
-                                        xtype: 'antDatefield',
-                                        fieldLabel: '異動時間',
-                                        reference: 'txt-user-searchbar-modifytm',
-                                        // emptyText: '請輸入異動時間',
-                                        // width: 250,
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
+                                }, {
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '項目名稱',
+                                    reference: 'txt-restoreitem-searchbar-name',
+                                    emptyText: '請輸入維修項目名稱',
+                                    enableKeyEvents: true,
+                                    listeners: {
+                                        keypress: 'enterSearch'
                                     },
-                                ]
-                            }
-                        ]
-                    },{
-                        xtype: 'button',
-                        text: '查詢',
-                        scale: 'small',
-                        cls: 'antBtn-blue',
-                        iconCls: 'fa fa-search',
-                        width: 60,
-                        border: false,
-                        handler: 'doSearch',
-                        margin: '10 0 5 15', // 上 右 下 左
+                                },{
+                                    xtype: 'antNumberfield',
+                                    fieldLabel: '保固月份',
+                                    reference: 'num-restoreitem-searchbar-warrantymonth',
+                                    emptyText: '請輸入保固月份',    
+                                    enableKeyEvents: true,
+                                    listeners: {
+                                        keypress: 'enterSearch'
+                                    },
+                                },
+                                {
+                                    xtype: 'antCombobox',
+                                    fieldLabel: '狀　　態',
+                                    reference: 'cmbx-restoreitem-searchbar-status',
+        
+                                    valueField: 'value',
+                                    displayField: 'text',
+                                    queryMode: 'local',
+                                    forceSelection: true,
+                                    anyMatch: true,
+                                    editable: false,
+                                    store: {type: 'status'},
+        
+                                    enableKeyEvents: true,
+                                    listeners: {
+                                        keypress: 'enterSearch'
+                                    },
+                                    margin: '0 10 8 5',
+                                    
+                                },]
+                            },{//建立人員 建立時間
+                                items:[ {//建立人員 建立時間
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '建立人員',
+                                    reference: 'txt-restoreitem-addbarcreateusercode',
+                                    enableKeyEvents: true,                                    
+                                    // listeners: {
+                                    //     keypress: 'enterSearch'
+                                    // },
+                                }, {
+                                    xtype: 'antDatefield',
+                                    fieldLabel: '建立時間',
+                                    reference: 'date-restoreitem-addbarcreatetm',
+                                    enableKeyEvents: true,
+                                    flex:1,
+                                    value: new Date()
+                                    // listeners: {
+                                    //     keypress: 'enterSearch'
+                                    // },
+                                },{//異動人員 異動時間
+                                    xtype: 'antTextfield',
+                                    fieldLabel: '異動人員',
+                                    reference: 'txt-restoreitem-addbarmodifyusercode',
+                                    enableKeyEvents: true,
+                                    // listeners: {
+                                    //     keypress: 'enterSearch'
+                                    // },
+                                }, {
+                                    xtype: 'antDatefield',
+                                    fieldLabel: '異動時間',
+                                    reference: 'date-restoreitem-addbarmodiftm',
+                                    enableKeyEvents: true,
+                                    flex:1,
+                                    value: new Date()
+                                    // listeners: {
+                                    //     keypress: 'enterSearch'
+                                    // },
+                                },
+    
+                            ]
+                            }                            
+                        ],
+
                     },
-                    {
-                        xtype: 'button',
-                        text: '清除',
-                        scale: 'small',
-                        cls: 'antBtn-red',
-                        iconCls: 'fa fa-times',
-                        width: 60,
-                        border: false,
+                    {//查詢button
+                        xtype: 'searchButton-search',                       
+                        handler: 'doSearch',
+                        margin: '10 0 5 5',
+                    },
+                    {//清除button
+                        xtype: 'searchButton-clean',
                         handler: 'cleanSearch',
                         margin: '10 0 5 5',
-                    }
+                    },
                 ]
             },
+            
         ]
     }],
+    scrollable: true,
     items: [{
         xtype: 'panel',
         layout: {
@@ -274,183 +244,173 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
             align: 'stretch'
         },
         margin: 5,
-        minHeight: 500, //頁面最小高度
+        //minHeight: 1000,
         flex: 1,
         scrollable: true,
         items: [
-            {   // 使用者清單
+            {   // 維修項目清單
                 xtype: 'antGridpanel',
-                title: '使用者清單',
-                reference: 'grid-user-userlist',
-                // bufferedRenderer: false,
-                // runInViewport: false,
+                title: '維修項目清單',
+                reference: 'grid-restoreitem-userlist',
+                //bufferedRenderer: false,
+                //runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
                 border: true,
-                store: {},
-                minWidth: 200,
-                flex: 3,
-                scrollable: true,
+                store: {},                
+                flex: 1,
                 listeners: {
                     selectionchange: 'onSelectUser',
                 },
                 columns: [{
                     xtype: 'rownumberer',
-                    text: 'id',
                     align: 'center',
-                    width: 37,
+                    width: 50,
                 }, {
                     dataIndex: 'code',
-                    text: '檢測項目編碼',
+                    text: '項目編碼',
                     width: 110,
                 }, {
                     dataIndex: 'name',
-                    text: '檢測項目名稱',
-                    width: 110,
-                },{
+                    text: '項目名稱',
+                    minWidth: 200,
+                    flex: 1,
+                }, {
+                    dataIndex: 'warrantymonth',
+                    text: '保固月份',
+                    width: 96,
+                    //flex: 1,
+                }, {
                     dataIndex: 'memo',
                     text: '備註',
-                    minWidth: 150,
-                    
-                }, {
+                    minWidth: 200,
+                    flex: 1,
+                },{
                     dataIndex: 'status',
                     text: '狀態',
-                    width: 50,
+                    width: 96,
                     renderer: function (value) {
                         let store = Ext.create('antnex.store.static.Status');
                         let record = store.getRange().find(e => e.get('value') == value);
                         return record ? record.get('text') : `無法辨識: ${value}`;
                     },
+                    renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
                 }, {
                     dataIndex: 'createusercode',
                     text: '建立人員',
                     width: 110,
+                    //flex: 1,
                 }, {
                     dataIndex: 'createtm',
                     text: '建立時間',
-                    width: 140,
+                    width: 110,
+                   // flex: 1,
                 }, {
                     dataIndex: 'modifyusercode',
                     text: '異動人員',
                     width: 110,
+                    //flex: 1,
                 }, {
-                    dataIndex: 'modifytm',
+                    dataIndex: 'modiftm',
                     text: '異動時間',
-                    width: 140,
+                    width: 110,
+                    //flex: 1,
                 }]
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
                 xtype: 'panel',
                 title: '資料維護',
-                reference: 'panel-user-manage',
+                reference: 'panel-restoreitem-manage',
                 layout: {
                     type: 'vbox',
                     align: 'stretch',
                 },
                 minWidth:300,
-                flex: 1,
+                //flex: 1,
                 defaults: {
                     margin: '0 5 5 5',
                 },
                 border: true,
-                scrollable: true,
-                //hidden: true,
                 items: [
-                    {   // 基本資料
-                        xtype: 'antFieldset',
-                        title: '基本資料',
+                    {   // 維修項目資料
+                        xtype: 'fieldset',
+                        title: '維修項目資料',
                         layout: {
                             type: 'vbox',
                             align: 'stretch',
                         },
-                        
                         defaults: {
                             margin: '0 0 8 0',
-                            labelAlign: 'top',
-                            labelSeparator: '',
-                            labelStyle: 'text-justify: none;text-align-last: left;',
-                            // width:150,
-                            // labelWidth: 37,
-                            
                         },
                         items: [{
+                            xtype: 'antTextfield',
+                            fieldLabel: '項目編碼',
+                            reference: 'txt-restoreitem-code',
+                            labelWidth: 65,
+                            cls: 'fieldRequired',
+                        }, {
+                            xtype: 'antTextfield',
+                            fieldLabel: '項目名稱',
+                            reference: 'txt-restoreitem-name',
+                            labelWidth: 65,
+                            cls: 'fieldRequired',
+                        }, {
                             xtype: 'antNumberfield',
-                            fieldLabel: 'id',
-                            reference: 'num-user-ids',
-                            // labelWidth: 37,
-                            cls: 'fieldNotInput',
-                        }, {
+                            fieldLabel: '保固月份',
+                            reference: 'num-restoreitem-mail',
+                            labelWidth: 65,
+                        },{
                             xtype: 'antTextfield',
-                            fieldLabel: '檢測項目編碼',
-                            reference: 'txt-user-code',
-                            // labelWidth: 100,
-                            // cls: 'fieldRequired',
-                        }, {
-                            xtype: 'antTextfield',
-                            fieldLabel: '檢測項目名稱',
-                            reference: 'txt-user-name',
-                            // labelWidth: 100,
-                            // cls: 'fieldRequired',
-                        }, {
-                            xtype: 'antTextarea',
-                            fieldLabel: '備註',
-                            reference: 'txt-user-memo',
-                            // labelWidth: 37,
+                            fieldLabel: '備　　註',
+                            reference: 'txt-restoreitem-memo',
+                            labelWidth: 65,
                         }, {
                             xtype: 'antCombobox',
-                            fieldLabel: '狀態',
-                            reference: 'cmbx-user-status',
-                            // labelWidth: 37,
-                            // cls: 'fieldRequired',
-
+                            fieldLabel: '狀　　態',
+                            reference: 'cmbx-restoreitem-status',
+                            cls: 'fieldRequired',
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
+                            labelWidth: 65,
                             forceSelection: true,
                             anyMatch: true,
-                            editable: false, //可不可編輯
-                            store: { type: 'status' },
-                        }, {
+                            editable: false,
+                            store: {type: 'status'},
+
+                            enableKeyEvents: true,
+                            // listeners: {
+                            //     keypress: 'enterSearch'
+                            // },
+                        },{
                             xtype: 'antTextfield',
                             fieldLabel: '建立人員',
-                            reference: 'txt-user-createusername',
-                            //disabled: true,
-                            // labelAlign: 'top',
-                            // labelWidth: 65,
-                            // cls: 'fieldRequired',
-                        }, {
-                            xtype: 'antDatefield',
+                            reference: 'txt-restoreitem-createusercode',
+                            labelWidth: 65,
+                        },{
+                            xtype: 'datefield',
                             fieldLabel: '建立時間',
-                            reference: 'text-user-createtm',
-                            // format: 'Y-m-d',
-                            //disabled: true,
-                            // labelAlign: 'top',
-                            // labelWidth: 65,
-                            // cls: 'fieldRequired',
-                        }, {
+                            labelWidth: 65,
+                            reference: 'date-restoreitem-createtm',
+                            //value: new Date()                           
+                        },{
                             xtype: 'antTextfield',
                             fieldLabel: '異動人員',
-                            reference: 'txt-user-modifyusername',
-                            //disabled: true,
-                            // labelAlign: 'top',
-                            // labelWidth: 65,
-                            // cls: 'fieldRequired',
-                        }, {
-                            xtype: 'antDatefield',
+                            reference: 'txt-restoreitem-modifyusercode',
+                            labelWidth: 65,
+                        },{
+                            xtype: 'datefield',
                             fieldLabel: '異動時間',
-                            reference: 'text-user-modifytm',
-                            // format: 'Y-m-d',
-                            //disabled: true,
-                            // labelAlign: 'top',
-                            // labelWidth: 65,
-                            // cls: 'fieldRequired',
-                        }, 
-                        ]
+                            labelWidth: 65,
+                            reference: 'date-restoreitem-modiftm',
+                            //value: new Date()                           
+                        }]
                     }
                 ]
-            },            
+            }
         ]
     }]
+
 });
