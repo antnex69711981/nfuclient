@@ -40,7 +40,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                 padding: '0 0 0 5',
                 items: [
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '查詢列(F10)',
                         reference: 'btn-40941137-user-funcbar-search',
                         cls: 'funcbarBtn-black',
@@ -50,7 +50,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '新增(F2)',
                         reference: 'btn-40941137-user-funcbar-add',
                         cls: 'funcbarBtn-black',
@@ -60,7 +60,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     },
                     { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '修改(F4)',
                         reference: 'btn-40941137-user-funcbar-edit',
                         cls: 'funcbarBtn-black',
@@ -68,23 +68,21 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         margin: 3,
                         handler: 'funcbar_edit',
                     },
-                    // { xtype: 'tbseparator', margin: '8 1' },
-                    // {
-                    //     xtype: 'button',
-                    //     text: '儲存(F8)',
-                    //     reference: 'btn-40941137-user-funcbar-save',
-                    //     hidden: true,
-                    //     cls: 'funcbarBtn-black',
-                    //     iconCls: 'fa fa-save',
-                    //     margin: 3,
-                    //     handler: 'funcbar_save',
-                    // },
-                    // { xtype: 'tbseparator', margin: '8 1' },
+                    { xtype: 'tbseparator', margin: '8 1' },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
+                        text: '儲存(F8)',
+                        reference: 'btn-40941137-user-funcbar-save',
+                        cls: 'funcbarBtn-black',
+                        iconCls: 'fa fa-save',
+                        margin: 3,
+                        handler: 'funcbar_save',
+                    },
+                    { xtype: 'tbseparator', margin: '8 1' },
+                    {
+                        xtype: 'antButton',
                         text: '取消(F9)',
                         reference: 'btn-40941137-user-funcbar-cancel',
-                        hidden: true,
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-times',
                         margin: 3,
@@ -105,74 +103,69 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                 scrollable: true,
                 items: [
                     {   // 查詢條件
-                        xtype: 'fieldset',
+                        xtype: 'antFieldset',
                         title: '查詢條件',
                         layout: {
                             type: 'hbox',
                             align: 'stretch'
                         },
-                        defaults: {
-                            labelWidth: 37,
+                        defaults: {                            
                             margin: '0 0 8 5',
                         },
                         items: [{
-                            xtype: 'textfield',
-                            fieldLabel: '學號',
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修報價編碼',
                             reference: 'txt-40941137-user-searchbar-code',
-                            emptyText: '請輸入學號',
+                            emptyText: '請輸入維修報價編碼',
+                            labelWidth: 90,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
                             margin: '0 0 8 0',
                         }, {
-                            xtype: 'textfield',
-                            fieldLabel: '姓名',
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修項目',
                             reference: 'txt-40941137-user-searchbar-name',
-                            emptyText: '請輸入姓名',
+                            emptyText: '請輸入維修項目',
+                            labelWidth: 62,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
                         },{
-                            xtype: 'textfield',
-                            fieldLabel: '信箱',
-                            reference: 'txt-40941137-user-searchbar-mail',
-                            emptyText: '請輸入信箱',
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        },{
-                            xtype: 'textfield',
-                            fieldLabel: '備註',
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修商品',
                             reference: 'txt-40941137-user-searchbar-memo',
-                            emptyText: '請輸入備註',
+                            emptyText: '請輸入維修商品',
+                            labelWidth: 62,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
-                        }, {
-                            xtype: 'combobox',
-                            fieldLabel: '狀態',
-                            reference: 'cmbx-40941137-user-searchbar-status',
+                        },
+                        // {
+                        //     xtype: 'antCombobox',
+                        //     fieldLabel: '狀態',
+                        //     reference: 'cmbx-40941137-user-searchbar-status',
 
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: true,
-                            store: { type: 'status' },
+                        //     valueField: 'value',
+                        //     displayField: 'text',
+                        //     queryMode: 'local',
+                        //     forceSelection: true,
+                        //     anyMatch: true,
+                        //     editable: true,
+                        //     store: { type: 'status' },
 
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                        }]
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // }
+                    ]
                     },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '查詢',
                         scale: 'small',
                         cls: 'antBtn-blue',
@@ -183,7 +176,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         margin: '10 0 5 5',
                     },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '清除',
                         scale: 'small',
                         cls: 'antBtn-red',
@@ -211,7 +204,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
         scrollable: true,
         items: [
             {   // 使用者清單
-                xtype: 'gridpanel',
+                xtype: 'antGridpanel',
                 title: '使用者清單',
                 reference: 'grid-40941137-user-userlist',
                 bufferedRenderer: false,
@@ -227,57 +220,60 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     selectionchange: 'onSelectUser',
                 },
                 columns: [{
-                    xtype: 'rownumberer',
-                    align: 'center',
-                    width: 50,
-                },{
                     dataIndex: 'id',
                     text: 'id',
-                    width: 110,
+                    minWidth: 35,  
+                    width: 'auto',            
                 },{
                     dataIndex: 'code',
                     text: '維修報價編碼',
-                    width: 110,
+                    minWidth: 110,
+                    width: 'auto', 
                 },{
                     dataIndex: 'restoreitemcode',
                     text: '維修項目',
-                    width: 110,
+                    minWidth: 80,
+                    width: 'auto', 
                 },{
                     dataIndex: 'materialcode',
                     text: '維修商品',
-                    width: 110,
-                    flex: 1,
+                    minWidth: 80,    
+                    width: 'auto',                 
                 },{
                     dataIndex: 'price',
                     text: '維修報價',
-                    width: 110,
-                    flex: 1,
+                    minWidth: 80,  
+                    width: 'auto',                   
                 },{
                     dataIndex: 'memberprice',
                     text: '會員價格',
-                    width: 110,
-                    flex: 1,
+                    minWidth: 80,     
+                    width: 'auto',                
                 },{
                     dataIndex: 'memo',
                     text: '備註',
-                    width: 110,
-                    flex: 1,
+                    minWidth: 80,
+                    width: 'auto', 
                 },{
                     dataIndex: 'createusercode',
                     text: '建立人員',
-                    width: 110,
+                    minWidth: 110,
+                    width: 'auto', 
                 },{
                     dataIndex: 'createtm',
                     text: '建立時間',
-                    width: 160,
+                    minWidth: 160,
+                    width: 'auto', 
                 },{
                     dataIndex: 'modifyusercode',
                     text: '異動人員',
-                    width: 110,
+                    minWidth: 110,
+                    width: 'auto', 
                 },{
                     dataIndex: 'modifytm',
                     text: '異動時間',
-                    width: 160,
+                    minWidth: 160,
+                    width: 'auto', 
                 },
                 // {
                 //     dataIndex: 'status',
@@ -291,134 +287,140 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                 // },
                 ]
             },
-            // { xtype: 'splitter', margin: -1.5 },
-            // {   // 資料維護
-            //     xtype: 'panel',
-            //     title: '資料維護',
-            //     reference: 'panel-40941137-user-manage',
-            //     // hidden:true,
-            //     layout: {
-            //         type: 'vbox',
-            //         align: 'stretch',
-            //     },
-            //     flex: 1,
-            //     defaults: {
-            //         margin: '0 5 5 5',
-            //     },
-            //     border: true,
-            //     items: [
-            //         {   // 基本資料
-            //             xtype: 'fieldset',
-            //             title: '基本資料',
-            //             layout: {
-            //                 type: 'vbox',
-            //                 align: 'stretch',
-            //             },
-            //             defaults: {
-            //                 margin: '0 0 8 0',
-            //             },
-            //             items: [{
-            //                 xtype: 'numberfield',
-            //                 fieldLabel: 'ids',
-            //                 reference: 'num-40941137-user-ids',
-            //                 labelWidth: 74,
-            //                 cls: 'fieldNotInput',
-            //             }, {
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '學號',
-            //                 reference: 'txt-40941137-user-code',
-            //                 labelWidth: 74,
-            //             }, {
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '姓名',
-            //                 reference: 'txt-40941137-user-name',
-            //                 labelWidth: 74,
-            //             }, {
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '信箱',
-            //                 reference: 'txt-40941137-user-mail',
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '密碼',
-            //                 reference: 'txt-40941137-user-password',
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '備註',
-            //                 reference: 'txt-40941137-user-memo',
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'combobox',
-            //                 fieldLabel: '狀態',
-            //                 reference: 'cmbx-40941137-user-status',
-            //                 labelWidth: 74,
+            { xtype: 'splitter', margin: -1.5 },
+            {   // 資料維護
+                xtype: 'panel',
+                title: '資料維護',
+                reference: 'panel-40941137-user-manage',
+                // hidden:true,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretch',
+                },
+                flex: 1,
+                defaults: {
+                    margin: '0 5 5 5',
+                },
+                border: true,
+                items: [
+                    {   // 基本資料
+                        xtype: 'antFieldset',
+                        title: '基本資料',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch',
+                        },
+                        defaults: {
+                            margin: '0 0 8 0',
+                            labelAlign: 'top',
+                            labelStyle: '',
+                            labelSeparator: '', 
+                        },
+                        items: [{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修報價編碼',
+                            reference: 'txt-40941137-user-code',                            
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修項目',
+                            reference: 'txt-40941137-user-name',                            
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修商品',
+                            reference: 'txt-40941137-user-mail',
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修報價',
+                            reference: 'txt-40941137-user-password',
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '會員價格',
+                            reference: 'txt-40941137-user-memo',
+                        },{
+                            xtype: 'antTextfield',
+                            fieldLabel: '備註',
+                            reference: 'txt-40941137-user-memo',
+                        },{
+                            layout: {
+                                type: 'hbox',
+                                align: 'stretch', //看不懂
+                                pack: 'end', //start 靠左 , center 置中 , end 靠右
+                            },
+                            // defaults: {
+                            //     margin: '0 0 8 0',
+                            // },
+                            items: [{
+                                xtype: 'antButton',
+                                text: '儲存(F8)',
+                                reference: 'btn-40941137-user-funcbar-save',
+                                //cls: 'funcbarBtn-black',
+                                iconCls: 'fa fa-save',
+                                margin: 3,
+                                handler: 'funcbar_save',
+                            },
+                            {
+                                xtype: 'antButton',
+                                text: '取消(F9)',
+                                reference: 'btn-40941137-user-funcbar-cancel',
+                                //cls: 'funcbarBtn-black',
+                                iconCls: 'fa fa-times',
+                                margin: 3,
+                                handler: 'funcbar_cancel',
+                            }]
+                        },
+                        // {
+                        //     xtype: 'antNumberfield',
+                        //     fieldLabel: 'ids',
+                        //     reference: 'num-40941137-user-ids',
+                        //     labelWidth: 90,
+                        //     cls: 'fieldNotInput',
+                        // },
+                        // {
+                        //     xtype: 'antTextfield',
+                        //     fieldLabel: '建立人員',
+                        //     reference: 'txt-40941137-user-createusercode',
+                        //     disabled: true,
+                        //     labelWidth: 90,
+                        // },{
+                        //     xtype: 'antTextfield',
+                        //     fieldLabel: '建立時間',
+                        //     reference: 'txt-40941137-user-createtm',
+                        //     disabled: true,
+                        //     labelWidth: 90,
+                        // },{
+                        //     xtype: 'antTextfield',
+                        //     fieldLabel: '異動人員',
+                        //     reference: 'txt-40941137-user-modifyusercode',
+                        //     labelWidth: 90,
+                        // },{
+                        //     xtype: 'antTextfield',
+                        //     fieldLabel: '異動時間',
+                        //     reference: 'txt-40941137-user-modifytm',
+                        //     labelWidth: 90,
+                        // },
+                        // {
+                        //     xtype: 'antCombobox',
+                        //     fieldLabel: '狀態',
+                        //     reference: 'cmbx-40941137-user-status',
+                        //     labelWidth: 74,
 
-            //                 valueField: 'value',
-            //                 displayField: 'text',
-            //                 queryMode: 'local',
-            //                 forceSelection: true,
-            //                 anyMatch: true,
-            //                 editable: true,
-            //                 store: { type: 'status' },
+                        //     valueField: 'value',
+                        //     displayField: 'text',
+                        //     queryMode: 'local',
+                        //     forceSelection: true,
+                        //     anyMatch: true,
+                        //     editable: true,
+                        //     store: { type: 'status' },
 
-            //                 enableKeyEvents: true,
-            //                 listeners: {
-            //                     keypress: 'enterSearch'
-            //                 },
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '建立人員',
-            //                 reference: 'txt-40941137-user-createusercode',
-            //                 disabled: true,
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '建立時間',
-            //                 reference: 'txt-40941137-user-createtm',
-            //                 disabled: true,
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '異動人員',
-            //                 reference: 'txt-40941137-user-modifyusercode',
-            //                 labelWidth: 74,
-            //             },{
-            //                 xtype: 'textfield',
-            //                 fieldLabel: '異動時間',
-            //                 reference: 'txt-40941137-user-modifytm',
-            //                 labelWidth: 74,
-            //             },{
-            //                 layout: {
-            //                     type: 'hbox',
-            //                     align: 'stretch', //看不懂
-            //                     pack: 'end', //start 靠左 , center 置中 , end 靠右
-            //                 },
-            //                 // defaults: {
-            //                 //     margin: '0 0 8 0',
-            //                 // },
-            //                 items: [{
-            //                     xtype: 'button',
-            //                     text: '儲存(F8)',
-            //                     reference: 'btn-40941137-user-funcbar-save',
-            //                     //cls: 'funcbarBtn-black',
-            //                     iconCls: 'fa fa-save',
-            //                     margin: 3,
-            //                     handler: 'funcbar_save',
-            //                 },
-            //                 {
-            //                     xtype: 'button',
-            //                     text: '取消(F9)',
-            //                     reference: 'btn-40941137-user-funcbar-cancel',
-            //                     //cls: 'funcbarBtn-black',
-            //                     iconCls: 'fa fa-times',
-            //                     margin: 3,
-            //                     handler: 'funcbar_cancel',
-            //                 }]
-            //             }]
-            //         }
-            //     ]
-            // }
+                        //     enableKeyEvents: true,
+                        //     listeners: {
+                        //         keypress: 'enterSearch'
+                        //     },
+                        // },
+                    ]
+                    }
+                ]
+            }
         ]
     }]
 });
