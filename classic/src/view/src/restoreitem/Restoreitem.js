@@ -20,6 +20,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
         activate: 'onActivate',
     },
 
+
     dockedItems: [{
         xtype: 'panel',
         layout: {
@@ -411,4 +412,5 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
             }
         ]
     }]
+
 });
