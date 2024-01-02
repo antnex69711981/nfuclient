@@ -1,5 +1,5 @@
 Ext.define('antnex.default.defaultView', {
-    extend: 'Ext.Panel',
+    extend: 'antnex.ux.layout.AntPanel',
     requires: [
         'antnex.default.defaultController',
         'antnex.default.defaultModel',
