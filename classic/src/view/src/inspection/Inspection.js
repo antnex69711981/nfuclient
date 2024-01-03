@@ -21,7 +21,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
     },
 
     dockedItems: [{
-        xtype: 'panel',
+        xtype: 'antTransPanel',
         // layout: {
         //     type: 'vbox',
         //     align: 'stretch'
@@ -188,7 +188,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
         ]
     }],
     items: [{
-        xtype: 'panel',
+        xtype: 'antTransPanel',
         layout: {
             type: 'hbox',
             align: 'stretch'
@@ -198,16 +198,17 @@ Ext.define('antnex.view.src.inspection.Inspection', {
         flex: 1,
         scrollable: true,
         items: [
-            {   // 使用者清單
+            {   // 檢測項目清單
                 xtype: 'antGridpanel',
-                title: '使用者清單',
+                title: '檢測項目清單',
                 reference: 'grid-user-userlist',
                 // bufferedRenderer: false,
                 // runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
-                border: true,
+                selModel: false,
+                margin: 'left',
                 store: {},
                 minWidth: 200,
                 flex: 3,
@@ -216,12 +217,6 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     selectionchange: 'onSelectUser',
                 },
                 columns: [
-                //     {
-                //     xtype: 'rownumberer',
-                //     text: 'id',
-                //     align: 'center',
-                //     width: 37,
-                // }, 
                 {
                     dataIndex: 'code',
                     text: '檢測項目編碼',
@@ -282,7 +277,6 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     iconCls: 'fas fa-user',
                     handler: 'showModifyinfo',
                 }],
-                border: true,
                 // scrollable: true,
                 //hidden: true,
                 items: [
@@ -293,41 +287,30 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             align: 'stretch',
                         },
                         
-                        
                         defaults: {
-                            margin: '0 0 8 0',
+                            margin: '0 0 5 5',
+                            labelWidth: 65,
+                            width: 135,
                             labelAlign: 'top',
+                            labelStyle: '',
                             labelSeparator: '',
-                            labelStyle: 'text-justify: none;text-align-last: left;',
-                            // width:150,
-                            // labelWidth: 37,
-                            
+                            cls: 'antVerticalText',
                         },
                         items: [{
-                            xtype: 'antNumberfield',
-                            fieldLabel: 'id',
-                            reference: 'num-user-ids',
-                            // labelWidth: 37,
-                            cls: 'fieldNotInput',
-                            hidden: true,
-                        }, {
                             xtype: 'antTextfield',
                             fieldLabel: '檢測項目編碼',
                             reference: 'txt-user-code',
-                            // labelWidth: 100,
-                            // cls: 'fieldRequired',
+                            cls: 'antVerticalText fieldNotInput',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '檢測項目名稱',
                             reference: 'txt-user-name',
-                            // labelWidth: 100,
-                            // cls: 'fieldRequired',
+                            cls: 'antVerticalText fieldRequired',
                         }, {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-user-status',
-                            // labelWidth: 37,
-                            // cls: 'fieldRequired',
+                            cls: 'antVerticalText fieldRequired',
 
                             valueField: 'value',
                             displayField: 'text',
