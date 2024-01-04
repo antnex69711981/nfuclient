@@ -43,7 +43,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     {
                         xtype: 'funcbarButton',
                         text: '查詢列',
-                        reference: 'btn-user-funcbar-search',
+                        reference: 'btn-inspection-funcbar-search',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-search',
                         margin: 3,
@@ -53,7 +53,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     {
                         xtype: 'funcbarButton',
                         text: '新增',
-                        reference: 'btn-user-funcbar-add',
+                        reference: 'btn-inspection-funcbar-add',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-plus',
                         margin: 3,
@@ -64,7 +64,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     {
                         xtype: 'funcbarButton',
                         text: '修改',
-                        reference: 'btn-user-funcbar-edit',
+                        reference: 'btn-inspection-funcbar-edit',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-edit',
                         margin: 3,
@@ -74,7 +74,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     {
                         xtype: 'funcbarButton',
                         text: '儲存',
-                        reference: 'btn-user-funcbar-save',
+                        reference: 'btn-inspection-funcbar-save',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-save',
                         margin: 3,
@@ -84,7 +84,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     {
                         xtype: 'funcbarButton',
                         text: '取消',
-                        reference: 'btn-user-funcbar-cancel',
+                        reference: 'btn-inspection-funcbar-cancel',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-times',
                         margin: 3,
@@ -95,7 +95,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             },
             {   // 查詢列
                 xtype: 'panel',
-                reference: 'panel-user-searchbar',
+                reference: 'panel-inspection-searchbar',
                 layout: {
                     type: 'hbox',
                     align: 'stretch',
@@ -113,27 +113,26 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             align: 'stretch'
                         },
                         defaults: {
-                            // labelWidth: 37,
+                            labelWidth: 95,
                             margin: '3 0 8 5',
-                            // width:200,
+                            width: 210,
                         },
                         items: [
                             {
                                 xtype: 'antTextfield',
                                 fieldLabel: '檢測項目編碼',
-                                reference: 'txt-user-searchbar-code',
-                                emptyText: '請輸入檢測項目編碼',
+                                reference: 'txt-inspection-searchbar-code',
+                                emptyText: '請輸入編碼',
                                 //width: 150,
                                 enableKeyEvents: true,
                                 listeners: {
                                     keypress: 'enterSearch'
                                 },
-                                //margin: '0 0 8 0',
                             }, {
                                 xtype: 'antTextfield',
                                 fieldLabel: '檢測項目名稱',
-                                reference: 'txt-user-searchbar-name',
-                                emptyText: '請輸入檢測項目名稱',
+                                reference: 'txt-inspection-searchbar-name',
+                                emptyText: '請輸入名稱',
                                 //width: 150,
                                 enableKeyEvents: true,
                                 listeners: {
@@ -142,15 +141,15 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             }, {
                                 xtype: 'antCombobox',
                                 fieldLabel: '狀態',
-                                reference: 'cmbx-user-searchbar-status',
+                                reference: 'cmbx-inspection-searchbar-status',
                                 width: 120,
                                 labelWidth: 37,
     
                                 valueField: 'value', //store裡的value
                                 displayField: 'text', //顯示store裡的text
-                                queryMode: 'local', //不懂
+                                queryMode: 'local', 
                                 forceSelection: true, //強制選擇，只能選清單內的東西
-                                anyMatch: true, //不懂
+                                anyMatch: true, 
                                 editable: false, //使用者是否能輸入
                                 store: { type: 'status' },
     
@@ -193,7 +192,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             type: 'hbox',
             align: 'stretch'
         },
-        margin: 5,
+        margin: '5 5 5 0',
         minHeight: 500, //頁面最小高度
         flex: 1,
         scrollable: true,
@@ -201,14 +200,14 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             {   // 檢測項目清單
                 xtype: 'antGridpanel',
                 title: '檢測項目清單',
-                reference: 'grid-user-userlist',
+                reference: 'grid-inspection-inspectionlist',
                 // bufferedRenderer: false,
                 // runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
                 selModel: false,
-                margin: 'left',
+                // margin: 'left',
                 store: {},
                 minWidth: 200,
                 flex: 3,
@@ -216,8 +215,11 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                 listeners: {
                     selectionchange: 'onSelectUser',
                 },
-                columns: [
-                {
+                columns: [{
+                    xtype: 'rownumberer',
+                    align: 'center',
+                    width: 30,
+                }, {
                     dataIndex: 'code',
                     text: '檢測項目編碼',
                     width: 110,
@@ -229,7 +231,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     dataIndex: 'memo',
                     text: '備註',
                     minWidth: 150,
-                    
+                    flex: 1,
                 }, {
                     dataIndex: 'status',
                     text: '狀態',
@@ -239,6 +241,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                         let record = store.getRange().find(e => e.get('value') == value);
                         return record ? record.get('text') : `無法辨識: ${value}`;
                     },
+                    renderer: ConvertTK.format.storeRenderer('antnex.store.static.Status')
                 }, {
                     dataIndex: 'createusercode',
                     text: '建立人員',
@@ -261,7 +264,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             {   // 資料維護
                 xtype: 'panel',
                 title: '資料維護',
-                reference: 'panel-user-manage',
+                reference: 'panel-inspection-manage',
                 layout: {
                     type: 'vbox',
                     align: 'stretch',
@@ -299,17 +302,18 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '檢測項目編碼',
-                            reference: 'txt-user-code',
+                            reference: 'txt-inspection-code',
                             cls: 'antVerticalText fieldNotInput',
+                            margin: '5 0 5 5',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '檢測項目名稱',
-                            reference: 'txt-user-name',
+                            reference: 'txt-inspection-name',
                             cls: 'antVerticalText fieldRequired',
                         }, {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
-                            reference: 'cmbx-user-status',
+                            reference: 'cmbx-inspection-status',
                             cls: 'antVerticalText fieldRequired',
 
                             valueField: 'value',
@@ -322,7 +326,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                         }, {
                             xtype: 'antTextarea',
                             fieldLabel: '備註',
-                            reference: 'txt-user-memo',
+                            reference: 'txt-inspection-memo',
                             // labelWidth: 37,
                         }
                         ]
