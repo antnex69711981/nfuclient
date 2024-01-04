@@ -42,7 +42,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     {
                         xtype: 'antButton',
                         text: '查詢列(F10)',
-                        reference: 'btn-40941137-user-funcbar-search',
+                        reference: 'btn-restoreprice-user-funcbar-search',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-search',
                         margin: 3,
@@ -52,7 +52,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     {
                         xtype: 'antButton',
                         text: '新增(F2)',
-                        reference: 'btn-40941137-user-funcbar-add',
+                        reference: 'btn-restoreprice-user-funcbar-add',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-plus',
                         margin: 3,
@@ -62,7 +62,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     {
                         xtype: 'antButton',
                         text: '修改(F4)',
-                        reference: 'btn-40941137-user-funcbar-edit',
+                        reference: 'btn-restoreprice-user-funcbar-edit',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-edit',
                         margin: 3,
@@ -72,7 +72,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     {
                         xtype: 'antButton',
                         text: '儲存(F8)',
-                        reference: 'btn-40941137-user-funcbar-save',
+                        reference: 'btn-restoreprice-user-funcbar-save',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-save',
                         margin: 3,
@@ -82,7 +82,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     {
                         xtype: 'antButton',
                         text: '取消(F9)',
-                        reference: 'btn-40941137-user-funcbar-cancel',
+                        reference: 'btn-restoreprice-user-funcbar-cancel',
                         cls: 'funcbarBtn-black',
                         iconCls: 'fa fa-times',
                         margin: 3,
@@ -92,7 +92,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
             },
             {   // 查詢列
                 xtype: 'panel',
-                reference: 'panel-40941137-user-searchbar',
+                reference: 'panel-restoreprice-user-searchbar',
                 layout: {
                     type: 'hbox',
                     align: 'stretch',
@@ -115,7 +115,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '維修報價編碼',
-                            reference: 'txt-40941137-user-searchbar-code',
+                            reference: 'txt-restoreprice-user-searchbar-code',
                             emptyText: '請輸入維修報價編碼',
                             labelWidth: 90,
                             enableKeyEvents: true,
@@ -126,7 +126,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '維修項目',
-                            reference: 'txt-40941137-user-searchbar-name',
+                            reference: 'txt-restoreprice-user-searchbar-restoreitemcode',
                             emptyText: '請輸入維修項目',
                             labelWidth: 62,
                             enableKeyEvents: true,
@@ -136,7 +136,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '維修商品',
-                            reference: 'txt-40941137-user-searchbar-memo',
+                            reference: 'txt-restoreprice-user-searchbar-materialcode',
                             emptyText: '請輸入維修商品',
                             labelWidth: 62,
                             enableKeyEvents: true,
@@ -147,7 +147,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         // {
                         //     xtype: 'antCombobox',
                         //     fieldLabel: '狀態',
-                        //     reference: 'cmbx-40941137-user-searchbar-status',
+                        //     reference: 'cmbx-restoreprice-user-searchbar-status',
 
                         //     valueField: 'value',
                         //     displayField: 'text',
@@ -206,7 +206,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
             {   // 使用者清單
                 xtype: 'antGridpanel',
                 title: '使用者清單',
-                reference: 'grid-40941137-user-userlist',
+                reference: 'grid-restoreprice-user-userlist',
                 bufferedRenderer: false,
                 runInViewport: false,
                 viewConfig: {
@@ -291,7 +291,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
             {   // 資料維護
                 xtype: 'panel',
                 title: '資料維護',
-                reference: 'panel-40941137-user-manage',
+                reference: 'panel-restoreprice-user-manage',
                 // hidden:true,
                 layout: {
                     type: 'vbox',
@@ -311,35 +311,38 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                             align: 'stretch',
                         },
                         defaults: {
-                            margin: '0 0 8 0',
+                            margin: '0 0 5 5',
+                            labelWidth: 65,
+                            width: 135,
                             labelAlign: 'top',
                             labelStyle: '',
-                            labelSeparator: '', 
+                            labelSeparator: '',
+                            cls: 'antVerticalText', 
                         },
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '維修報價編碼',
-                            reference: 'txt-40941137-user-code',                            
+                            reference: 'txt-restoreprice-user-code',                            
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '維修項目',
-                            reference: 'txt-40941137-user-name',                            
+                            reference: 'txt-restoreprice-user-restoreitemcode',                            
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '維修商品',
-                            reference: 'txt-40941137-user-mail',
+                            reference: 'txt-restoreprice-user-materialcode',
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '維修報價',
-                            reference: 'txt-40941137-user-password',
+                            reference: 'txt-restoreprice-user-price',
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '會員價格',
-                            reference: 'txt-40941137-user-memo',
+                            reference: 'txt-restoreprice-user-memberprice',
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '備註',
-                            reference: 'txt-40941137-user-memo',
+                            reference: 'txt-restoreprice-user-memo',
                         },{
                             layout: {
                                 type: 'hbox',
@@ -352,7 +355,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                             items: [{
                                 xtype: 'antButton',
                                 text: '儲存(F8)',
-                                reference: 'btn-40941137-user-funcbar-save',
+                                reference: 'btn-restoreprice-user-funcbar-save',
                                 //cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-save',
                                 margin: 3,
@@ -361,7 +364,7 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                             {
                                 xtype: 'antButton',
                                 text: '取消(F9)',
-                                reference: 'btn-40941137-user-funcbar-cancel',
+                                reference: 'btn-restoreprice-user-funcbar-cancel',
                                 //cls: 'funcbarBtn-black',
                                 iconCls: 'fa fa-times',
                                 margin: 3,
@@ -371,37 +374,37 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         // {
                         //     xtype: 'antNumberfield',
                         //     fieldLabel: 'ids',
-                        //     reference: 'num-40941137-user-ids',
+                        //     reference: 'num-restoreprice-user-ids',
                         //     labelWidth: 90,
                         //     cls: 'fieldNotInput',
                         // },
                         // {
                         //     xtype: 'antTextfield',
                         //     fieldLabel: '建立人員',
-                        //     reference: 'txt-40941137-user-createusercode',
+                        //     reference: 'txt-restoreprice-user-createusercode',
                         //     disabled: true,
                         //     labelWidth: 90,
                         // },{
                         //     xtype: 'antTextfield',
                         //     fieldLabel: '建立時間',
-                        //     reference: 'txt-40941137-user-createtm',
+                        //     reference: 'txt-restoreprice-user-createtm',
                         //     disabled: true,
                         //     labelWidth: 90,
                         // },{
                         //     xtype: 'antTextfield',
                         //     fieldLabel: '異動人員',
-                        //     reference: 'txt-40941137-user-modifyusercode',
+                        //     reference: 'txt-restoreprice-user-modifyusercode',
                         //     labelWidth: 90,
                         // },{
                         //     xtype: 'antTextfield',
                         //     fieldLabel: '異動時間',
-                        //     reference: 'txt-40941137-user-modifytm',
+                        //     reference: 'txt-restoreprice-user-modifytm',
                         //     labelWidth: 90,
                         // },
                         // {
                         //     xtype: 'antCombobox',
                         //     fieldLabel: '狀態',
-                        //     reference: 'cmbx-40941137-user-status',
+                        //     reference: 'cmbx-restoreprice-user-status',
                         //     labelWidth: 74,
 
                         //     valueField: 'value',
