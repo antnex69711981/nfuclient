@@ -107,7 +107,8 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                 },
                 defaults: {
                     margin: '0 0 5 5',
-                    height: 260,
+                    height: 115,
+                    //flex: 1,
                 },
                 scrollable: true,
                 items: [
@@ -174,7 +175,22 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 // listeners: {
                                 //     keypress: 'enterSearch'
                                 // },
-                            }, {//電信商
+                            },
+                        ]
+                    }, {   // 電信商、盤商
+                        xtype: 'antFieldset',
+                        title: '電信商、盤商',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch'
+                        },
+                        defaults: {
+                            labelWidth: 65,
+
+                        },
+
+                        items: [
+                            {//電信商
                                 xtype: 'antTagfield',
                                 fieldLabel: '電信商',
                                 reference: 'tag-projectdetail-searchbar-tele',
@@ -192,9 +208,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 valueField: 'id',
                                 queryMode: 'local',
                                 filterPickList: true,
-                                margin: '0 10 8 5',
+                                //margin: '0 10 8 5',
                                 margin: '0 0 8 0',
-                                height: 95,
+                                ///height: 50,
+                                flex: 1,
                                 width: 250,
                                 enableKeyEvents: true,
                                 listeners: {
@@ -221,9 +238,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 valueField: 'id',
                                 queryMode: 'local',
                                 filterPickList: true,
-                                margin: '0 10 8 5',
-                                margin: '0 0 8 0',
-                                height: 30,
+                                //margin: '0 10 8 5',
+                                //margin: '0 0 8 0',
+                                //height: 30,
+                                flex: 1,
                                 width: 250,
                                 enableKeyEvents: true,
                                 listeners: {
@@ -232,34 +250,18 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 //margin: '0 10 8 5',
 
                             }
-                        /*{
-                            xtype: 'combobox',
-                            fieldLabel: '狀　　態',
-                            reference: 'cmbx-projectdetail-searchbar-status',
-
-                            valueField: 'value',
-                            displayField: 'text',
-                            queryMode: 'local',
-                            forceSelection: true,
-                            anyMatch: true,
-                            editable: false,
-                            store: { },
-
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            margin: '0 10 8 5',
-                            
-                        }*/]
-                    },
-                    {   //門市、銷售員查詢、出貨客戶查詢
+                        ]
+                    },{   //門市、銷售員查詢、出貨客戶查詢
                         xtype: 'panel',
                         //reference: 'panel-projectdetail-searchbar',
                         layout: {
                             type: 'vbox',
                             align: 'stretch',
                         },
+                        defaults: {
+                            height: 115,
+                            margin: '0 0 5 5',
+                        }, 
 
                         items: [
                             {//門市、銷售員查詢
@@ -269,13 +271,11 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                     type: 'vbox',
                                     align: 'stretch',
                                 },
-                                // defaults: {
-                                //     labelWidth: 65 ,
-                                //     margin: '0 5 8 10',
-                                //     // defaults:{
-                                //     //     margin:'0 5 0 0'
-                                //     // }
-                                // },
+                                defaults: {
+                                    flex: 1,    
+                                },
+
+                                  
                                 items: [
                                     { // 門市查詢
                                         xtype: 'panel',
@@ -284,9 +284,7 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                             type: 'hbox',
                                             align: 'stretch',
                                         },
-                                        // defaults: {
-                                        //     margin: '0 0 5 5',
-                                        // },
+                                        
                                         items: [{
                                             xtype: 'antTagfield',
 
@@ -297,9 +295,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                             // queryMode: 'local',
                                             filterPickList: true,
                                             readOnly: true,
-                                            margin: '0 10 8 5',
+                                            margin: '5 5 5 5',
                                             //margin: '0 0 8 0',
-                                            height: 60,
+                                            //height: 60,
+                                            //flex: 1,
                                             width: 200,
 
 
@@ -312,10 +311,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                             //iconCls: 'fa fa-search',
                                             //height: 45,
 
-                                            flex: 1,
+                                           //flex: 1,
                                             border: false,
                                             //handler: 'doSearch',
-                                            margin: '0 5 8 0',
+                                            margin: '5 5 5 0',
                                             //margin: '0 0 8 0',
                                         },
 
@@ -342,8 +341,9 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                             // queryMode: 'local',
                                             filterPickList: true,
                                             readOnly: true,
-                                            margin: '0 10 8 5',
-                                            height: 60,
+                                            margin: '5 5 5 5',
+                                            //height: 60,
+                                            //flex: 1,
                                             width: 200,
                                             //margin: '0 0 8 0',
 
@@ -362,10 +362,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                             //iconCls: 'fa fa-search',
                                             //height: 60,
 
-                                            flex: 1,
+                                            //flex: 1,
                                             border: false,
                                             //handler: 'doSearch',
-                                            margin: '0 5 8 0',
+                                            margin: '5 5 5 0',
                                             //margin: '0 0 8 0',
                                         },
 
@@ -376,7 +376,18 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
 
                                 ]
 
-                            }, {//出貨客戶查詢
+                            }, 
+                        ]
+
+                    },{
+                        xtype: 'panel',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch',
+                        },
+                        height: 115, 
+                        items: [
+                            {//出貨客戶查詢
                                 xtype: 'antFieldset',
                                 title: '出貨客戶查詢',
                                 layout: {
@@ -385,10 +396,7 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 },
                                 defaults: {
                                     labelWidth: 65,
-                                    margin: '0 5 8 10',
-                                    // defaults:{
-                                    //     margin:'0 5 0 0'
-                                    // }
+                                    margin: '0 0 5 5',
                                 },
 
                                 items: [
@@ -402,9 +410,10 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                         // queryMode: 'local',
                                         filterPickList: true,
                                         readOnly: true,
-                                        margin: '0 10 8 5',
+                                        //margin: '0 10 8 5',
                                         //margin: '0 0 8 0',
-                                        height: 60,
+                                        //height: 60,
+                                        //flex: 1,
                                         width: 200,
 
                                     }, {//查詢button
@@ -418,62 +427,11 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                         flex: 1,
                                         border: false,
                                         //handler: 'doSearch',
-                                        margin: '0 5 8 0',
+                                        //margin: '0 5 8 0',
                                         //margin: '0 0 8 0',
                                     },]
 
-                            }
-                        ]
-
-                    },
-                    {   //門號、SIM、退佣狀態查詢
-                        xtype: 'panel',
-                        //reference: 'panel-projectdetail-searchbar',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch',
-                        },
-                        items: [
-                            {//門號、SIM
-                                xtype: 'antFieldset',
-                                title: '門號、SIM',
-                                layout: {
-                                    type: 'vbox',
-                                    align: 'stretch',
-                                },
-                                defaults: {
-                                    labelWidth: 65,
-                                    margin: '0 5 0 10',
-                                    // defaults:{
-                                    //     margin:'0 5 0 0'
-                                    // }
-                                },
-                                items: [
-                                    {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: '門號',
-                                        reference: 'txt-11261103-user-searchbar-phone',
-
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                        margin: '0 0 8 0',
-                                    }, {
-                                        xtype: 'antTextfield',
-                                        fieldLabel: 'SIM',
-                                        reference: 'txt-11261103-user-searchbar-SIM',
-
-                                        enableKeyEvents: true,
-                                        listeners: {
-                                            keypress: 'enterSearch'
-                                        },
-                                        margin: '0 0 8 0',
-                                    },
-
-                                ]
-
-                            }, {//退佣狀態查詢
+                            },{//退佣狀態查詢
                                 xtype: 'antFieldset',
                                 title: '退佣狀態查詢',
                                 layout: {
@@ -482,7 +440,7 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                 },
                                 defaults: {
                                     labelWidth: 65,
-                                    margin: '0 5 8 10',
+                                    margin: '0 0 6 5',
                                     // defaults:{
                                     //     margin:'0 5 0 0'
                                     // }
@@ -512,51 +470,105 @@ Ext.define('antnex.view.src.projectdetail.Projectdetail', {
                                         listeners: {
                                             keypress: 'enterSearch'
                                         },
-                                        margin: '7 10 8 5',
+                                        //margin: '7 10 8 5',
+                                        flex: 1,
 
                                     }
                                 ]
 
-                            }, {
-                                xtype: 'panel',
-                                //reference: 'panel-projectdetail-addbar',
+                            },
+                        ]
+                    },{   //門號、SIM
+                        xtype: 'panel',
+                        //reference: 'panel-projectdetail-searchbar',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch',
+                        },
+
+                        items: [
+                            {//門號、SIM
+                                xtype: 'antFieldset',
+                                title: '門號、SIM',
                                 layout: {
-                                    type: 'hbox',
+                                    type: 'vbox',
                                     align: 'stretch',
                                 },
-                                //height:,
-                                flex: 1,
+                                defaults: {
+                                    labelWidth: 34,
+                                    margin: '0 5 0 10',
+                                    // defaults:{
+                                    //     margin:'0 5 0 0'
+                                    // }
+                                    flex: 1,
+                                },
+                                height: 115,
                                 items: [
-                                    {//查詢button
-                                        xtype: 'searchButton-search',
-                                        text: '查詢',
-                                        scale: 'small',
-                                        cls: 'antBtn-blue',
-                                        iconCls: 'fa fa-search',
-                                        //width: 60,
-                                        flex: 1,
-                                        border: false,
-                                        handler: 'doSearch',
-                                        margin: '20 0 5 0',
-                                    },
-                                    {//清除button
-                                        xtype: 'searchButton-search',
-                                        text: '清除',
-                                        scale: 'small',
-                                        cls: 'antBtn-red',
-                                        iconCls: 'fa fa-times',
-                                        //width: 60,
-                                        flex: 1,
-                                        border: false,
-                                        handler: 'cleanSearch',
-                                        margin: '20 0 5 5',
+                                    {
+                                        xtype: 'antTextfield',
+                                        fieldLabel: '門號',
+                                        reference: 'txt-11261103-user-searchbar-phone',
+
+                                        enableKeyEvents: true,
+                                        listeners: {
+                                            keypress: 'enterSearch'
+                                        },
+                                        margin: '0 0 5 0',
+                                    }, {
+                                        xtype: 'antTextfield',
+                                        fieldLabel: 'SIM ',
+                                        reference: 'txt-11261103-user-searchbar-SIM',
+                                        
+
+                                        enableKeyEvents: true,
+                                        listeners: {
+                                            keypress: 'enterSearch'
+                                        },
+                                        margin: '0 0 5 0',
                                     },
 
                                 ]
-                            }
+
+                            },
                         ]
 
-                    },
+                    },{//查詢button、清除button
+                        xtype: 'panel',
+                        //reference: 'panel-projectdetail-addbar',
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch',
+                        },
+                        height:50,
+                        width: 80,
+                        items: [
+                            {//查詢button
+                                xtype: 'searchButton-search',
+                                text: '查詢',
+                                scale: 'small',
+                                cls: 'antBtn-blue',
+                                iconCls: 'fa fa-search',
+                               // width: 60,
+                                flex: 1,
+                                border: false,
+                                handler: 'doSearch',
+                                margin: '15 0 5 0',
+                            },
+                            {//清除button
+                                xtype: 'searchButton-search',
+                                text: '清除',
+                                scale: 'small',
+                                cls: 'antBtn-red',
+                                iconCls: 'fa fa-times',
+                                
+                                flex: 1,
+                                border: false,
+                                handler: 'cleanSearch',
+                                margin: '5 0 5 0',
+                            },
+
+                        ]
+                    }
 
                 ]
             },
