@@ -16,7 +16,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             console.log(`restorepriceController/ onInitialize entry`);
 
             me.initObj();
-            await me.refreshObj();
+            // await me.refreshObj();
             me.initPageStatus();
         } catch (e) {
             me.showError(`restorepriceController/ onInitialize error: `, e);
@@ -37,7 +37,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
         let me = this
         try {
              // 功能列
-             me.funcbarSearch = me.lookupReference('btn-restoreprice-user-funcbar-searc');
+             me.funcbarSearch = me.lookupReference('btn-restoreprice-user-funcbar-search');
              me.funcbarAdd = me.lookupReference('btn-restoreprice-user-funcbar-add');
              me.funcbarEdit = me.lookupReference('btn-restoreprice-user-funcbar-edit');
              me.funcbarSave = me.lookupReference('btn-restoreprice-user-funcbar-save');
@@ -54,17 +54,16 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
              me.viewUserManage = me.lookupReference('panel-restoreprice-user-manage');
  
              //資料維護
-             me.viewIds = me.lookupReference('num-restoreprice-user-ids');
              me.viewCode = me.lookupReference('txt-restoreprice-user-code');
              me.viewRestoreitemcode = me.lookupReference('txt-restoreprice-user-restoreitemcode');
              me.viewMaterialcode = me.lookupReference('txt-restoreprice-user-materialcode');
              me.viewPrice = me.lookupReference('txt-restoreprice-user-price');
-             me.viewMemberprice = me.lookupReference('cmbx-restoreprice-user-memberprice');
+             me.viewMemberprice = me.lookupReference('txt-restoreprice-user-memberprice');
              me.viewMemo = me.lookupReference('txt-restoreprice-user-memo');
-             me.viewCreateusercode = me.lookupReference('txt-restoreprice-user-createusercode');
-             me.viewCreatetm = me.lookupReference('txt-restoreprice-user-createtm');
-             me.viewModifyusercode = me.lookupReference('txt-restoreprice-user-modifyusercode');
-             me.viewModifytm = me.lookupReference('txt-restoreprice-user-modifytm');
+            //  me.viewCreateusercode = me.lookupReference('txt-restoreprice-user-createusercode');
+            //  me.viewCreatetm = me.lookupReference('txt-restoreprice-user-createtm');
+            //  me.viewModifyusercode = me.lookupReference('txt-restoreprice-user-modifyusercode');
+            //  me.viewModifytm = me.lookupReference('txt-restoreprice-user-modifytm');
              
         } catch (e) {
             me.showError('restorepriceController/ initObj error:', e);
@@ -120,8 +119,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.viewUserManage.setHidden(true);
 
             // 資料維護
-            me.viewIds.setReadOnly(true);
-            me.viewIds.setHidden(true);
             me.viewCode.setReadOnly(true);
             me.viewRestoreitemcode.setReadOnly(true);
             me.viewMaterialcode.setReadOnly(true);
@@ -148,19 +145,19 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                     // 功能列
                     me.funcbarSearch.setDisabled(false);
                     me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
-                    // me.funcbarSave.setDisabled(false);
-                    // me.funcbarCancel.setDisabled(false);
+                    me.funcbarEdit.setDisabled(true);
+                    me.funcbarSave.setDisabled(true);
+                    me.funcbarCancel.setDisabled(true);
 
                     // 查詢列
                     me.searchBar.setHidden(false);
 
                     // 主畫面
                     me.viewUserlist.setHidden(false);
+                    me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
-                    // me.viewCode.setReadOnly(false);
+                    // me.viewCode.setReadOnly(true);
                     // me.viewRestoreitemcode.setReadOnly(false);
                     // me.viewMaterialcode.setReadOnly(false);
                     // me.viewPrice.setReadOnly(false);
@@ -183,8 +180,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                     me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
-                    me.viewCode.setReadOnly(false);
+                    me.viewCode.setReadOnly(true);
                     me.viewRestoreitemcode.setReadOnly(false);
                     me.viewMaterialcode.setReadOnly(false);
                     me.viewPrice.setReadOnly(false);
@@ -207,8 +203,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                     me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
-                    // me.viewCode.setReadOnly(false);
+                    me.viewCode.setReadOnly(true);
                     me.viewRestoreitemcode.setReadOnly(false);
                     me.viewMaterialcode.setReadOnly(false);
                     me.viewPrice.setReadOnly(false);
@@ -225,15 +220,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
     },
 
     /************* funcbar *************/
-    // button: 查詢列
-    funcbar_search: function () {
-        const me = this;
-        try {
-            me.searchBar.setHidden(!me.searchBar.hidden);
-        } catch (e) {
-            me.showError('restorepriceController/ funcbar_search error:', e);
-        }
-    },
     // button: 新增
     funcbar_add: function () {
         const me = this;
@@ -250,7 +236,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.loadData();
 
             // 載入預設值
-            me.viewIds.setValue(0);
+            me.viewId.setValue(0);
             me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
 
         } catch (e) {
@@ -277,10 +263,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
         const me = this;
         try {
             let checkSaveFormat = async function () {
-                if (S(me.viewCode.getValue()).isEmpty()) {
-                    throw `請輸入${me.viewCode.getFieldLabel()}`;
-                }
-
                 if (S(me.viewRestoreitemcode.getValue()).isEmpty()) {
                     throw `請輸入${me.viewRestoreitemcode.getFieldLabel()}`;
                 }
@@ -294,8 +276,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
                 if (btn == 'yes') {
                     const uploadJSON = {
-                        txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
-                        ids: me.viewIds.getValue(),
+                        txcode: me.getConfig('action') == 'add' ? 'WORKSTATION_RESTOREITEM_INSERT' : 'WORKSTATION_RESTOREITEM_UPDATE',
                         code: me.viewCode.getValue(),
                         restoreitemcode: me.viewRestoreitemcode.getValue(),
                         materialcode: me.viewMaterialcode.getValue(),
@@ -305,7 +286,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                     }
 
                     me.viewUserManage.mask(CONST_LOADING_HINT);
-                    const json = await antnex.ProxyService.send(uploadJSON);
+                    const json = await antnex.ProxyService.sendAnt(uploadJSON);
                     me.viewUserManage.unmask();
                     switch (json.status) {
                         case CONST_STATUS_OK:
@@ -338,7 +319,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                 if (btn == 'yes') {
                     me.changeStatus('view');
                     me.onSelectUser();
-                    me.viewUserManage.setHidden(true);
+                    //me.viewUserManage.setHidden(true);
                 }
             });
         } catch (e) {
@@ -369,7 +350,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             const materialcode = me.searchMaterialcode.getValue();
 
             const uploadJSON = {
-                txcode: 'BASIC_USER_LIST_FILTER',
+                txcode: 'WORKSTATION_RESTOREITEM_LIST_FILTER',
                 code: code,
                 restoreitemcode: restoreitemcode,
                 materialcode: materialcode,
@@ -382,7 +363,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.setConfig('requireKeylist', []);
 
             me.viewUserlist.mask(CONST_LOADING_HINT);
-            const json = await antnex.ProxyService.send(uploadJSON);
+            const json = await antnex.ProxyService.sendAnt(uploadJSON);
             me.viewUserlist.unmask();
             switch (json.status) {
                 case CONST_STATUS_OK:
@@ -423,8 +404,8 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             const record = me.viewUserlist.getSelection()[0];
             const code = record ? record.get('code') : '';
             me.loadData(code);
-            me.viewUserManage.setHidden(false);//資料維護顯示
-            me.funcbarSave.setHidden(true);//儲存按鈕隱藏
+            //me.viewUserManage.setHidden(false);//資料維護顯示
+            //me.funcbarSave.setHidden(true);//儲存按鈕隱藏
         } catch (e) {
             me.showError('restorepriceController/ onSelectUser error:', e);
         }
@@ -436,34 +417,25 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             // 依據傳入json載入資料
             let loadFn = function (json = {}) {
                 // 取得對應資料
-                const ids = json.ids ? json.ids : '';
+                const id = json.id ? json.id : '';
                 const code = json.code ? json.code : '';
                 const restoreitemcode = json.restoreitemcode ? json.restoreitemcode : '';
                 const materialcode = json.materialcode ? json.materialcode : '';
                 const price = json.price ? json.price : '';
                 const memberprice = json.memberprice ? json.memberprice : '';
                 const memo = json.memo ? json.memo : '';
-                const createusercode = json.createusercode ? json.createusercode : '';
-                const createtm = json.createtm ? json.createtm : '';
-                const modifyusercode = json.modifyusercode ? json.modifyusercode : '';
-                const modifytm = json.modifytm ? json.modifytm : '';
 
-                const editable = ids > 0;
+                const editable = id > 0;
 
                 // 載入對應欄位
                 me.funcbarEdit.setDisabled(editable == false);
 
-                me.viewIds.setValue(ids);
                 me.viewCode.setValue(code);
                 me.viewRestoreitemcode.setValue(restoreitemcode);
                 me.viewMaterialcode.setValue(materialcode);
                 me.viewPrice.setValue(price);
                 me.viewMemberprice.setValue(memberprice);
                 me.viewMemo.setValue(memo);
-                me.viewCreateusercode.setValue(createusercode);
-                me.viewCreatetm.setValue(createtm);
-                me.viewModifyusercode.setValue(modifyusercode);
-                me.viewModifytm.setValue(modifytm);
             }
 
             // 先清除所有資料
@@ -472,12 +444,12 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             // 依據code是否有資料決定是否查詢資料庫
             if (code) {
                 const uploadJSON = {
-                    txcode: 'BASIC_USER_FIND_BY_CODE',
+                    txcode: 'WORKSTATION_RESTOREITEM_FIND_BY_CODE',
                     code: code,
                 };
 
                 me.viewUserManage.mask(CONST_LOADING_HINT);
-                const json = await antnex.ProxyService.send(uploadJSON);
+                const json = await antnex.ProxyService.sendAnt(uploadJSON);
                 me.viewUserManage.unmask();
                 switch (json.status) {
                     case CONST_STATUS_OK:
