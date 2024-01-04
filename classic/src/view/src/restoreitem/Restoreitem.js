@@ -118,10 +118,10 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             },
                             
                             
-                            margin: '0 0 8 0',
+                           // margin: '0 0 8 0',
                             defaults:{
                                 labelWidth: 65,
-                                margin: '0 10 0 0',
+                                margin: '0 10 8 5',
                             }
                             
                             
@@ -138,6 +138,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                                     listeners: {
                                         keypress: 'enterSearch'
                                     },
+                                   
                                 }, {
                                     xtype: 'antTextfield',
                                     fieldLabel: '項目名稱',
@@ -147,6 +148,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                                     listeners: {
                                         keypress: 'enterSearch'
                                     },
+                                    
                                 },{
                                     xtype: 'antNumberfield',
                                     fieldLabel: '保固月份',
@@ -156,6 +158,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                                     listeners: {
                                         keypress: 'enterSearch'
                                     },
+                                    
                                 },
                                 {
                                     xtype: 'antCombobox',
@@ -174,10 +177,10 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                                     listeners: {
                                         keypress: 'enterSearch'
                                     },
-                                    margin: '0 10 8 5',
+                                    //margin: '0 10 8 5',
                                     
                                 },]
-                            },{//建立人員 建立時間
+                            },/*{//建立人員 建立時間
                                 items:[ {//建立人員 建立時間
                                     xtype: 'antTextfield',
                                     fieldLabel: '建立人員',
@@ -217,7 +220,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                                 },
     
                             ]
-                            }                            
+                            } */                           
                         ],
 
                     },
@@ -238,7 +241,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
     }],
     scrollable: true,
     items: [{
-        xtype: 'panel',
+        xtype: 'antTransPanel',
         layout: {
             type: 'hbox',
             align: 'stretch'
@@ -251,13 +254,14 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
             {   // 維修項目清單
                 xtype: 'antGridpanel',
                 title: '維修項目清單',
-                reference: 'grid-restoreitem-userlist',
+                reference: 'grid-restoreitem-list',
                 //bufferedRenderer: false,
                 //runInViewport: false,
                 viewConfig: {
                     enableTextSelection: true,
                 },
-                border: true,
+                selModel: false,
+                //border: true,
                 store: {},                
                 flex: 1,
                 listeners: {
@@ -332,7 +336,13 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                 defaults: {
                     margin: '0 5 5 5',
                 },
-                border: true,
+                tools: [{
+                    xtype: 'toolButton',
+                    tooltip: '異動資訊',
+                    iconCls: 'fas fa-user',
+                    handler: 'showModifyinfo',
+                }],
+                //border: true,
                 items: [
                     {   // 維修項目資料
                         xtype: 'fieldset',
@@ -348,14 +358,14 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             labelStyle: '',
                             labelSeparator: '',
                             cls: 'antVerticalText',
-                            cls: 'antVerticalText fieldNotInput',
-                            disabled: true,
+                            
+                            //disabled: true,
                         },
                         items: [{
                             xtype: 'antTextfield',
                             fieldLabel: '項目編碼',
                             reference: 'txt-restoreitem-code',                        
-                            cls: 'antVerticalText fieldRequired',
+                            cls: 'antVerticalText fieldNotInput',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '項目名稱',
@@ -364,7 +374,8 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                         }, {
                             xtype: 'antNumberfield',
                             fieldLabel: '保固月份',
-                            reference: 'num-restoreitem-mail',
+                            reference: 'num-restoreitem-warrantymonth',
+                            cls: 'antVerticalText fieldRequired',
                         },{
                             xtype: 'antTextfield',
                             fieldLabel: '備註',
@@ -373,7 +384,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             xtype: 'antCombobox',
                             fieldLabel: '狀態',
                             reference: 'cmbx-restoreitem-status',
-                            cls: 'fieldRequired',
+                            cls: 'antVerticalText fieldRequired',
                             valueField: 'value',
                             displayField: 'text',
                             queryMode: 'local',
@@ -386,7 +397,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             // listeners: {
                             //     keypress: 'enterSearch'
                             // },
-                        },{
+                        },/*{
                             xtype: 'antTextfield',
                             fieldLabel: '建立人員',
                             reference: 'txt-restoreitem-createusercode',
@@ -404,7 +415,7 @@ Ext.define('antnex.view.src.restoreitem.Restoreitem', {
                             fieldLabel: '異動時間',
                             reference: 'date-restoreitem-modiftm',
                             //value: new Date()                           
-                        }]
+                        }*/]
                     }
                 ]
             }
