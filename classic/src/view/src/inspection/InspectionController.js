@@ -87,8 +87,8 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
         const me = this;
         try {
             me.cleanSearch();
-            // me.changeStatus('view');
-            // me.loadData();
+            me.changeStatus('view');
+            me.loadData();
         } catch (e) {
             me.showError('inspectionController/ initPageStatus error:', e);
         }
@@ -110,29 +110,15 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.searchBar.setHidden(true);
 
             // 主畫面
-            me.viewUserlist.setHidden(true);
+            me.viewInspectionlist.setHidden(true);
+            me.viewInspectionManage.setHidden(true);
 
             // 資料維護
-            me.viewIds.setReadOnly(true);
-            me.viewIds.setHidden(true);
+            me.viewCode.setHidden(true);
             me.viewCode.setReadOnly(true);
             me.viewName.setReadOnly(true);
-            me.viewMail.setReadOnly(true);
-            me.viewPassword.setReadOnly(true);
             me.viewStatus.setReadOnly(true);
             me.viewMemo.setReadOnly(true);
-            me.viewCreateusername.setReadOnly(true);
-            me.viewCreateusername.setHidden(true);
-            me.viewCreatetm.setReadOnly(true);
-            me.viewCreatetm.setHidden(true);
-            me.viewModifyusername.setReadOnly(true);
-            me.viewModifyusername.setHidden(true);
-            me.viewModifytm.setReadOnly(true);
-            me.viewModifytm.setHidden(true);
-            me.viewAdd.setHidden(true);
-            me.viewEdit.setHidden(true);
-            me.viewSave.setHidden(true);
-            me.viewCancel.setHidden(true);
         } catch (e) {
             me.showError('userController/ disabledAll error:', e);
         }
@@ -161,29 +147,14 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     me.searchBar.setHidden(false);
 
                     // 主畫面
-                    me.viewUserlist.setHidden(false);
+                    me.viewInspectionlist.setHidden(false);
+                    me.viewInspectionManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
                     // me.viewCode.setReadOnly(false);
                     // me.viewName.setReadOnly(false);
-                    // me.viewMail.setReadOnly(false);
-                    // me.viewPassword.setReadOnly(false);
                     // me.viewStatus.setReadOnly(false);
                     // me.viewMemo.setReadOnly(false);
-                    // me.viewCreateusername.setReadOnly(false);
-                    me.viewCreateusername.setHidden(false);
-                    // me.viewCreatetm.setReadOnly(false);
-                    me.viewCreatetm.setHidden(false);
-                    // me.viewModifyusername.setReadOnly(false);
-                    me.viewModifyusername.setHidden(false);
-                    // me.viewModifytm.setReadOnly(false);
-                    me.viewModifytm.setHidden(false);
-
-                    me.viewAdd.setHidden(false);
-                    // me.viewEdit.setHidden(false);
-                    // me.viewSave.setHidden(false);
-                    // me.viewCancel.setHidden(false);
                     break;
                 case 'add':
                     // 功能列
@@ -197,29 +168,15 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     // me.searchBar.setHidden(false);
 
                     // 主畫面
-                    // me.viewUserlist.setHidden(false);
+                    // me.viewInspectionlist.setHidden(false);
+                    me.viewInspectionManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
-                    me.viewCode.setReadOnly(false);
+                    // me.viewCode.setReadOnly(false);
+                    // me.viewCode.setHidden(false);
                     me.viewName.setReadOnly(false);
-                    me.viewMail.setReadOnly(false);
-                    me.viewPassword.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
-                    // me.viewCreateusername.setReadOnly(false);
-                    // me.viewCreateusername.setHidden(false);
-                    // me.viewCreatetm.setReadOnly(false);
-                    // me.viewCreatetm.setHidden(false);
-                    // me.viewModifyusername.setReadOnly(false);
-                    // me.viewModifyusername.setHidden(false);
-                    // me.viewModifytm.setReadOnly(false);
-                    // me.viewModifytm.setHidden(false);
-
-                    // me.viewAdd.setHidden(false);
-                    // me.viewEdit.setHidden(false);
-                    me.viewSave.setHidden(false);
-                    me.viewCancel.setHidden(false);
                     break;
                 case 'edit':
                     // 功能列
@@ -233,25 +190,14 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     // me.searchBar.setHidden(false);
 
                     // 主畫面
-                    // me.viewUserlist.setHidden(false);
+                    // me.viewInspectionlist.setHidden(false);
+                    me.viewInspectionManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewIds.setReadOnly(false);
                     // me.viewCode.setReadOnly(false);
                     me.viewName.setReadOnly(false);
-                    me.viewMail.setReadOnly(false);
-                    me.viewPassword.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
-                    // me.viewCreateusername.setReadOnly(false);
-                    // me.viewCreatetm.setReadOnly(false);
-                    // me.viewModifyusername.setReadOnly(false);
-                    // me.viewModifytm.setReadOnly(false);
-
-                    // me.viewAdd.setHidden(false);
-                    // me.viewEdit.setHidden(false);
-                    me.viewSave.setHidden(false);
-                    me.viewCancel.setHidden(false);
                     break;
                 default:
                     console.log(`無效的狀態: ${me.getConfig('action')}`);
@@ -266,20 +212,20 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
 
         /************* funcbar *************/
     // button: 查詢列
-    funcbar_search: function () {
-        const me = this;
-        try {
-            me.searchBar.setHidden(!me.searchBar.hidden);
-        } catch (e) {
-            me.showError('userController/ funcbar_search error:', e);
-        }
-    },
+    // funcbar_search: function () {
+    //     const me = this;
+    //     try {
+    //         me.searchBar.setHidden(!me.searchBar.hidden);
+    //     } catch (e) {
+    //         me.showError('userController/ funcbar_search error:', e);
+    //     }
+    // },
     // button: 新增
     funcbar_add: function () {
         const me = this;
         try {
             // 取消選取
-            me.viewUserlist.setSelection(false);
+            me.viewInspectionlist.setSelection(false);
 
             // 切換模式
             me.changeStatus('add');
@@ -288,7 +234,8 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.loadData();
 
             // 載入預設值
-            me.viewIds.setValue(0);
+            me.viewCode.setValue("");
+            me.viewMemo.setValue("");
             me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
 
         } catch (e) {
@@ -299,7 +246,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
     funcbar_edit: function () {
         const me = this;
         try {
-            const record = me.viewUserlist.getSelection()[0];
+            const record = me.viewInspectionlist.getSelection()[0];
             if (record) {
                 me.changeStatus('edit');
             } else {
@@ -314,20 +261,20 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
         const me = this;
         try {
             let checkSaveFormat = async function () {
-                if (S(me.viewCode.getValue()).isEmpty()) {
-                    throw `請輸入${me.viewCode.getFieldLabel()}`;
-                }
+                // if (S(me.viewCode.getValue()).isEmpty()) {
+                //     throw `請輸入${me.viewCode.getFieldLabel()}`;
+                // }
 
                 if (S(me.viewName.getValue()).isEmpty()) {
                     throw `請輸入${me.viewName.getFieldLabel()}`;
                 }
 
-                if (S(me.viewPassword.getValue()).isEmpty()) {
-                    throw `請輸入${me.viewPassword.getFieldLabel()}`;
-                }
-
                 if (S(me.viewStatus.getValue()).isEmpty()) {
                     throw `請選擇${me.viewStatus.getFieldLabel()}`;
+                }
+                
+                if (S(me.viewMemo.getValue()).isEmpty()) {
+                    throw `請選擇${me.viewMemo.getFieldLabel()}`;
                 }
             }
             await checkSaveFormat();
@@ -335,19 +282,17 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
                 if (btn == 'yes') {
                     const uploadJSON = {
-                        txcode: me.getConfig('action') == 'add' ? 'BASIC_USER_INSERT' : 'BASIC_USER_UPDATE',
-                        ids: me.viewIds.getValue(),
+                        txcode: me.getConfig('action') == 'add' ? 'BASIC_INSPECTION_INSERT' : 'BASIC_INSPECTION_UPDATE',
+                        // ids: me.viewIds.getValue(),
                         code: me.viewCode.getValue(),
                         name: me.viewName.getValue(),
-                        mail: me.viewMail.getValue(),
-                        password: me.viewPassword.getValue(),
                         status: me.viewStatus.getValue(),
                         memo: me.viewMemo.getValue(),
                     }
 
-                    me.viewUserManage.mask(CONST_LOADING_HINT);
-                    const json = await antnex.ProxyService.send(uploadJSON);
-                    me.viewUserManage.unmask();
+                    me.viewInspectionManage.mask(CONST_LOADING_HINT);
+                    const json = await antnex.ProxyService.sendAnt(uploadJSON);
+                    me.viewInspectionManage.unmask();
                     switch (json.status) {
                         case CONST_STATUS_OK:
                             const code = json.message.code;
@@ -404,37 +349,34 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
         try {
             const code = me.searchCode.getValue();
             const name = me.searchName.getValue();
-            const mail = me.searchMail.getValue();
             const status = me.searchStatus.getValue();
 
 
             const uploadJSON = {
-                txcode: 'BASIC_USER_LIST_FILTER',
+                txcode: 'BASIC_INSPECTION_LIST_FILTER',
                 code: code,
                 name: name,
-                mail: mail,
                 status: status,
             }
 
-            // 暫存需要顯示的資料 不懂
+            // 暫存需要顯示的資料
             const requireKeylist = me.getConfig('requireKeylist');
 
-            // 清除暫存資料 不懂
+            // 清除暫存資料
             me.setConfig('requireKeylist', []);
 
-            
-            me.viewUserlist.mask(CONST_LOADING_HINT);
-            const json = await antnex.ProxyService.send(uploadJSON);
-            me.viewUserlist.unmask();
+            me.viewInspectionlist.mask(CONST_LOADING_HINT);
+            const json = await antnex.ProxyService.sendAnt(uploadJSON);
+            me.viewInspectionlist.unmask();
 
             switch (json.status) {
                 case CONST_STATUS_OK:
                     const data = json.message.data;
-                    me.viewUserlist.getStore().loadData(data);
+                    me.viewInspectionlist.getStore().loadData(data);
 
-                    // 依照暫存的資料選擇對應資料 不懂
-                    const records = me.viewUserlist.getStore().getRange().filter(e => requireKeylist.includes(e.get('code')));
-                    me.viewUserlist.setSelection(records);
+                    // 依照暫存的資料選擇對應資料
+                    const records = me.viewInspectionlist.getStore().getRange().filter(e => requireKeylist.includes(e.get('code')));
+                    me.viewInspectionlist.setSelection(records);
                     break;
                 default:
                     throw json.statusText
@@ -452,7 +394,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.searchName.setValue('');
             me.searchStatus.setValue(-1);
 
-            // me.doSearch();
+            me.doSearch();
             
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
@@ -465,17 +407,8 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
         const me = this
         
         try {
-            // const selection = me.viewUserlist.getSelection();
-            // const record = selection[0];
-            const record = me.viewUserlist.getSelection()[0];
+            const record = me.viewInspectionlist.getSelection()[0];
             const code = record ? record.get('code') : '';
-            
-            if (me.viewEdit.hidden) {
-                me.viewAdd.setHidden(true);
-                me.viewEdit.setHidden(false);
-                me.viewSave.setHidden(true);
-                me.viewCancel.setHidden(false);
-            }
             me.loadData(code);
 
         } catch (e) {
@@ -489,14 +422,11 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             // 依據傳入json載入資料
             let loadFn = function (json = {}) {
                 // 取得對應資料
+                const ids = json.ids ? json.ids : '';
                 const code = json.code ? json.code : '';
                 const name = json.name ? json.name : '';
                 const status = json.status ? json.status : '';
                 const memo = json.memo ? json.memo : '';
-                // const createusername = json.createusername ? json.createusername : '';
-                // const createtm = json.createtm ? json.createtm : '';
-                // const modifyusername = json.modifyusername ? json.modifyusername : '';
-                // const modifytm = json.modifytm ? json.modifytm : '';
 
                 const editable = ids > 0;
 
@@ -507,10 +437,6 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                 me.viewName.setValue(name);
                 me.viewStatus.setValue(status);
                 me.viewMemo.setValue(memo);
-                // me.viewCreateusername.setValue(createusername);
-                // me.viewCreatetm.setValue(createtm);
-                // me.viewModifyusername.setValue(modifyusername);
-                // me.viewModifytm.setValue(modifytm);
             }
 
             // 先清除所有資料
@@ -519,10 +445,8 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             // 依據code是否有資料決定是否查詢資料庫
             if (code) {
                 const uploadJSON = {
-                    txcode: 'WORKSTATION_RESTOREITEM_LIST_FILTER',
-                    code: "",
-                    name: "",
-                    status: -1,
+                    txcode: 'BASIC_INSPECTION_FIND_BY_CODE',
+                    code: code,
                 }
 
                 me.viewInspectionlist.mask(CONST_LOADING_HINT);

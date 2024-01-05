@@ -124,6 +124,8 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
 
                     // 主畫面
                     me.viewList.setHidden(false);
+                    me.viewList.setDisabled(false);
+
 
                     // 資料維護
                     // me.viewIds.setReadOnly(false);
@@ -146,6 +148,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
 
                     // 主畫面
                     me.viewList.setHidden(false);
+                    me.viewList.setDisabled(true);
 
                     // 資料維護
                     // me.viewIds.setReadOnly(false);
@@ -168,7 +171,8 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                     // me.searchBar.setHidden(false);
 
                     // 主畫面
-                    // me.viewList.setHidden(false);
+                    me.viewList.setHidden(false);
+                    me.viewList.setDisabled(true);
 
                     // 資料維護
                     // me.viewIds.setReadOnly(false);
@@ -252,23 +256,24 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
             // 載入預設值
             // me.viewIds.setValue(0);
             me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
-            me.viewWarrantymonth.setValue(1);
+            me.viewWarrantymonth.setValue(0);
         } catch (e) {
             me.showError('restoreitemController/ funcbar_add error:', e);
         }
     },        
     // button: 修改
     funcbar_edit: function () {
-        const me = this;
+        let me = this;
         try {
             const record = me.viewList.getSelection()[0];
+            //me.viewWarrantymonth.setValue(0);
             if (record) {
                 me.changeStatus('edit');
             } else {
                 throw `請先選擇要修改的資料`;
             }
         } catch (e) {
-            me.showError('restoreitemController/ funcbar_Add error:', e);
+            me.showError('restoreitemController/ funcbar_edit error:', e);
         }
     },
     // button: 儲存
@@ -299,7 +304,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                     const uploadJSON = {
                         txcode: me.getConfig('action') == 'add' ? 'WORKSTATION_RESTOREITEM_INSERT' : 'WORKSTATION_RESTOREITEM_UPDATE',
                         //ids: me.viewIds.getValue(),
-                        //code: me.viewCode.getValue(),
+                        code: me.viewCode.getValue(),
                         name: me.viewName.getValue(),
                         warrantymonth: me.viewWarrantymonth.getValue(),
                         status: me.viewStatus.getValue(),
@@ -307,7 +312,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                     }
 
                     me.viewManage.mask(CONST_LOADING_HINT);
-                    const json = await antnex.ProxyService.send(uploadJSON);
+                    const json = await antnex.ProxyService.sendAnt(uploadJSON);
                     me.viewManage.unmask();
                     switch (json.status) {
                         case CONST_STATUS_OK:
@@ -328,7 +333,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                 }
             });
         } catch (e) {
-            me.showError('restoreitemController/ funcbar_Add error:', e);
+            me.showError('restoreitemController/ funcbar_save error:', e);
         }
     },  
     // button: 取消
@@ -342,7 +347,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                 }
             });
         } catch (e) {
-            me.showError('restoreitemController/ funcbar_Add error:', e);
+            me.showError('restoreitemController/ funcbar_cancel error:', e);
         }
     },
     // button: 查詢
@@ -351,14 +356,14 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
         try {
             const code = me.searchCode.getValue();
             const name = me.searchName.getValue();
-            const warrantymonth = me.searchWarrantymonth.getValue();
+            //const warrantymonth = me.searchWarrantymonth.getValue();
             const status = me.searchStatus.getValue();
 
             const uploadJSON = {
                 txcode: 'WORKSTATION_RESTOREITEM_LIST_FILTER',
                 code: code,
                 name: name,
-                warrantymonth: warrantymonth,
+                //warrantymonth: warrantymonth,
                 status: status,
             };
 
@@ -369,7 +374,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
             me.setConfig('requireKeylist', []);
 
             me.viewList.mask(CONST_LOADING_HINT);
-            const json = await antnex.ProxyService.send(uploadJSON);
+            const json = await antnex.ProxyService.sendAnt(uploadJSON);
             me.viewList.unmask();
             switch (json.status) {
                 case CONST_STATUS_OK:
@@ -395,7 +400,8 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
             me.searchCode.setValue('');
             me.searchName.setValue('');
             me.searchStatus.setValue(-1);
-            me.searchWarrantymonth.setValue('');
+           // me.searchWarrantymonth.setValue('');
+            me.doSearch();
         } catch (e) {
             me.showError('restoreitemController/ cleanSearch error:', e);
         }
@@ -423,7 +429,8 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
         try {
             const record = me.viewList.getSelection()[0];
             const code = record ? record.get('code') : '';
-            me.loadData(code);
+            
+            me.loadData(code);            
         } catch (e) {
             me.showError('restoreitemController/ onSelect error:', e);
         }
@@ -435,14 +442,14 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
             // 依據傳入json載入資料
             let loadFn = function (json = {}) {
                 // 取得對應資料
-                const ids = json.ids ? json.ids : '';
+                const id = json.id ? json.id : '';
                 const code = json.code ? json.code : '';
                 const name = json.name ? json.name : '';
                 const warrantymonth = json.warrantymonth ? json.warrantymonth : '';
                 const status = json.status ? json.status : '';
                 const memo = json.memo ? json.memo : '';
 
-                const editable = ids > 0;
+                const editable = id > 0;
 
                 // 載入對應欄位
                 me.funcbarEdit.setDisabled(editable == false);
@@ -455,7 +462,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                 me.viewMemo.setValue(memo);
                 
             }
-
+            
             // 先清除所有資料
             loadFn();
 
@@ -467,7 +474,7 @@ Ext.define('antnex.view.src.restoreitem.RestoreitemController', {
                 };
 
                 me.viewManage.mask(CONST_LOADING_HINT);
-                const json = await antnex.ProxyService.send(uploadJSON);
+                const json = await antnex.ProxyService.sendAnt(uploadJSON);
                 me.viewManage.unmask();
                 switch (json.status) {
                     case CONST_STATUS_OK:
