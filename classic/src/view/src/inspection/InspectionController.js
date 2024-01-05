@@ -94,7 +94,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
         }
     },
 
-        /************* 頁面事件 *************/
+    /************* 頁面事件 *************/
     // function: 停用所有需要停用的物件
     disabledAll: function () {
         const me = this;
@@ -139,9 +139,6 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     // 功能列
                     me.funcbarSearch.setDisabled(false);
                     me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
-                    // me.funcbarSave.setDisabled(false);
-                    // me.funcbarCancel.setDisabled(false);
 
                     // 查詢列
                     me.searchBar.setHidden(false);
@@ -149,52 +146,28 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     // 主畫面
                     me.viewInspectionlist.setHidden(false);
                     me.viewInspectionManage.setHidden(false);
-
-                    // 資料維護
-                    // me.viewCode.setReadOnly(false);
-                    // me.viewName.setReadOnly(false);
-                    // me.viewStatus.setReadOnly(false);
-                    // me.viewMemo.setReadOnly(false);
                     break;
                 case 'add':
-                    // 功能列
-                    // me.funcbarSearch.setDisabled(false);
-                    // me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
 
-                    // 查詢列
-                    // me.searchBar.setHidden(false);
-
                     // 主畫面
-                    // me.viewInspectionlist.setHidden(false);
                     me.viewInspectionManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewCode.setReadOnly(false);
-                    // me.viewCode.setHidden(false);
                     me.viewName.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
                     break;
                 case 'edit':
                     // 功能列
-                    // me.funcbarSearch.setDisabled(false);
-                    // me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
 
-                    // 查詢列
-                    // me.searchBar.setHidden(false);
-
                     // 主畫面
-                    // me.viewInspectionlist.setHidden(false);
                     me.viewInspectionManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewCode.setReadOnly(false);
                     me.viewName.setReadOnly(false);
                     me.viewStatus.setReadOnly(false);
                     me.viewMemo.setReadOnly(false);
@@ -210,7 +183,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
 
 
 
-        /************* funcbar *************/
+    /************* funcbar *************/
     // button: 查詢列
     // funcbar_search: function () {
     //     const me = this;
@@ -234,8 +207,8 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.loadData();
 
             // 載入預設值
-            me.viewCode.setValue("");
-            me.viewMemo.setValue("");
+            // me.viewCode.setValue("");
+            // me.viewMemo.setValue("");
             me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
 
         } catch (e) {
@@ -256,6 +229,25 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.showError('userController/ funcbar_Add error:', e);
         }
     },
+    checkSaveFormat: async function () {
+        let me = this;
+        let checked = true;
+        let errmsg = '';
+        try {
+            if (S(me.viewName.getValue()).isEmpty()) {
+                checked = false;
+                errmsg += `請輸入${me.viewName.getFieldLabel()}\n`;
+            }
+
+
+            if (errmsg) {
+                throw errmsg;
+            }
+        } catch (e) {
+            me.showError('userController/ funcbar_Add error:', e);
+        }
+        return checked;
+    },
     // button: 儲存
     funcbar_save: async function () {
         const me = this;
@@ -272,45 +264,53 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                 if (S(me.viewStatus.getValue()).isEmpty()) {
                     throw `請選擇${me.viewStatus.getFieldLabel()}`;
                 }
-                
+
                 if (S(me.viewMemo.getValue()).isEmpty()) {
                     throw `請選擇${me.viewMemo.getFieldLabel()}`;
                 }
             }
-            await checkSaveFormat();
 
-            Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
-                if (btn == 'yes') {
-                    const uploadJSON = {
-                        txcode: me.getConfig('action') == 'add' ? 'BASIC_INSPECTION_INSERT' : 'BASIC_INSPECTION_UPDATE',
-                        // ids: me.viewIds.getValue(),
-                        code: me.viewCode.getValue(),
-                        name: me.viewName.getValue(),
-                        status: me.viewStatus.getValue(),
-                        memo: me.viewMemo.getValue(),
+
+            if (await me.checkSaveFormat()) {
+
+
+                Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
+                    if (btn == 'yes') {
+                        let txcode = me.getConfig('action') == 'add' ? 'BASIC_INSPECTION_INSERT' : 'BASIC_INSPECTION_UPDATE';
+
+
+                        const uploadJSON = {
+                            txcode: txcode,
+                            // ids: me.viewIds.getValue(),
+                            code: me.viewCode.getValue(),
+                            name: me.viewName.getValue(),
+                            status: me.viewStatus.getValue(),
+                            memo: me.viewMemo.getValue(),
+                        }
+
+                        me.viewInspectionManage.mask(CONST_LOADING_HINT);
+                        const json = await antnex.ProxyService.sendAnt(uploadJSON);
+                        me.viewInspectionManage.unmask();
+                        switch (json.status) {
+                            case CONST_STATUS_OK:
+                                const code = json.message.code;
+
+                                // 切換頁面狀態
+                                me.changeStatus('view');
+
+                                // 紀錄此次修改的資料
+                                me.setConfig('requireKeylist', [code]);
+
+                                // 重新查詢
+                                me.cleanSearch();
+                                break;
+                            default:
+                                me.showMessage(json.statusText);
+                        }
                     }
+                });
+            }
 
-                    me.viewInspectionManage.mask(CONST_LOADING_HINT);
-                    const json = await antnex.ProxyService.sendAnt(uploadJSON);
-                    me.viewInspectionManage.unmask();
-                    switch (json.status) {
-                        case CONST_STATUS_OK:
-                            const code = json.message.code;
-
-                            // 切換頁面狀態
-                            me.changeStatus('view');
-
-                            // 紀錄此次修改的資料
-                            me.setConfig('requireKeylist', [code]);
-
-                            // 重新查詢
-                            me.doSearch();
-                            break;
-                        default:
-                            me.showMessage(json.statusText);
-                    }
-                }
-            });
         } catch (e) {
             me.showError('userController/ funcbar_Add error:', e);
         }
@@ -360,10 +360,10 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             }
 
             // 暫存需要顯示的資料
-            const requireKeylist = me.getConfig('requireKeylist');
+            const requireKey = me.getConfig('requireKey');
 
             // 清除暫存資料
-            me.setConfig('requireKeylist', []);
+            me.setConfig('requireKey', "");
 
             me.viewInspectionlist.mask(CONST_LOADING_HINT);
             const json = await antnex.ProxyService.sendAnt(uploadJSON);
@@ -375,8 +375,10 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     me.viewInspectionlist.getStore().loadData(data);
 
                     // 依照暫存的資料選擇對應資料
-                    const records = me.viewInspectionlist.getStore().getRange().filter(e => requireKeylist.includes(e.get('code')));
-                    me.viewInspectionlist.setSelection(records);
+                    const records = me.viewInspectionlist.getStore().getRange().find(e => requireKey == e.get("code"));
+                    if (records) {
+                        me.viewInspectionlist.setSelection(records);
+                    }
                     break;
                 default:
                     throw json.statusText
@@ -395,7 +397,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             me.searchStatus.setValue(-1);
 
             me.doSearch();
-            
+
         } catch (e) {
             me.showError('userController/ cleanSearch error:', e);
         }
@@ -403,9 +405,9 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
 
     /*************** view ***************/
     // event: 選擇使用者
-    onSelectUser:function () {
+    onSelect: function () {
         const me = this
-        
+
         try {
             const record = me.viewInspectionlist.getSelection()[0];
             const code = record ? record.get('code') : '';
@@ -443,7 +445,7 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
             loadFn();
 
             // 依據code是否有資料決定是否查詢資料庫
-            if (code) {
+            if (S(code).isEmpty() == false) {
                 const uploadJSON = {
                     txcode: 'BASIC_INSPECTION_FIND_BY_CODE',
                     code: code,
@@ -457,15 +459,17 @@ Ext.define('antnex.view.src.inspection.InspectionController', {
                     case CONST_STATUS_OK:
                         // 顯示資料
                         const data = json.message.data;
-                
+
                         // do something with data ...
                         loadFn(data);
-                
+
                         break;
                     // 錯誤
                     default:
                         throw json.statusText
                 }
+            } else {
+                loadFn({});
             }
         } catch (e) {
             me.showError('userController/ loadData error:', e);
