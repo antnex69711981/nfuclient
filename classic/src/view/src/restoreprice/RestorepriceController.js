@@ -236,8 +236,10 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.loadData();
 
             // 載入預設值
-            me.viewId.setValue(0);
-            me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
+            //me.viewId.setValue(0);
+            //me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
+            me.viewPrice.setValue(0);
+            me.viewMemberprice.setValue(0);
 
         } catch (e) {
             me.showError('restorepriceController/ funcbar_add error:', e);
@@ -276,7 +278,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             Ext.Msg.confirm('提醒', '是否儲存？', async function (btn) {
                 if (btn == 'yes') {
                     const uploadJSON = {
-                        txcode: me.getConfig('action') == 'add' ? 'WORKSTATION_RESTOREITEM_INSERT' : 'WORKSTATION_RESTOREITEM_UPDATE',
+                        txcode: me.getConfig('action') == 'add' ? 'WORKSTATION_RESTOREPRICE_INSERT' : 'WORKSTATION_RESTOREPRICE_UPDATE',
                         code: me.viewCode.getValue(),
                         restoreitemcode: me.viewRestoreitemcode.getValue(),
                         materialcode: me.viewMaterialcode.getValue(),
@@ -346,13 +348,13 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
         const me = this;
         try {
             const code = me.searchCode.getValue();
-            const restoreitemcode = me.searchRestoreitemcode.getValue();
+            //const restoreitemcode = me.searchRestoreitemcode.getValue();
             const materialcode = me.searchMaterialcode.getValue();
 
             const uploadJSON = {
-                txcode: 'WORKSTATION_RESTOREITEM_LIST_FILTER',
+                txcode: 'WORKSTATION_RESTOREPRICE_LIST_FILTER',
                 code: code,
-                restoreitemcode: restoreitemcode,
+                //restoreitemcode: restoreitemcode,
                 materialcode: materialcode,
             };
 
@@ -444,7 +446,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             // 依據code是否有資料決定是否查詢資料庫
             if (code) {
                 const uploadJSON = {
-                    txcode: 'WORKSTATION_RESTOREITEM_FIND_BY_CODE',
+                    txcode: 'WORKSTATION_RESTOREPRICE_FIND_BY_CODE',
                     code: code,
                 };
 
