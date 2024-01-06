@@ -60,10 +60,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
              me.viewPrice = me.lookupReference('txt-restoreprice-user-price');
              me.viewMemberprice = me.lookupReference('txt-restoreprice-user-memberprice');
              me.viewMemo = me.lookupReference('txt-restoreprice-user-memo');
-            //  me.viewCreateusercode = me.lookupReference('txt-restoreprice-user-createusercode');
-            //  me.viewCreatetm = me.lookupReference('txt-restoreprice-user-createtm');
-            //  me.viewModifyusercode = me.lookupReference('txt-restoreprice-user-modifyusercode');
-            //  me.viewModifytm = me.lookupReference('txt-restoreprice-user-modifytm');
              
         } catch (e) {
             me.showError('restorepriceController/ initObj error:', e);
@@ -119,12 +115,12 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.viewUserManage.setHidden(true);
 
             // 資料維護
-            me.viewCode.setReadOnly(true);
-            me.viewRestoreitemcode.setReadOnly(true);
-            me.viewMaterialcode.setReadOnly(true);
-            me.viewPrice.setReadOnly(true);
-            me.viewMemberprice.setReadOnly(true);
-            me.viewMemo.setReadOnly(true);
+            me.viewCode.enableField(false);
+            me.viewRestoreitemcode.enableField(false);
+            me.viewMaterialcode.enableField(false);
+            me.viewPrice.enableField(false);
+            me.viewMemberprice.enableField(false);
+            me.viewMemo.enableField(false);
         } catch (e) {
             me.showError('restorepriceController/ disabledAll error:', e);
         }
@@ -157,58 +153,41 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                     me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    // me.viewCode.setReadOnly(true);
-                    // me.viewRestoreitemcode.setReadOnly(false);
-                    // me.viewMaterialcode.setReadOnly(false);
-                    // me.viewPrice.setReadOnly(false);
-                    // me.viewMemberprice.setReadOnly(false);
-                    // me.viewMemo.setReadOnly(false);
+                    me.viewCode.setHidden(true);
                     break;
                 case 'add':
-                    // 功能列
-                    // me.funcbarSearch.setDisabled(false);
-                    // me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
+                    // 功能列        
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
 
-                    // 查詢列
-                    // me.searchBar.setHidden(false);
-
                     // 主畫面
-                    // me.viewUserlist.setHidden(false);
+                    me.viewUserlist.setHidden(false);
                     me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    me.viewCode.setReadOnly(true);
-                    me.viewRestoreitemcode.setReadOnly(false);
-                    me.viewMaterialcode.setReadOnly(false);
-                    me.viewPrice.setReadOnly(false);
-                    me.viewMemberprice.setReadOnly(false);
-                    me.viewMemo.setReadOnly(false);
+                    me.viewCode.setHidden(true);                    
+                    me.viewRestoreitemcode.enableField(true);
+                    me.viewMaterialcode.enableField(true);
+                    me.viewPrice.enableField(true);
+                    me.viewMemberprice.enableField(true);
+                    me.viewMemo.enableField(true);
                     break;
                 case 'edit':
                     // 功能列
-                    // me.funcbarSearch.setDisabled(false);
-                    // me.funcbarAdd.setDisabled(false);
-                    // me.funcbarEdit.setDisabled(false);
                     me.funcbarSave.setDisabled(false);
                     me.funcbarCancel.setDisabled(false);
 
-                    // 查詢列
-                    // me.searchBar.setHidden(false);
-
                     // 主畫面
-                    // me.viewUserlist.setHidden(false);
+                    me.viewUserlist.setHidden(false);
                     me.viewUserManage.setHidden(false);
 
                     // 資料維護
-                    me.viewCode.setReadOnly(true);
-                    me.viewRestoreitemcode.setReadOnly(false);
-                    me.viewMaterialcode.setReadOnly(false);
-                    me.viewPrice.setReadOnly(false);
-                    me.viewMemberprice.setReadOnly(false);
-                    me.viewMemo.setReadOnly(false);
+                    me.viewCode.setHidden(true);
+                    me.viewRestoreitemcode.enableField(true);
+                    me.viewMaterialcode.enableField(true);
+                    me.viewPrice.enableField(true);
+                    me.viewMemberprice.enableField(true);
+                    me.viewMemo.enableField(true);
                     break;
                 default:
                     console.log(`無效的狀態: ${me.getConfig('action')}`);
@@ -236,8 +215,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             me.loadData();
 
             // 載入預設值
-            //me.viewId.setValue(0);
-            //me.viewStatus.setValue(1); // 參照: antnex.store.static.Status
             me.viewPrice.setValue(0);
             me.viewMemberprice.setValue(0);
 
@@ -298,7 +275,7 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                             me.changeStatus('view');
 
                             // 紀錄此次修改的資料
-                            me.setConfig('requireKeylist', [code]);
+                            me.setConfig('requireKey', [code]);
 
                             // 重新查詢
                             me.doSearch();
@@ -321,7 +298,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
                 if (btn == 'yes') {
                     me.changeStatus('view');
                     me.onSelectUser();
-                    //me.viewUserManage.setHidden(true);
                 }
             });
         } catch (e) {
@@ -347,15 +323,15 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
     doSearch: async function () {
         const me = this;
         try {
-            const code = me.searchCode.getValue();
-            //const restoreitemcode = me.searchRestoreitemcode.getValue();
-            const materialcode = me.searchMaterialcode.getValue();
+            const restoreitemname = me.searchRestoreitemname.getValue();
+            const goodfullname = me.searchGoodfullname.getValue();
+            const materialcodelist = me.searchMaterialcodelist.getValue();
 
             const uploadJSON = {
                 txcode: 'WORKSTATION_RESTOREPRICE_LIST_FILTER',
-                code: code,
-                //restoreitemcode: restoreitemcode,
-                materialcode: materialcode,
+                restoreitemname: restoreitemname,
+                goodfullname: goodfullname,
+                materialcodelist: materialcodelist,
             };
 
             // 暫存需要顯示的資料
@@ -396,8 +372,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
         }
     },
 
-    
-
     /*************** view ***************/
     // event: 選擇使用者
     onSelectUser: function () {
@@ -406,8 +380,6 @@ Ext.define('antnex.view.src.restoreprice.RestorepriceController', {
             const record = me.viewUserlist.getSelection()[0];
             const code = record ? record.get('code') : '';
             me.loadData(code);
-            //me.viewUserManage.setHidden(false);//資料維護顯示
-            //me.funcbarSave.setHidden(true);//儲存按鈕隱藏
         } catch (e) {
             me.showError('restorepriceController/ onSelectUser error:', e);
         }

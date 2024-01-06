@@ -22,12 +22,8 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
 
     dockedItems: [{
         xtype: 'panel',
-        // layout: {
-        //     type: 'vbox',
-        //     align: 'stretch'
-        // },
         dock: 'top',
-        margin: '5,5,5,0',
+        margin: '5 5 5 0',
         items: [
             {   // 功能列
                 xtype: 'toolbar',
@@ -114,11 +110,11 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                         },
                         items: [{
                             xtype: 'antTextfield',
-                            fieldLabel: '編碼',
+                            fieldLabel: '維修項目名稱',
                             reference: 'txt-restoreprice-user-searchbar-code',
-                            emptyText: '請輸入編碼',
-                            labelWidth: 34,
-                            width: 150,
+                            emptyText: '請輸入維修項目名稱',
+                            labelWidth: 90,
+                            width: 300,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -126,11 +122,11 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                             margin: '0 0 8 0',
                         }, {
                             xtype: 'antTextfield',
-                            fieldLabel: '項目',
+                            fieldLabel: '關鍵字',
                             reference: 'txt-restoreprice-user-searchbar-restoreitemcode',
-                            emptyText: '請輸入項目',
-                            labelWidth: 34,
-                            width: 150,
+                            emptyText: '多條件以 , 區隔',
+                            labelWidth: 48,
+                            width: 258,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
@@ -141,11 +137,20 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                             reference: 'txt-restoreprice-user-searchbar-materialcode',
                             emptyText: '請輸入商品',
                             labelWidth: 34,
-                            width: 150,
+                            width: 244,
                             enableKeyEvents: true,
                             listeners: {
                                 keypress: 'enterSearch'
                             },
+                        },{
+                            xtype: 'antButton',
+                            text: '商品查詢',
+                            scale: 'small',
+                            cls: 'antBtn-blue',
+                            width: 80,
+                            border: false,
+                            //handler: 'doSearch',
+                            margin: '0 0 10 5',
                         },
                     ]
                     },
@@ -178,19 +183,19 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
     scrollable: true,
 
     items: [{
-        xtype: 'panel',
+        xtype: 'antTransPanel',
         layout: {
             type: 'hbox',
             align: 'stretch'
         },
-        margin: 5,
+        margin: '0 5 5 0',
         minHeight: 500,
         flex: 1,
         scrollable: true,
         items: [
             {   // 使用者清單
                 xtype: 'antGridpanel',
-                title: '使用者清單',
+                title: '維修報價清單',
                 reference: 'grid-restoreprice-user-userlist',
                 bufferedRenderer: false,
                 runInViewport: false,
@@ -198,7 +203,6 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                 viewConfig: {
                     enableTextSelection: true,
                 },
-                border: true,
                 store: {},
                 minWidth: 200,
                 flex: 2, //比例
@@ -265,10 +269,9 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
             },
             { xtype: 'splitter', margin: -1.5 },
             {   // 資料維護
-                xtype: 'panel',
+                xtype: 'antPanel',
                 title: '資料維護',
                 reference: 'panel-restoreprice-user-manage',
-                // hidden:true,
                 layout: {
                     type: 'vbox',
                     align: 'stretch',
@@ -283,23 +286,94 @@ Ext.define('antnex.view.src.restoreprice.Restoreprice', {
                     labelSeparator: '',
                     cls: 'antVerticalText',
                 },
-                border: true,
+                tools: [{
+                    xtype: 'toolButton',
+                    tooltip: '異動資訊',
+                    iconCls: 'fas fa-user',
+                    handler: 'showModifyinfo',
+                }],
                 items: [{
+                    //被隱藏
                     xtype: 'antTextfield',
                     fieldLabel: '維修報價編碼',
                     reference: 'txt-restoreprice-user-code',  
                     cls: 'antVerticalText fieldNotInput',                          
-                },{
-                    xtype: 'antTextfield',
-                    fieldLabel: '維修項目',
-                    reference: 'txt-restoreprice-user-restoreitemcode',                            
-                    cls: 'antVerticalText fieldRequired',
-                },{
-                    xtype: 'antTextfield',
-                    fieldLabel: '維修商品',
-                    reference: 'txt-restoreprice-user-materialcode',
-                    cls: 'antVerticalText fieldRequired',
-                },{
+                },
+                {   // 第一排
+                    xtype: 'antPanel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    defaults: {
+                        margin: '0 5 0 0',
+                        labelWidth: 65,
+                        width: 135,
+                        labelAlign: 'top',
+                        labelStyle: '',
+                        labelSeparator: '',
+                        cls: 'antVerticalText',
+                    },
+                    items: [{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修項目',
+                            flex:1,
+                            reference: 'txt-restoreprice-user-restoreitemcode',                            
+                            cls: 'antVerticalText fieldRequired',
+                        },{
+                            xtype: 'antButton',
+                            text: '維修項目查詢',
+                            scale: 'small',
+                            width: 100,
+                            cls: 'antBtn-blue',
+                            margin: '18 0 0 0',
+                            border: false,
+                            //handler: 'doSearch',
+                        },            
+                    ],
+                },
+                {   //需改名
+                    xtype: 'antNumberfield',
+                    fieldLabel: '維修項目名稱',
+                    reference: 'txt-restoreprice-user-price',
+                },
+                {   //需改名
+                    xtype: 'antNumberfield',
+                    fieldLabel: '商品全名',
+                    reference: 'txt-restoreprice-user-price',
+                },
+                {   // 第二排
+                    xtype: 'antPanel',
+                    layout: {
+                        type: 'hbox',
+                    },
+                    defaults: {
+                        margin: '0 5 0 0',
+                        labelWidth: 65,
+                        width: 135,
+                        labelAlign: 'top',
+                        labelStyle: '',
+                        labelSeparator: '',
+                        cls: 'antVerticalText',
+                    },
+                    items: [{
+                            xtype: 'antTextfield',
+                            fieldLabel: '維修商品',
+                            flex:1,
+                            reference: 'txt-restoreprice-user-materialcode',
+                            cls: 'antVerticalText fieldRequired',
+                        },{
+                            xtype: 'antButton',
+                            text: '維修商品查詢',
+                            scale: 'small',
+                            width: 100,
+                            cls: 'antBtn-blue',
+                            margin: '18 0 0 0',
+                            border: false,
+                            //handler: 'doSearch',
+                        },
+                    ],
+                },
+                {
                     xtype: 'antNumberfield',
                     fieldLabel: '維修報價',
                     reference: 'txt-restoreprice-user-price',
