@@ -6,7 +6,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
     alias: 'widget.inspection',
     controller: 'inspection',
     border: false,
-    scrollable: true,
+    // scrollable: true,
 
     title: '檢測項目主檔',
 
@@ -22,10 +22,6 @@ Ext.define('antnex.view.src.inspection.Inspection', {
 
     dockedItems: [{
         xtype: 'antTransPanel',
-        // layout: {
-        //     type: 'vbox',
-        //     align: 'stretch'
-        // },
         dock: 'top',
         margin: 0,
         items: [
@@ -113,14 +109,14 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             align: 'stretch'
                         },
                         defaults: {
-                            labelWidth: 95,
+                            labelWidth: 34,
                             margin: '3 0 8 5',
-                            width: 210,
+                            width: 150,
                         },
                         items: [
                             {
                                 xtype: 'antTextfield',
-                                fieldLabel: '檢測項目編碼',
+                                fieldLabel: '編碼',
                                 reference: 'txt-inspection-searchbar-code',
                                 emptyText: '請輸入編碼',
                                 //width: 150,
@@ -130,7 +126,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                                 },
                             }, {
                                 xtype: 'antTextfield',
-                                fieldLabel: '檢測項目名稱',
+                                fieldLabel: '名稱',
                                 reference: 'txt-inspection-searchbar-name',
                                 emptyText: '請輸入名稱',
                                 //width: 150,
@@ -143,7 +139,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                                 fieldLabel: '狀態',
                                 reference: 'cmbx-inspection-searchbar-status',
                                 width: 120,
-                                labelWidth: 37,
+                                // labelWidth: 37,
     
                                 valueField: 'value', //store裡的value
                                 displayField: 'text', //顯示store裡的text
@@ -193,7 +189,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             align: 'stretch'
         },
         margin: '5 5 5 0',
-        minHeight: 500, //頁面最小高度
+        // minHeight: 500, //頁面最小高度
         flex: 1,
         scrollable: true,
         items: [
@@ -210,10 +206,10 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                 // margin: 'left',
                 store: {},
                 minWidth: 200,
-                flex: 3,
+                flex: 4,
                 scrollable: true,
                 listeners: {
-                    selectionchange: 'onSelectUser',
+                    selectionchange: 'onSelect',
                 },
                 columns: [{
                     xtype: 'rownumberer',
@@ -230,7 +226,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                 },{
                     dataIndex: 'memo',
                     text: '備註',
-                    minWidth: 150,
+                    minWidth: 120,
                     flex: 1,
                 }, {
                     dataIndex: 'status',
@@ -269,10 +265,10 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                     type: 'vbox',
                     align: 'stretch',
                 },
-                minWidth:300,
+                minWidth:200,
                 flex: 1,
                 defaults: {
-                    margin: '0 5 5 5',
+                    margin: '5 5 5 0',
                 },
                 tools: [{
                     xtype: 'toolButton',
@@ -304,7 +300,6 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             fieldLabel: '檢測項目編碼',
                             reference: 'txt-inspection-code',
                             cls: 'antVerticalText fieldNotInput',
-                            margin: '5 0 5 5',
                         }, {
                             xtype: 'antTextfield',
                             fieldLabel: '檢測項目名稱',
@@ -327,7 +322,6 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             xtype: 'antTextarea',
                             fieldLabel: '備註',
                             reference: 'txt-inspection-memo',
-                            // labelWidth: 37,
                         }
                         ]
                     }
