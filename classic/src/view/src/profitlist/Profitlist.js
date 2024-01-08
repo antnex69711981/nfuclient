@@ -6,9 +6,12 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
     alias: 'widget.profitlist',
     controller: 'profitlist',
     border: false,
+    scrollable: true,
+
+    title: '毛利統計表',
 
     layout: {
-        type: 'hbox', // vbox 垂直 , hbox 水平
+        type: 'vbox', // vbox 垂直 , hbox 水平
         align: 'stretch'
     },
 
@@ -18,15 +21,42 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
     },
 
     dockedItems: [{
-        xtype: 'antPanel',
-        // layout: {
-        //     type: 'vbox',
-        //     align: 'stretch'
-        // },
+        xtype: 'antTransPanel',
         dock: 'top',
         margin: 0,
         items: [
-            {   // 查詢列
+            {   // 功能列
+                xtype: 'toolbar',
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch',
+                },
+                scrollable: true,
+                border: false,
+                // margin: '0 0 0 5',
+                padding: '0 0 0 5',
+                items: [
+                    {
+                        xtype: 'funcbarButton',
+                        text: '查詢列',
+                        reference: 'btn-profitlist-funcbar-search',
+                        cls: 'funcbarBtn-black',
+                        iconCls: 'fa fa-search',
+                        margin: 3,
+                        handler: 'funcbar_search',
+                    },
+                    { xtype: 'tbseparator', margin: '8 1' },
+                    {
+                        xtype: 'funcbarButton',
+                        text: '列印',
+                        reference: 'btn-profitlist-funcbar-print',
+                        cls: 'funcbarBtn-black',
+                        iconCls: 'fa fa-print',
+                        margin: 3,
+                        handler: 'funcbar_print',
+                    },                    
+                ]
+            }, {   // 查詢列
                 xtype: 'antPanel',
                 reference: 'panel-profitlist-searchbar',
                 layout: {
@@ -34,7 +64,7 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                     align: 'stretch',
                 },
                 defaults: {
-                    margin: '0 0 5 5', // 上 右 下 左
+                    margin: '0 0 5 5',
                 },
                 scrollable: true,
                 items: [
@@ -42,51 +72,50 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                         xtype: 'antFieldset',
                         title: '銷售日期',
                         layout: {
-                            type: 'hbox',
-                            align: 'stretch'
-                        },
-                        defaults: {
-                            // labelWidth: 37,
-                            margin: '0 0 8 5', // 上 右 下 左
-                        },
-                        items: [{
-                            xtype: 'antDatefield',
-                            fieldLabel: '開始日期',
-                            reference: 'date-profitlist-searchbar-startdate',
-                            // emptyText: '請輸入學號',
-                            //width: 150,
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            //margin: '0 0 8 0', // 上 右 下 左
-                        }, {
-                            xtype: 'antDatefield',
-                            fieldLabel: '結束日期',
-                            reference: 'date-profitlist-searchbar-enddate',
-                            // emptyText: '請輸入學號',
-                            //width: 150,
-                            enableKeyEvents: true,
-                            listeners: {
-                                keypress: 'enterSearch'
-                            },
-                            //margin: '0 0 8 0', // 上 右 下 左
-                        },]
-                    }, {   // 門市查詢
-                        xtype: 'antFieldset',
-                        title: '門市查詢',
-                        layout: {
                             type: 'vbox',
                             align: 'stretch'
                         },
                         defaults: {
                             // labelWidth: 37,
-                            margin: '0 0 8 5', // 上 右 下 左
+                            margin: '0 0 8 5',
+                        },
+                        items: [{
+                            xtype: 'antDatefield',
+                            fieldLabel: '開始日期',
+                            reference: 'date-profitlist-searchbar-startdate',
+                            //width: 150,
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                            //margin: '0 0 8 0',
+                        }, {
+                            xtype: 'antDatefield',
+                            fieldLabel: '結束日期',
+                            reference: 'date-profitlist-searchbar-enddate',
+                            //width: 150,
+                            enableKeyEvents: true,
+                            listeners: {
+                                keypress: 'enterSearch'
+                            },
+                            //margin: '0 0 8 0',
+                        },]
+                    }, {   // 門市查詢
+                        xtype: 'antFieldset',
+                        title: '門市查詢',
+                        layout: {
+                            type: 'hbox',
+                            // align: 'stretch'
+                        },
+                        defaults: {
+                            labelWidth: 65,
+                            margin: '0 0 8 5',
                         },
                         items: [{
                             xtype: 'antTagfield',
                             fieldLabel: '門市查詢',
                             reference: 'tag-profitlist-searchbar-branch',
+                            width: 250,
                             store: {
                                 fields: ['id', 'name'],
                                 data: [
@@ -97,22 +126,30 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                             },
                             displayField: 'name', // 顯示名稱
                             valueField: 'id', // 實際值
-                        }]
+                        },{
+                            xtype: 'antButton',
+                            scale: 'small',
+                            cls: 'antBtn-blue',
+                            iconCls: 'fa fa-search',
+                            border: false,
+                            handler: '',
+                        },]
                     }, {   // 員工查詢
                         xtype: 'antFieldset',
                         title: '員工查詢',
                         layout: {
-                            type: 'vbox',
-                            align: 'stretch'
+                            type: 'hbox',
+                            // align: 'stretch'
                         },
                         defaults: {
-                            // labelWidth: 37,
-                            margin: '0 0 0 5', // 上 右 下 左
+                            labelWidth: 65,
+                            margin: '0 0 8 5',
                         },
                         items: [{
                             xtype: 'antTagfield',
                             fieldLabel: '員工查詢',
                             reference: 'tag-profitlist-searchbar-user',
+                            width: 250,
                             store: {
                                 fields: ['id', 'name'],
                                 data: [
@@ -123,7 +160,14 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                             },
                             displayField: 'name', // 顯示名稱
                             valueField: 'id', // 實際值
-                        }]
+                        },{
+                            xtype: 'antButton',
+                            scale: 'small',
+                            cls: 'antBtn-blue',
+                            iconCls: 'fa fa-search',
+                            border: false,
+                            handler: '',
+                        },]
                     },
 
                     {
@@ -135,7 +179,7 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                         width: 60,
                         border: false,
                         handler: 'doSearch',
-                        margin: '10 0 5 15', // 上 右 下 左
+                        margin: '10 0 5 15',
                     },
                     {
                         xtype: 'antButton',
@@ -146,36 +190,35 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                         width: 60,
                         border: false,
                         handler: 'cleanSearch',
-                        margin: '10 0 5 5', // 上 右 下 左
+                        margin: '10 0 5 5',
                     },
                     {
                         xtype: 'antButton',
                         text: '匯出',
                         scale: 'small',
                         cls: 'antBtn-yellow',
-                        // iconCls: 'fa fa-times',
+                        iconCls: 'fa fa-share-square',
                         width: 60,
                         border: false,
                         handler: '',
-                        margin: '10 0 5 5', // 上 右 下 左
+                        margin: '10 0 5 5',
                     }
                 ]
             },
         ]
     }],
-    scrollable: true,
     items: [{
-        xtype: 'antPanel',
+        xtype: 'antTransPanel',
         layout: {
             type: 'hbox',
             align: 'stretch'
         },
-        margin: 5,
+        margin: '5 0 5 0',
         minHeight: 500, //頁面最小高度
         flex: 1,
         scrollable: true,
         items: [
-            {   // 使用者清單
+            {   // 報表欄位
                 xtype: 'antGridpanel',
                 title: '報表欄位',
                 reference: 'grid-profitlist-list',
@@ -184,13 +227,12 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                 viewConfig: {
                     enableTextSelection: true,
                 },
-                border: true,
                 store: {},
                 minWidth: 200,
-                flex: 3,
-                listeners: {
-                    selectionchange: 'onSelectUser',
-                },
+                flex: 1,
+                // listeners: {
+                //     selectionchange: 'onSelectBranch',
+                // },
                 columns: [
                     //     {
                     //     xtype: 'rownumberer',
@@ -397,186 +439,7 @@ Ext.define('antnex.view.src.profitlist.Profitlist', {
                         text: '後台備註',
                         width: 110,
                     }]
-            },
-            // { xtype: 'splitter', margin: -1.5 },
-            // {   // 資料維護
-            //     xtype: 'antPanel',
-            //     title: '資料維護',
-            //     reference: 'panel-profitlist-manage',
-            //     layout: {
-            //         type: 'vbox',
-            //         align: 'stretch',
-            //     },
-            //     minWidth:300,
-            //     flex: 1,
-            //     defaults: {
-            //         margin: '0 5 5 5',
-            //     },
-            //     border: true,
-            //     //hidden: true,
-            //     items: [
-            //         {   // 基本資料
-            //             xtype: 'antFieldset',
-            //             title: '基本資料',
-            //             layout: {
-            //                 type: 'vbox',
-            //                 align: 'stretch',
-            //             },
-            //             defaults: {
-            //                 margin: '0 0 8 0',
-            //                 labelWidth: 37,
-
-            //             },
-            //             items: [{
-            //                 xtype: 'antNumberfield',
-            //                 fieldLabel: 'ids',
-            //                 reference: 'num-profitlist-ids',
-            //                 labelWidth: 37,
-            //                 // cls: 'fieldNotInput',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '學號',
-            //                 reference: 'txt-profitlist-code',
-            //                 // labelWidth: 37,
-            //                 cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '姓名',
-            //                 reference: 'txt-profitlist-name',
-            //                 // labelWidth: 37,
-            //                 cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '信箱',
-            //                 reference: 'txt-profitlist-mail',
-            //                 // labelWidth: 37,
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '密碼',
-            //                 reference: 'txt-profitlist-password',
-            //                 labelWidth: 37,
-            //                 inputType: 'password',
-            //                 cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antCombobox',
-            //                 fieldLabel: '狀態',
-            //                 reference: 'cmbx-profitlist-status',
-            //                 // labelWidth: 37,
-            //                 cls: 'fieldRequired',
-
-            //                 valueField: 'value',
-            //                 displayField: 'text',
-            //                 queryMode: 'local',
-            //                 forceSelection: true,
-            //                 anyMatch: true,
-            //                 editable: false, //可不可編輯
-            //                 store: { type: 'status' },
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '建立人員',
-            //                 reference: 'txt-profitlist-createusername',
-            //                 //disabled: true,
-            //                 // labelAlign: 'top',
-            //                 labelWidth: 65,
-            //                 // cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '建立時間',
-            //                 reference: 'text-profitlist-createtm',
-            //                 // format: 'Y-m-d',
-            //                 //disabled: true,
-            //                 // labelAlign: 'top',
-            //                 labelWidth: 65,
-            //                 // cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '異動人員',
-            //                 reference: 'txt-profitlist-modifyusername',
-            //                 //disabled: true,
-            //                 // labelAlign: 'top',
-            //                 labelWidth: 65,
-            //                 // cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextfield',
-            //                 fieldLabel: '異動時間',
-            //                 reference: 'text-profitlist-modifytm',
-            //                 // format: 'Y-m-d',
-            //                 //disabled: true,
-            //                 // labelAlign: 'top',
-            //                 labelWidth: 65,
-            //                 // cls: 'fieldRequired',
-            //             }, {
-            //                 xtype: 'antTextarea',
-            //                 fieldLabel: '備註',
-            //                 reference: 'txt-profitlist-memo',
-            //                 // labelWidth: 37,
-            //             }, 
-            //             ]
-            //         }, {
-            //             layout: {
-            //                 type: 'hbox',
-            //                 align: 'stretch',
-            //             },
-            //             defaults: {
-            //                 height: 31,
-            //             },
-            //             items: [{
-            //                     xtype: 'antButton',
-            //                     text: '儲存',
-            //                     reference: 'btn-profitlist-save',
-            //                     scale: 'small',
-            //                     cls: 'antBtn-blue',
-            //                     iconCls: 'fa fa-save',
-            //                     // hidden:true,
-            //                     //width: 60,
-            //                     flex: 1,
-            //                     border: false,
-            //                     handler: 'doSave',
-            //                     margin: '10 0 5 5',
-            //                 }, {
-            //                     xtype: 'antButton',
-            //                     text: '修改',
-            //                     reference: 'btn-profitlist-edit',
-            //                     scale: 'small',
-            //                     cls: 'antBtn-yellow',
-            //                     iconCls: 'fa fa-edit',
-            //                     // hidden:true,
-            //                     //width: 60,
-            //                     flex: 1,
-            //                     border: false,
-            //                     handler: 'doEdit',
-            //                     margin: '10 0 5 5',
-            //                 }, {
-            //                     xtype: 'antButton',
-            //                     text: '取消',
-            //                     reference: 'btn-profitlist-cancel',
-            //                     scale: 'small',
-            //                     cls: 'antBtn-red',
-            //                     // iconCls: 'fa fa-times',
-            //                     // hidden:true,
-            //                     //width: 60,
-            //                     flex: 1,
-            //                     border: false,
-            //                     handler: 'doCancel',
-            //                     margin: '10 0 5 5',
-            //                 }, {
-            //                     xtype: 'antButton',
-            //                     text: '新增',
-            //                     reference: 'btn-profitlist-add',
-            //                     scale: 'small',
-            //                     cls: 'antBtn-green',
-            //                     iconCls: 'fa fa-plus',
-            //                     // hidden:true,
-            //                     //width: 60,
-            //                     flex: 1,
-            //                     border: false,
-            //                     handler: 'doAdd',
-            //                     margin: '10 0 5 5',
-            //                 }
-            //             ]
-            //         }
-            //     ]
-            // },            
+            },      
         ]
     }]
 });
