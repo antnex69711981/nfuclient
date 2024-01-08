@@ -157,7 +157,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                             },
                         ]
                     },{
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '查詢',
                         scale: 'small',
                         cls: 'antBtn-blue',
@@ -168,7 +168,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
                         margin: '10 0 5 15', // 上 右 下 左
                     },
                     {
-                        xtype: 'button',
+                        xtype: 'antButton',
                         text: '清除',
                         scale: 'small',
                         cls: 'antBtn-red',
@@ -188,7 +188,7 @@ Ext.define('antnex.view.src.inspection.Inspection', {
             type: 'hbox',
             align: 'stretch'
         },
-        margin: '5 5 5 0',
+        margin: '5 0 5 0',
         // minHeight: 500, //頁面最小高度
         flex: 1,
         scrollable: true,
